@@ -51,5 +51,5 @@ jobs:
 
       - name: Build and push
         run: |
-          docker build . --tag ghcr.io/${{ github.actor }}/my-nextjs-image:latest
-          docker push ghcr.io/${{ github.actor }}/my-nextjs-image:latest
+          docker build . --tag ghcr.io/wanigarathnekaa/my-nextjs-image:latest
+          docker push ghcr.io/wanigarathnekaa/my-nextjs-image:latest
