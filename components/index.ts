@@ -3,5 +3,5 @@ import Sidebar from './Sidebar'
 
 export {
   Navbar,
-  Sidebar
+  Sidebar,
 }
