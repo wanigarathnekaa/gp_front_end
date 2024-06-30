@@ -1,8 +1,14 @@
 import React from 'react'
+import { Title } from   '@/components';
 
 const users = () => {
   return (
-    <div>page</div>
+    <div className='p-4'>
+        <Title 
+          text='Registered Users'
+        />
+
+    </div>
   )
 }
 

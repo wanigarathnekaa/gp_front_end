@@ -13,4 +13,6 @@ export {
   Card,
   Calendar,
   TaskList,
+  Title,
+  Table,
 }
