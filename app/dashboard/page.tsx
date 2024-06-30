@@ -12,9 +12,9 @@ const Dashboard = () => {
     
       <div className="w-full ">
         <Navbar />
-        <div className="flex">
-            <Sidebar />
-        </div>
+        
+        <Sidebar />
+        
         <div className="mt-14 ml-64 flex flex-row min-h-screen">
           <div className="w-3/4 px-20 py-20  bg-[#D6D6FF]">
             <div className="text-3xl font-bold  mb-4">
