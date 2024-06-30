@@ -29,4 +29,4 @@ const Card = ({title, description,icon :Icon, }:CardProps) => {
   );
 };
 
-export default Card
+export default Card;

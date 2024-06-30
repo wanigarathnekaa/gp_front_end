@@ -1,6 +1,6 @@
 import React from 'react';
 import { Sidebar, Navbar, Card, Calendar, TaskList } from '@/components';
-import { FaUsers  } from 'react-icons/fa';
+import { FaUsers, FaRegClock  } from 'react-icons/fa';
 import { IoMdAddCircle } from "react-icons/io";
 import { HiUserAdd } from "react-icons/hi";
 import { AiFillMessage } from "react-icons/ai";
@@ -77,7 +77,10 @@ const Dashboard = () => {
           </div>
           <div className="w-1/4 p-4 bg-[#EEF2FF]">
             <Calendar />
-            <TaskList tasks={['Task 1', 'Task 2', 'Task 3', 'Task 4']} />
+            <TaskList 
+              tasks={['Task 1', 'Task 2', 'Task 3', 'Task 4']}
+              icon = {FaRegClock} 
+            />
           </div>
         </div>
       </div>
