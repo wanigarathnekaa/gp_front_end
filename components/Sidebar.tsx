@@ -2,7 +2,7 @@ import React from 'react'
 
 function Sidebar() {
   return (
-    <div className="flex flex-col h-[92vh] bg-gray-100 w-64 p-3 shadow-lg fixed top-15">
+    <div className="flex flex-col h-[92vh] bg-gray-50 w-64 p-3 shadow-lg fixed top-15">
       <div className="flex items-center space-x-4 p-2 mb-5 top-16 ml-4">
         <img 
           className="h-12 w-12 rounded-full" 

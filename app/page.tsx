@@ -2,7 +2,7 @@ import Navbar from '@/components/Navbar';
 import Sidebar from '@/components/Sidebar';
 
 
-export default function Home() {
+const Home =() => {
   return (
     <div>
     <Navbar /> 
@@ -12,3 +12,5 @@ export default function Home() {
     
   );
 }
+
+export default Home;
