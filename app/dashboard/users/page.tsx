@@ -61,15 +61,19 @@ const UsersData = () => {
       <div className="flex justify-between items-center">
           
           <div className="flex gap-4 ml-auto mr-20 mt-5">
+
             <Link href="#"
                className="text-black hover:text-blue-500 hover:underline">Staff
             </Link>
+
             <Link href="#"
                className="text-black hover:text-blue-500 hover:underline">Lecturers
             </Link>
+
             <Link href="#"
                className="text-black hover:text-blue-500 hover:underline">Students
             </Link>
+            
           </div>
         </div>
         <Table users={usersData}/>
