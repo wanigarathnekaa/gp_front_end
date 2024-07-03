@@ -7,19 +7,20 @@ interface CardProps {
   title: string;
   description: string;
   icon:IconType;
+  wide?: boolean;
   
 }
 
-const Card = ({title, description,icon :Icon, }:CardProps) => {
+const Card = ({title, description,icon :Icon, wide }:CardProps) => {
   return (
-    <div className=' bg-white p-6 mb-8 mt-15 rounded-2xl shadow-xl flex items-center   h-13 w-75'>
-        <Icon className = "text-3xl mr-8 ml-10 text-gray-600"/>
+    <div className={` bg-white p-6 mb-8 mt-15 rounded-2xl shadow-xl flex items-center  group cursor-pointer hover:text-blue-500 h-13 ${wide ? 'w-96' : 'w-75'}`}>
+        <Icon className = "text-3xl mr-8 ml-10 text-gray-600 cursor-pointer group-hover:text-blue-500"/>
 
         <div>
-            <div className="text-lg text-gray-600 font-semibold mb-1">{title}</div>
+            <div className="text-lg text-gray-600 font-semibold mb-1 cursor-pointer group-hover:text-blue-500">{title}</div>
        
         
-            <p className='text-sm text-gray-500 '>{description}</p>
+            <p className='text-sm text-gray-500 cursor-pointer group-hover:text-blue-500 '>{description}</p>
 
         </div>
         
