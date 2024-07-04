@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 
 
 function page() {
@@ -7,7 +8,7 @@ function page() {
     <div className="flex min-h-full flex-col lg:px-8l bg-[#D6D6FF]">
 
       <header className="flex justify-center items-center h-14 bg-[#ffffff]">
-        <img src="logo.png" alt="Logo" className="h-8" />
+        <Image src="logo.png" alt="Logo" className="h-8" />
       </header>
         
         <div className="mt-24 sm:mx-auto sm:w-full sm:max-w-sm p-8 bg-[#ffffff] rounded-xl shadow-xl">

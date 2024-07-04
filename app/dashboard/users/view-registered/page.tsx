@@ -1,5 +1,5 @@
 import React from 'react'
-import { Sidebar, Navbar, Title, Table } from   '@/components';
+import { Sidebar, Navbar, Title, Table } from '@/components';
 import Link from 'next/link';
 
 const usersData = [
