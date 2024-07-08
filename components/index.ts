@@ -5,6 +5,7 @@ import Calendar from './Calendar'
 import TaskList from './TaskList'
 import Title from './Title'
 import Table from './Table'
+import UserInfoForm from './UserInfoForm'
 
 
 export {
@@ -15,4 +16,5 @@ export {
   TaskList,
   Title,
   Table,
+  UserInfoForm
 }
