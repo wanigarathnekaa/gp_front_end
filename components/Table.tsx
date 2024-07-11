@@ -58,7 +58,7 @@ const Table = ({ users, type }:Props) => {
           </tr>
           </thead>
 
-          <tbody className="text-sm">
+          <tbody className="text-sm text-black">
             {users.map((user, index) => (
               <tr key = {index} className='text-center'>
                 <td className='border-b border-gray-200 py-2 px-4'>{user.userId}</td>
