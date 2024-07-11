@@ -21,6 +21,15 @@ const usersData = [
       phone: '1234567890',
       
     },
+
+    {
+      userId: '3',
+      userName : "Michal Doe",
+      regNo: '2021CS001',
+      email: 'user1@example.com',
+      phone: '1234567890',
+      
+    },
 ];
 
 const LecturerData = () => {
