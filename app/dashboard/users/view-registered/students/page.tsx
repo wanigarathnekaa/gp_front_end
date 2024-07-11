@@ -1,5 +1,5 @@
 import React from 'react'
-import { Sidebar, Navbar, Title, Table } from '@/components';
+import { Sidebar, Navbar, Title, Table, Navigation } from '@/components';
 import Link from 'next/link';
 
 const usersData = [
@@ -48,7 +48,7 @@ const usersData = [
   
 ];
 
-const UsersData = () => {
+const StudentsData = () => {
   
 
   return (
@@ -58,25 +58,9 @@ const UsersData = () => {
 
       <div className=' mt-14 ml-64 flex flex-col min-h-screen bg-[#D6D6FF] p-4'>
       <Title text='Registered Users' />
-      <div className="flex justify-between items-center">
-          
-          <div className="flex gap-4 ml-auto mr-20 mt-5">
-
-            <Link href="#"
-               className="text-black hover:text-blue-500 hover:underline">Staff
-            </Link>
-
-            <Link href="#"
-               className="text-black hover:text-blue-500 hover:underline">Lecturers
-            </Link>
-
-            <Link href="#"
-               className="text-black hover:text-blue-500 hover:underline">Students
-            </Link>
-            
-          </div>
-        </div>
-        <Table users={usersData}/>
+      <Navigation/>
+      
+      <Table users={usersData} type="student"/>
 
     </div>
     </div>
@@ -84,4 +68,4 @@ const UsersData = () => {
   )
 }
 
-export default UsersData;
+export default StudentsData;

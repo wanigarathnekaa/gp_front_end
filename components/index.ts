@@ -5,6 +5,8 @@ import Calendar from './Calendar'
 import TaskList from './TaskList'
 import Title from './Title'
 import Table from './Table'
+import Navigation from './Navigation'
+import SearchBar from './SearchBar'
 
 
 export {
@@ -15,4 +17,6 @@ export {
   TaskList,
   Title,
   Table,
+  Navigation,
+  SearchBar,
 }
