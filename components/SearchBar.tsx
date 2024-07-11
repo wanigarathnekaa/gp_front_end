@@ -18,7 +18,7 @@ const SearchBar = ({onSearch}:SearchBarProps) => {
             <input
                 type="text"
                 className="border border-gray-300 rounded-l-full p-2 h-10 w-80 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="search..."
+                placeholder=" Search..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
             />
