@@ -14,7 +14,7 @@ const SearchBar = ({onSearch}:SearchBarProps) => {
         onSearch(searchTerm);
     }
     return (
-        <div className="flex items-center mb-4 mt-8 ml-12">
+        <div className="flex">
             <input
                 type="text"
                 className="border border-gray-300 rounded-l-full p-2 h-10 w-80 focus:outline-none focus:ring-2 focus:ring-blue-500"
