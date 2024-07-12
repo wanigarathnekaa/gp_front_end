@@ -26,7 +26,7 @@ const usersData = [
       userId: '3',
       userName : "Michal Doe",
       regNo: '2021CS001',
-      email: 'user1@example.com',
+      email: 'user2@example.com',
       phone: '1234567890',
       
     },
@@ -38,7 +38,10 @@ const LecturerData = () => {
 
   const handleSearch = (searchTerm: string) => {
     const filteredUsers = usersData.filter(user =>
-      user.userName.toLowerCase().includes(searchTerm.toLowerCase())
+      user.userName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.regNo.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.userId.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.email.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     setUsers(filteredUsers);
@@ -56,8 +59,9 @@ const LecturerData = () => {
             
             <Navigation/>
 
-            <SearchBar onSearch={handleSearch}/>
-            
+            <div className="flex items-center mb-4 mt-8 ml-12">
+              <SearchBar onSearch={handleSearch}/>
+            </div>
 
             <Table users ={users} type='lecturer'/>
 
