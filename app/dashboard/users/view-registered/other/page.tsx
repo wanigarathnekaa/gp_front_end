@@ -1,5 +1,6 @@
-import React from 'react'
-import { Sidebar, Navbar, Title, Table, Navigation } from '@/components';
+"use client";
+import React, { useState } from 'react'
+import { Sidebar, Navbar, Title, Table, Navigation, SearchBar } from '@/components';
 
 
 const usersData = [
@@ -35,6 +36,22 @@ const usersData = [
 
 
 const OtherData = () => {
+
+
+  const [users, setUsers] = useState(usersData);
+
+  const handleSearch =(searchText : string) => {
+    const filteredUsers = usersData.filter(user =>
+      user.userId.toLowerCase().includes(searchText.toLowerCase()) ||
+      user.userName.toLowerCase().includes(searchText.toLowerCase()) ||
+      user.regNo.toLowerCase().includes(searchText.toLowerCase()) ||
+      user.email.toLowerCase().includes(searchText.toLowerCase()) ||
+      user.role.toLowerCase().includes(searchText.toLowerCase())
+    );
+
+    setUsers(filteredUsers);
+  };
+
   return (
     <div className='w-full'> 
     <Navbar/>
@@ -45,7 +62,11 @@ const OtherData = () => {
 
         <Navigation/>
 
-        <Table users ={usersData} type='other'/>
+        <div className="flex items-center mb-4 mt-8 ml-12">
+              <SearchBar onSearch={handleSearch}/>
+        </div>
+
+        <Table users ={users} type='other'/>
 
     </div>
 </div>
