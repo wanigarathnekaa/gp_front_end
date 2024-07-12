@@ -1,5 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 function Sidebar() {
   return (
@@ -20,10 +21,14 @@ function Sidebar() {
       <nav className="flex-1">
         <ul className="space-y-3 bg-[#F1F5F9] mt-8 ml-4 mr-4">
           <li>
+
+            <Link  href="/dashboard"
             
-              <a className="flex items-center justify-center space-x-3 text-gray-700 p-2 rounded-md font-medium bg-[#e2e4e7] hover:bg-[#EEF2FF] hover:text-[#6366F1]">
-                Users
-              </a>
+               className="flex items-center justify-center space-x-3 text-gray-700 p-2 rounded-md font-medium bg-[#e2e4e7] hover:bg-[#EEF2FF] hover:text-[#6366F1]">
+                  Users
+              
+
+            </Link>
             
           </li>
           <li>
