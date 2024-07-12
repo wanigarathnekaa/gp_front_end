@@ -7,6 +7,7 @@ import Title from './Title'
 import Table from './Table'
 import Navigation from './Navigation'
 import SearchBar from './SearchBar'
+import Dropdown from './Dropdown'
 
 
 export {
@@ -19,4 +20,5 @@ export {
   Table,
   Navigation,
   SearchBar,
+  Dropdown,
 }
