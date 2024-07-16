@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react'
+import React, { useState , useEffect} from 'react'
 import { Sidebar, Navbar, Title, Table, Navigation, Dropdown, SearchBar } from '@/components';
 
 
@@ -28,7 +28,7 @@ const usersData = [
   },
 
   {
-    userId: '2',
+    userId: '3',
     userName : "John Doe",
     regNo: '2021CS001',
     indexNo: 21345001,
@@ -40,7 +40,7 @@ const usersData = [
   },
 
   {
-    userId: '2',
+    userId: '4',
     userName : "John Doe",
     regNo: '2021CS001',
     indexNo: 21345001,
@@ -55,13 +55,31 @@ const usersData = [
 
 const StudentsData = () => {
 
-  const [selectedCategory, setSelectedCategory] = useState("Undergraduates");
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedYear, setSelectedYear] = useState("All");
+  const [users, setUsers] = useState(usersData);
 
-  const handleSelect = (selectedOption : string) => {
+  useEffect(() => {
+    filterUsers(selectedCategory, selectedYear);
+  }, [selectedCategory, selectedYear]);
+
+  const handleCategorySelect = (selectedOption: string) => {
     setSelectedCategory(selectedOption);
   };
 
-  const [users, setUsers] = useState(usersData);
+  const handleYearSelect = (selectedOption: string) => {
+    setSelectedYear(selectedOption);
+  };
+
+  const filterUsers = (category: string, year: string) => {
+    const filteredUsers = usersData.filter(user => {
+      const matchCategory = category === "All" || user.type === category;
+      const matchYear = year === "All" || user.year === year;
+      return matchCategory && matchYear;
+    });
+
+    setUsers(filteredUsers);
+  };
 
   const handleSearch = (searchTerm: string) => {
     const filteredUsers = usersData.filter(user =>
@@ -89,14 +107,15 @@ const StudentsData = () => {
       <div className='flex items-center justify-start mt-8 mb-4 ml-16 gap-14'>
 
         <SearchBar onSearch={handleSearch}/>
+
         <Dropdown 
-          options={['Undergraduates', 'Postgraduates', 'Graduates']}
-          onSelect={handleSelect}
+          options={["All",'Undergraduates', 'Postgraduates', 'Graduates']}
+          onSelect={handleCategorySelect}
         />
 
         <Dropdown
-          options={["1st Year", "2nd Year", "3rd Year", "4th Year"]}
-          onSelect={handleSelect}
+          options={["All","1st Year", "2nd Year", "3rd Year", "4th Year"]}
+          onSelect={handleYearSelect}
         />
 
         
