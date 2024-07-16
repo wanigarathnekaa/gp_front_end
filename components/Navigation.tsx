@@ -38,7 +38,7 @@ const Navigation = () => {
                         :''
                         
                     }`}>
-                        Other
+                        Staff
                 </Link>
             </div>
         </div>
