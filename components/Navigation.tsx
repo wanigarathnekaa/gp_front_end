@@ -10,6 +10,17 @@ const Navigation = () => {
 
             <div className='flex gap-4 ml-auto mr-20 mt-5'>
 
+                <Link href="/dashboard/users/view-registered/other"
+                    className={`text-black hover:text-blue-500 hover:underline ${
+                        pathname === "/dashboard/users/view-registered/other"
+                        ? 'font-bold  text-blue-500'
+                        :''
+                        
+                    }`}>
+                        Staff
+                </Link>
+                
+
                 <Link href="/dashboard/users/view-registered/lecturers"
                     
                     className={`text-black hover:text-blue-500 hover:underline ${
@@ -31,15 +42,7 @@ const Navigation = () => {
                         Students
                 </Link>
 
-                <Link href="/dashboard/users/view-registered/other"
-                    className={`text-black hover:text-blue-500 hover:underline ${
-                        pathname === "/dashboard/users/view-registered/other"
-                        ? 'font-bold  text-blue-500'
-                        :''
-                        
-                    }`}>
-                        Staff
-                </Link>
+                
             </div>
         </div>
 
