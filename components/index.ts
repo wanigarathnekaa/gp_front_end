@@ -8,6 +8,7 @@ import Table from './Table'
 import Navigation from './Navigation'
 import SearchBar from './SearchBar'
 import Dropdown from './Dropdown'
+import StudentRanking from './StudentRanking'
 
 
 export {
@@ -21,4 +22,5 @@ export {
   Navigation,
   SearchBar,
   Dropdown,
+  StudentRanking,
 }
