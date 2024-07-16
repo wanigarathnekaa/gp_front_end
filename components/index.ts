@@ -9,6 +9,7 @@ import Navigation from './Navigation'
 import SearchBar from './SearchBar'
 import Dropdown from './Dropdown'
 import StudentRanking from './StudentRanking'
+import UserInfoForm from './UserInfoForm'
 
 
 export {
@@ -23,4 +24,5 @@ export {
   SearchBar,
   Dropdown,
   StudentRanking,
+  UserInfoForm
 }
