@@ -25,7 +25,7 @@ const Dashboard = () => {
               </h1>
             </div>
             <div className="flex flex-col ">
-                <Link href="/users">
+                <Link href="/dashboard/users/view-registered/lecturers">
                     
                         <Card 
                             title="View registered users" 
@@ -37,7 +37,7 @@ const Dashboard = () => {
                     
                 </Link>
 
-                <Link href="/users">
+                <Link href="/dashboard/users/enroll-new/students">
                     
                         <Card 
                             title="Enroll new users" 

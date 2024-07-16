@@ -5,6 +5,10 @@ import Calendar from './Calendar'
 import TaskList from './TaskList'
 import Title from './Title'
 import Table from './Table'
+import Navigation from './Navigation'
+import SearchBar from './SearchBar'
+import Dropdown from './Dropdown'
+import StudentRanking from './StudentRanking'
 import UserInfoForm from './UserInfoForm'
 
 
@@ -16,5 +20,9 @@ export {
   TaskList,
   Title,
   Table,
+  Navigation,
+  SearchBar,
+  Dropdown,
+  StudentRanking,
   UserInfoForm
 }
