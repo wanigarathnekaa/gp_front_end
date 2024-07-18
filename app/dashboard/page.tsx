@@ -49,7 +49,7 @@ const Dashboard = () => {
                     
                 </Link>
 
-                <Link href="/users">
+                <Link href="/dashboard/users/create-new">
                     
                         <Card 
                             title="Create new user role" 
@@ -82,6 +82,7 @@ const Dashboard = () => {
               icon = {FaRegClock} 
             />
           </div>
+          
         </div>
       </div>
     
