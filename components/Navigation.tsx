@@ -3,44 +3,42 @@ import React from 'react'
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-const Navigation = () => {
-    const pathname = usePathname();
+interface NavigationLink{
+    href: string;
+    label: string;
+
+}
+
+interface NavigationProps{
+    links: NavigationLink[];
+    pathname: string;
+}
+
+const Navigation = ({links=[], pathname } : NavigationProps) => {
+    
     return (
         <div className='flex justify-between items-center'>
 
             <div className='flex gap-4 ml-auto mr-20 mt-5'>
 
-                <Link href="/dashboard/users/view-registered/other"
-                    className={`text-black hover:text-blue-500 hover:underline ${
-                        pathname === "/dashboard/users/view-registered/other"
-                        ? 'font-bold  text-blue-500'
-                        :''
+                {
+                    links?.map(link => (
+
+                        <Link 
+                            key={link.href}
+                            href={link.href}
+                            className={`text-black hover:text-blue-500 hover:underline ${
+                                pathname === link.href
+                                ? 'font-bold  text-blue-500'
+                                :''
                         
-                    }`}>
-                        Staff
-                </Link>
-                
+                            }`}
+                        >
+                            {link.label}
+                        </Link>
 
-                <Link href="/dashboard/users/view-registered/lecturers"
-                    
-                    className={`text-black hover:text-blue-500 hover:underline ${
-
-                        pathname === '/dashboard/users/view-registered/lecturers'
-                        ? 'font-bold  text-blue-500'
-                            : ''
-                    }`}>
-                        Lecturers
-                    
-                </Link>
-
-                <Link href="/dashboard/users/view-registered/students"
-                    className={`text-black hover:text-blue-500 hover:underline ${
-                        pathname === "/dashboard/users/view-registered/students"
-                        ? 'font-bold  text-blue-500'
-                        :''
-                    }`}>
-                        Students
-                </Link>
+                    ))
+                }
 
                 
             </div>
@@ -49,4 +47,4 @@ const Navigation = () => {
   )
 }
 
-export default Navigation
+export default Navigation;
