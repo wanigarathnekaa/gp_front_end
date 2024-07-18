@@ -10,6 +10,11 @@ import SearchBar from './SearchBar'
 import Dropdown from './Dropdown'
 import StudentRanking from './StudentRanking'
 import UserInfoForm from './UserInfoForm'
+import BulkEnrollCard from './BulkEnrollmentCard'
+import SubmitButton from './SubmitButton'
+import CancelButton from './CancelButton'
+import Button from './button'
+import RoleTable from './RoleTable'
 
 
 export {
@@ -24,5 +29,11 @@ export {
   SearchBar,
   Dropdown,
   StudentRanking,
-  UserInfoForm
+  UserInfoForm,
+  BulkEnrollCard,
+  SubmitButton,
+  CancelButton,
+  Button,
+  RoleTable,
+
 }
