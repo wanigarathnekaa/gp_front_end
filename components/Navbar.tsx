@@ -4,7 +4,7 @@ import Image from 'next/image'
 function Navbar() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 flex justify-between px-20 py-2.5 items-center bg-white  ">
-      <Image src="/Logo.png" alt="Logo" className="h-8"  width={120} height={40}/>
+      <Image src="/Logo.png" alt="Logo" className="h-8"  width={105} height={40}/>
       <div className="flex items-center">
         
         <ul className="flex items-center space-x-7">
