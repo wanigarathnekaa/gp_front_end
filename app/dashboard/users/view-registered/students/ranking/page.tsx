@@ -24,7 +24,7 @@ const page = () => {
 
         <Title text='Student Ranking' />
 
-        <div className="mt-7 ml-20 flex flex-col">
+        <div className="mt-9 ml-8 flex flex-col">
           <StudentRanking students={students}/>
 
         </div>
