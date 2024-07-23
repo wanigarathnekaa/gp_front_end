@@ -28,11 +28,13 @@ const CreateUsers = () => {
                         />
                     </Link>
 
+                    <Link href='/dashboard/users/create-new/create-user-roles/staff'>
                     <Card
                         title ="Create new"
                         description='Create new user roles'
                         icon={HiUserAdd}
                     />
+                    </Link>
 
                 </div>
             </div>
