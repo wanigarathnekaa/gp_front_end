@@ -1,4 +1,5 @@
 import { Navbar, Calendar, TaskList, Courses } from "@/components"
+import Link from "next/link";
 import { FaRegClock } from 'react-icons/fa';
 
 const StudentDashboard = () => {
@@ -14,7 +15,10 @@ const StudentDashboard = () => {
                     </h1>
 
                 </div>
-                <Courses/>
+
+                <Link href="/Student/dashboard/Course1">
+                    <Courses/>
+                </Link>
 
             </div>
 
