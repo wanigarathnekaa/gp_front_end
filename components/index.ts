@@ -15,6 +15,9 @@ import SubmitButton from './SubmitButton'
 import CancelButton from './CancelButton'
 import Button from './button'
 import RoleTable from './RoleTable'
+import Courses from './Courses'
+import CourseDetails from './CourseDetails'
+import NewUserForm from './NewUserForm'
 
 
 export {
@@ -35,5 +38,8 @@ export {
   CancelButton,
   Button,
   RoleTable,
+  Courses,
+  CourseDetails,
+  NewUserForm,
 
 }
