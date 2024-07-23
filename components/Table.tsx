@@ -25,7 +25,7 @@ interface Props {
 
 const Table = ({ users, type }:Props) => {
   return (
-    <div className="flex justify-center mt-8 ml-8">
+    <div className="flex justify-center mt-8 ">
       <table className='w-full max-w-6xl  bg-white rounded-xl border border-gray-200 '>
         <thead className="text-base text-gray-500">
           <tr>
