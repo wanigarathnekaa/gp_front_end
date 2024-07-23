@@ -86,7 +86,10 @@ const ViewLecturer = () => {
                 <SearchBar onSearch={handleSearch}/>
             </div>
 
-            <RoleTable users ={users}/>
+
+            <div className='mt-8 ml-8'>
+              <RoleTable users ={users}/>
+            </div>
 
         </div>
 </div>

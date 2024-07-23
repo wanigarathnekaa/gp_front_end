@@ -77,7 +77,7 @@ const ViewStaff = () => {
         <Navbar/>
         <Sidebar/>
 
-        <div className=' mt-14 ml-64 flex flex-col min-h-screen bg-[#D6D6FF] p-4'>
+        <div className=' mt-12 ml-64 flex flex-col min-h-screen bg-[#D6D6FF] p-4'>
             <Title text='User roles'/>
 
             <Navigation links={links} pathname={pathname}/>
@@ -86,7 +86,9 @@ const ViewStaff = () => {
                 <SearchBar onSearch={handleSearch}/>
             </div>
 
-            <RoleTable users ={users}/>
+            <div className='mt-8 ml-8'>
+              <RoleTable users ={users}/>
+            </div>
 
         </div>
 </div>
