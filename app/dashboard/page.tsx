@@ -4,6 +4,7 @@ import { FaUsers, FaRegClock  } from 'react-icons/fa';
 import { IoMdAddCircle } from "react-icons/io";
 import { HiUserAdd } from "react-icons/hi";
 import { AiFillMessage } from "react-icons/ai";
+import { FaRankingStar } from "react-icons/fa6";
 import Link from 'next/link';
 
 
@@ -67,6 +68,18 @@ const Dashboard = () => {
                             title="Peer-to-peer review" 
                             description='Assign peer-to-peer reviewers'
                             icon={AiFillMessage}
+                            
+                        />
+
+                   
+                </Link>
+
+                <Link href="/dashboard/users/view-registered/students/ranking">
+                    
+                        <Card 
+                            title="Student ranking" 
+                            description='View students ranking'
+                            icon={FaRankingStar}
                             
                         />
 
