@@ -89,7 +89,7 @@ const LecturerData = () => {
             
             <Navigation links={links} pathname={pathname}/>
 
-            <div className="flex items-center mb-4 mt-8 ml-12">
+            <div className="flex items-center mb-4 mt-8 ml-8">
               <SearchBar onSearch={handleSearch}/>
             </div>
 
