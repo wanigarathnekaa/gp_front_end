@@ -18,7 +18,8 @@ import RoleTable from './RoleTable'
 import Courses from './Courses'
 import CourseDetails from './CourseDetails'
 import NewUserForm from './NewUserForm'
-
+import ReviewTable from './ReviewTable'
+import AssignReviewForm from './AssignReviewForm'
 
 export {
   Navbar,
@@ -41,5 +42,7 @@ export {
   Courses,
   CourseDetails,
   NewUserForm,
+  ReviewTable,
+  AssignReviewForm,
 
 }
