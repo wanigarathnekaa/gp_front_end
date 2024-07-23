@@ -1,6 +1,7 @@
 "use client";
 import React, { useState , useEffect} from 'react'
 import { Sidebar, Navbar, Title, Table, Navigation, Dropdown, SearchBar } from '@/components';
+import { usePathname } from 'next/navigation';
 
 
 const usersData = [
@@ -53,7 +54,33 @@ const usersData = [
   
 ];
 
+
+
 const StudentsData = () => {
+
+  const pathname = usePathname();
+
+  const links =[
+
+    {
+      href: '/dashboard/users/view-registered/other',
+      label: 'Staff'
+  
+    },
+  
+    
+    {
+      href: '/dashboard/users/view-registered/lecturers',
+      label: 'Lecturers'
+    },
+
+    {
+      href: '/dashboard/users/view-registered/students',
+      label: 'Students'
+    },
+  
+  
+  ]
 
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedYear, setSelectedYear] = useState("All");
@@ -100,9 +127,10 @@ const StudentsData = () => {
       <Navbar/>
       <Sidebar/>
 
-      <div className=' mt-14 ml-64 flex flex-col min-h-screen bg-[#D6D6FF] p-4'>
+      <div className=' mt-12 ml-64 flex flex-col min-h-screen bg-[#D6D6FF] p-4'>
       <Title text='Registered Users' />
-      <Navigation/>
+
+      <Navigation links={links} pathname={pathname}/>
 
       <div className='flex items-center justify-start mt-8 mb-4 ml-16 gap-14'>
 

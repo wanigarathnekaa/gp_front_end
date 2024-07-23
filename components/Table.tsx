@@ -1,17 +1,18 @@
 import { FaEye, FaEdit } from "react-icons/fa"
 import { CiViewList } from "react-icons/ci";
+import  Link  from "next/link";
 
 interface TableProps{
   userId: string,
   userName :string,
   regNo: string,
-  role ?:string,
   indexNo?: number,
   email: string,
   phone: string,
   fixedLine?: string,
   year?: string,
-  type?:string,
+  type?: string,
+ 
 
 }
 
@@ -38,11 +39,7 @@ const Table = ({ users, type }:Props) => {
             
             <th className='border-b border-gray-200 py-2 px-4'>Email</th>
 
-            {type === "other" && (
-              <>
-                <th className='border-b border-gray-200 py-2 px-4'>Position</th>
-              </>
-            )}
+            
             <th className='border-b border-gray-200 py-2 px-4'>Mobile No</th>
 
             {type === "student" && (
@@ -75,11 +72,7 @@ const Table = ({ users, type }:Props) => {
                 
                 <td className='border-b border-gray-200 py-2 px-4'>{user.email}</td>
 
-                {type === "other" && (
-                  <>
-                    <td className='border-b border-gray-200 py-2 px-4'>{user.role}</td>
-                  </>
-                )}
+                
                 <td className='border-b border-gray-200 py-2 px-4'>{user.phone}</td>
 
                 {type === "student" &&(
@@ -92,8 +85,14 @@ const Table = ({ users, type }:Props) => {
                
                 <td className='border-b border-gray-200  py-2 px-4'>
                   <div className="flex justify-center items-center gap-2">
-                    <CiViewList className='cursor-pointer text-black'/>
-                    <FaEdit className='cursor-pointer text-black'/>
+
+                    <Link href='/dashboard/users/UserDetails'>
+                        <CiViewList className='cursor-pointer text-black'/>
+                    </Link>
+
+                    <Link href='/dashboard/users/UserDetails/UpdateUserDetails'>
+                      <FaEdit className='cursor-pointer text-black'/>
+                    </Link>
 
                   </div>
                   

@@ -10,28 +10,32 @@ const usersData = [
     userId: "1",
     userName : "John Doe",
     regNo: '2021CS100',
-    indexNo: 2100798,
     email: 'user1@example.com',
     phone: '1234567890',
-    fixedLine: '0987654321',
-    year: '2nd Year',
-    type :"Postgraduate"
+    
   },
   {
     userId: '2',
-    userName : "John Doe",
+    userName : "kennedy Doe",
     regNo: '2021CS001',
-    indexNo: 21345001,
     email: 'user1@example.com',
     phone: '1234567890',
-    fixedLine: '0987654321',
-    year: '2nd Year',
-    type:"Graduate",
+    
   },
-]
 
-const Students = () => {
+  {
+    userId: '3',
+    userName : "Michal Doe",
+    regNo: '2021CS001',
+    email: 'user2@example.com',
+    phone: '1234567890',
+    
+  },
+];
+
+const EnrollLecturers = () => {
   const pathname = usePathname();
+
   const links =[
 
     {
@@ -68,31 +72,32 @@ const Students = () => {
           <Link href='/dashboard/users/enroll-new/EnrollIndividual'>
           <Card 
             title="Individual Enrollment"
-            description="Enroll students individually"
+            description="Enroll lecturers individually"
             icon={FaUser}
             wide = {true}
           />
           </Link>
 
-
           <Link href='/dashboard/users/enroll-new/BulkEnrollment'>
           <Card 
             title="Bulk Enrollment"
-            description="Enroll students as groups"
+            description="Enroll lecturers as groups"
             icon={FaUsers}
             wide = {true}
           />
           </Link>
+
+          
         </div>
 
         <div className='ml-14 mt-10'>
           <h4 className='text-xl font-semibold'>Enrollment history</h4>
         </div>
 
-        <Table users={usersData} type='student'/>
+        <Table users={usersData} type='lecturer'/>
       </div>
     </div>
   )
 }
 
-export default Students
+export default EnrollLecturers
