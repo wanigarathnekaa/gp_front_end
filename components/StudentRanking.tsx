@@ -22,7 +22,7 @@ const StudentRanking = ({ students } :StudentRankingProps ) => {
           <li
             key={student.indexNo}
             className={`p-2  border rounded-lg ${
-              index < 10 ? 'bg-yellow-100' : 'bg-gray-50'
+              index < 10 ? 'bg-gray-200' : 'bg-gray-50'
             }`}
           >
             <div className="grid grid-cols-12 gap-2 items-center">

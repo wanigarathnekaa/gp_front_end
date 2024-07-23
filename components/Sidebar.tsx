@@ -32,17 +32,19 @@ function Sidebar() {
             
           </li>
           <li>
-            
-              <a className="flex items-center justify-center space-x-3 text-gray-700 p-2 rounded-md font-medium bg-[#e2e4e7] hover:bg-[#EEF2FF] hover:text-[#6366F1]">
+            <Link  href="/dashboard/forms"
+              className="flex items-center justify-center space-x-3 text-gray-700 p-2 rounded-md font-medium bg-[#e2e4e7] hover:bg-[#EEF2FF] hover:text-[#6366F1]">
                 Forms
-              </a>
-            
+              
+            </Link>
           </li>
           <li>
-            
-              <a className="flex items-center justify-center space-x-3 text-gray-700 p-2 rounded-md font-medium bg-[#e2e4e7] hover:bg-[#EEF2FF] hover:text-[#6366F1]">
+            <Link href="/dashboard/privileges"
+              className="flex items-center justify-center space-x-3 text-gray-700 p-2 rounded-md font-medium bg-[#e2e4e7] hover:bg-[#EEF2FF] hover:text-[#6366F1]">
                 Privileges
-              </a>
+
+            </Link>
+              
             
           </li>
           <li>

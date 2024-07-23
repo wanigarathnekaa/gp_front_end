@@ -2,6 +2,7 @@
 import React from 'react'
 import { Sidebar, Navbar, Title, Table, Navigation, SearchBar } from '@/components';
 import { useState } from 'react';
+import { usePathname } from 'next/navigation';
 
 
 const usersData = [
@@ -32,7 +33,32 @@ const usersData = [
     },
 ];
 
+const links =[
+
+  {
+    href: '/dashboard/users/view-registered/other',
+    label: 'Staff'
+
+  },
+
+  {
+    href: '/dashboard/users/view-registered/lecturers',
+    label: 'Lecturers'
+  },
+
+  {
+    href: '/dashboard/users/view-registered/students',
+    label: 'Students'
+  },
+    
+
+   
+  
+];
+
 const LecturerData = () => {
+
+  const pathname = usePathname();
 
   const [users, setUsers] = useState(usersData);
 
@@ -53,11 +79,11 @@ const LecturerData = () => {
         <Navbar/>
         <Sidebar/>
 
-        <div className=' mt-14 ml-64 flex flex-col min-h-screen bg-[#D6D6FF] p-4'>
+        <div className=' mt-12 ml-64 flex flex-col min-h-screen bg-[#D6D6FF] p-4'>
             <Title text='Registered Users'/>
 
             
-            <Navigation/>
+            <Navigation links={links} pathname={pathname}/>
 
             <div className="flex items-center mb-4 mt-8 ml-12">
               <SearchBar onSearch={handleSearch}/>
