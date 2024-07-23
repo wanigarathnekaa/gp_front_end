@@ -74,7 +74,7 @@ const Students = () => {
             <Link href='/dashboard/users/enroll-new/EnrollIndividual'>
             <Card 
               title="Individual Enrollment"
-              description="Enroll staff membr"
+              description="Enroll staff member"
               icon={FaUser}
               wide = {true}
             />
