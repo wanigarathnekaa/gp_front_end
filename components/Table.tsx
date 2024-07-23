@@ -5,11 +5,13 @@ import  Link  from "next/link";
 interface TableProps{
   userId: string,
   userName :string,
-  regNo: string,
+  staffId?: string,
+  lecturerId?: string,
+  regNo?: string,
   indexNo?: number,
   email: string,
+  nic:string,
   phone: string,
-  fixedLine?: string,
   year?: string,
   type?: string,
  
@@ -29,15 +31,33 @@ const Table = ({ users, type }:Props) => {
           <tr>
             <th className='border-b border-gray-200 py-2 px-4'>User Id</th>
             <th className='border-b border-gray-200 py-2 px-4'>User Name</th>
-            <th className='border-b border-gray-200 py-2 px-4'>Reg. No</th>
+
+            {type === "other" && (
+              <>
+                <th className='border-b border-gray-200 py-2 px-4'>Staff Id</th>
+                
+              </>
+            )}
+            
+
+            {type === "lecturer" && (
+              <>
+                <th className='border-b border-gray-200 py-2 px-4'>Lecturer Id</th>
+                
+              </>
+            )}
+            
 
             {type === "student" && (
               <>
+                <th className='border-b border-gray-200 py-2 px-4'>Reg. No</th>
                 <th className='border-b border-gray-200 py-2 px-4'>Index No</th>
               </>
             )}
             
             <th className='border-b border-gray-200 py-2 px-4'>Email</th>
+
+            <th className='border-b border-gray-200 py-2 px-4'>NIC</th>
 
             
             <th className='border-b border-gray-200 py-2 px-4'>Mobile No</th>
@@ -45,7 +65,7 @@ const Table = ({ users, type }:Props) => {
             {type === "student" && (
               <>
 
-                <th className='border-b border-gray-200 py-2 px-4'>Fixed Contact No</th>
+                
                 <th className='border-b border-gray-200 py-2 px-4'>Year studying</th>
                 <th className='border-b border-gray-200 py-2 px-4'>Type</th>
 
@@ -62,22 +82,40 @@ const Table = ({ users, type }:Props) => {
               <tr key = {index} className='text-center'>
                 <td className='border-b border-gray-200 py-2 px-4'>{user.userId}</td>
                 <td className='border-b border-gray-200 py-2 px-4'>{user.userName}</td>
-                <td className='border-b border-gray-200 py-2 px-4'>{user.regNo}</td>
+
+                {type === "other" && (
+                  <>
+                    <td className='border-b border-gray-200 py-2 px-4'>{user.staffId}</td>
+                    
+                  </>
+                )}
+                
+
+                {type === "lecturer" && (
+                  <>
+                    <td className='border-b border-gray-200 py-2 px-4'>{user.lecturerId}</td>
+                    
+                  </>
+                )}
+                
 
                 {type === "student" && (
                   <>
+                    <td className='border-b border-gray-200 py-2 px-4'>{user.regNo}</td>
                     <td className='border-b border-gray-200 py-2 px-4'>{user.indexNo}</td>
                   </>
                 )}
                 
                 <td className='border-b border-gray-200 py-2 px-4'>{user.email}</td>
 
+                <td className='border-b border-gray-200 py-2 px-4'>{user.nic}</td>
+
                 
                 <td className='border-b border-gray-200 py-2 px-4'>{user.phone}</td>
 
                 {type === "student" &&(
                   <>
-                    <td className='border-b border-gray-200 py-2 px-4'>{user.fixedLine}</td>
+                    
                     <td className='border-b border-gray-200 py-2 px-4'>{user.year}</td>
                     <td className='border-b border-gray-200 py-2 px-4'>{user.type}</td>
                   </>
