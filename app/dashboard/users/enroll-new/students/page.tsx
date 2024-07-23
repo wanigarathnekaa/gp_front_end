@@ -13,7 +13,7 @@ const usersData = [
     indexNo: 2100798,
     email: 'user1@example.com',
     phone: '1234567890',
-    fixedLine: '0987654321',
+    nic:'6456788765',
     year: '2nd Year',
     type :"Postgraduate"
   },
@@ -24,7 +24,7 @@ const usersData = [
     indexNo: 21345001,
     email: 'user1@example.com',
     phone: '1234567890',
-    fixedLine: '0987654321',
+    nic:'3456788765',
     year: '2nd Year',
     type:"Graduate",
   },
@@ -64,7 +64,7 @@ const Students = () => {
           <Navigation links={links} pathname={pathname}/>
         </>
 
-        <div className='flex flex-row gap-10 mt-8 ml-10 '>
+        <div className='flex flex-row gap-10 mt-8 ml-5 '>
           <Link href='/dashboard/users/enroll-new/EnrollIndividual'>
           <Card 
             title="Individual Enrollment"
@@ -85,11 +85,13 @@ const Students = () => {
           </Link>
         </div>
 
-        <div className='ml-14 mt-10'>
+        <div className='ml-8 mt-10'>
           <h4 className='text-xl font-semibold'>Enrollment history</h4>
         </div>
 
-        <Table users={usersData} type='student'/>
+        <div className='mt-8'>
+          <Table users={usersData} type='student'/>
+        </div>
       </div>
     </div>
   )
