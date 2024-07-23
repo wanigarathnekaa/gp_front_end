@@ -6,7 +6,7 @@ const StudentDashboard = () => {
     <div className="w-full">
         <Navbar />
 
-        <div className="mt-14  flex flex-row min-h-screen">
+        <div className="mt-12  flex flex-row min-h-screen">
             <div className="w-3/4 px-20  bg-[#D6D6FF]">
                 <div className="text-3xl font-bold mb-4">
                     <h1 className="mt-10 mb-10 ml-3 ">
