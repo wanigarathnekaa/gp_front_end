@@ -133,7 +133,7 @@ const StudentsData = () => {
 
       <Navigation links={links} pathname={pathname}/>
 
-      <div className='flex items-center justify-start mt-8 mb-4 ml-16 gap-14'>
+      <div className='flex items-center justify-start mt-8 mb-4 ml-8 gap-14'>
 
         <SearchBar onSearch={handleSearch}/>
 
@@ -149,8 +149,12 @@ const StudentsData = () => {
 
         
       </div>
+
+      <div >
+        <Table users={users} type="student"/>
+      </div>
       
-      <Table users={users} type="student"/>
+      
 
     </div>
     </div>
