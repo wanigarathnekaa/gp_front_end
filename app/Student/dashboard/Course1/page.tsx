@@ -7,7 +7,7 @@ const Course1 = () => {
         <Navbar/>
 
         <div className='mt-14 min-h-screen bg-[#D6D6FF] flex justify-center items-center p-4'>
-            <div >
+            <div className='mt-10' >
                 <CourseDetails courseName='SCS 3205 - Middleware Architecture' date='2024-07-01'/>
             </div>
             

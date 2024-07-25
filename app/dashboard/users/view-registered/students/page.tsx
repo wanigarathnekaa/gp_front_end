@@ -12,7 +12,7 @@ const usersData = [
     indexNo: 2100798,
     email: 'user1@example.com',
     phone: '1234567890',
-    fixedLine: '0987654321',
+    nic: '1234567890',
     year: '2nd Year',
     type :"Postgraduate"
   },
@@ -23,7 +23,7 @@ const usersData = [
     indexNo: 21345001,
     email: 'user1@example.com',
     phone: '1234567890',
-    fixedLine: '0987654321',
+    nic: '1234567890',
     year: '2nd Year',
     type:"Graduate",
   },
@@ -35,7 +35,7 @@ const usersData = [
     indexNo: 21345001,
     email: 'user1@example.com',
     phone: '1234567890',
-    fixedLine: '0987654321',
+    nic: '1234567890',
     year: '2nd Year',
     type: 'Undergraduate'
   },
@@ -47,7 +47,7 @@ const usersData = [
     indexNo: 21345001,
     email: 'user1@example.com',
     phone: '1234567890',
-    fixedLine: '0987654321',
+    nic: '1234567890',
     year: '2nd Year',
     type:"Undergraduate",
   },
@@ -115,6 +115,7 @@ const StudentsData = () => {
       user.userId.toLowerCase().includes(searchTerm.toLowerCase()) ||
       user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
       user.year.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.nic.toLowerCase().includes(searchTerm.toLowerCase()) ||
       user.type.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
@@ -132,7 +133,7 @@ const StudentsData = () => {
 
       <Navigation links={links} pathname={pathname}/>
 
-      <div className='flex items-center justify-start mt-8 mb-4 ml-16 gap-14'>
+      <div className='flex items-center justify-start mt-8 mb-4 ml-8 gap-14'>
 
         <SearchBar onSearch={handleSearch}/>
 
@@ -148,8 +149,12 @@ const StudentsData = () => {
 
         
       </div>
+
+      <div >
+        <Table users={users} type="student"/>
+      </div>
       
-      <Table users={users} type="student"/>
+      
 
     </div>
     </div>

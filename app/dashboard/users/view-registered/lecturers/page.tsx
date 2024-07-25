@@ -9,16 +9,18 @@ const usersData = [
     {
       userId: "1",
       userName : "John Doe",
-      regNo: '2021CS100',
+      lecturerId:'2100947',
       email: 'user1@example.com',
+      nic: '1234567890',
       phone: '1234567890',
       
     },
     {
       userId: '2',
       userName : "kennedy Doe",
-      regNo: '2021CS001',
+      lecturerId:'2100947',
       email: 'user1@example.com',
+      nic: '1234567890',
       phone: '1234567890',
       
     },
@@ -26,8 +28,9 @@ const usersData = [
     {
       userId: '3',
       userName : "Michal Doe",
-      regNo: '2021CS001',
+      lecturerId:'2100947',
       email: 'user2@example.com',
+      nic: '1234567890',
       phone: '1234567890',
       
     },
@@ -65,8 +68,9 @@ const LecturerData = () => {
   const handleSearch = (searchTerm: string) => {
     const filteredUsers = usersData.filter(user =>
       user.userName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.regNo.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.lecturerId.toLowerCase().includes(searchTerm.toLowerCase()) ||
       user.userId.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.nic.toLowerCase().includes(searchTerm.toLowerCase()) ||
       user.email.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
@@ -85,7 +89,7 @@ const LecturerData = () => {
             
             <Navigation links={links} pathname={pathname}/>
 
-            <div className="flex items-center mb-4 mt-8 ml-12">
+            <div className="flex items-center mb-4 mt-8 ml-8">
               <SearchBar onSearch={handleSearch}/>
             </div>
 

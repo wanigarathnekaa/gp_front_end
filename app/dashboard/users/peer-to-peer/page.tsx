@@ -35,7 +35,7 @@ const PeerReviews = () => {
                     <Navigation links={links} pathname={pathname} />
                 </>
 
-                <div className='flex flex-row gap-10 mt-8 ml-10 '>
+                <div className='flex flex-row gap-10 mt-8 ml-5 '>
 
                     <Link href='/dashboard/users/peer-to-peer/Assign-new'>
                         <Card 
@@ -48,9 +48,9 @@ const PeerReviews = () => {
                 </div>
 
                 <div className='mt-10'>
-                    <h4 className='text-xl font-semibold ml-14 '>Review history</h4>
+                    <h4 className='text-xl font-semibold ml-8 '>Review history</h4>
 
-                    <div className='ml-5 mt-4'>
+                    <div className='mt-4'>
                         <ReviewTable users={review} />
 
                     </div>

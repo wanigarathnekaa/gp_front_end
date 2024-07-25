@@ -9,16 +9,18 @@ const usersData = [
   {
     userId: "1",
     userName : "John Doe",
-    regNo: '2021CS100',
+    lecturerId:'2100947',
     email: 'user1@example.com',
+    nic: '1234567890',
     phone: '1234567890',
     
   },
   {
     userId: '2',
     userName : "kennedy Doe",
-    regNo: '2021CS001',
+    lecturerId:'2100947',
     email: 'user1@example.com',
+    nic: '1234567890',
     phone: '1234567890',
     
   },
@@ -26,8 +28,9 @@ const usersData = [
   {
     userId: '3',
     userName : "Michal Doe",
-    regNo: '2021CS001',
+    lecturerId:'2100947',
     email: 'user2@example.com',
+    nic: '1234567890',
     phone: '1234567890',
     
   },
@@ -68,7 +71,7 @@ const EnrollLecturers = () => {
           <Navigation links={links} pathname={pathname}/>
         </>
 
-        <div className='flex flex-row gap-10 mt-8 ml-10 '>
+        <div className='flex flex-row gap-10 mt-8 ml-5 '>
           <Link href='/dashboard/users/enroll-new/EnrollIndividual'>
           <Card 
             title="Individual Enrollment"
@@ -90,7 +93,7 @@ const EnrollLecturers = () => {
           
         </div>
 
-        <div className='ml-14 mt-10'>
+        <div className='ml-8 mt-10'>
           <h4 className='text-xl font-semibold'>Enrollment history</h4>
         </div>
 

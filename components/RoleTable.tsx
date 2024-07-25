@@ -48,11 +48,11 @@ const RoleTable = ({users}:Props) => {
                 <td className='border-b border-gray-200  py-2 px-4'>
                   <div className="flex justify-center items-center gap-2">
 
-                    <Link href='/dashboard/users/UserDetails'>
+                    <Link href='/dashboard/users/UserRoleDetails'>
                         <CiViewList className='cursor-pointer text-black'/>
                     </Link>
 
-                    <Link href='/dashboard/users/UserDetails/UpdateUserDetails'>
+                    <Link href='/dashboard/users/UserRoleDetails/UpdateUserRoleDetails'>
                       <FaEdit className='cursor-pointer text-black'/>
                     </Link>
 

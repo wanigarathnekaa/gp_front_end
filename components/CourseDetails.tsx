@@ -18,15 +18,26 @@ const CourseDetails = ({courseName, date}:CourseDetailsProps) => {
     const toggleFormDone = () => setIsFormDone(!isFormDone);
     const toggleAnnouncements = () => setShowAnnouncement(!showAnnouncement);
     const toggleFeedback = () => setShowFeedback(!showFeedback);
+
+    const collapseAll = () =>{
+        setShowAnnouncement(false);
+        setShowFeedback(false);
+    }
     return (
-        <div className='p-8 mt-10 bg-[#F1F5F9] min-h-screen rounded-lg shadow-lg w-full max-w-2xl'>
+        <div className='p-8 min-h-screen bg-[#F1F5F9]  rounded-lg shadow-lg w-full max-w-2xl'>
             <div className='mt-8 items-center justify-center text-center'>
                 <h1 className='text-3xl font-bold text-gray-800'>
                     {courseName}
                 </h1>
             </div>
 
-            <div className='mt-10'>
+            <div className='flex justify-end mt-12'>
+                <button onClick={collapseAll} className='text-blue-500 hover:text-blue-700 hover:underline'>
+                    Collapse All
+                </button>
+            </div>
+
+            <div className='mt-2'>
                 <div className='flex items-center p-4   cursor-pointer hover:bg-gray-100 ' onClick={toggleAnnouncements}>
                     <h1 className='text-xl font-semibold flex-grow'>General</h1>
                     {showAnnouncement ? (
@@ -58,7 +69,7 @@ const CourseDetails = ({courseName, date}:CourseDetailsProps) => {
                 </div>
 
                 {showFeedback &&(
-                    <div className='mt-8 flex items-center p-4 bg-white rounded-lg shadow-md w-full cursor-pointer hover:text-blue-500 transition-transform hover:scale-100' onClick={toggleFormDone}>
+                    <div className='mt-4 flex items-center p-4 bg-white rounded-lg shadow-md w-full cursor-pointer hover:text-blue-500 transition-transform hover:scale-100' onClick={toggleFormDone}>
                         <SiGoogleforms className='text-blue-500 h-6 w-6 mr-4'/>
 
                         <label htmlFor ="feedbackCheckbox" className={`flex-grow ${isFormDone ? 'line-through text-gray-400' : ''}`} >

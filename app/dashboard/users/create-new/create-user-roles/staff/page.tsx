@@ -11,16 +11,6 @@ const links =[
     
     },
     
-      
-    {
-        href: '/dashboard/users/create-new/create-user-roles/lecturers',
-        label: 'Lecturers'
-    },
-    
-    {
-        href: '/dashboard/users/create-new/create-user-roles/students',
-        label: 'Students'
-    },
     
 
 ];
@@ -104,14 +94,14 @@ const CreateStaff = () => {
             <Sidebar/>
 
             <div className='mt-12  ml-64 flex flex-col  min-h-screen bg-[#D6D6FF]'>
-                <Title text = 'User roles' />
+                <Title text = 'New user role' />
 
                 <>
                     <Navigation links={links} pathname={pathname} />
                 </>
 
                 <div className='flex flex-row justify-center space-x-6 '>
-                    <div className=' w-1/2 mt-10'>
+                    <div className=' w-1/2 mt-10 '>
                         <NewUserForm 
                             userRoleId={formData.userRoleId}
                             userRoleName={formData.userRoleName}
