@@ -7,7 +7,7 @@ const AssignNew = () => {
     const [formData, setFormData] = useState({
         reviewer: '',
         reviewee: '',
-        formUrl: ''
+        formType: ''
     });
     
       const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -40,7 +40,7 @@ const AssignNew = () => {
                     <AssignReviewForm
                         reviewer={formData.reviewer}
                         reviewee={formData.reviewee}
-                        formUrl={formData.formUrl}
+                        formType={formData.formType}
                         onInputChange={handleInputChange}
                         onUrlChange={handleUrlChange}
                         onSubmit={handleSubmit}
