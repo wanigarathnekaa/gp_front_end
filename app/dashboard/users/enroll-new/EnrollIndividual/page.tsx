@@ -5,6 +5,17 @@ import DeleteButton from '@/components/DeleteButton';
 import CancelButton from '@/components/CancelButton';
 import SubmitButton from '@/components/SubmitButton';
 
+const studentFields = [
+  { label: 'Full Name', placeholder: 'Placeholder', disabled: false, colSpan: 2 },
+  { label: 'Registration no', placeholder: 'Placeholder', disabled: false },
+  { label: 'Index no', placeholder: 'Placeholder', disabled: false },
+  { label: 'Email', placeholder: 'Placeholder', disabled: false, colSpan: 2 },
+  { label: 'NIC', placeholder: 'Placeholder', disabled: false },
+  { label: 'Mobile no', placeholder: 'Placeholder', disabled: false },
+  { label: 'Year of studying', placeholder: 'Placeholder', disabled: false },
+  { label: 'Type', placeholder: 'Placeholder', disabled: false },
+];
+
 
 function page() {
   return (
@@ -13,13 +24,8 @@ function page() {
         <div className="flex items-center justify-center h-screen">
           <div className='bg-white p-8 rounded-xl shadow-xl'>
             <h1 className="font-bold text-2xl text-gray-600 mb-8">Enroll Student As An Individual</h1>
-            <UserInfoForm />
-          <div className='flex gap-2 justify-end mt-8'>
-            <CancelButton />
-            
-            <SubmitButton text="Enroll"/>
-          </div>
-            
+            <UserInfoForm mode='view' fields={studentFields} />
+          
 
           </div>
         </div>
