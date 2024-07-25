@@ -13,12 +13,12 @@ function page() {
         <div className="flex items-center justify-center h-screen">
           <div className='bg-white p-8 rounded-xl shadow-xl'>
             <h1 className="font-bold text-2xl text-gray-600 mb-8">Enroll Student As An Individual</h1>
-            <UserInfoForm />
-          <div className='flex gap-2 justify-end mt-8'>
+            {/* <UserInfoForm /> */}
+          {/* <div className='flex gap-2 justify-end mt-8'>
             <CancelButton />
             
             <SubmitButton text="Enroll"/>
-          </div>
+          </div> */}
             
 
           </div>
