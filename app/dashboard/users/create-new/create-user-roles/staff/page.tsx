@@ -11,8 +11,6 @@ const links =[
     
     },
     
-    
-
 ];
 
 const usersData = [
