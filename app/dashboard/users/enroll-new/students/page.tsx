@@ -59,7 +59,7 @@ const Students = () => {
         </div>
 
         <div className='ml-10 mt-10'>
-          <h4 className='text-xl font-semibold'>Enrollment history</h4>
+          <h4 className='text-xl font-semibold text-gray-800'>Enrollment history</h4>
         </div>
 
         <Table users={usersData} type='student'/>
