@@ -8,7 +8,7 @@ interface SearchBarProps {
 
 const SearchBar = ({onSearch}:SearchBarProps) => {
 
-    const [searchTerm, setSearchTerm] = useState('');
+    const [searchTerm, setSearchTerm] = useState("");
 
     const handleSearch =() =>{
         onSearch(searchTerm);

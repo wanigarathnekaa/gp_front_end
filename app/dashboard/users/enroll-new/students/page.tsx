@@ -13,8 +13,9 @@ const usersData = [
     indexNo: 2100798,
     email: 'user1@example.com',
     phone: '1234567890',
-    fixedLine: '0987654321',
+    nic:'6456788765',
     year: '2nd Year',
+    type :"Postgraduate"
   },
   {
     userId: '2',
@@ -23,13 +24,34 @@ const usersData = [
     indexNo: 21345001,
     email: 'user1@example.com',
     phone: '1234567890',
-    fixedLine: '0987654321',
+    nic:'3456788765',
     year: '2nd Year',
+    type:"Graduate",
   },
 ]
 
 const Students = () => {
   const pathname = usePathname();
+  const links =[
+
+    {
+      href: '/dashboard/users/enroll-new/staff',
+      label: 'Staff'
+
+    },
+
+    {
+      href: '/dashboard/users/enroll-new/lecturers',
+      label: 'Lecturers'
+    },
+
+    {
+      href: '/dashboard/users/enroll-new/students',
+      label: 'Students'
+    }
+    
+    
+  ]
   return (
     <div className='w-full'>
       <Navbar/>
@@ -39,30 +61,37 @@ const Students = () => {
         <Title text='Enroll new users' />
 
         <>
-          <Navigation/>
+          <Navigation links={links} pathname={pathname}/>
         </>
 
-        <div className='flex flex-row gap-10 mt-8 ml-10 '>
+        <div className='flex flex-row gap-10 mt-8 ml-5 '>
+          <Link href='/dashboard/users/enroll-new/EnrollIndividual'>
           <Card 
             title="Individual Enrollment"
             description="Enroll students individually"
             icon={FaUser}
             wide = {true}
           />
+          </Link>
 
+
+          <Link href='/dashboard/users/enroll-new/BulkEnrollment'>
           <Card 
             title="Bulk Enrollment"
             description="Enroll students as groups"
             icon={FaUsers}
             wide = {true}
           />
+          </Link>
         </div>
 
         <div className='ml-10 mt-10'>
           <h4 className='text-xl font-semibold text-gray-800'>Enrollment history</h4>
         </div>
 
-        <Table users={usersData} type='student'/>
+        <div className='mt-8'>
+          <Table users={usersData} type='student'/>
+        </div>
       </div>
     </div>
   )

@@ -1,6 +1,7 @@
 "use client";
 import React, { useState , useEffect} from 'react'
 import { Sidebar, Navbar, Title, Table, Navigation, Dropdown, SearchBar } from '@/components';
+import { usePathname } from 'next/navigation';
 
 
 const usersData = [
@@ -11,7 +12,7 @@ const usersData = [
     indexNo: 2100798,
     email: 'user1@example.com',
     phone: '1234567890',
-    fixedLine: '0987654321',
+    nic: '1234567890',
     year: '2nd Year',
     type :"Postgraduate"
   },
@@ -22,7 +23,7 @@ const usersData = [
     indexNo: 21345001,
     email: 'user1@example.com',
     phone: '1234567890',
-    fixedLine: '0987654321',
+    nic: '1234567890',
     year: '2nd Year',
     type:"Graduate",
   },
@@ -34,7 +35,7 @@ const usersData = [
     indexNo: 21345001,
     email: 'user1@example.com',
     phone: '1234567890',
-    fixedLine: '0987654321',
+    nic: '1234567890',
     year: '2nd Year',
     type: 'Undergraduate'
   },
@@ -46,14 +47,40 @@ const usersData = [
     indexNo: 21345001,
     email: 'user1@example.com',
     phone: '1234567890',
-    fixedLine: '0987654321',
+    nic: '1234567890',
     year: '2nd Year',
     type:"Undergraduate",
   },
   
 ];
 
+
+
 const StudentsData = () => {
+
+  const pathname = usePathname();
+
+  const links =[
+
+    {
+      href: '/dashboard/users/view-registered/other',
+      label: 'Staff'
+  
+    },
+  
+    
+    {
+      href: '/dashboard/users/view-registered/lecturers',
+      label: 'Lecturers'
+    },
+
+    {
+      href: '/dashboard/users/view-registered/students',
+      label: 'Students'
+    },
+  
+  
+  ]
 
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedYear, setSelectedYear] = useState("All");
@@ -88,6 +115,7 @@ const StudentsData = () => {
       user.userId.toLowerCase().includes(searchTerm.toLowerCase()) ||
       user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
       user.year.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.nic.toLowerCase().includes(searchTerm.toLowerCase()) ||
       user.type.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
@@ -100,11 +128,12 @@ const StudentsData = () => {
       <Navbar/>
       <Sidebar/>
 
-      <div className=' mt-14 ml-64 flex flex-col min-h-screen bg-[#D6D6FF] p-4'>
+      <div className=' mt-12 ml-64 flex flex-col min-h-screen bg-[#D6D6FF] p-4'>
       <Title text='Registered Users' />
-      <Navigation/>
 
-      <div className='flex items-center justify-start mt-8 mb-4 ml-16 gap-14'>
+      <Navigation links={links} pathname={pathname}/>
+
+      <div className='flex items-center justify-start mt-8 mb-4 ml-8 gap-14'>
 
         <SearchBar onSearch={handleSearch}/>
 
@@ -120,8 +149,12 @@ const StudentsData = () => {
 
         
       </div>
+
+      <div >
+        <Table users={users} type="student"/>
+      </div>
       
-      <Table users={users} type="student"/>
+      
 
     </div>
     </div>
