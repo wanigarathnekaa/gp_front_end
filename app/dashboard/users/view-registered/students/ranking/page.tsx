@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { StudentRanking, Navbar, Sidebar, Title, SearchBar } from "@/components";
+import { StudentRanking, Navbar, Sidebar, Title, SearchBar } from "@/components/index";
 
 const students = [
   { name: 'John Doe', indexNo: 2100798, points: 100 },

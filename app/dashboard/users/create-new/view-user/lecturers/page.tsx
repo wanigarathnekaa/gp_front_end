@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from 'react'
-import { Sidebar, Navbar, Title, RoleTable, Navigation, SearchBar } from '@/components';
+import { Sidebar, Navbar, Title, RoleTable, Navigation, SearchBar } from '@/components/index';
 import { usePathname } from 'next/navigation';
 
 const usersData = [

@@ -1,4 +1,4 @@
-import {BulkEnrollCard, Navbar} from '@/components';
+import {BulkEnrollCard, Navbar} from '@/components/index';
 
 const EnrollPage = () => {
   return (

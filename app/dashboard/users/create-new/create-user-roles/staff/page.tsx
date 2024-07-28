@@ -1,6 +1,6 @@
 "use client";
 import React, { useState} from 'react'
-import { Sidebar, Navbar, Navigation, Title, NewUserForm, RoleTable  } from '@/components'
+import { Sidebar, Navbar, Navigation, Title, NewUserForm, RoleTable  } from '@/components/index'
 import { usePathname } from 'next/navigation'
 
 const links =[
