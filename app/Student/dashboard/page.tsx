@@ -1,4 +1,4 @@
-import { Navbar, Calendar, TaskList, Courses } from "@/components"
+import { Navbar, Calendar, TaskList, Courses } from "@/components/index";
 import Link from "next/link";
 import { FaRegClock } from 'react-icons/fa';
 

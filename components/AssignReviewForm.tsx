@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, SubmitButton } from '@/components'
+import { Button, SubmitButton } from '@/components/index'
 
 interface AssignReviewFormProps {
     

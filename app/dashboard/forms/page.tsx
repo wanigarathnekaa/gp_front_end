@@ -1,5 +1,5 @@
 import React from 'react'
-import { Navbar, Sidebar } from '@/components';
+import { Navbar, Sidebar } from '@/components/index';
 import FormThumbnail from '@/components/FormThumbnail';
 import { FaUsers, FaRegClock  } from 'react-icons/fa';
 import { IoMdAddCircle } from "react-icons/io";

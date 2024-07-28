@@ -1,6 +1,6 @@
 "use client";
 import React from 'react'
-import { Sidebar, Navbar, Title, Table, Card, Navigation } from   '@/components';
+import { Sidebar, Navbar, Title, Table, Card, Navigation } from   '@/components/index';
 import { FaUser, FaUsers} from 'react-icons/fa'; 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';

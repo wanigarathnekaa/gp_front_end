@@ -1,4 +1,4 @@
-import { CourseDetails, Navbar } from '@/components'
+import { CourseDetails, Navbar } from '@/components/index'
 import React from 'react'
 
 const Course1 = () => {

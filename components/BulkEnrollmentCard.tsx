@@ -2,7 +2,7 @@
 import React, { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { FaFileUpload } from 'react-icons/fa';
-import { SubmitButton, CancelButton, Button } from '@/components';
+import { SubmitButton, CancelButton, Button } from '@/components/index';
 
 const BulkEnrollCard = () => {
   const onDrop = useCallback((acceptedFiles: File[]) => {

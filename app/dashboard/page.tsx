@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sidebar, Navbar, Card, Calendar, TaskList } from '@/components';
+import { Sidebar, Navbar, Card, Calendar, TaskList } from '@/components/index';
 import { FaUsers, FaRegClock  } from 'react-icons/fa';
 import { IoMdAddCircle } from "react-icons/io";
 import { HiUserAdd } from "react-icons/hi";
