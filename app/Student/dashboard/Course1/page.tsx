@@ -1,6 +1,7 @@
 import { CourseDetails, Navbar } from '@/components/index'
 import React from 'react'
 
+
 const Course1 = () => {
   return (
     <div className='w-full'>
