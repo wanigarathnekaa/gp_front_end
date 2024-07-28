@@ -1,5 +1,5 @@
 import React from 'react'
-import { Navbar, UserInfoForm } from '@/components'
+import { Navbar, UserInfoForm } from '@/components/index'
 
 const lecturerFields = [
     { label: 'Full Name', placeholder: 'Placeholder', disabled: false, colSpan: 2 },
