@@ -1,5 +1,5 @@
 "use client";
-import { AssignReviewForm, Navbar } from '@/components'
+import { AssignReviewForm, Navbar } from '@/components/index'
 import React, { useState} from 'react'
 
 const AssignNew = () => {
