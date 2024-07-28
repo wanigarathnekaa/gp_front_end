@@ -26,7 +26,7 @@ export const createForm = async (data: formSchematype) => {
   }
 
   try {
-    const response = await axios.post(`${API_URL}/forms`, data);
+    const response = await axios.post(`${API_URL}/forms/create`, data);
     return response.data.id;
   } catch (error) {
     throw new Error("Form creation failed");
@@ -45,6 +45,7 @@ export const getForms = async () => {
 export const getFormById = async (id: string) => {
   try {
     const response = await axios.get(`${API_URL}/forms/${id}`);
+    console.log(response.data);
     return response.data;
   } catch (error) {
     throw new Error("Failed to fetch form by ID");

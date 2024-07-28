@@ -1,6 +1,11 @@
+import { ThemeProvider } from "@/components/formComponents/providers/ThemeProvider";
+import { Toaster } from "@/components/ui/toaster";
+import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import DesignerContextProvider from "@/components/formComponents/context/DesignerContext";
+import NextTopLoader from "nextjs-toploader";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,15 +16,20 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html className="h-full bg-white">
-      <body className={`${inter.className} h-full`}>
-        {children}
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={inter.className}>
+          <NextTopLoader />
+          <DesignerContextProvider>
+            {children}
+            <Toaster />
+          </DesignerContextProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
-
