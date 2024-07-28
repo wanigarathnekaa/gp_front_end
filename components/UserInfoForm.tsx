@@ -1,7 +1,7 @@
 import React from 'react';
 import Input from '@mui/joy/Input';
 import Image from 'next/image';
-import { CancelButton, DeleteButton, SubmitButton } from '@/components';
+import { CancelButton, DeleteButton, SubmitButton } from '@/components/index';
 
 interface UserInfoFormProps {
   mode: 'view' | 'edit';
