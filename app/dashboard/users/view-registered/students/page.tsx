@@ -1,6 +1,6 @@
 "use client";
 import React, { useState , useEffect} from 'react'
-import { Sidebar, Navbar, Title, Table, Navigation, Dropdown, SearchBar } from '@/components';
+import { Sidebar, Navbar, Title, Table, Navigation, Dropdown, SearchBar } from '@/components/index';
 import { usePathname } from 'next/navigation';
 
 

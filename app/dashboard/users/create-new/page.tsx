@@ -1,4 +1,4 @@
-import { Sidebar, Navbar, Card, Calendar, TaskList, Title} from '@/components';
+import { Sidebar, Navbar, Card, Calendar, TaskList, Title} from '@/components/index';
 import { CiViewList } from "react-icons/ci";
 import { HiUserAdd } from "react-icons/hi";
 import { FaRegClock } from "react-icons/fa";

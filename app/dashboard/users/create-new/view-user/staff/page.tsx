@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from 'react'
-import { Sidebar, Navbar, Title, RoleTable, Navigation, SearchBar,Card, SubmitButton } from '@/components';
+import { Sidebar, Navbar, Title, RoleTable, Navigation, SearchBar,Card, SubmitButton } from '@/components/index';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { HiUserAdd } from "react-icons/hi";
