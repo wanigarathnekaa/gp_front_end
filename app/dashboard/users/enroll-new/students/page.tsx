@@ -85,8 +85,8 @@ const Students = () => {
           </Link>
         </div>
 
-        <div className='ml-8 mt-10'>
-          <h4 className='text-xl font-semibold'>Enrollment history</h4>
+        <div className='ml-10 mt-10'>
+          <h4 className='text-xl font-semibold text-gray-800'>Enrollment history</h4>
         </div>
 
         <div className='mt-8'>
