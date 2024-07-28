@@ -1,4 +1,4 @@
-import { Navbar, Sidebar } from '@/components'
+import { Navbar, Sidebar } from '@/components/index'
 import React from 'react'
 
 const FormsDashboard = () => {
