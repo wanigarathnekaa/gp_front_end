@@ -21,6 +21,8 @@ import NewUserForm from './NewUserForm'
 import ReviewTable from './ReviewTable'
 import AssignReviewForm from './AssignReviewForm'
 import DeleteButton from './DeleteButton'
+import CourseCard from './CourseCard'
+import StudentNavbar from './StudentNavbar'
 
 export {
   Navbar,
@@ -46,5 +48,7 @@ export {
   ReviewTable,
   AssignReviewForm,
   DeleteButton,
+  CourseCard,
+  StudentNavbar
 
 }
