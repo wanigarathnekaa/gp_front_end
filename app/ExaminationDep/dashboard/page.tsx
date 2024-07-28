@@ -1,7 +1,6 @@
 import React from 'react';
-import { Navbar, } from '@/components';
-import ExamSidebar from '@/components/ExamSidebar';
-import CloakCountCard from '@/components/CloakCountCard';
+import { Navbar,ExamSidebar,CloakCountCard } from '@/components/index';
+
 
 
 function page() {
