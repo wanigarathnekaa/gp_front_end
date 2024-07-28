@@ -23,6 +23,9 @@ import AssignReviewForm from './AssignReviewForm'
 import DeleteButton from './DeleteButton'
 import CourseCard from './CourseCard'
 import StudentNavbar from './StudentNavbar'
+import CloakCountCard from './CloakCountCard'
+import ExamSidebar from './ExamSidebar'
+import ExaminationTable from './ExaminationTable'
 
 export {
   Navbar,
@@ -49,6 +52,8 @@ export {
   AssignReviewForm,
   DeleteButton,
   CourseCard,
-  StudentNavbar
-
+  StudentNavbar,
+  CloakCountCard,
+  ExamSidebar,
+  ExaminationTable
 }

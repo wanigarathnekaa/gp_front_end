@@ -10,9 +10,9 @@ class UserNotFoundErr extends Error {
   }
 }
 
-export const getFormStats = async (userId: string) => {
+export const getFormStats = async () => {
   try {
-    const response = await axios.get(`${API_URL}/forms/stats`, { params: { userId } });
+    const response = await axios.get(`${API_URL}/forms/stats`);
     return response.data;
   } catch (error) {
     throw new Error("Failed to fetch form stats");
@@ -33,18 +33,18 @@ export const createForm = async (data: formSchematype) => {
   }
 };
 
-export const getForms = async (userId: string) => {
+export const getForms = async () => {
   try {
-    const response = await axios.get(`${API_URL}/forms`, { params: { userId } });
+    const response = await axios.get(`${API_URL}/forms/all`);
     return response.data;
   } catch (error) {
     throw new Error("Failed to fetch forms");
   }
 };
 
-export const getFormById = async (id: string, userId: string) => {
+export const getFormById = async (id: string) => {
   try {
-    const response = await axios.get(`${API_URL}/forms/${id}`, { params: { userId } });
+    const response = await axios.get(`${API_URL}/forms/${id}`);
     return response.data;
   } catch (error) {
     throw new Error("Failed to fetch form by ID");
@@ -87,9 +87,9 @@ export const submitForm = async (formUrl: string, content: string) => {
   }
 };
 
-export const getFormWithSubmissions = async (id: string, userId: string) => {
+export const getFormWithSubmissions = async (id: string) => {
   try {
-    const response = await axios.get(`${API_URL}/forms/${id}/submissions`, { params: { userId } });
+    const response = await axios.get(`${API_URL}/forms/${id}/submissions`);
     return response.data;
   } catch (error) {
     throw new Error("Failed to fetch form with submissions");
