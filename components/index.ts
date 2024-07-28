@@ -23,6 +23,7 @@ import AssignReviewForm from './AssignReviewForm'
 import DeleteButton from './DeleteButton'
 import CloakCountCard from './CloakCountCard'
 import ExamSidebar from './ExamSidebar'
+import ExaminationTable from './ExaminationTable'
 
 export {
   Navbar,
@@ -50,4 +51,5 @@ export {
   DeleteButton,
   CloakCountCard,
   ExamSidebar,
+  ExaminationTable
 }
