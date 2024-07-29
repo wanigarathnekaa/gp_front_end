@@ -110,8 +110,8 @@ type Row = { [key: string]: string } & { submittedAt: Date };
 
 async function SubmissionsTable({ id }: { id: number }) {
   
-  const form = await getFormWithSubmissions(id.toString());
-  console.log(form);
+  const formSubmission = await getFormWithSubmissions(id.toString());
+  const form = await getFormById(id.toString());
 
   if (!form) {
     throw new Error("form not found");
@@ -150,8 +150,8 @@ async function SubmissionsTable({ id }: { id: number }) {
   });
 
   const rows: Row[] = [];
-  if (Array.isArray(form.FormSubmissions)) {
-    form.FormSubmissions.forEach((submission: Row) => {
+  if (Array.isArray(formSubmission)) {
+    formSubmission.forEach((submission: Row) => {
       const content = JSON.parse(submission.content);
       rows.push({
         ...content,
@@ -161,7 +161,7 @@ async function SubmissionsTable({ id }: { id: number }) {
   } else {
     console.error(
       "form.FormSubmissions is not an array:",
-      form.FormSubmissions
+      formSubmission
     );
   }
 
