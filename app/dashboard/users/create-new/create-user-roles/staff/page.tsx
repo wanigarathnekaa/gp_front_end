@@ -98,8 +98,8 @@ const CreateStaff = () => {
                     <Navigation links={links} pathname={pathname} />
                 </>
 
-                <div className='flex flex-row justify-center space-x-6 '>
-                    <div className=' w-1/2 mt-10 '>
+                <div className='  flex flex-row justify-center space-x-6 '>
+                    <div className=' ml-8 w-2/5 mt-10 '>
                         <NewUserForm 
                             userRoleId={formData.userRoleId}
                             userRoleName={formData.userRoleName}
@@ -112,7 +112,7 @@ const CreateStaff = () => {
 
                     </div>
 
-                    <div className='mt-5 w-1/2'>
+                    <div className='mt-5 w-3/5'>
                         <RoleTable users={usersData} />
                     </div>
                 </div>
