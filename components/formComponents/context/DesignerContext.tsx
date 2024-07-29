@@ -22,12 +22,22 @@ export default function DesignerContextProvider({ children } : { children: React
     const [selectedElement, setSelectedElement] = useState<FormElementInstance | null>(null);
 
     const addElement = (index: number, element: FormElementInstance) => {
+        console.log("addElement", index, element);
         setElements((prevElements) => {
+            console.log("Previous Elements:", prevElements);
+
+            if (prevElements === null || prevElements === undefined) {
+                console.error("prevElements is not an array", prevElements);
+                prevElements = [];
+            }
+
             const newElements = [...prevElements];
             newElements.splice(index, 0, element);
+            console.log("New Elements after Add:", newElements);
             return newElements;
         });
     }
+
 
     const removeElement = (id: string) => {
         setElements((prevElements) => {

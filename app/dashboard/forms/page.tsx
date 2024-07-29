@@ -183,7 +183,7 @@ function FormCard({ form }: { form: Form }) {
         )}
         {!form.published && (
           <Button asChild variant={"secondary"} className="w-full mt-2 text-md gap-4">
-            <Link href={`/builder/${form.id}`}>
+            <Link href={`forms/builder/${form.id}`}>
               Edit form <FaEdit />
             </Link>
           </Button>
