@@ -72,7 +72,7 @@ export const publishForm = async (id: string) => {
 
 export const getFormContentByUrl = async (formUrl: string) => {
   try {
-    const response = await axios.get(`${API_URL}/forms/content`, { params: { formUrl } });
+    const response = await axios.get(`${API_URL}/forms/view/${formUrl}`);
     return response.data;
   } catch (error) {
     throw new Error("Failed to fetch form content by URL");
@@ -81,7 +81,7 @@ export const getFormContentByUrl = async (formUrl: string) => {
 
 export const submitForm = async (formUrl: string, content: string) => {
   try {
-    const response = await axios.post(`${API_URL}/forms/submit`, { formUrl, content });
+    const response = await axios.post(`${API_URL}/forms/submit`, { formURL: formUrl, content });
     return response.data;
   } catch (error) {
     throw new Error("Failed to submit form");
