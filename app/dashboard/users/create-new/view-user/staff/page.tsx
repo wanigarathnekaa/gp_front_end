@@ -34,16 +34,6 @@ const usersData = [
       },
 ];
 
-const links=[
-
-  {
-    href: '/dashboard/users/create-new/view-user/staff',
-    label: 'Staff'
-
-  },
-
-]
-
 const ViewStaff = () => {
 
     const pathname = usePathname();
@@ -71,11 +61,6 @@ const ViewStaff = () => {
         <div className=' mt-12 ml-64 flex flex-col min-h-screen bg-[#D6D6FF] p-4'>
             <Title text='User roles'/>
 
-            <>
-              <Navigation links={links} pathname={pathname}/>
-            </>
-
-            
             <div className='flex justify-between items-center mt-10'>
 
               <div className=" ml-8">
