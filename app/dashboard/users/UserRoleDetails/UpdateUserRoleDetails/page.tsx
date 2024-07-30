@@ -4,9 +4,11 @@ import RoleDetailsForm from '@/components/RoleDetailsForm';
 
 function page() {
   return (
-    <div className="flex items-center justify-center min-h-full lg:px-8l bg-[#D6D6FF]">
-        <Navbar />
-        <div className='w-[30%]'>
+    <div className='w-full '>
+      <Navbar />
+
+    
+      <div className="flex items-center justify-center min-h-screen px-4 bg-[#D6D6FF]">
         <RoleDetailsForm 
           title="Update user role details" 
           showCancelButton={true} 
