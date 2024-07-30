@@ -35,7 +35,7 @@ const Privileges = () => {
                     
                 </Link>
 
-                <Link href="">
+                <Link href="/dashboard/privileges/view-privileges/staff">
                     
                         <Card 
                             title="View privileges" 

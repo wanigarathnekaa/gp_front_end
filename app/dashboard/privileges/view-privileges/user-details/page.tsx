@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sidebar, Navbar, Calendar, TaskList } from '@/components';
+import { Sidebar, Navbar, Calendar, TaskList } from '@/components/index';
 import { FaUsers, FaRegClock } from 'react-icons/fa';
 import { IoMdAddCircle } from "react-icons/io";
 import { HiUserAdd } from "react-icons/hi";
@@ -27,7 +27,7 @@ const ViewPrivileges = () => {
           <Box sx={{ display: 'flex', gap: 1, flexDirection: 'column' }}>
             <MCard variant="outlined" orientation='horizontal' sx={{ boxShadow: 'lg', maxWidth: '100%', overflow: 'auto' }}>
               <CardContent>
-                <Typography level="title-lg">User Details:</Typography>
+                <Typography level="title-lg" sx={{fontSize:'18px'}}>User Details:</Typography>
                 <List marker='circle'>
                   <ListItem>User Id – 001</ListItem>
                   <ListItem>User Name – John Doe</ListItem>

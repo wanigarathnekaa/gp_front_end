@@ -5,6 +5,7 @@ import Calendar from './Calendar'
 import TaskList from './TaskList'
 import Title from './Title'
 import Table from './Table'
+import ViewPrivilegesTable from './ViewPrivilegesTable'
 import Navigation from './Navigation'
 import SearchBar from './SearchBar'
 import Dropdown from './Dropdown'
@@ -36,6 +37,7 @@ export {
   TaskList,
   Title,
   Table,
+  ViewPrivilegesTable,
   Navigation,
   SearchBar,
   Dropdown,
