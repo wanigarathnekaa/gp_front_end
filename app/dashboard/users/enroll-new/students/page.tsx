@@ -12,23 +12,50 @@ const usersData = [
     regNo: '2021CS100',
     indexNo: 2100798,
     email: 'user1@example.com',
-    phone: '1234567890',
-    nic:'6456788765',
+    phone: '0724646186',
+    nic: '982234566234',
     year: '2nd Year',
     type :"Postgraduate"
   },
   {
     userId: '2',
-    userName : "John Doe",
+    userName : "Ann Fernando",
     regNo: '2021CS001',
     indexNo: 21345001,
-    email: 'user1@example.com',
-    phone: '1234567890',
-    nic:'3456788765',
+    email: 'user2@example.com',
+    phone: '0762341566',
+    nic: '20179568445',
     year: '2nd Year',
     type:"Graduate",
   },
-]
+
+  {
+    userId: '3',
+    userName : "Alex Silva",
+    regNo: '2021CS002',
+    indexNo: 21385001,
+    email: 'user3@example.com',
+    phone: '0765456789',
+    nic: '98704567890',
+    year: '2nd Year',
+    type: 'Undergraduate'
+  },
+
+  {
+    userId: '4',
+    userName : 'James Perera',
+    regNo: '2020CS006',
+    indexNo: 20345001,
+    email: 'user4@example.com',
+    phone: '0743217890',
+    nic: '20025438796',
+    year: '2nd Year',
+    type:"Undergraduate",
+  },
+  
+];
+
+
 
 const Students = () => {
   const pathname = usePathname();

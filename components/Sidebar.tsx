@@ -34,17 +34,6 @@ function Sidebar() {
           </li>
 
           <li>
-
-            <Link  href="/dashboard"
-            
-               className="flex items-center justify-center space-x-3 text-gray-700 p-2 rounded-md font-medium bg-[#e2e4e7] hover:bg-[#EEF2FF] hover:text-[#6366F1]">
-                  Users
-              
-
-            </Link>
-            
-          </li>
-          <li>
             <Link  href="/dashboard/forms"
               className="flex items-center justify-center space-x-3 text-gray-700 p-2 rounded-md font-medium bg-[#e2e4e7] hover:bg-[#EEF2FF] hover:text-[#6366F1]">
                 Forms
