@@ -11,7 +11,7 @@ interface SubmitButtonProps {
   file: File | null;
 }
 
-const SubmitButton: React.FC<SubmitButtonProps> = ({ text, file }) => {
+const SubmitButtonBulk: React.FC<SubmitButtonProps> = ({ text, file }) => {
   const [isUploading, setIsUploading] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [dialogMessage, setDialogMessage] = useState('');
@@ -55,4 +55,4 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({ text, file }) => {
   );
 };
 
-export default SubmitButton;
+export default SubmitButtonBulk;

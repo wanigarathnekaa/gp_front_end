@@ -70,7 +70,7 @@ function Sidebar() {
         </ul>
       </nav>
       <div className="flex justify-center mb-3 ml-4 mr-4">
-        <button className="block w-full bg-[#4F46E5] text-white p-2 rounded-md hover:bg-[#3b31f8]">Log Out</button>
+        <button className="block w-full bg-[#4F46E5] text-white p-2 rounded-md hover:bg-[#a5a1f1]">Log Out</button>
       </div>
     </div>
   )
