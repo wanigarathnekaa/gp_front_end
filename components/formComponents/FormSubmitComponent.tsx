@@ -52,6 +52,7 @@ function FormSubmitComponent({ formUrl, content }: { content: FormElementInstanc
 
     try {
       const jsonContent = JSON.stringify(formValues.current);
+      console.log(jsonContent);
       await submitForm(formUrl, jsonContent);
       setSubmitted(true);
     } catch (error) {

@@ -1,3 +1,4 @@
+
 "use client";
 import React, {useState} from 'react'
 import {StudentNavbar, Courses, SearchBar} from '@/components/index'
@@ -5,7 +6,9 @@ import Link from 'next/link'
 
 const courses = [
     { title: "SCS 2201 - Functional PRogramming",  link: "/Student/dashboard/Course1", image:"/courses/feedback.png" , submittedAt: "2024-07-01" },
+
     { title: "SCS 2202 - Database II", link: "/Student/dashboard/Course2", image:"/courses/feedback.png", submittedAt: "2023.09.02" },
+
     { title: "SCS 2203 - Rapid Application Development",  link: "/Student/dashboard/Course3", image:"/courses/feedback.png",submittedAt: "2024-07-01 " },
     { title: "SCS 2204 - Object Oriented Programming ",  link: "/Student/dashboard/Course3", image:"/courses/feedback.png",submittedAt: "2024-07-01" },
     { title: "SCS 1201 - Database I ", link: "/Student/dashboard/Course1", image:"/courses/feedback.png",submittedAt: "2024-07-01 " },
@@ -15,6 +18,7 @@ const courses = [
   ];
 
 const FeedbackHistory = () => {
+
   const [searchValue, setSearchValue] = useState(courses);
 
   const handleSearch =(searchText:string) =>{
