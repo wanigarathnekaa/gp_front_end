@@ -60,5 +60,5 @@ export {
   ExamSidebar,
   ExaminationTable,
   SubmitButtonBulk,
-  FeedbackForm,
+  FeedbackForm
 }
