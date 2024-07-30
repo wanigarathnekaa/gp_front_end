@@ -15,7 +15,7 @@ const AlertDialog: React.FC<AlertDialogProps> = ({ open, onClose, message }) => 
   return (
     <Dialog open={open} onClose={onClose}>
       <DialogTitle className="text-lg font-bold text-gray-800">Notification</DialogTitle>
-      <DialogContent className="text-gray-600 text-sm p-4">
+      <DialogContent className="text-gray-600 text-sm p-2">
         <p>{message}</p>
       </DialogContent>
       <DialogActions className="p-4">

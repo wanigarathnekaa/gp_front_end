@@ -12,7 +12,6 @@ export const login = async (loginRequest: LoginRequest) => {
   try {
     // Make a POST request with registration number and NIC in the request body
     const response = await axios.post(`${API_URL}/api/v1/auth/login`, loginRequest);
-    
     // Return the response data
     return response.data;
   } catch (error) {
