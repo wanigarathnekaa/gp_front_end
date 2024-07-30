@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, } from '@/components';
+import { Navbar, } from '@/components/index';
 import ExamSidebar from '@/components/ExamSidebar';
 import CloakCountCard from '@/components/CloakCountCard';
 
