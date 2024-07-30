@@ -11,7 +11,7 @@ import { Button } from "../ui/button";
 import { BiSolidTrash } from "react-icons/bi";
 
 function Designer() {
-  const { elements, addElement, selectedElement, setSelectedElement, removeElement } = useDesigner();
+  const { elements = [], addElement, selectedElement, setSelectedElement, removeElement } = useDesigner();
 
   const droppable = useDroppable({
     id: "designer-drop-area",
@@ -35,7 +35,7 @@ function Designer() {
         const type = active.data?.current?.type;
         const newElement = FormElements[type as ElementsType].construct(idGenerator());
 
-        addElement(elements.length, newElement);
+        addElement((elements?.length ?? 0), newElement);
         return;
       }
 
@@ -115,16 +115,16 @@ function Designer() {
             droppable.isOver && "ring-4 ring-primary ring-inset",
           )}
         >
-          {!droppable.isOver && elements.length === 0 && (
+          {!droppable.isOver && (elements?.length ?? 0) === 0 && (
             <p className="text-3xl text-muted-foreground flex flex-grow items-center font-bold">Drop here</p>
           )}
 
-          {droppable.isOver && elements.length === 0 && (
+          {droppable.isOver && (elements?.length ?? 0) === 0 && (
             <div className="p-4 w-full">
               <div className="h-[120px] rounded-md bg-primary/20"></div>
             </div>
           )}
-          {elements.length > 0 && (
+          {(elements?.length ?? 0) > 0 && (
             <div className="flex flex-col  w-full gap-2 p-4">
               {elements.map((element) => (
                 <DesignerElementWrapper key={element.id} element={element} />

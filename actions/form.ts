@@ -26,7 +26,7 @@ export const createForm = async (data: formSchematype) => {
   }
 
   try {
-    const response = await axios.post(`${API_URL}/forms`, data);
+    const response = await axios.post(`${API_URL}/forms/create`, data);
     return response.data.id;
   } catch (error) {
     throw new Error("Form creation failed");
@@ -35,7 +35,7 @@ export const createForm = async (data: formSchematype) => {
 
 export const getForms = async () => {
   try {
-    const response = await axios.get(`${API_URL}/forms`);
+    const response = await axios.get(`${API_URL}/forms/all`);
     return response.data;
   } catch (error) {
     throw new Error("Failed to fetch forms");
@@ -45,6 +45,7 @@ export const getForms = async () => {
 export const getFormById = async (id: string) => {
   try {
     const response = await axios.get(`${API_URL}/forms/${id}`);
+    console.log(response.data);
     return response.data;
   } catch (error) {
     throw new Error("Failed to fetch form by ID");
@@ -71,7 +72,7 @@ export const publishForm = async (id: string) => {
 
 export const getFormContentByUrl = async (formUrl: string) => {
   try {
-    const response = await axios.get(`${API_URL}/forms/content`, { params: { formUrl } });
+    const response = await axios.get(`${API_URL}/forms/view/${formUrl}`);
     return response.data;
   } catch (error) {
     throw new Error("Failed to fetch form content by URL");
@@ -80,7 +81,7 @@ export const getFormContentByUrl = async (formUrl: string) => {
 
 export const submitForm = async (formUrl: string, content: string) => {
   try {
-    const response = await axios.post(`${API_URL}/forms/submit`, { formUrl, content });
+    const response = await axios.post(`${API_URL}/forms/submit`, { formURL: formUrl, content });
     return response.data;
   } catch (error) {
     throw new Error("Failed to submit form");

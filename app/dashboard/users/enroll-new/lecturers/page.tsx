@@ -72,7 +72,7 @@ const EnrollLecturers = () => {
         </>
 
         <div className='flex flex-row gap-10 mt-8 ml-5 '>
-          <Link href='/dashboard/users/enroll-new/EnrollIndividual'>
+          <Link href='/dashboard/users/enroll-new/EnrollIndividual/lecturer'>
           <Card 
             title="Individual Enrollment"
             description="Enroll lecturers individually"

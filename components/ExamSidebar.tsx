@@ -20,6 +20,19 @@ function ExamSidebar() {
           </div>
           <nav className="flex-1">
             <ul className="space-y-3 bg-[#F1F5F9] mt-8 ml-4 mr-4">
+
+            <li>
+    
+              <Link  href=""
+              
+                className="flex items-center justify-center space-x-3 text-gray-700 p-2 rounded-md font-medium bg-[#e2e4e7] hover:bg-[#EEF2FF] hover:text-[#6366F1]">
+                    Dashboard
+                
+
+              </Link>
+              
+            </li>
+
               <li>
     
                 <Link  href=""
@@ -39,13 +52,7 @@ function ExamSidebar() {
                 </Link>
               </li>
 
-              <li>
-                <Link  href=""
-                  className="flex items-center justify-center space-x-3 text-gray-700 p-2 rounded-md font-medium bg-[#e2e4e7] hover:bg-[#EEF2FF] hover:text-[#6366F1]">
-                    Forms
-                  
-                </Link>
-              </li>
+  
               
             </ul>
           </nav>

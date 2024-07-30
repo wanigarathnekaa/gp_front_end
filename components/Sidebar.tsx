@@ -20,6 +20,19 @@ function Sidebar() {
       </div>
       <nav className="flex-1">
         <ul className="space-y-3 bg-white mt-8 ml-4 mr-4">
+
+        <li>
+
+            <Link  href="/dashboard"
+
+              className="flex items-center justify-center space-x-3 text-gray-700 p-2 rounded-md font-medium bg-[#e2e4e7] hover:bg-[#EEF2FF] hover:text-[#6366F1]">
+                  Users
+              
+
+            </Link>
+
+          </li>
+
           <li>
 
             <Link  href="/dashboard"
@@ -57,7 +70,7 @@ function Sidebar() {
         </ul>
       </nav>
       <div className="flex justify-center mb-3 ml-4 mr-4">
-        <button className="block w-full bg-[#4F46E5] text-white p-2 rounded-md hover:bg-[#3b31f8]">Log Out</button>
+        <button className="block w-full bg-[#4F46E5] text-white p-2 rounded-md hover:bg-[#a5a1f1]">Log Out</button>
       </div>
     </div>
   )

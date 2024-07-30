@@ -15,7 +15,7 @@ const FormThumbnail = ({ title ,date }: FormThumbnailProps) => {
       <div className="flex flex-row items-center justify-between pt-4 px-4">
         <div className="flex flex-row items-center space-x-4">
           <div className="inline-flex items-center text-gray-600 text-lg">
-            <button className="pr-2">
+            <button className="pr-2" aria-label="More options">
               <CgMoreVerticalAlt />
             </button>
           </div>

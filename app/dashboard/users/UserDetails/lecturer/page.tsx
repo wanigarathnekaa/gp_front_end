@@ -4,10 +4,10 @@ import UserInfoForm from '@/components/UserInfoForm';
 
 const lecturerFields = [
     { label: 'Full Name', placeholder: 'Placeholder', disabled: false, colSpan: 2 },
-    { label: 'Lecturer ID', placeholder: 'Placeholder', disabled: false },
+    { label: 'Lecturer ID', placeholder: 'Placeholder', disabled: false, colSpan: 2 },
     { label: 'Email', placeholder: 'Placeholder', disabled: false, colSpan: 2 },
     { label: 'NIC', placeholder: 'Placeholder', disabled: false },
-    { label: 'Mobile no', placeholder: 'Placeholder', disabled: false },
+    
     
 ];
   

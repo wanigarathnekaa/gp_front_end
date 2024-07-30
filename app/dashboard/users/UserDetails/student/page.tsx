@@ -8,9 +8,8 @@ const studentFields = [
     { label: 'Index no', placeholder: 'Placeholder', disabled: false },
     { label: 'Email', placeholder: 'Placeholder', disabled: false, colSpan: 2 },
     { label: 'NIC', placeholder: 'Placeholder', disabled: false },
-    { label: 'Mobile no', placeholder: 'Placeholder', disabled: false },
-    { label: 'Year of studying', placeholder: 'Placeholder', disabled: false },
-    { label: 'Type', placeholder: 'Placeholder', disabled: false },
+    { label: 'Year of studying', placeholder: 'Placeholder', disabled: false,colSpan:2 },
+    { label: 'Role', placeholder: 'Placeholder', disabled: false },
 ];
 
 const StudentDetails = () => {

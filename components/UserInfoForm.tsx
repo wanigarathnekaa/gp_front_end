@@ -1,10 +1,10 @@
 import React from 'react';
 import Input from '@mui/joy/Input';
 import Image from 'next/image';
-import { CancelButton, DeleteButton, SubmitButton } from '@/components';
+import { CancelButton, DeleteButton, SubmitButton } from '@/components/index';
 
 interface UserInfoFormProps {
-  mode: 'view' | 'edit';
+  mode: 'view' | 'edit' | 'enroll';
   fields: Array<{ 
     label: string; 
     placeholder: string; 
@@ -15,28 +15,31 @@ interface UserInfoFormProps {
 
 function UserInfoForm({ mode, fields }: UserInfoFormProps) {
   const isEditMode = mode === 'edit';
+  const isEnrollMode = mode === 'enroll';
 
   return (
     <div className='flex flex-col items-center justify-center bg-white p-8 rounded-xl shadow-xl w-full max-w-2xl mx-auto'>
+
       <h1 className="font-bold text-2xl text-gray-600 mb-8">
-        {isEditMode ? 'Update User Details' : 'User Details'}
+        {isEditMode ? 'Update User Details' : isEnrollMode ? 'Enroll New User ' : 'User Details'}
       </h1>
+
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full'>
         
         <div className='col-span-2'>
           <h3 className="font-bold text-gray-500">User ID</h3>
-          <Input placeholder="Placeholder" className="mb-4 mt-1" disabled={!isEditMode} />
+          <Input placeholder="Placeholder" className="mb-4 mt-1" disabled={!isEditMode && !isEnrollMode} />
         </div>
 
         <div className='row-span-3 flex flex-col items-center'>
           <Image src="/profilePic.png" alt="profilePicture" className='rounded-full mb-4' width={100} height={100} />
-          <h3 className="font-bold text-gray-500">{isEditMode ? 'Edit profile picture' : 'View profile picture'}</h3>
+          <h3 className="font-bold text-gray-500">{isEditMode || isEnrollMode ? 'Edit profile picture' : 'View profile picture'}</h3>
         </div>
 
         {fields.map((field, index) => (
           <div key={index} className={field.colSpan ? `col-span-${field.colSpan}` : ''}>
             <h3 className="font-bold text-gray-500">{field.label}</h3>
-            <Input placeholder={field.placeholder} className="mb-4 mt-1" disabled={!isEditMode || field.disabled} />
+            <Input placeholder={field.placeholder} className="mb-4 mt-1" disabled={!isEditMode && !isEnrollMode || field.disabled} />
           </div>
         ))}
       </div>
@@ -47,6 +50,12 @@ function UserInfoForm({ mode, fields }: UserInfoFormProps) {
             <DeleteButton />
             <SubmitButton text="Update" />
           </>
+        ) : isEnrollMode ? (
+          <>
+            <CancelButton />
+            <SubmitButton text="Enroll" />
+          </>
+          
         ) : (
           <SubmitButton text="Print" />
         )}
