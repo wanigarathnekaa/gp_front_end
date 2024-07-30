@@ -31,9 +31,9 @@ const BulkEnrollCard: React.FC = () => {
   });
 
   return (
-    <div className="flex justify-center items-center mx-auto">
-      <div className="w-full max-w-2xl p-12 bg-white rounded-lg shadow-md">
-        <h2 className="text-2xl font-bold text-center mb-4">Enroll Students in Bulk</h2>
+    <div className="flex justify-center items-center mx-auto ">
+      <div className="w-full max-w-2xl  p-12 bg-white rounded-lg shadow-md ">
+        <h2 className="text-2xl font-bold text-center mb-4">Enroll Students as a bulk</h2>
         <div
           {...getRootProps()}
           className={`h-96 mt-8 mb-8 border-4 border-dashed rounded-lg p-8 text-center bg-gray-200 flex flex-col justify-center items-center ${
