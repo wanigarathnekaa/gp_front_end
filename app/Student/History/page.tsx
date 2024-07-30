@@ -5,15 +5,15 @@ import {StudentNavbar, Courses, SearchBar} from '@/components/index'
 import Link from 'next/link'
 
 const courses = [
-    { title: "SCS 2201 - Functional PRogramming",  link: "/Student/dashboard/Course1", image:"/courses/feedback.png" , submittedAt: "2024-07-01" },
+    { title: "SCS 2201 - Functional PRogramming",  link: "", image:"/courses/feedback.png" , submittedAt: "2024-07-01" },
 
-    { title: "SCS 2202 - Database II", link: "/Student/dashboard/Course2", image:"/courses/feedback.png", submittedAt: "2023.09.02" },
+    { title: "SCS 2202 - Database II", link: "", image:"/courses/feedback.png", submittedAt: "2023.09.02" },
 
-    { title: "SCS 2203 - Rapid Application Development",  link: "/Student/dashboard/Course3", image:"/courses/feedback.png",submittedAt: "2024-07-01 " },
-    { title: "SCS 2204 - Object Oriented Programming ",  link: "/Student/dashboard/Course3", image:"/courses/feedback.png",submittedAt: "2024-07-01" },
-    { title: "SCS 1201 - Database I ", link: "/Student/dashboard/Course1", image:"/courses/feedback.png",submittedAt: "2024-07-01 " },
-    { title: "SCS 1202 - Data Strutures and Algorithom", link: "/Student/dashboard/Course2", image:"/courses/feedback.png",submittedAt: "2024-07-01 " },
-    { title: "SCS 2210- Group Project I", link: "/Student/dashboard/Course3", image:"/courses/feedback.png",submittedAt: "2024-07-01 " },
+    { title: "SCS 2203 - Rapid Application Development",  link: "", image:"/courses/feedback.png",submittedAt: "2024-07-01 " },
+    { title: "SCS 2204 - Object Oriented Programming ",  link: "", image:"/courses/feedback.png",submittedAt: "2024-07-01" },
+    { title: "SCS 1201 - Database I ", link: "", image:"/courses/feedback.png",submittedAt: "2024-07-01 " },
+    { title: "SCS 1202 - Data Strutures and Algorithom", link: "", image:"/courses/feedback.png",submittedAt: "2024-07-01 " },
+    { title: "SCS 2210- Group Project I", link: "", image:"/courses/feedback.png",submittedAt: "2024-07-01 " },
     
   ];
 
