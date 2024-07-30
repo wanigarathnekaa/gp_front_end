@@ -31,9 +31,6 @@ const BulkEnrollCard: React.FC = () => {
   });
 
   return (
-    <div className="flex justify-center items-center mx-auto ">
-      <div className="w-full max-w-2xl  p-12 bg-white rounded-lg shadow-md ">
-        <h2 className="text-2xl font-bold text-center mb-4">Enroll Users as a bulk</h2>
     <div className="flex justify-center items-center mx-auto">
       <div className="w-full max-w-2xl p-12 bg-white rounded-lg shadow-md">
         <h2 className="text-2xl font-bold text-center mb-4">Enroll Students in Bulk</h2>
@@ -53,10 +50,11 @@ const BulkEnrollCard: React.FC = () => {
         </div>
         <div className='flex justify-end space-x-4'>
           <Button />
-          <SubmitButton text="Upload" file={selectedFile} />
+          <SubmitButton text="Upload"  />
         </div>
       </div>
     </div>
+
   );
 };
 
