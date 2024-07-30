@@ -13,6 +13,7 @@ export const sendFile = async (file: File) => {
         "Content-Type": "multipart/form-data",
       },
     });
+    console.log(response);
     return response.data;
   } catch (error: any) {
     console.error("Error uploading file:", error);

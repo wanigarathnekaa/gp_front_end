@@ -23,8 +23,7 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({ text, file }) => {
 
       try {
         const response = await sendFile(file);
-        console.log(response);
-        setDialogMessage('File uploaded successfully');
+        setDialogMessage(response);
       } catch (error) {
         console.error('Error uploading file:', error);
         setDialogMessage('Failed to upload file');
