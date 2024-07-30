@@ -9,6 +9,7 @@ interface AssignReviewFormProps {
     onInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
     onUrlChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+    closeModal: () => void;
 }
 
 
@@ -18,11 +19,17 @@ const AssignReviewForm = ({
     formType,
     onInputChange,
     onUrlChange,
-    onSubmit
+    onSubmit,
+    closeModal
+
 }:AssignReviewFormProps) => {
 
     return (
-        <div className='p-8 bg-white rounded-lg shadow-lg w-full max-w-lg mx-auto '>
+        <div className='p-8 bg-white rounded-lg shadow-lg w-full max-w-lg mx-auto relative'>
+            <button className="absolute top-2 right-2 text-red-500 font-bold  hover:text-gray-800" onClick={closeModal}>
+                X
+            </button>
+
             <h1 className='text-2xl text-gray-500 font-bold mb-6 text-center'>Assign new peer reviewer</h1>
 
             <form onSubmit={onSubmit} action={formType}>
