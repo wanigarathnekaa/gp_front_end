@@ -22,7 +22,7 @@ const NewUserForm = ({
 }:NewUserFormProps) => {
   return (
 
-    <div className='p-8 bg-white rounded-lg shadow-lg w-full max-w-lg mx-auto '>
+    <div className='p-8 bg-white rounded-lg shadow-xl w-full max-w-lg mx-auto '>
         <h1 className='text-2xl text-gray-500 font-bold mb-6 text-center'>Create new user role</h1>
 
         <form onSubmit={onSubmit}>
