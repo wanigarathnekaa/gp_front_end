@@ -28,6 +28,7 @@ import CloakCountCard from './CloakCountCard'
 import ExamSidebar from './ExamSidebar'
 import ExaminationTable from './ExaminationTable'
 import FeedbackForm from './FeedbackForms'
+import SubmitButtonBulk from './SubmitButtonBulk'
 
 export {
   Navbar,
@@ -59,4 +60,5 @@ export {
   ExamSidebar,
   ExaminationTable,
   FeedbackForm,
+  SubmitButtonBulk
 }
