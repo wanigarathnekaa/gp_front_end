@@ -27,6 +27,7 @@ import StudentNavbar from './StudentNavbar'
 import CloakCountCard from './CloakCountCard'
 import ExamSidebar from './ExamSidebar'
 import ExaminationTable from './ExaminationTable'
+import SubmitButtonBulk from './SubmitButtonBulk'
 
 export {
   Navbar,
@@ -56,5 +57,6 @@ export {
   StudentNavbar,
   CloakCountCard,
   ExamSidebar,
-  ExaminationTable
+  ExaminationTable,
+  SubmitButtonBulk
 }

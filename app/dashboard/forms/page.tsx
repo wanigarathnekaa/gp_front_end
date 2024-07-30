@@ -28,14 +28,16 @@ export interface Form {
 
 export default function Home() {
   return (
-    <div className="container pt-4">
+    <div className="ml-64 px-8 max-h-screen bg-[#D6D6FF] overflow-auto py-10">
       <Suspense fallback={<StatCards loading={true} />}>
         <CardStatsWrapper />
       </Suspense>
 
-      <Separator className="my-6" />
-      <h2 className="text-4xl font-bold col-span-2">Your Forms</h2>
-      <Separator className="my-6" />
+      {/* <Separator className="my-6" /> */}
+      <div className="my-20"></div>
+      <h2 className="text-4xl font-bold col-span-2 font-">Your Forms</h2>
+      <div className="my-6"></div>
+      {/* <Separator className="my-6" /> */}
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <CreateFormBtn />
@@ -67,7 +69,7 @@ function StatCards(props: StatCardsProps) {
         helperText="All time form Visits"
         value={data?.visits.toLocaleString() || ""}
         loading={loading}
-        className="shadow-md shadow-blue-600"
+        className="shadow-xl border-none"
       />
 
       <StatCard
@@ -76,7 +78,7 @@ function StatCards(props: StatCardsProps) {
         helperText="All time form Submissions"
         value={data?.submissions.toLocaleString() || ""}
         loading={loading}
-        className="shadow-md shadow-yellow-600"
+        className="shadow-xl border-none"
       />
 
       <StatCard
@@ -85,7 +87,7 @@ function StatCards(props: StatCardsProps) {
         helperText="Visits that results in form submission"
         value={data?.submissionRate.toLocaleString() + "%" || ""}
         loading={loading}
-        className="shadow-md shadow-green-600"
+        className="shadow-xl border-none"
       />
 
       <StatCard
@@ -94,7 +96,7 @@ function StatCards(props: StatCardsProps) {
         helperText="Visits that leaves without submitting form"
         value={data?.bounceRate.toLocaleString() + "%" || ""}
         loading={loading}
-        className="shadow-md shadow-red-600"
+        className="shadow-xl border-none"
       />
     </div>
   );
@@ -111,7 +113,7 @@ export function StatCard(props: {
   const { title, icon, helperText, value, loading, className } = props;
   return (
     <Card className={className}>
-      <CardHeader className="flex flex-row items-center justify-between pb-2">
+      <CardHeader className="flex flex-row items-center justify-between pb-2 rounded-xl">
         <CardTitle className="text-sm font-medium text-muted-foreground">
           {title}
         </CardTitle>
@@ -149,7 +151,7 @@ async function FormCards(){
 
 function FormCard({ form }: { form: Form }) {
   return (
-    <Card>
+    <Card className="shadow-xl border-none">
       <CardHeader>
         <CardTitle className="flex items-center gap-2 justify-between">
           <span className="truncate font-bold">{form.name}</span>
@@ -175,7 +177,7 @@ function FormCard({ form }: { form: Form }) {
       </CardContent>
       <CardFooter>
         {form.published && (
-          <Button asChild className="w-full mt-2 text-md gap-4">
+          <Button asChild className="w-full mt-2 text-md gap-4 bg-[#adaaf2] text-white">
             <Link href={`/dashboard/forms/formView/${form.id}`}>
               View submissions <BiRightArrowAlt />
             </Link>
