@@ -48,15 +48,15 @@ async function FormDetailPage({
   const bounceRate = 100 - submissionRate;
 
   return (
-    <>
-      <div className="py-10 border-b border-t border-muted">
+    <div className="ml-64 px-8 h-fit bg-[#D6D6FF] overflow-auto py-10">
+      <div className="py-10 border-b border-gray-400">
         <div className="flex justify-between container">
           <h1 className="text-4xl font-bold truncate">{form.name}</h1>
           <VisitBtn shareUrl={form.shareURL} />
         </div>
       </div>
-      <div className="py-4 border-b border-muted">
-        <div className="container flex gap-2 items-center justify-between">
+      <div className="py-4 border-b border-muted container">
+        <div className=" flex gap-2 items-center justify-between">
           <FormLinkShare shareUrl={form.shareURL} />
         </div>
       </div>
@@ -67,7 +67,7 @@ async function FormDetailPage({
           helperText="All time form Visits"
           value={visits.toLocaleString() || ""}
           loading={false}
-          className="shadow-md shadow-blue-600"
+          className="shadow-xl border-none"
         />
 
         <StatCard
@@ -76,7 +76,7 @@ async function FormDetailPage({
           helperText="All time form Submissions"
           value={submissions.toLocaleString() || ""}
           loading={false}
-          className="shadow-md shadow-yellow-600"
+          className="shadow-xl border-none"
         />
 
         <StatCard
@@ -85,7 +85,7 @@ async function FormDetailPage({
           helperText="Visits that results in form submission"
           value={submissionRate.toLocaleString() + "%" || ""}
           loading={false}
-          className="shadow-md shadow-green-600"
+          className="shadow-xl border-none"
         />
 
         <StatCard
@@ -94,13 +94,13 @@ async function FormDetailPage({
           helperText="Visits that leaves without submitting form"
           value={bounceRate.toLocaleString() + "%" || ""}
           loading={false}
-          className="shadow-md shadow-red-600"
+          className="shadow-xl border-none"
         />
       </div>
       <div className="container pt-10">
         <SubmissionsTable id={form.id} />
       </div>
-    </>
+    </div>
   );
 }
 

@@ -1,6 +1,6 @@
 "use client";
-import React from 'react'
-import { Sidebar, Navbar, Title, Table, Card, Navigation, ReviewTable } from   '@/components/index';
+import React, { useState } from 'react'
+import { Sidebar, Navbar, Title, Table, Card, Navigation, ReviewTable, AssignReviewForm } from   '@/components/index';
 import { FaUser, FaUsers} from 'react-icons/fa'; 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -23,6 +23,40 @@ const review = [
 
 const PeerReviews = () => {
     const pathname = usePathname();
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const [formData, setFormData] = useState({
+        reviewer:'',
+        reviewee:'',
+        formType:''
+    });
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        const { name, value } = e.target;
+        setFormData(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+    };
+
+    const handleUrlChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setFormData(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+    };
+
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        console.log('Form data submitted:', formData);
+        setIsModalOpen(false);
+    };
+
+    const openModal =() => setIsModalOpen(true);
+    const closeModal =()=> setIsModalOpen(false);
+
     return (
         <div className='w-full'>
             <Navbar />
@@ -37,13 +71,15 @@ const PeerReviews = () => {
 
                 <div className='flex flex-row gap-10 mt-8 ml-5 '>
 
-                    <Link href='/dashboard/users/peer-to-peer/Assign-new'>
+                    
                         <Card 
                             title='Assign New Peer Review'
                             description='Assign a new peer review'
                             icon={FaUser}
+                            onclick={openModal}
+
                         />
-                    </Link>
+                    
 
                 </div>
 
@@ -57,6 +93,24 @@ const PeerReviews = () => {
                 </div>
 
             </div>
+
+            {isModalOpen && (
+                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-60">
+                    <div className=" relaive  w-1/2">
+                        <AssignReviewForm
+                            reviewer={formData.reviewer}
+                            reviewee={formData.reviewee}
+                            formType={formData.formType}
+                            onInputChange={handleInputChange}
+                            onUrlChange={handleUrlChange}
+                            onSubmit={handleSubmit}
+                            closeModal={closeModal}
+                        />
+                    </div>
+                </div>
+            )}
+
+
         </div>
     )
 }

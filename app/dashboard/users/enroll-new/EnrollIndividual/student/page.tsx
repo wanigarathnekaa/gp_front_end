@@ -10,7 +10,7 @@ const studentFields = [
     { label: 'NIC', placeholder: 'Placeholder', disabled: false },
     { label: 'Mobile no', placeholder: 'Placeholder', disabled: false },
     { label: 'Year of studying', placeholder: 'Placeholder', disabled: false },
-    { label: 'Type', placeholder: 'Placeholder', disabled: false },
+    { label: 'Role', placeholder: 'Placeholder', disabled: false },
 ];
 
 const EnrollStudent = () => {
