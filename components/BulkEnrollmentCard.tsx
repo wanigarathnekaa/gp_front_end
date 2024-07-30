@@ -54,6 +54,7 @@ const BulkEnrollCard: React.FC = () => {
         </div>
       </div>
     </div>
+
   );
 };
 

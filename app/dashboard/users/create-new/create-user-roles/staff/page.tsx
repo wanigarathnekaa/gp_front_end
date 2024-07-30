@@ -94,12 +94,8 @@ const CreateStaff = () => {
             <div className='mt-12  ml-64 flex flex-col  min-h-screen bg-[#D6D6FF]'>
                 <Title text = 'New user role' />
 
-                <>
-                    <Navigation links={links} pathname={pathname} />
-                </>
-
-                <div className='flex flex-row justify-center space-x-6 '>
-                    <div className=' w-1/2 mt-10 '>
+                <div className='  flex flex-row justify-center space-x-6 '>
+                    <div className=' ml-8 w-2/5 mt-10 '>
                         <NewUserForm 
                             userRoleId={formData.userRoleId}
                             userRoleName={formData.userRoleName}
@@ -112,7 +108,7 @@ const CreateStaff = () => {
 
                     </div>
 
-                    <div className='mt-5 w-1/2'>
+                    <div className='mt-5 w-3/5'>
                         <RoleTable users={usersData} />
                     </div>
                 </div>
