@@ -83,21 +83,21 @@ function FormBuilder({ form }: { form: Form }) {
     );
   }
 
-  const shareURL = `${window.location.origin}/submit/${form.shareURL}`;
+  const shareURL = `${window.location.origin}/dashboard/submit/${form.shareURL}`;
 
   if (form.published) {
     return (
       <>
-        <Confetti
+        {/* <Confetti
           width={window.innerWidth}
           height={window.innerHeight}
           recycle={false}
           numberOfPieces={600}
-        />
+        /> */}
         <div className="flex flex-col items-center justify-center w-full h-full">
           <div className="max-w-md">
             <h1 className="text-center text-4xl font-bold text-primary border-b pb-2 mb-10">
-              🎊🎊 Form Published 🎊🎊
+              Form Published
             </h1>
             <h2>Share this form</h2>
             <h3 className="text-xl text-muted-foreground border-b p-10">
