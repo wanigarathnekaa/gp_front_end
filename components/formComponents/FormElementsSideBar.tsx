@@ -24,6 +24,8 @@ function FormElementsSideBar() {
           <SideBarBtnElements formElement={FormElements.DateField}/>
           <SideBarBtnElements formElement={FormElements.SelectField}/>
           <SideBarBtnElements formElement={FormElements.CheckboxField}/>
+          <SideBarBtnElements formElement={FormElements.MultipleOptionField}/>
+          <SideBarBtnElements formElement={FormElements.RateField}/>
         </div>
     </div>
   )

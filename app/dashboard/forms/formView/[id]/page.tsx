@@ -137,6 +137,7 @@ async function SubmissionsTable({ id }: { id: number }) {
       case "DateField":
       case "SelectField":
       case "CheckboxField":
+      case "MultipleOptionField":
         columns.push({
           id: element.id,
           label: element.extraAttributes?.label,

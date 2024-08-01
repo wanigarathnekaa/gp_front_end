@@ -29,8 +29,6 @@ import ExamSidebar from './ExamSidebar'
 import ExaminationTable from './ExaminationTable'
 import FeedbackForm from './FeedbackForms'
 import SubmitButtonBulk from './SubmitButtonBulk'
-import FeedbackForm from './FeedbackForms'
-
 
 export {
   Navbar,

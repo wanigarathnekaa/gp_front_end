@@ -3,7 +3,7 @@ import Link from "next/link";
 import { FaRegClock } from 'react-icons/fa';
 
 const courses = [
-    { title: "SCS 3203 - Middleware Architecture", description: "Description for Course 1", link: "", image:"/courses/feedback.png" },
+    { title: "SCS 3203 - Middleware Architecture", description: "Description for Course 1", link: "/Student/dashboard/Course1", image:"/courses/feedback.png" },
     { title: "SCS 3204 - Management", description: "Description for Course 2", link: "", image:"/courses/feedback.png" },
     { title: "SCS 3207 - Software Quality Assurance", description: "Description for Course 3", link: "", image:"/courses/feedback.png" },
     { title: "SCS 3208 - Software Project Management", description: "Description for Course 3", link: "", image:"/courses/feedback.png" },
