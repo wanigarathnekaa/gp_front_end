@@ -77,7 +77,7 @@ const OtherData = () => {
     <Navbar/>
     <Sidebar/>
 
-    <div className=' mt-12 ml-64 flex flex-col min-h-screen bg-[#D6D6FF] p-4'>
+    <div className=' mt-12 ml-64 flex flex-col min-h-screen bg-[#EEF2FF] p-4'>
         <Title text='Registered Users'/>
 
         <Navigation links={links} pathname={pathname}/>

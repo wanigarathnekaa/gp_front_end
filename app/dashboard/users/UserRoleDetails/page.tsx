@@ -8,7 +8,7 @@ function page() {
       <Navbar />
 
     
-      <div className="flex items-center justify-center min-h-screen px-4 bg-[#D6D6FF]">
+      <div className="flex items-center justify-center min-h-screen px-4 bg-[#EEF2FF]">
           
           <RoleDetailsForm 
             title="User role details" 
