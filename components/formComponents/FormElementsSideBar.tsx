@@ -26,6 +26,7 @@ function FormElementsSideBar() {
           <SideBarBtnElements formElement={FormElements.CheckboxField}/>
           <SideBarBtnElements formElement={FormElements.MultipleOptionField}/>
           <SideBarBtnElements formElement={FormElements.RateField}/>
+          <SideBarBtnElements formElement={FormElements.LogicalQuestioningField}/>
         </div>
     </div>
   )
