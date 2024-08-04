@@ -2,12 +2,16 @@ import { ThemeProvider } from "@/components/formComponents/providers/ThemeProvid
 import { Toaster } from "@/components/ui/toaster";
 import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import DesignerContextProvider from "@/components/formComponents/context/DesignerContext";
 import NextTopLoader from "nextjs-toploader";
 
-const inter = Inter({ subsets: ["latin"] });
+const poppins = Poppins({
+  weight: ['400', '700'], // Specify the weights you need
+  style: ['normal', 'italic'], // Specify the styles you need
+  subsets: ['latin'] // Correct usage of the subsets property
+});
 
 export const metadata: Metadata = {
   title: "Feebify",
@@ -22,7 +26,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={inter.className}>
+        <body className={poppins.className}>
           <NextTopLoader />
           <DesignerContextProvider>
             {children}

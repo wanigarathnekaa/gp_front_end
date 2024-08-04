@@ -17,9 +17,9 @@ const Dashboard = () => {
         <Sidebar />
         
         <div className="mt-12 ml-64 flex flex-row min-h-screen">
-          <div className="w-3/4 px-20 py-20  bg-[#D6D6FF]">
+          <div className="w-3/4 px-20 py-20  bg-[#EEF2FF]">
             <div className="text-4xl font-bold  mb-4">
-              <h1 className='mb-10 ml-3 text-gray-800 '>
+              <h1 className='mb-10 ml-3 text-black '>
                 Hi there!
                 <br />
                 <h2 className='font-normal mt-2 text-3xl'>Welcome to your dashboard</h2>
@@ -88,7 +88,7 @@ const Dashboard = () => {
                 
             </div>
           </div>
-          <div className="w-1/4 p-4 bg-[#EEF2FF]">
+          <div className="w-1/4 p-4 bg-white shadow-md">
             <Calendar />
             <TaskList 
               tasks={['Task 1', 'Task 2', 'Task 3', 'Task 4']}
