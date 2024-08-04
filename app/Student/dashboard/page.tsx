@@ -19,7 +19,7 @@ const StudentDashboard = () => {
             <StudentNavbar />
 
             <div className="mt-12  flex flex-row min-h-screen">
-                <div className="w-3/4 px-20  bg-[#D6D6FF]">
+                <div className="w-3/4 px-20  bg-[#EEF2FF]">
                     <div className="text-3xl font-bold mb-4">
                         <h1 className="text-3xl mt-10 mb-10 ml-3 ">
                             Hi, M.L Lakshani

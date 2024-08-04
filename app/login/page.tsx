@@ -45,7 +45,7 @@ const Page: React.FC = () => {
   };
 
   return (
-    <div className="flex min-h-screen flex-col bg-[#D6D6FF] ">
+    <div className="flex min-h-screen flex-col bg-[#EEF2FF] ">
       <header className="flex justify-center items-center h-16 bg-[#ffffff] shadow-lg">
         <Image src="/Logo.png" alt="Logo" className="h-14" width={190} height={45}  />
       </header>

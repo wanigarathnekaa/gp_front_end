@@ -35,7 +35,7 @@ const AssignNew = () => {
         <div className='w-full'>
             <Navbar/>
 
-            <div className='mt-12 flex items-center justify-center  min-h-screen bg-[#D6D6FF]'>
+            <div className='mt-12 flex items-center justify-center  min-h-screen bg-[#EEF2FF]'>
                 
                     <AssignReviewForm
                         reviewer={formData.reviewer}
