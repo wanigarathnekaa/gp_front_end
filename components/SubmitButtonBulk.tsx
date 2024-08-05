@@ -40,7 +40,7 @@ const SubmitButtonBulk: React.FC<SubmitButtonProps> = ({ text, file }) => {
   return (
     <div>
       <Button
-        className="bg-[#706ee4] text-[#EEF2FF] hover:bg-gray-200 hover:text-gray-600 font-bold py-1.5 px-4 rounded transform transition-transform duration-300 hover:scale-105"
+        className="bg-[#EEF2FF] text-[#706ee4] hover:bg-gray-200 hover:text-gray-600 font-bold py-1.5 px-4 rounded transform transition-transform duration-300 hover:scale-105"
         onClick={handleSubmit}
         disabled={isUploading}
       >
