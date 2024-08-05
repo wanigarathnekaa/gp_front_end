@@ -17,7 +17,7 @@ function FormLinkShare({ shareUrl }: { shareUrl: string }) {
     return null; // avoiding window not defined error
   }
 
-  const shareLink = `${window.location.origin}/submit/${shareUrl}`;
+  const shareLink = `${window.location.origin}/dashboard/submit/${shareUrl}`;
   return (
     <div className="flex flex-grow gap-4 items-center">
       <Input value={shareLink} readOnly />

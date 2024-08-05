@@ -1,55 +1,56 @@
 "use client";
-import { AssignReviewForm, Navbar } from '@/components/index'
-import React, { useState} from 'react'
+import { AssignReviewForm, Navbar } from "@/components/index";
+import React, { useState } from "react";
 
 const AssignNew = () => {
+  const [formData, setFormData] = useState({
+    reviewer: "",
+    reviewee: "",
+    formType: "",
+  });
 
-    const [formData, setFormData] = useState({
-        reviewer: '',
-        reviewee: '',
-        formType: ''
-    });
-    
-      const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        const { name, value } = e.target;
-        setFormData(prevState => ({
-          ...prevState,
-          [name]: value
-        }));
-      };
-    
-      const handleUrlChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        setFormData(prevState => ({
-          ...prevState,
-          [name]: value
-        }));
-      };
-    
-      const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        console.log('Form data submitted:', formData);
-      };
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
 
-    return (
-        <div className='w-full'>
-            <Navbar/>
+  const handleUrlChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
 
-            <div className='mt-12 flex items-center justify-center  min-h-screen bg-[#EEF2FF]'>
-                
-                    <AssignReviewForm
-                        reviewer={formData.reviewer}
-                        reviewee={formData.reviewee}
-                        formType={formData.formType}
-                        onInputChange={handleInputChange}
-                        onUrlChange={handleUrlChange}
-                        onSubmit={handleSubmit}
-                    />
-               
-                
-            </div>
-        </div>
-    )
-}
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log("Form data submitted:", formData);
+  };
 
-export default AssignNew
+  return (
+    <div className="w-full">
+      <Navbar />
+
+      <div className="mt-12 flex items-center justify-center  min-h-screen bg-[#D6D6FF]">
+        <AssignReviewForm
+          reviewer={formData.reviewer}
+          reviewee={formData.reviewee}
+          formType={formData.formType}
+          onInputChange={handleInputChange}
+          onUrlChange={handleUrlChange}
+          onSubmit={handleSubmit}
+          closeModal={function (): void {
+            throw new Error("Function not implemented.");
+          }}
+        />
+      </div>
+    </div>
+  );
+};
+
+export default AssignNew;

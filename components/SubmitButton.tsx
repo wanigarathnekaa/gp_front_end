@@ -12,7 +12,6 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({ text }) => {
     >
       {text}
     </button>
-
   );
 };
 

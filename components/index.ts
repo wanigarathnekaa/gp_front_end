@@ -30,7 +30,6 @@ import ExaminationTable from './ExaminationTable'
 import FeedbackForm from './FeedbackForms'
 import SubmitButtonBulk from './SubmitButtonBulk'
 
-
 export {
   Navbar,
   Sidebar,

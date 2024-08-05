@@ -6,36 +6,30 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 const usersData = [
-    {
-      userId: "1",
-      userName : "John Doe",
-      staffId:'234567',
-      email: 'user1@example.com',
-      phone: '1234567890',
-      nic: '1234567890V',
-      
+  {
+    userId: "1",
+    userName : "Alice Johnson",
+    nic:'1234567890',
+    staffId:'3101947',
+    email: 'alice@example.com',
+    phone: '9876543210',
+  },
+  {
+    userId: '2',
+    userName : "Bob Smith",
+    staffId:'3102947',
+    nic:'0987654321',
+    email: 'bob@example.com',
+    phone: '8765432109',
+  },
+  {
+      userId: '3',
+      userName : "Catherine Lee",
+      staffId:'3103947',
+      nic:'1122334455',
+      email: 'catherine@example.com',
+      phone: '7654321098',
     },
-    {
-      userId: '2',
-      userName : "John Doe",
-      staffId:'235567',
-      email: 'user1@example.com',
-      phone: '1234567890',
-      nic: '1234667890V',
-      
-      
-    },
-
-    {
-        userId: '3',
-        userName : "Jack Hendersen",
-        staffId:'284567',
-        email: 'user1@example.com',
-        phone: '1234567890',
-        nic: '8134567890V',
-        
-        
-      },
 ];
 
 const Students = () => {
