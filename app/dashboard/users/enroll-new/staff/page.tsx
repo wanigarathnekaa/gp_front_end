@@ -59,7 +59,7 @@ const Students = () => {
         <Navbar/>
         <Sidebar/>
   
-        <div className=' mt-14 ml-64  min-h-screen bg-[#D6D6FF] p-4'>
+        <div className=' mt-14 ml-64  min-h-screen bg-[#EEF2FF] p-4'>
           <Title text='Enroll new users' />
   
           <>

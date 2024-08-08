@@ -19,7 +19,7 @@ const studentFields = [
 
 function page() {
   return (
-    <div className="flex min-h-full flex-col lg:px-8l bg-[#D6D6FF]">
+    <div className="flex min-h-full flex-col lg:px-8l bg-[#EEF2FF]">
         <Navbar />
         <div className="flex items-center justify-center h-screen">
           <div className='bg-white p-8 rounded-xl shadow-xl'>

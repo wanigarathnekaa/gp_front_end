@@ -91,7 +91,7 @@ const CreateStaff = () => {
             <Navbar/>
             <Sidebar/>
 
-            <div className='mt-12  ml-64 flex flex-col  min-h-screen bg-[#D6D6FF]'>
+            <div className='mt-12  ml-64 flex flex-col  min-h-screen bg-[#EEF2FF]'>
                 <Title text = 'New user role' />
 
                 <div className='  flex flex-row justify-center space-x-6 '>

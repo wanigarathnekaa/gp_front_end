@@ -10,7 +10,7 @@ const sampleUsers = [
 
 const Page: React.FC = () => {
   return (
-    <div className='bg-[#D6D6FF] min-h-screen'>
+    <div className='bg-[#EEF2FF] min-h-screen'>
       <Navbar />
       <ExamSidebar />
 

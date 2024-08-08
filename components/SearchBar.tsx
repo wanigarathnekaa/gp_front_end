@@ -17,14 +17,14 @@ const SearchBar = ({onSearch}:SearchBarProps) => {
         <div className="flex ">
             <input
                 type="text"
-                className="border border-gray-300 rounded-l-full p-2 h-10 w-80 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="border border-gray-300 rounded-l-full py-2 px-3 h-10 w-80 focus:outline-none focus:ring-2 focus:ring-[#706ee4]"
                 placeholder=" Search..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
             />
 
             <button
-                className="bg-blue-600 text-white p-2 h-10  rounded-r-full focus:outline-none focus:ring-2 focus:ring-blue-500 flex items-center justify-center "
+                className="bg-[#706ee4] text-white p-2 h-10  rounded-r-full focus:outline-none focus:ring-2 focus:ring-[#706ee4] flex items-center justify-center "
                 onClick={handleSearch}
                 aria-label="Search"
             > 
