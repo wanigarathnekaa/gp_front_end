@@ -16,9 +16,9 @@ const Dashboard = () => {
         
         <Sidebar />
         
-        <div className="mt-12 ml-64 flex flex-row min-h-screen">
+        <div className="mt-12 ml-72 flex flex-row min-h-screen">
           <div className="w-3/4 px-20 py-20  bg-[#EEF2FF]">
-            <div className="text-4xl font-bold  mb-4">
+            <div className="text-4xl font-bold mb-4">
               <h1 className='ml-3 text-black '>
                 Hi there!
                 </h1>
