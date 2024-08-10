@@ -31,6 +31,7 @@ const Dashboard = () => {
                             title="View registered users" 
                             description='Assign user privileges to any user'
                             icon={FaUsers}
+                            wide="true"
                             
                         />
 
@@ -43,7 +44,7 @@ const Dashboard = () => {
                             title="Enroll new users" 
                             description='View existing user privileges and roles'
                             icon={IoMdAddCircle}
-                            
+                            wide="true"
                         />
 
                     
@@ -55,7 +56,7 @@ const Dashboard = () => {
                             title="Create new user role" 
                             description='View existing user privileges and roles'
                             icon={HiUserAdd}
-                            
+                            wide="true"
                         />
 
                     
@@ -67,7 +68,7 @@ const Dashboard = () => {
                             title="Peer-to-peer review" 
                             description='Assign peer-to-peer reviewers'
                             icon={AiFillMessage}
-                            
+                            wide="true"
                         />
 
                    
@@ -79,7 +80,7 @@ const Dashboard = () => {
                             title="Student ranking" 
                             description='View students ranking'
                             icon={FaRankingStar}
-                            
+                            wide="true"
                         />
 
                    

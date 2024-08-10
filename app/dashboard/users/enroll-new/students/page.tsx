@@ -99,27 +99,29 @@ const Students = () => {
               </>
             </div>
             
+            <div className="flex flex-row items-center">
+        <div className="w-1/2 pr-4">
+        <Link href="/dashboard/users/enroll-new/EnrollIndividual/student">
+          <Card
+            title="Individual Enrollment"
+            description="Enroll students individually"
+            icon={FaUser}
+            wide={true}
+          />
+        </Link>
+      </div>
 
-        <div className="flex flex-row justify-between max-w-full">
-          <Link href='/dashboard/users/enroll-new/EnrollIndividual/student'>
-            <Card 
-              title="Individual Enrollment"
-              description="Enroll students individually"
-              icon={FaUser}
-              wide = {true}
-            />
-          </Link>
-
-
-          <Link href='/dashboard/users/enroll-new/BulkEnrollment'>
-            <Card 
-              title="Bulk Enrollment"
-              description="Enroll students as groups"
-              icon={FaUsers}
-              wide = {true}
-            />
-          </Link>
-        </div>
+      <div className="w-1/2 pr-2 pl-2">
+        <Link href="/dashboard/users/enroll-new/BulkEnrollment">
+          <Card
+            title="Bulk Enrollment"
+            description="Enroll students as groups"
+            icon={FaUsers}
+            wide={true}
+          />
+        </Link>
+      </div>
+    </div>
 
         <SubTitle text="Enrollment History"/>
 

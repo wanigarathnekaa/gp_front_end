@@ -1,6 +1,9 @@
+"use client"
+
 import { FaEye, FaEdit } from "react-icons/fa"
 import { CiViewList } from "react-icons/ci";
 import  Link  from "next/link";
+import { useState } from "react";
 
 interface TableProps{
   userId: string,
@@ -23,12 +26,18 @@ interface Props {
 }
 
 const Table = ({ users, type }:Props) => {
+  const [selectedRow, setSelectedRow] = useState<number | null>(null);
+
+  const handleRowClick = (index: number) => {
+    setSelectedRow(index);
+  };
+
   return (
     <div className="flex mt-5 ml-3 justify-center">
       <table className='w-full max-w-full  bg-white rounded-2xl border-none shadow-md'>
         <thead className="text-base text-gray-700">
           <tr>
-            <th className='border-b border-gray-200 py-3 px-3'>User Id</th>
+            <th className='border-b border-gray-200 py-3 px-4'>User Id</th>
             <th className='border-b border-gray-200 py-3 px-3'>User Name</th>
 
             {type === "other" && (
@@ -77,9 +86,17 @@ const Table = ({ users, type }:Props) => {
           </thead>
 
           <tbody className="text-sm text-gray-500">
-            {users.map((user, index) => (
-              <tr key = {index} className='text-center'>
-                <td className='border-b border-gray-200 py-3 px-3'>{user.userId}</td>
+            {users.map((user, index) => {
+              const isLastRow = index === users.length - 1;
+              return (
+                
+              <tr 
+                key = {index} 
+                className={`text-center cursor-pointer ${
+                selectedRow === index ? "bg-blue-100" : ""
+                } ${isLastRow ? "rounded-b-2xl" : ""}`}
+                onClick={() => handleRowClick(index)}>
+                <td className='border-b border-gray-200 py-3 px-4'>{user.userId}</td>
                 <td className='border-b border-gray-200 py-3 px-3'>{user.userName}</td>
 
                 {type === "other" && (
@@ -117,7 +134,7 @@ const Table = ({ users, type }:Props) => {
                   </>
                 )}
                
-                <td className='border-b border-gray-200  py-3 px-3'>
+                <td className='border-b border-gray-200  py-3 px-4'>
                   <div className="flex justify-center items-center gap-2">
 
                     <Link href={`/dashboard/users/UserDetails/${type}`}>
@@ -132,7 +149,8 @@ const Table = ({ users, type }:Props) => {
                   
                 </td>
               </tr>
-            ))}
+              );
+            })}
           </tbody>
         
 

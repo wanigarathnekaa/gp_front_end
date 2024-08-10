@@ -23,6 +23,7 @@ const CreateUsers = () => {
                             title ="View user roles"
                             description='View existing user roles'
                             icon={CiViewList}
+                            wide={true}
                         />
                     </Link>
 
@@ -31,6 +32,7 @@ const CreateUsers = () => {
                         title ="Create new"
                         description='Create new user roles'
                         icon={HiUserAdd}
+                        wide={true}
                     />
                     </Link>
 
