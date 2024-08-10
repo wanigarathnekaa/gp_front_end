@@ -67,18 +67,14 @@ const ViewStaff = () => {
             <div className='flex gap-5 items-center'>
               <SearchBar onSearch={handleSearch}/>
 
-              <div className='flex justify-end mr-10'>
+              <div className='flex'>
                 <Link href='/dashboard/users/create-new/create-user-roles/staff'>
                   <ButtonText text='Create new user role' />
                 </Link>
-
-              
               </div>
-
-              
             </div>
             
-            <div className='mt-10'>
+            <div className='mt-3'>
               <RoleTable users ={users}/>
             </div>
 

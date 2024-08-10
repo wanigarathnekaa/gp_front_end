@@ -8,7 +8,7 @@ const Breadcrumbs = () => {
     const pathnames = pathname.split('/').filter(x => x);
 
     return (
-        <nav className="text-blue-500 mt-3 ml-4 mb-10">
+        <nav className="text-[#706ee4] mt-3 ml-4 mb-10">
             <ul className="flex">
                 <li>
                     <Link href="/">Home</Link>
@@ -22,7 +22,7 @@ const Breadcrumbs = () => {
                         <li key={to}>
                             <span className="mx-2">/</span>
                             {last ? (
-                                <span className="text-gray-500">{title}</span>
+                                <span className="text-gray-600">{title}</span>
                             ) : (
                                 <Link href={to}>{title}</Link>
                             )}
