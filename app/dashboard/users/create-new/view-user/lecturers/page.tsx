@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from 'react'
 import { Sidebar, Navbar, Title, RoleTable, Navigation, SearchBar } from '@/components/index';
+import Breadcrumbs from '@/components/Breadcrumbs';
 import { usePathname } from 'next/navigation';
 
 const usersData = [
@@ -79,6 +80,7 @@ const ViewLecturer = () => {
 
         <div className=' mt-14 ml-64 flex flex-col min-h-screen bg-[#EEF2FF] p-4'>
             <Title text='User roles'/>
+            <Breadcrumbs/>
 
             <Navigation links={links} pathname={pathname}/>
 
