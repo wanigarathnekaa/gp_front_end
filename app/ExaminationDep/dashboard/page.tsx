@@ -1,90 +1,63 @@
-import React from 'react';
-import { Navbar, ExamSidebar, CloakCountCard, ExaminationTable } from '@/components/index';
+import { Navbar, ExamSidebar, CloakCountCard } from '@/components/index'
+import React from 'react'
 
-const sampleUsers = [
-  { userId: '1', userName: 'Kavisha Wanigarathne', regNo: '1001', indexNo: '2001', phone: '1234567890',size: 'Small', status: 'Collected' },
-  { userId: '2', userName: 'Sarani Hettiarachchi', regNo: '1002', indexNo: '2002', phone: '0987654321',size: 'Large', status: 'Not Collected' },
-  { userId: '3', userName: 'Kamala Haris', regNo: '1003', indexNo: '2003', phone: '0987654331',size: 'Medium', status: 'Not Collected' },
-  // Add more user data as needed
-];
-
-const Page: React.FC = () => {
+const ExamDashboard = () => {
   return (
-    <div className='bg-[#EEF2FF] min-h-screen'>
-      <Navbar />
-      <ExamSidebar />
 
-      <div className='pl-72 pt-24'>
-        <h1 className='text-3xl font-bold mb-2'>Examination Department Dashboard</h1>
-        <h4 className='text-xl text-gray-600 font-semibold'>Cloak Distribution</h4>
-      </div>
+    <div className='w-full'>
+      <Navbar/>
+      <ExamSidebar/>
 
-      <div className='flex flex-row justify-center pl-64 mt-12 space-x-4 mr-12'>
-        <CloakCountCard 
-          title='Total Cloaks' 
-          countSmall={100}
-          countMedium={200}
-          countLarge={300}
-          description='Total number of cloaks in the system' 
-          wide 
-        />
-        
-        <CloakCountCard 
-          title='Cloaks Issued' 
-          countSmall={50}
-          countMedium={120}
-          countLarge={30}
-          description='Total number of cloaks in the system' 
-          wide 
-        />
-        
-        <CloakCountCard 
-          title='Cloaks Returned' 
-          countSmall={40}
-          countMedium={35}
-          countLarge={10}
-          description='Total number of cloaks in the system' 
-          wide 
-        />
-      </div>
-
-      <div className='flex flex-row justify-between pl-72 pr-24 mt-8'>
-        <h1 className='text-xl text-gray-600 font-bold'>Student Details</h1>
-
-        <div className='mb-4 space-x-2'>
-            
-
-            <label htmlFor="booked" className="ml-2 text-sm font-medium text-gray-900">Collected </label>
-            <input 
-              id="collected" 
-              type="checkbox" 
-              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2" 
-            />
-
-            <label htmlFor="returned" className="ml-2 text-sm font-medium text-gray-900">Not Collected </label>
-            <input 
-              id="notCollected" 
-              type="checkbox" 
-              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2" 
-            />
-
-            <label htmlFor="returned" className="ml-2 text-sm font-medium text-gray-900">Returned </label>
-            <input 
-              id="returned" 
-              type="checkbox" 
-              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2" 
-            />
+      <div className='mt-12 ml-72 md:ml-64 lg:ml-72 bg-[#EEF2FF] flex flex-col min-h-screen'>
+        <div className='mt-10 p-6'>
+          <h1 className='ml-3 text-black text-5xl md:text-4xl font-bold '>Hi there!</h1>
+          <h2 className='font-normal ml-3 mt-5 text-4xl md:text-3xl '>Welcome to your dashboard</h2>
         </div>
-        
-        
+
+        <div className=' mt-8 '>
+          <h2 className='text-2xl font-semibold text-gray-600 ml-3  px-6'>Cloak Distribution</h2>
+
+          <div className='p-4 mt-3 ml-3 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6'>
+
+            <CloakCountCard 
+              title='Total Cloaks' 
+              countSmall={100} 
+              countMedium={200} 
+              countLarge={300} 
+              description='Total number of cloaks available'
+              /> 
+
+            <CloakCountCard
+              title='Cloaks Issued' 
+              countSmall={60} 
+              countMedium={120} 
+              countLarge={250} 
+              description='Total cloaks issued'
+            /> 
+
+           <CloakCountCard
+              title='Cloaks Returned'
+              countSmall={40}
+              countMedium={50}
+              countLarge={150}
+              description='Total number of cloaks returned'
+           />
+
+          </div>
+
+          
+
+        </div>
+
+        <div className='mt-8'>
+          <h2 className='text-2xl font-semibold text-gray-600 ml-3  px-6'>Student Details</h2>
+          
+        </div>
 
       </div>
-      
-      <div className='pl-72'>
-        <ExaminationTable users={sampleUsers} />
-      </div>
+
     </div>
-  );
+  )
 }
 
-export default Page;
+export default ExamDashboard
