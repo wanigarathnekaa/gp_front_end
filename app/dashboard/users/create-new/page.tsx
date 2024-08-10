@@ -1,4 +1,5 @@
 import { Sidebar, Navbar, Card, Calendar, TaskList, Title} from '@/components/index';
+import Breadcrumbs from '@/components/Breadcrumbs';
 import { CiViewList } from "react-icons/ci";
 import { HiUserAdd } from "react-icons/hi";
 import { FaRegClock } from "react-icons/fa";
@@ -12,10 +13,9 @@ const CreateUsers = () => {
 
         <div className="mt-12 ml-64 flex flex-row min-h-screen">
             <div className="w-3/4 px-20 py-20  bg-[#EEF2FF]">
-                <div className="text-3xl font-bold  mb-4">
-                    <h1 className='mb-10 ml-3 mt-5 '>
-                        User roles
-                    </h1>
+                <Title text ='User Roles'/>
+                <div className="mb-10">
+                        <Breadcrumbs/>
                 </div>
 
                 <div className="flex flex-col mt-10">
