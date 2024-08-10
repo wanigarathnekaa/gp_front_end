@@ -24,16 +24,16 @@ interface Props {
 
 const Table = ({ users, type }:Props) => {
   return (
-    <div className="flex mt-8 ml-3">
-      <table className='w-full max-w-6xl  bg-white rounded-2xl border-none '>
-        <thead className="text-base text-gray-500">
+    <div className="flex mt-5 ml-3 justify-center">
+      <table className='w-full max-w-full  bg-white rounded-2xl border-none shadow-md'>
+        <thead className="text-base text-gray-700">
           <tr>
-            <th className='border-b border-gray-200 py-2 px-4'>User Id</th>
-            <th className='border-b border-gray-200 py-2 px-4'>User Name</th>
+            <th className='border-b border-gray-200 py-3 px-3'>User Id</th>
+            <th className='border-b border-gray-200 py-3 px-3'>User Name</th>
 
             {type === "other" && (
               <>
-                <th className='border-b border-gray-200 py-2 px-4'>Staff Id</th>
+                <th className='border-b border-gray-200 py-3 px-3'>Staff Id</th>
                 
               </>
             )}
@@ -41,7 +41,7 @@ const Table = ({ users, type }:Props) => {
 
             {type === "lecturer" && (
               <>
-                <th className='border-b border-gray-200 py-2 px-4'>Lecturer Id</th>
+                <th className='border-b border-gray-200 py-3 px-3'>Lecturer Id</th>
                 
               </>
             )}
@@ -49,14 +49,14 @@ const Table = ({ users, type }:Props) => {
 
             {type === "student" && (
               <>
-                <th className='border-b border-gray-200 py-2 px-4'>Reg. No</th>
-                <th className='border-b border-gray-200 py-2 px-4'>Index No</th>
+                <th className='border-b border-gray-200 py-3 px-3'>Reg. No</th>
+                <th className='border-b border-gray-200 py-3 px-3'>Index No</th>
               </>
             )}
             
-            <th className='border-b border-gray-200 py-2 px-4'>Email</th>
+            <th className='border-b border-gray-200 py-3 px-3'>Email</th>
 
-            <th className='border-b border-gray-200 py-2 px-4'>NIC</th>
+            <th className='border-b border-gray-200 py-3 px-3'>NIC</th>
 
             
             
@@ -65,26 +65,26 @@ const Table = ({ users, type }:Props) => {
               <>
 
                 
-                <th className='border-b border-gray-200 py-2 px-4'>Year studying</th>
-                <th className='border-b border-gray-200 py-2 px-4'>Role</th>
+                <th className='border-b border-gray-200 py-3 px-3'>Year studying</th>
+                <th className='border-b border-gray-200 py-3 px-3'>Role</th>
 
               </>
 
             )}
            
-            <th className='border-b border-gray-200 py-2 px-4'></th>
+            <th className='border-b border-gray-200 py-3 px-3'></th>
           </tr>
           </thead>
 
           <tbody className="text-sm text-gray-500">
             {users.map((user, index) => (
               <tr key = {index} className='text-center'>
-                <td className='border-b border-gray-200 py-2 px-4'>{user.userId}</td>
-                <td className='border-b border-gray-200 py-2 px-4'>{user.userName}</td>
+                <td className='border-b border-gray-200 py-3 px-3'>{user.userId}</td>
+                <td className='border-b border-gray-200 py-3 px-3'>{user.userName}</td>
 
                 {type === "other" && (
                   <>
-                    <td className='border-b border-gray-200 py-2 px-4'>{user.staffId}</td>
+                    <td className='border-b border-gray-200 py-3 px-3'>{user.staffId}</td>
                     
                   </>
                 )}
@@ -92,7 +92,7 @@ const Table = ({ users, type }:Props) => {
 
                 {type === "lecturer" && (
                   <>
-                    <td className='border-b border-gray-200 py-2 px-4'>{user.lecturerId}</td>
+                    <td className='border-b border-gray-200 py-3 px-3'>{user.lecturerId}</td>
                     
                   </>
                 )}
@@ -100,32 +100,32 @@ const Table = ({ users, type }:Props) => {
 
                 {type === "student" && (
                   <>
-                    <td className='border-b border-gray-200 py-2 px-4'>{user.regNo}</td>
-                    <td className='border-b border-gray-200 py-2 px-4'>{user.indexNo}</td>
+                    <td className='border-b border-gray-200 py-3 px-3'>{user.regNo}</td>
+                    <td className='border-b border-gray-200 py-3 px-3'>{user.indexNo}</td>
                   </>
                 )}
                 
-                <td className='border-b border-gray-200 py-2 px-4'>{user.email}</td>
+                <td className='border-b border-gray-200 py-3 px-3'>{user.email}</td>
 
-                <td className='border-b border-gray-200 py-2 px-4'>{user.nic}</td>
+                <td className='border-b border-gray-200 py-3 px-3'>{user.nic}</td>
 
                 {type === "student" &&(
                   <>
                     
-                    <td className='border-b border-gray-200 py-2 px-4'>{user.year}</td>
-                    <td className='border-b border-gray-200 py-2 px-4'>{user.type}</td>
+                    <td className='border-b border-gray-200 py-2 px-3'>{user.year}</td>
+                    <td className='border-b border-gray-200 py-2 px-3'>{user.type}</td>
                   </>
                 )}
                
-                <td className='border-b border-gray-200  py-2 px-4'>
+                <td className='border-b border-gray-200  py-3 px-3'>
                   <div className="flex justify-center items-center gap-2">
 
                     <Link href={`/dashboard/users/UserDetails/${type}`}>
-                        <CiViewList className='cursor-pointer text-black'/>
+                        <CiViewList className='cursor-pointer text-[#706ee4]'/>
                     </Link>
 
                     <Link href={`/dashboard/users/UserDetails/UpdateUserDetails/${type}`}>
-                      <FaEdit className='cursor-pointer text-black'/>
+                      <FaEdit className='cursor-pointer text-green-400 opacity-60'/>
                     </Link>
 
                   </div>
