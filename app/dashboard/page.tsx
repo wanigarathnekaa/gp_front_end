@@ -19,11 +19,11 @@ const Dashboard = () => {
         <div className="mt-12 ml-64 flex flex-row min-h-screen">
           <div className="w-3/4 px-20 py-20  bg-[#EEF2FF]">
             <div className="text-4xl font-bold  mb-4">
-              <h1 className='mb-10 ml-3 text-black '>
+              <h1 className='ml-3 text-black '>
                 Hi there!
-                <br />
-                <h2 className='font-normal mt-2 text-3xl'>Welcome to your dashboard</h2>
-              </h1>
+                </h1>
+                <h2 className='font-normal ml-3 mt-5 mb-10 text-3xl'>Welcome to your dashboard</h2>
+              
             </div>
             <div className="flex flex-col ">
                 <Link href="/dashboard/users/view-registered/lecturers">
