@@ -14,9 +14,7 @@ const CreateUsers = () => {
         <div className="mt-12 ml-64 flex flex-row min-h-screen">
             <div className="w-3/4 px-20 py-20  bg-[#EEF2FF]">
                 <Title text ='User Roles'/>
-                <div className="mb-10">
-                        <Breadcrumbs/>
-                </div>
+                <Breadcrumbs/>
 
                 <div className="flex flex-col mt-10">
 
