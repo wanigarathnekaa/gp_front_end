@@ -26,7 +26,7 @@ const RoleTable = ({ users }: Props) => {
 
   return (
     <div className="flex ml-3 mt-10 justify-center">
-      <table className="w-full max-w-full bg-white rounded-2xl">
+      <table className="w-full max-w-full bg-white rounded-2xl shadow-md">
         <thead className="text-base text-gray-700">
           <tr>
             <th className="border-b border-gray-200 py-3 px-4">User Role ID</th>
