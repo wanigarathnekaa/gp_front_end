@@ -1,6 +1,7 @@
 "use client";
 import React, { useState} from 'react'
 import { Sidebar, Navbar, Navigation, Title, NewUserForm, RoleTable  } from '@/components/index'
+import Breadcrumbs from '@/components/Breadcrumbs';
 import { usePathname } from 'next/navigation'
 
 const links =[
@@ -91,8 +92,11 @@ const CreateStaff = () => {
             <Navbar/>
             <Sidebar/>
 
-            <div className='mt-12  ml-64 flex flex-col  min-h-screen bg-[#EEF2FF]'>
-                <Title text = 'New user role' />
+            <div className='mt-12  ml-64 flex flex-col  min-h-screen bg-[#EEF2FF] w-3/4 px-20 py-20 '>
+
+            <Title text = 'New user role' />
+            <Breadcrumbs/>
+                
 
                 <div className='  flex flex-row justify-center space-x-6 '>
                     <div className=' ml-8 w-2/5 mt-10 '>
