@@ -48,14 +48,14 @@ async function FormDetailPage({
   const bounceRate = 100 - submissionRate;
 
   return (
-    <div className="ml-64 px-8 h-fit bg-[#D6D6FF] overflow-auto py-10">
-      <div className="py-10 border-b border-gray-400">
+    <div className="ml-64 px-8 h-fit bg-[#FFFFFF] ">
+      <div className="py-8 border-b border-gray-400">
         <div className="flex justify-between container">
           <h1 className="text-4xl font-bold truncate">{form.name}</h1>
           <VisitBtn shareUrl={form.shareURL} />
         </div>
       </div>
-      <div className="py-4 border-b border-muted container">
+      <div className="py-6 border-b border-muted container">
         <div className=" flex gap-2 items-center justify-between">
           <FormLinkShare shareUrl={form.shareURL} />
         </div>
@@ -137,6 +137,7 @@ async function SubmissionsTable({ id }: { id: number }) {
       case "DateField":
       case "SelectField":
       case "CheckboxField":
+      case "MultipleOptionField":
         columns.push({
           id: element.id,
           label: element.extraAttributes?.label,

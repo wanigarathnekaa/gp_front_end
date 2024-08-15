@@ -15,9 +15,9 @@ const links =[
 
 const review = [
     { id: 1, reviewer: 'John Doe', reviewee: 'Jane Smith', reviewDate: '2024-07-20' },
-    { id: 2, reviewer: 'Alice Brown', reviewee: 'Bob Johnson', reviewDate: '2024-07-21' },
-    { id: 3, reviewer: 'Alice Brown', reviewee: 'Bob Johnson', reviewDate: '2024-07-21' },
-    { id: 4, reviewer: 'Alice Brown', reviewee: 'Bob Johnson', reviewDate: '2024-07-21' },
+    { id: 2, reviewer: 'Alice Brown', reviewee: 'Bob Johnson', reviewDate: '2024-01-01' },
+    { id: 3, reviewer: 'Ava Martinez', reviewee: 'Elijah Garcia', reviewDate: '2023-07-10' },
+    { id: 4, reviewer: 'Sophia Hernandez', reviewee: 'Mason Lee', reviewDate: '2023-06-05' },
     
 ];
 
@@ -62,7 +62,7 @@ const PeerReviews = () => {
             <Navbar />
             <Sidebar />
 
-            <div className=' mt-12 ml-64  min-h-screen bg-[#D6D6FF] p-4'>
+            <div className=' mt-12 ml-64  min-h-screen bg-[#EEF2FF] p-4'>
                 <Title text='Peer-to-peer review' />
 
                 <>

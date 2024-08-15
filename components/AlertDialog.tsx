@@ -4,6 +4,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import Button from '@mui/material/Button';
 import { CiWarning } from "react-icons/ci";
+import { CiSquareCheck } from "react-icons/ci";
 
 interface AlertDialogProps {
   open: boolean;
@@ -20,7 +21,7 @@ const AlertDialog: React.FC<AlertDialogProps> = ({ open, onClose, message }) => 
     >
       <div className="flex flex-col items-center">
         {message === "Data imported successfully!" ? (
-          <CiWarning className="text-6xl text-green-500 mb-1 mt-4" />
+          <CiSquareCheck className="text-6xl text-green-500 mb-1 mt-4" />
         ) : (
           <CiWarning className="text-6xl text-red-500 mb-1 mt-4" />
         )}

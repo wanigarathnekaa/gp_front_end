@@ -9,14 +9,16 @@ interface TaskListProps {
 
 const TaskList = ({tasks, icon:Icon}:TaskListProps) => {
   return (
-    <div className='bg-white shadow-md rounded p-4 mt-8 w-70'>
-        <h2 className='text-lg font-semibold ml-10  mb-2'>Schedule Tasks </h2>
+    <div className='bg-[#EEF2FF] border border-blue-100 rounded-xl p-4 mt-8 w-70'>
+      <div className="justify-center">
+        <h2 className='text-lg font-semibold px-24 py-3 text-gray-900 '> Schedule Tasks </h2>
+      </div>  
         <ul >
            {tasks.map((task,index ) => (
             <li key={index}
-            className='flex items-center py-2'>
+            className='flex items-center py-3'>
               <Icon className='text-sm ml-8 mr-4 '/> 
-            <p className='text-sm font-medium '>{task}</p>
+            <p className='text-sm font-medium text-gray-700 '>{task}</p>
             </li>
 
            ))}

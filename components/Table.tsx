@@ -24,8 +24,8 @@ interface Props {
 
 const Table = ({ users, type }:Props) => {
   return (
-    <div className="flex justify-center mt-8 ">
-      <table className='w-full max-w-6xl  bg-white rounded-2xl shadow-xl '>
+    <div className="flex mt-8 ml-3">
+      <table className='w-full max-w-6xl  bg-white rounded-2xl border-none '>
         <thead className="text-base text-gray-500">
           <tr>
             <th className='border-b border-gray-200 py-2 px-4'>User Id</th>

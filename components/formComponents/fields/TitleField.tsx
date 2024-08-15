@@ -84,7 +84,7 @@ function FormComponent({
 
   const { title } = element.extraAttributes;
   return (
-    <p className="text-xl">{title}</p>
+    <p className="text-3xl">{title}</p>
 );
 }
 
