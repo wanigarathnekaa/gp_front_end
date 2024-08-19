@@ -9,7 +9,7 @@ export default function layout({children}: {children: ReactNode}) {
         <nav className='flex justify-between items-center h-[52px] px-4 py-2'>
             <Navbar />
         </nav>
-        <main className='flex w-full flex-grow'>{children}</main>
+        <main className='flex w-full flex-grow pl-8'>{children}</main>
     </div>
   );
 }
