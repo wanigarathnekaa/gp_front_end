@@ -13,23 +13,20 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import { Switch } from "../../ui/switch";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
+import { Separator } from '@/components/ui/separator';
+import { Button } from '@/components/ui/button';
+import { AiOutlineClose, AiOutlinePlus } from 'react-icons/ai';
 
 const type: ElementsType = "LogicalQuestioningField";
 const extraAttributes = {
   question: "Choose an option",
-  options: [
-    { value: "Option 1", nextQuestionId: "next-question-1" },
-    { value: "Option 2", nextQuestionId: "next-question-2" },
-  ],
+  options: [],
   required: false,
 };
 
 const propertiesSchema = z.object({
   question: z.string().min(2).max(100),
-  options: z.array(z.object({
-    value: z.string(),
-    nextQuestionId: z.string().optional(),
-  })).min(1),
+  options: z.array(z.string()).default([]),
   required: z.boolean().default(false),
 });
 
@@ -81,8 +78,8 @@ function DesignerComponent({ elementInstance }: { elementInstance: FormElementIn
       >
         {options.map((option, index) => (
           <div key={index} className="flex items-center space-x-2">
-            <RadioGroupItem id={`${id}-${index}`} value={option.value} />
-            <Label htmlFor={`${id}-${index}`}>{option.value}</Label>
+            <RadioGroupItem id={`${id}-${index}`} value={option} />
+            <Label htmlFor={`${id}-${index}`}>{option}</Label>
           </div>
         ))}
       </RadioGroup>
@@ -102,9 +99,9 @@ function FormComponent({
   defaultValue?: string;
 }) {
   const element = elementInstance as customInstance;
-  const [value, setValue] = useState<string>(defaultValue || "");
+  const [value, setValue] = useState(defaultValue || "");
   const [error, setError] = useState(false);
-  const [nextQuestionId, setNextQuestionId] = useState<string | null>(null);
+  // const [nextQuestionId, setNextQuestionId] = useState<string | null>(null);
 
   useEffect(() => {
     setError(isInvalid === true);
@@ -115,12 +112,12 @@ function FormComponent({
 
   const handleValueChange = (selectedValue: string) => {
     setValue(selectedValue);
-    const selectedOption = options.find(option => option.value === selectedValue);
-    setNextQuestionId(selectedOption?.nextQuestionId || null);
+    const selectedOption = options.find(option => option === selectedValue);
 
     if (!submitValue) return;
     const valid = LogicalQuestioningFieldFormElement.validate(element, selectedValue);
     setError(!valid);
+    console.log(element.id, selectedValue);
     submitValue(element.id, selectedValue);
   };
 
@@ -140,20 +137,20 @@ function FormComponent({
           <div key={index} className="flex items-center space-x-2">
             <RadioGroupItem
               id={`${id}-${index}`}
-              value={option.value}
+              value={option}
               className={cn(error && "border-red-500")}
             />
-            <Label htmlFor={`${id}-${index}`}>{option.value}</Label>
+            <Label htmlFor={`${id}-${index}`}>{option}</Label>
           </div>
         ))}
       </RadioGroup>
 
-      {/* Render the next question if available */}
+      {/* Render the next question if available
       {nextQuestionId && (
         <div id={`next-question-${nextQuestionId}`}>
-          {/* Replace with logic to render the next question based on `nextQuestionId` */}
+          Replace with logic to render the next question based on `nextQuestionId`
         </div>
-      )}
+      )} */}
     </div>
   );
 }
@@ -219,28 +216,66 @@ function PropertiesComponent({ elementInstance }: { elementInstance: FormElement
             </FormItem>
           )}
         />
+
+        <Separator />
         <FormField
           control={form.control}
           name="options"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Options</FormLabel>
-              <FormControl>
-                <Input
-                  {...field}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") e.currentTarget.blur();
+              <div className="flex justify-between items-center">
+                <FormLabel>Options</FormLabel>
+                <Button 
+                  variant={"outline"}
+                  className="gap-2"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    form.setValue("options", field.value.concat("New Option"));
                   }}
-                  value={field.value.toString()}
-                />
-              </FormControl>
+                >
+                  <AiOutlinePlus />
+                  Add
+                </Button>
+              </div>
+
+              <div className="flex flex-col gap-2">
+                  {form.watch("options").map((option, index) => (
+                    <div key={index} className="flex items-center justify-between gap-1">
+                      <Input
+                        placeholder=""
+                        value={option}
+                        onChange = {(e) => {
+                          field.value[index] = e.target.value;  
+                          field.onChange(field.value);
+                        }}
+                      />
+                      <Button 
+                        variant={"ghost"}
+                        size={"icon"}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          const newOptions = [...field.value];
+                          newOptions.splice(index, 1);
+                          field.onChange(newOptions);
+                        }}
+                      >
+                        <AiOutlineClose />
+                      </Button>
+
+                    </div>
+                  ))}
+              </div>
               <FormDescription>
-                Comma-separated list of options with optional nextQuestionId for conditional logic.
+                Add Options Here.
+                <br />
+                It will be displayed below the field.
               </FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
+
+        <Separator />
         <FormField
           control={form.control}
           name="required"
