@@ -302,10 +302,16 @@ function PropertiesComponent({
                         onClick={(e) => {
                           e.preventDefault();
                           const newOptions = [...field.value];
+                          const removedOption = newOptions[index];
                           newOptions.splice(index, 1);
                           field.onChange(newOptions);
-                          // Remove the next question mapping when the option is deleted
-                          delete element.extraAttributes.nextQuestions[option];
+                          element.extraAttributes.options = newOptions as never[];
+
+                          const childElements = elements.filter((el) => el.parentOption === removedOption);
+                          const childElementIds = childElements.map((el) => el.id);
+
+                          {console.log(element.extraAttributes.nextQuestions);}
+                          removeElement(childElementIds[0]);
                           updateElement(element.id, element);
                         }}
                       >
@@ -319,12 +325,11 @@ function PropertiesComponent({
                         const newNextQuestions = {...element.extraAttributes.nextQuestions,};
                         newNextQuestions[option] = value as ElementsType;
                         element.extraAttributes.nextQuestions = newNextQuestions;
-
                         
                         const newElement = FormElements[value as ElementsType].construct(idGenerator());
                         newElement.parent = element.id;
                         newElement.parentOption = option;
-                        {console.log(newElement);}
+                        {console.log("NextQuestion"+element.extraAttributes.nextQuestions);}
                         addElement(elements.length, newElement);
                       }}
                     >
