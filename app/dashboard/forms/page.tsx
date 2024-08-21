@@ -180,12 +180,14 @@ async function FormCards() {
       {currentForms.map((form: any) => (
         <FormCard key={form.id} form={form} />
       ))}
-      <PaginationSection
-        totalPosts={forms.length}
-        postsPerPage={formsPerPage}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-      />
+      <div className="w-full mt-4">
+        <PaginationSection
+          totalPosts={forms.length}
+          postsPerPage={formsPerPage}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
+      </div>
     </>
   );
 }

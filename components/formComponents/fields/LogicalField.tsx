@@ -1,7 +1,13 @@
 "use client";
 
-import { LuList } from 'react-icons/lu';
-import { ElementsType, FormElement, FormElementInstance, submitFunction } from "../FormElements";
+import { LuList } from "react-icons/lu";
+import {
+  ElementsType,
+  FormElement,
+  FormElementInstance,
+  FormElements,
+  submitFunction,
+} from "../FormElements";
 import { Label } from "../../ui/label";
 import { RadioGroup, RadioGroupItem } from "../../ui/radio-group";
 import { useState, useEffect } from "react";
@@ -9,20 +15,46 @@ import useDesigner from "../hooks/useDesigner";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "../../ui/form";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "../../ui/form";
 import { Switch } from "../../ui/switch";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
-import { Separator } from '@/components/ui/separator';
-import { Button } from '@/components/ui/button';
-import { AiOutlineClose, AiOutlinePlus } from 'react-icons/ai';
+import { Separator } from "@/components/ui/separator";
+import { Button } from "@/components/ui/button";
+import { AiOutlineClose, AiOutlinePlus } from "react-icons/ai";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { add } from "date-fns";
+import { idGenerator } from "@/lib/idGenerator";
 
 const type: ElementsType = "LogicalQuestioningField";
 const extraAttributes = {
   question: "Choose an option",
   options: [],
   required: false,
+  nextQuestions: {} as Record<string, ElementsType>,
 };
+
+const parent = null;
+const parentOption = null;
+
+const questionTypes: ElementsType[] = [
+  "NumberField",
+  "TextAreaField",
+  "DateField",
+  "SelectField",
+  "CheckboxField",
+  "MultipleOptionField",
+  "RateField",
+  "LogicalQuestioningField",
+];
 
 const propertiesSchema = z.object({
   question: z.string().min(2).max(100),
@@ -36,6 +68,8 @@ export const LogicalQuestioningFieldFormElement: FormElement = {
   construct: (id: string) => ({
     id,
     type,
+    parent,
+    parentOption,
     extraAttributes,
   }),
 
@@ -46,7 +80,10 @@ export const LogicalQuestioningFieldFormElement: FormElement = {
   designerComponent: DesignerComponent,
   formComponent: FormComponent,
   propertiesComponent: PropertiesComponent,
-  validate: (formElement: FormElementInstance, currentValue: string): boolean => {
+  validate: (
+    formElement: FormElementInstance,
+    currentValue: string
+  ): boolean => {
     const element = formElement as customInstance;
     if (element.extraAttributes.required) {
       return currentValue.length > 0;
@@ -61,7 +98,11 @@ type customInstance = FormElementInstance & {
 
 type propertiesFormSchemaType = z.infer<typeof propertiesSchema>;
 
-function DesignerComponent({ elementInstance }: { elementInstance: FormElementInstance }) {
+function DesignerComponent({
+  elementInstance,
+}: {
+  elementInstance: FormElementInstance;
+}) {
   const element = elementInstance as customInstance;
   const { question, options, required } = element.extraAttributes;
   const id = `logical-questioning-field-${element.id}`;
@@ -72,10 +113,7 @@ function DesignerComponent({ elementInstance }: { elementInstance: FormElementIn
         {question}
         {required && <span className="text-red-600">*</span>}
       </Label>
-      <RadioGroup
-        className="flex flex-col space-y-2"
-        aria-labelledby={id}
-      >
+      <RadioGroup className="flex flex-col space-y-2" aria-labelledby={id}>
         {options.map((option, index) => (
           <div key={index} className="flex items-center space-x-2">
             <RadioGroupItem id={`${id}-${index}`} value={option} />
@@ -112,12 +150,17 @@ function FormComponent({
 
   const handleValueChange = (selectedValue: string) => {
     setValue(selectedValue);
-    const selectedOption = options.find(option => option === selectedValue);
+    const selectedOption = options.find((option) => option === selectedValue);
 
     if (!submitValue) return;
-    const valid = LogicalQuestioningFieldFormElement.validate(element, selectedValue);
+    const valid = LogicalQuestioningFieldFormElement.validate(
+      element,
+      selectedValue
+    );
     setError(!valid);
-    console.log(element.id, selectedValue);
+    {
+      console.log(element.id, selectedValue);
+    }
     submitValue(element.id, selectedValue);
   };
 
@@ -155,10 +198,13 @@ function FormComponent({
   );
 }
 
-
-function PropertiesComponent({ elementInstance }: { elementInstance: FormElementInstance }) {
+function PropertiesComponent({
+  elementInstance,
+}: {
+  elementInstance: FormElementInstance;
+}) {
   const element = elementInstance as customInstance;
-  const { updateElement } = useDesigner();
+  const { elements, removeElement, updateElement, addElement } = useDesigner();
 
   const form = useForm<propertiesFormSchemaType>({
     resolver: zodResolver(propertiesSchema),
@@ -225,7 +271,7 @@ function PropertiesComponent({ elementInstance }: { elementInstance: FormElement
             <FormItem>
               <div className="flex justify-between items-center">
                 <FormLabel>Options</FormLabel>
-                <Button 
+                <Button
                   variant={"outline"}
                   className="gap-2"
                   onClick={(e) => {
@@ -239,17 +285,18 @@ function PropertiesComponent({ elementInstance }: { elementInstance: FormElement
               </div>
 
               <div className="flex flex-col gap-2">
-                  {form.watch("options").map((option, index) => (
-                    <div key={index} className="flex items-center justify-between gap-1">
+                {form.watch("options").map((option, index) => (
+                  <div key={index} className="flex flex-col gap-1">
+                    <div className="flex items-center justify-between gap-1">
                       <Input
-                        placeholder=""
+                        placeholder="Option Text"
                         value={option}
-                        onChange = {(e) => {
-                          field.value[index] = e.target.value;  
+                        onChange={(e) => {
+                          field.value[index] = e.target.value;
                           field.onChange(field.value);
                         }}
                       />
-                      <Button 
+                      <Button
                         variant={"ghost"}
                         size={"icon"}
                         onClick={(e) => {
@@ -257,18 +304,50 @@ function PropertiesComponent({ elementInstance }: { elementInstance: FormElement
                           const newOptions = [...field.value];
                           newOptions.splice(index, 1);
                           field.onChange(newOptions);
+                          // Remove the next question mapping when the option is deleted
+                          delete element.extraAttributes.nextQuestions[option];
+                          updateElement(element.id, element);
                         }}
                       >
                         <AiOutlineClose />
                       </Button>
-
                     </div>
-                  ))}
+
+                    <Select
+                      value={""}
+                      onValueChange={(value) => {
+                        const newNextQuestions = {...element.extraAttributes.nextQuestions,};
+                        newNextQuestions[option] = value as ElementsType;
+                        element.extraAttributes.nextQuestions = newNextQuestions;
+
+                        
+                        const newElement = FormElements[value as ElementsType].construct(idGenerator());
+                        newElement.parent = element.id;
+                        newElement.parentOption = option;
+                        {console.log(newElement);}
+                        addElement(elements.length, newElement);
+                      }}
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select Next Question Type" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {questionTypes.map((type) => (
+                          <SelectItem key={type} value={type}>
+                            {type}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                ))}
               </div>
               <FormDescription>
                 Add Options Here.
                 <br />
-                It will be displayed below the field.
+                It will be displayed below the field. You can also assign the
+                type of the next question to display based on the selected
+                option.
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -299,4 +378,3 @@ function PropertiesComponent({ elementInstance }: { elementInstance: FormElement
     </Form>
   );
 }
-
