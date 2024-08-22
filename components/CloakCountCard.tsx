@@ -13,7 +13,7 @@ const CloakCountCard = ({ title, countSmall, countMedium, countLarge, descriptio
     const total = countSmall + countMedium + countLarge;
 
     return (
-        <div className={`p-6 rounded-2xl border bg-white hover:border-blue-200 flex items-center shadow-lg  justify-between group cursor-pointer transform transition-transform duration-300 hover:scale-105 hover:text-blue-500 h-13 ${wide ? 'w-96' : 'w-full'} mx-3`}>
+        <div className={`p-6 rounded-2xl border bg-white hover:border-blue-200 flex items-center shadow-lg  justify-between group cursor-pointer transform transition-transform duration-300 hover:scale-105 hover:text-blue-500 h-13 ${wide ? 'w-full' : 'w-full'} mx-3`}>
             <div className='flex-grow'>
                 <div className="text-3xl sm:text-2xl text-gray-600 font-semibold mb-4">{title}</div>
                 
