@@ -20,31 +20,31 @@ const CloakBarChart = () => {
           {
             label: "Total",
             data: [100, 200, 300],
-            backgroundColor: "rgba(109, 253, 181, 0.5)",
-            borderColor: "rgb(109, 253, 181)",
+            backgroundColor: "rgba(112, 110, 228, 0.5)", // #706ee4 with opacity
+            borderColor: "rgba(112, 110, 228, 1)", 
             borderWidth: 2,
           },
           {
             label: "Issued",
             data: [60, 120, 250],
-            backgroundColor: "rgba(75, 192, 192, 0.5)",
-            borderColor: "rgb(75, 192, 192)",
+            backgroundColor: "rgba(56, 189, 248, 0.5)", // Light teal blue with opacity
+            borderColor: "rgba(56, 189, 248, 1)",
             borderWidth: 2,
           },
           {
             label: "Remaining",
             data: [40, 80, 50],
-            backgroundColor: "rgba(255, 205, 86, 0.5)",
-            borderColor: "rgb(255, 205, 86)",
+            backgroundColor: "rgba(129, 140, 248, 0.8)", // New shade of blue with opacity
+            borderColor: "rgba(129, 140, 248, 1)", 
             borderWidth: 2,
           },
           {
             label: "Returned",
             data: [40, 50, 150],
-            backgroundColor: "rgba(255, 99, 132, 0.5)",
-            borderColor: "rgb(255, 99, 132)",
+            backgroundColor: "rgba(49, 46, 129, 0.5)", // #312e81 with opacity
+            borderColor: "rgba(49, 46, 129, 1)", 
             borderWidth: 2,
-          },
+          }
         ],
       };
     
@@ -55,21 +55,36 @@ const CloakBarChart = () => {
             position: "top" as const,
           },
           title: {
-            display: true,
+            display: false,
             text: "Cloak Distribution",
           },
         },
         scales: {
+          x: {
+            
+              grid: {
+                  display: false,
+              },
+          },
           y: {
-            beginAtZero: true,
+              beginAtZero: true,
+              grid: {
+                  display: false,
+              },
           },
         },
-    };
+        elements: {
+          bar: {
+              borderWidth: 1,
+          },
+        },
+        
+      };
 
     return (
-    <div className="w-full max-w-4xl mx-auto p-4 bg-white rounded-xl shadow-lg">
-      <Bar data={data} options={options} />
-    </div>
+        <div className='w-full max-w-4xl'>
+            <Bar data={data} options={options} />
+        </div>
     )
 }
 
