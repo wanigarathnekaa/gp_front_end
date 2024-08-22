@@ -9,29 +9,29 @@ const usersData = [
     {
       userId: "1",
       userName : "John Doe",
-      lecturerId:'2100947',
+      lecturerId:'1800947',
       email: 'user1@example.com',
-      nic: '1234567890',
-      phone: '1234567890',
+      nic: '852234566234',
+      phone: '0724646186',
       
     },
     {
       userId: '2',
       userName : "kennedy Doe",
-      lecturerId:'2100947',
-      email: 'user1@example.com',
-      nic: '1234567890',
-      phone: '1234567890',
+      lecturerId:'1500947',
+      email: 'user2@example.com',
+      nic: '752234566234',
+      phone: '0759746186',
       
     },
 
     {
       userId: '3',
       userName : "Michal Doe",
-      lecturerId:'2100947',
-      email: 'user2@example.com',
-      nic: '1234567890',
-      phone: '1234567890',
+      lecturerId:'1900947',
+      email: 'user3@example.com',
+      nic: '782234566234',
+      phone: '0780606186',
       
     },
 ];
@@ -83,7 +83,7 @@ const LecturerData = () => {
         <Navbar/>
         <Sidebar/>
 
-        <div className=' mt-12 ml-64 flex flex-col min-h-screen bg-[#D6D6FF] p-4'>
+        <div className=' mt-12 ml-64 flex flex-col min-h-screen bg-[#EEF2FF] p-4'>
             <Title text='Registered Users'/>
 
             

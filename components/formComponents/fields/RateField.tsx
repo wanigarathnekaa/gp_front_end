@@ -1,6 +1,6 @@
 "use client";
 
-import { MdTextFields } from "react-icons/md";
+import { IoIosRadioButtonOn } from "react-icons/io";
 import {
   ElementsType,
   FormElement,
@@ -25,49 +25,47 @@ import {
 } from "../../ui/form";
 import { Switch } from "../../ui/switch";
 import { cn } from "@/lib/utils";
+import { RadioGroup, RadioGroupItem } from "../../ui/radio-group";
 
-const type: ElementsType = "TextField";
+const type: ElementsType = "RateField";
 const extraAttributes = {
-  label: "Text Field",
-  placeholder: "Enter your text here",
+  label: "Rate this",
   required: false,
-  helperText: "Not more then 30 words",
+  helperText: "Select a rating",
+  scale: 5,
 };
 
-const parent = null;
-const parentOption = null;
-
 const propertiesSchema = z.object({
-  label: z.string().min(2).max(50),
+  label: z.string().min(2).max(100),
   helperText: z.string().max(200),
   required: z.boolean().default(false),
-  placeholder: z.string().max(50),
+  scale: z.number().min(1).max(20),
 });
 
-export const TextFieldFormElement: FormElement = {
+export const RateFieldFormElement: FormElement = {
   type,
 
   construct: (id: string) => ({
     id,
     type,
-    parent,
-    parentOption,
     extraAttributes,
   }),
 
   designerBtnElement: {
-    icon: MdTextFields,
-    label: "Text Field",
+    icon: IoIosRadioButtonOn,
+    label: "RateField",
   },
   designerComponent: designerComponent,
   formComponent: FormComponent,
   propertiesComponent: PropertiesComponent,
-  validate: (formElement: FormElementInstance, currentValue: string): boolean => {
+  validate: (
+    formElement: FormElementInstance,
+    currentValue: string
+  ): boolean => {
     const element = formElement as customInstance;
     if (element.extraAttributes.required) {
       return currentValue.length > 0;
     }
-
     return true;
   },
 };
@@ -84,19 +82,31 @@ function designerComponent({
   elementInstance: FormElementInstance;
 }) {
   const element = elementInstance as customInstance;
-  const { label, placeholder, required, helperText } = element.extraAttributes;
+  const { label, required, helperText, scale } = element.extraAttributes;
+  const id = `rate-field-${element.id}`;
+
   return (
-    <div className="flex flex-col gap-2 w-full">
-      <Label>
+    <div className="grid gap-1.5 leading-none">
+      <Label htmlFor={id}>
         {label}
         {required && <span className="text-red-600">*</span>}
       </Label>
-      <Input readOnly disabled placeholder={placeholder} />
       {helperText && (
         <p className="text-sm text-muted-foreground text-[0.8rem]">
           {helperText}
         </p>
       )}
+      <RadioGroup
+        className="flex space-x-2"
+        aria-labelledby={id}
+      >
+        {Array.from({ length: scale }, (_, i) => (
+          <div key={i + 1} className="flex items-center space-x-2">
+            <RadioGroupItem id={`${id}-${i + 1}`} value={`${i + 1}`} />
+            <Label htmlFor={`${id}-${i + 1}`}>{i + 1}</Label>
+          </div>
+        ))}
+      </RadioGroup>
     </div>
   );
 }
@@ -113,35 +123,58 @@ function FormComponent({
   defaultValue?: string;
 }) {
   const element = elementInstance as customInstance;
-
-  const [value, setValue] = useState(defaultValue || "");
+  const [value, setValue] = useState<string>(defaultValue || "");
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    setError(isInvalid === true)
+    setError(isInvalid === true);
   }, [isInvalid]);
 
-  const { label, placeholder, required, helperText } = element.extraAttributes;
+  const { label, required, helperText, scale } = element.extraAttributes;
+  const id = `rate-field-${element.id}`;
+
   return (
-    <div className="flex flex-col gap-2 w-full">
-      <Label className={cn(error && "text-red-500")}>
+    <div className="grid gap-1.5 leading-none">
+      <Label htmlFor={id} className={cn(error && "border-red-500")}>
         {label}
-        {required && "*"}
+        {required && <span className="text-red-600">*</span>}
       </Label>
-      <Input
-        className={cn(error && "border-red-500")}
-        placeholder={placeholder}
-        onChange={(e) => setValue(e.target.value)}
-        onBlur={(e) => {
-          if (!submitValue) return;
-          const valid = TextFieldFormElement.validate(element, e.target.value);
-          setError(!valid);
-          if (!valid) return;
-          submitValue(element.id, e.target.value);
-        }}
+      {helperText && (
+        <p
+          className={cn(
+            "text-sm text-muted-foreground text-[0.8rem]",
+            error && "border-red-500"
+          )}
+        >
+          {helperText}
+        </p>
+      )}
+      <RadioGroup
         value={value}
-      />
-      {helperText && <p className={cn("text-muted-foreground text-[0.8rem]", error && "text-red-500")}>{helperText}</p>}
+        onValueChange={(selectedValue) => {
+          setValue(selectedValue);
+          if (!submitValue) return;
+          const valid = RateFieldFormElement.validate(
+            element,
+            selectedValue
+          );
+          setError(!valid);
+          submitValue(element.id, selectedValue);
+        }}
+        className="flex space-x-2"
+        aria-labelledby={id}
+      >
+        {Array.from({ length: scale }, (_, i) => (
+          <div key={i + 1} className="flex items-center space-x-2">
+            <RadioGroupItem
+              id={`${id}-${i + 1}`}
+              value={`${i + 1}`}
+              className={cn(error && "border-red-500")}
+            />
+            <Label htmlFor={`${id}-${i + 1}`}>{i + 1}</Label>
+          </div>
+        ))}
+      </RadioGroup>
     </div>
   );
 }
@@ -152,7 +185,6 @@ function PropertiesComponent({
   elementInstance: FormElementInstance;
 }) {
   const element = elementInstance as customInstance;
-
   const { updateElement } = useDesigner();
 
   const form = useForm<propertiesFormSchemaType>({
@@ -160,9 +192,9 @@ function PropertiesComponent({
     mode: "onBlur",
     defaultValues: {
       label: element.extraAttributes.label,
-      placeholder: element.extraAttributes.placeholder,
       required: element.extraAttributes.required,
       helperText: element.extraAttributes.helperText,
+      scale: element.extraAttributes.scale,
     },
   });
 
@@ -175,12 +207,13 @@ function PropertiesComponent({
       ...element,
       extraAttributes: {
         label: values.label,
-        placeholder: values.placeholder,
         required: values.required,
         helperText: values.helperText,
+        scale: values.scale,
       },
     });
   }
+
   return (
     <Form {...form}>
       <form
@@ -213,27 +246,6 @@ function PropertiesComponent({
             </FormItem>
           )}
         />
-
-        <FormField
-          control={form.control}
-          name="placeholder"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>PlaceHolder</FormLabel>
-              <FormControl>
-                <Input
-                  {...field}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") e.currentTarget.blur();
-                  }}
-                />
-              </FormControl>
-              <FormDescription>The Placeholder of the field.</FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
         <FormField
           control={form.control}
           name="helperText"
@@ -244,7 +256,7 @@ function PropertiesComponent({
                 <Input
                   {...field}
                   onKeyDown={(e) => {
-                    if (e.key === "Enter") e.currentTarget.blur;
+                    if (e.key === "Enter") e.currentTarget.blur();
                   }}
                 />
               </FormControl>
@@ -257,7 +269,6 @@ function PropertiesComponent({
             </FormItem>
           )}
         />
-
         <FormField
           control={form.control}
           name="required"
@@ -265,10 +276,7 @@ function PropertiesComponent({
             <FormItem className="flex items-center justify-between rounded-lg border p-3 shadow-sm">
               <div className="space-y-0.5">
                 <FormLabel>Required</FormLabel>
-                <FormDescription>
-                  The helper text of the field. <br />
-                  It will be displayed below the field.
-                </FormDescription>
+                <FormDescription>The field must be filled.</FormDescription>
               </div>
               <FormControl>
                 <Switch
@@ -280,9 +288,36 @@ function PropertiesComponent({
             </FormItem>
           )}
         />
+        <FormField
+          control={form.control}
+          name="scale"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Scale</FormLabel>
+              <FormControl>
+                <Input
+                  type="number"
+                  min="1"
+                  max="20"
+                  {...field}
+                  onChange={(e) => {
+                    const newValue = parseInt(e.target.value, 10);
+                    field.onChange(newValue);
+                    form.handleSubmit(applyChanges)();
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") e.currentTarget.blur();
+                  }}
+                />
+              </FormControl>
+              <FormDescription>
+                Set the maximum rating scale (e.g., 5, 10).
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
       </form>
     </Form>
   );
 }
-
-

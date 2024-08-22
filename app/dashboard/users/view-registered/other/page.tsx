@@ -5,37 +5,30 @@ import { usePathname } from 'next/navigation';
 
 
 const usersData = [
-    {
-      userId: "1",
-      userName : "John Doe",
-      nic:'2345678967',
-      staffId:'2100947',
-      email: 'user1@example.com',
-      phone: '1234567890',
-      
-      
+  {
+    userId: "1",
+    userName : "Alice Johnson",
+    nic:'1234567890',
+    staffId:'3101947',
+    email: 'alice@example.com',
+    phone: '9876543210',
+  },
+  {
+    userId: '2',
+    userName : "Bob Smith",
+    staffId:'3102947',
+    nic:'0987654321',
+    email: 'bob@example.com',
+    phone: '8765432109',
+  },
+  {
+      userId: '3',
+      userName : "Catherine Lee",
+      staffId:'3103947',
+      nic:'1122334455',
+      email: 'catherine@example.com',
+      phone: '7654321098',
     },
-    {
-      userId: '2',
-      userName : "John Doe",
-      staffId:'2109947',
-      nic:'2345678997',
-      email: 'user1@example.com',
-      phone: '1234567890',
-      
-      
-    },
-
-    {
-        userId: '3',
-        userName : "Jack Hendersen",
-        staffId:'2200947',
-        nic:'2358778967',
-        email: 'user1@example.com',
-        phone: '1234567890',
-        
-        
-      },
 ];
 
 const links=[
@@ -84,7 +77,7 @@ const OtherData = () => {
     <Navbar/>
     <Sidebar/>
 
-    <div className=' mt-12 ml-64 flex flex-col min-h-screen bg-[#D6D6FF] p-4'>
+    <div className=' mt-12 ml-64 flex flex-col min-h-screen bg-[#EEF2FF] p-4'>
         <Title text='Registered Users'/>
 
         <Navigation links={links} pathname={pathname}/>

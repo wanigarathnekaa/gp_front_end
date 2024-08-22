@@ -172,12 +172,21 @@ function DesignerElementWrapper({ element }: { element: FormElementInstance }) {
   if (draggable.isDragging) return null; // temporary remove the element from designer
 
   const DesignerElement = FormElements[element.type].designerComponent;
+
+  // Determine if the element has a parent and apply specific styles
+  const hasParent = !!element.parent;
+  const treeElementStyles = hasParent ? "bg-blue-100 w-[95%] ml-auto" : "w-full";
+  console.log(element.parent);
+
   return (
     <div
       ref={draggable.setNodeRef}
       {...draggable.listeners}
       {...draggable.attributes}
-      className="relative h-[120px] flex flex-col text-foreground hover:cursor-pointer rounded-md ring-1 ring-accent ring-inset"
+      className={cn(
+        "relative h-[120px] flex flex-col text-foreground hover:cursor-pointer rounded-md ring-1 ring-accent ring-inset",
+        treeElementStyles // Apply the conditional styles here
+      )}
       onMouseEnter={() => {
         setMouseIsOver(true);
       }}
@@ -223,5 +232,6 @@ function DesignerElementWrapper({ element }: { element: FormElementInstance }) {
     </div>
   );
 }
+
 
 export default Designer;

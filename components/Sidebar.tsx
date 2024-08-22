@@ -4,8 +4,8 @@ import Link from 'next/link'
 
 function Sidebar() {
   return (
-    <div className="flex flex-col h-[95vh] bg-white w-64 p-3 shadow-xl fixed top-12">
-      <div className="flex items-center space-x-4 p-2 mb-5 top-16 ml-4">
+    <div className="flex flex-col h-[95vh] bg-[#312e81] w-72 p-3 fixed top-12">
+      <div className="flex items-center space-x-6 pt-10 mb-5 top-20 justify-center">
         <Image
           className="h-12 w-12 rounded-full" 
           src="/profilePic.png" 
@@ -14,17 +14,18 @@ function Sidebar() {
           height={48} 
         />
         <div>
-          <h4 className="font-semibold text-lg text-gray-700">L.A Lakshani</h4>
-          <h6 className="text-[#6366F1]">Edit Profile</h6>
+          <h4 className="font-semibold text-lg text-white">L.A Lakshani</h4>
+          <h6 className="text-[#d6e5ff] hover:underline cursor-pointer">Edit Profile</h6>
         </div>
       </div>
       <nav className="flex-1">
-        <ul className="space-y-3 bg-white mt-8 ml-4 mr-4">
+        <ul className="space-y-3 bg-[#312e81] mt-5 justify-center px-3">
+
           <li>
 
             <Link  href="/dashboard"
             
-               className="flex items-center justify-center space-x-3 text-gray-700 p-2 rounded-md font-medium bg-[#e2e4e7] hover:bg-[#EEF2FF] hover:text-[#6366F1]">
+               className="flex items-center justify-center space-x-3 text-gray-600 p-2 rounded-md font-medium bg-white hover:bg-[#EEF2FF] hover:text-[#706ee4] cursor-pointer transform transition-transform duration-300 hover:scale-105">
                   Users
               
 
@@ -33,14 +34,14 @@ function Sidebar() {
           </li>
           <li>
             <Link  href="/dashboard/forms"
-              className="flex items-center justify-center space-x-3 text-gray-700 p-2 rounded-md font-medium bg-[#e2e4e7] hover:bg-[#EEF2FF] hover:text-[#6366F1]">
+              className="flex items-center justify-center space-x-3 text-gray-600 p-2 rounded-md font-medium bg-white hover:bg-[#EEF2FF] hover:text-[#706ee4] cursor-pointer transform transition-transform duration-300 hover:scale-105">
                 Forms
               
             </Link>
           </li>
           <li>
             <Link href="/dashboard/privileges"
-              className="flex items-center justify-center space-x-3 text-gray-700 p-2 rounded-md font-medium bg-[#e2e4e7] hover:bg-[#EEF2FF] hover:text-[#6366F1]">
+              className="flex items-center justify-center space-x-3 text-gray-600 p-2 rounded-md font-medium bg-white hover:bg-[#EEF2FF] hover:text-[#706ee4] cursor-pointer transform transition-transform duration-300 hover:scale-105">
                 Privileges
 
             </Link>
@@ -49,15 +50,15 @@ function Sidebar() {
           </li>
           <li>
             
-              <a className="flex items-center justify-center space-x-3 text-gray-700 p-2 rounded-md font-medium bg-[#e2e4e7] hover:bg-[#EEF2FF] hover:text-[#6366F1]">
+              <a className="flex items-center justify-center space-x-3 text-gray-600 p-2 rounded-md font-medium bg-white hover:bg-[#EEF2FF] hover:text-[#706ee4] cursor-pointer transform transition-transform duration-300 hover:scale-105">
                 Analysis
               </a>
             
           </li>
         </ul>
       </nav>
-      <div className="flex justify-center mb-3 ml-4 mr-4">
-        <button className="block w-full bg-[#4F46E5] text-white p-2 rounded-md hover:bg-[#3b31f8]">Log Out</button>
+      <div className="flex justify-center pb-5 px-3">
+        <button className="block w-full items-center justify-center space-x-3 text-gray-600 p-2 rounded-md font-medium bg-white hover:bg-[#EEF2FF] hover:text-[#706ee4] cursor-pointer transform transition-transform duration-300 hover:scale-105">Log Out</button>
       </div>
     </div>
   )

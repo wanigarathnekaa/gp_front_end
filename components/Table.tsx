@@ -11,7 +11,6 @@ interface TableProps{
   indexNo?: number,
   email: string,
   nic:string,
-  phone: string,
   year?: string,
   type?: string,
  
@@ -25,8 +24,8 @@ interface Props {
 
 const Table = ({ users, type }:Props) => {
   return (
-    <div className="flex justify-center mt-8 ">
-      <table className='w-full max-w-6xl  bg-white rounded-xl border border-gray-200 '>
+    <div className="flex mt-8 ml-3">
+      <table className='w-full max-w-6xl  bg-white rounded-2xl border-none '>
         <thead className="text-base text-gray-500">
           <tr>
             <th className='border-b border-gray-200 py-2 px-4'>User Id</th>
@@ -60,14 +59,14 @@ const Table = ({ users, type }:Props) => {
             <th className='border-b border-gray-200 py-2 px-4'>NIC</th>
 
             
-            <th className='border-b border-gray-200 py-2 px-4'>Mobile No</th>
+            
 
             {type === "student" && (
               <>
 
                 
                 <th className='border-b border-gray-200 py-2 px-4'>Year studying</th>
-                <th className='border-b border-gray-200 py-2 px-4'>Type</th>
+                <th className='border-b border-gray-200 py-2 px-4'>Role</th>
 
               </>
 
@@ -77,7 +76,7 @@ const Table = ({ users, type }:Props) => {
           </tr>
           </thead>
 
-          <tbody className="text-sm text-black">
+          <tbody className="text-sm text-gray-500">
             {users.map((user, index) => (
               <tr key = {index} className='text-center'>
                 <td className='border-b border-gray-200 py-2 px-4'>{user.userId}</td>
@@ -109,9 +108,6 @@ const Table = ({ users, type }:Props) => {
                 <td className='border-b border-gray-200 py-2 px-4'>{user.email}</td>
 
                 <td className='border-b border-gray-200 py-2 px-4'>{user.nic}</td>
-
-                
-                <td className='border-b border-gray-200 py-2 px-4'>{user.phone}</td>
 
                 {type === "student" &&(
                   <>

@@ -18,7 +18,7 @@ interface Props {
 const RoleTable = ({users}:Props) => {
   return (
     <div className="flex p-6 justify-center ">
-      <table className='w-full max-w-6xl  bg-white rounded-xl border border-gray-200 '>
+      <table className='w-full max-w-6xl  bg-white rounded-2xl shadow-xl '>
         <thead className="text-base text-gray-500">
           <tr>
             <th className='border-b border-gray-200 py-2 px-4'>User role Id</th>
@@ -36,7 +36,7 @@ const RoleTable = ({users}:Props) => {
           </tr>
           </thead>
 
-          <tbody className="text-sm text-black">
+          <tbody className="text-sm text-gray-500">
             {users.map((user, index) => (
               <tr key = {index} className='text-center'>
                 <td className='border-b border-gray-200 py-2 px-4'>{user.roleId}</td>

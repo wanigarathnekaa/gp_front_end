@@ -2,7 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-function ExamSidebar() {
+function LecturerSidebar() {
     return (
         <div className="flex flex-col h-[95vh] bg-gray-50 w-64 p-3 shadow-lg fixed top-12">
           <div className="flex items-center space-x-4 p-2 mb-5 top-16 ml-4">
@@ -14,31 +14,18 @@ function ExamSidebar() {
               height={48} 
             />
             <div>
-              <h4 className="font-semibold text-lg text-gray-700">L.A Lakshani</h4>
+              <h4 className="font-semibold text-lg text-gray-700">L.A Abeysinghe</h4>
               <h6 className="text-[#6366F1]">Edit Profile</h6>
             </div>
           </div>
           <nav className="flex-1">
             <ul className="space-y-3 bg-[#F1F5F9] mt-8 ml-4 mr-4">
-
-            <li>
-    
-              <Link  href=""
-              
-                className="flex items-center justify-center space-x-3 text-gray-700 p-2 rounded-md font-medium bg-[#e2e4e7] hover:bg-[#EEF2FF] hover:text-[#6366F1]">
-                    Dashboard
-                
-
-              </Link>
-              
-            </li>
-
               <li>
     
                 <Link  href=""
                 
                    className="flex items-center justify-center space-x-3 text-gray-700 p-2 rounded-md font-medium bg-[#e2e4e7] hover:bg-[#EEF2FF] hover:text-[#6366F1]">
-                      Students
+                      Dashboard
                   
     
                 </Link>
@@ -47,12 +34,18 @@ function ExamSidebar() {
               <li>
                 <Link  href=""
                   className="flex items-center justify-center space-x-3 text-gray-700 p-2 rounded-md font-medium bg-[#e2e4e7] hover:bg-[#EEF2FF] hover:text-[#6366F1]">
-                    Cloaks
+                    Reviews
                   
                 </Link>
               </li>
 
-  
+              <li>
+                <Link  href=""
+                  className="flex items-center justify-center space-x-3 text-gray-700 p-2 rounded-md font-medium bg-[#e2e4e7] hover:bg-[#EEF2FF] hover:text-[#6366F1]">
+                    Analysis
+                  
+                </Link>
+              </li>
               
             </ul>
           </nav>
@@ -63,4 +56,4 @@ function ExamSidebar() {
       )
 }
 
-export default ExamSidebar
+export default LecturerSidebar
