@@ -8,15 +8,18 @@ interface User {
   size: string;
   phone: string;
   status: string;
+  IssuedDate: string;
+  ReturnedDate?: string;
 }
 
 interface ExaminationTableProps {
   users: User[];
 }
 
-const ExaminationTable: React.FC<ExaminationTableProps> = ({ users }) => {
+const ExaminationTable = ({users}:ExaminationTableProps) => {
   return (
-    <table className='w-full max-w-6xl bg-white rounded-xl border border-gray-200'>
+    <div className='overflow-x-auto'>
+    <table className='w-full max-w-full bg-white rounded-2xl border-none'>
       <thead className="text-base text-gray-500">
         <tr>
           <th className='border-b border-gray-200 py-2 px-4'>User ID</th>
@@ -25,10 +28,12 @@ const ExaminationTable: React.FC<ExaminationTableProps> = ({ users }) => {
           <th className='border-b border-gray-200 py-2 px-4'>Index No</th>
           <th className='border-b border-gray-200 py-2 px-4'>Mobile No</th>
           <th className='border-b border-gray-200 py-2 px-4'>Cloak size</th>
+          <th className='border-b border-gray-200 py-2 px-4'>Issued Date</th>
+          <th className='border-b border-gray-200 py-2 px-4'>Returned Date </th>
           <th className='border-b border-gray-200 py-2 px-4'>Status</th>
         </tr>
       </thead>
-      <tbody className="text-sm text-black">
+      <tbody className="text-sm text-gray-500">
         {users.map((user, index) => (
           <tr key={index} className='text-center'>
             <td className='border-b border-gray-200 py-2 px-4'>{user.userId}</td>
@@ -37,11 +42,14 @@ const ExaminationTable: React.FC<ExaminationTableProps> = ({ users }) => {
             <td className='border-b border-gray-200 py-2 px-4'>{user.indexNo}</td>
             <td className='border-b border-gray-200 py-2 px-4'>{user.phone}</td>
             <td className='border-b border-gray-200 py-2 px-4'>{user.size}</td>
+            <td className='border-b border-gray-200 py-2 px-4'>{user.IssuedDate}</td>
+            <td className='border-b border-gray-200 py-2 px-4'>{user.ReturnedDate || '-'}</td>
             <td className='border-b border-gray-200 py-2 px-4'>{user.status}</td>
           </tr>
         ))}
       </tbody>
     </table>
+    </div>
   );
 }
 
