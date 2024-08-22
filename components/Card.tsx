@@ -15,7 +15,7 @@ interface CardProps {
 
 const Card = ({title, description,icon :Icon, wide, onclick }:CardProps) => {
   return (
-    <div className={`p-6 mb-8 mt-15 ml-3 rounded-2xl border bg-white hover:border-blue-100 flex items-center  group cursor-pointer transform transition-transform duration-300 hover:scale-105 hover:text-blue-500 h-13 ${wide ? 'w-96' : 'w-75'}`}
+    <div className={`p-6  mt-15 ml-3 rounded-2xl border bg-white hover:border-blue-100 flex items-center  group cursor-pointer transform transition-transform duration-300 hover:scale-105 hover:text-blue-500 h-13 ${wide ? 'w-96' : 'w-75'}`}
       onClick={onclick}
       // bg-[#EEF2FF]
     >
