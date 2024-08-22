@@ -74,13 +74,14 @@ const Details = () => {
 
     const handleSearch =(searchText : string) => {
         const filteredUsers = usersData.filter(user =>
-          user.userId.toLowerCase().includes(searchText.toLowerCase()) ||
-          user.userName.toLowerCase().includes(searchText.toLowerCase()) ||
-          user.regNo.toLowerCase().includes(searchText.toLowerCase()) ||
-          user.indexNo.toLowerCase().includes(searchText.toLowerCase()) ||
-          user.size.toLowerCase().includes(searchText.toLowerCase()) ||
-          user.status.toLowerCase().includes(searchText.toLowerCase())
-         
+
+            user.userId.toLowerCase().includes(searchText.toLowerCase()) ||
+            user.userName.toLowerCase().includes(searchText.toLowerCase()) ||
+            user.regNo.toLowerCase().includes(searchText.toLowerCase()) ||
+            user.indexNo.toLowerCase().includes(searchText.toLowerCase()) ||
+            user.size.toLowerCase().includes(searchText.toLowerCase()) ||
+            user.status.toLowerCase().includes(searchText.toLowerCase())||
+            user.IssuedDate.toLowerCase().includes(searchText.toLowerCase())
         );
     
         setUsers(filteredUsers);
