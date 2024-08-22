@@ -25,7 +25,7 @@ const Dashboard = () => {
                 <h2 className='font-normal ml-3 mt-5 mb-10 text-3xl'>Welcome to your dashboard</h2>
               
             </div>
-            <div className="flex flex-col ">
+            <div className="flex flex-col mb-8 ">
                 <Link href="/dashboard/users/view-registered/lecturers">
                     
                         <Card 
