@@ -1,8 +1,17 @@
+"use client";
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation';
 
 function ExamSidebar() {
+  const pathname = usePathname();
+  const isActive =(path:string) =>pathname === path;
+
+  const isStudentActive = () => 
+    pathname === '/ExaminationDep/Students/details' || pathname === '/ExaminationDep/Students/history';
+
+
     return (
         <div className="flex flex-col h-[95vh] bg-[#312e81] w-72 p-3 fixed top-12">
           <div className="flex items-center space-x-6 pt-10 mb-5 top-20 justify-center">
@@ -23,9 +32,11 @@ function ExamSidebar() {
 
             <li>
     
-              <Link  href=""
+              <Link  href="/ExaminationDep/dashboard"
               
-                className="flex items-center justify-center space-x-3 text-gray-600 p-2 rounded-md font-medium bg-white hover:bg-[#EEF2FF] hover:text-[#706ee4] cursor-pointer transform transition-transform duration-300 hover:scale-105">
+                className={`flex items-center justify-center space-x-3  p-2 rounded-md font-medium bg-white hover:bg-[#EEF2FF]  cursor-pointer transform transition-transform duration-300 hover:scale-105 ${
+                  isActive("/ExaminationDep/dashboard") ? 'text-[#706ee4] font-extrabold' : 'text-gray-600 hover:text-[#706ee4]'}
+                `}>
                     Dashboard
                 
 
@@ -35,9 +46,11 @@ function ExamSidebar() {
 
               <li>
     
-                <Link  href=""
+                <Link  href="/ExaminationDep/Students/details"
                 
-                   className="flex items-center justify-center space-x-3 text-gray-600 p-2 rounded-md font-medium bg-white hover:bg-[#EEF2FF] hover:text-[#706ee4] cursor-pointer transform transition-transform duration-300 hover:scale-105">
+                className={`flex items-center justify-center space-x-3  p-2 rounded-md font-medium bg-white hover:bg-[#EEF2FF]  cursor-pointer transform transition-transform duration-300 hover:scale-105 ${
+                  isStudentActive() ? 'text-[#706ee4] font-extrabold' : 'text-gray-600 hover:text-[#706ee4]'
+                }`}>
                       Students
                   
     
@@ -45,8 +58,10 @@ function ExamSidebar() {
                 
               </li>
               <li>
-                <Link  href=""
-                  className="flex items-center justify-center space-x-3 text-gray-600 p-2 rounded-md font-medium bg-white hover:bg-[#EEF2FF] hover:text-[#706ee4] cursor-pointer transform transition-transform duration-300 hover:scale-105">
+                <Link  href="/ExaminationDep/Cloak"
+                  className={`flex items-center justify-center space-x-3  p-2 rounded-md font-medium bg-white hover:bg-[#EEF2FF]  cursor-pointer transform transition-transform duration-300 hover:scale-105 ${
+                    isActive("/ExaminationDep/Cloak") ? 'text-[#706ee4] font-extrabold' : 'text-gray-600 hover:text-[#706ee4]'}
+                  `}>
                     Cloaks
                   
                 </Link>
