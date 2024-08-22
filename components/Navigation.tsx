@@ -27,9 +27,9 @@ const Navigation = ({links=[], pathname } : NavigationProps) => {
                         <Link 
                             key={link.href}
                             href={link.href}
-                            className={`text-black font-normal hover:text-[#706ee4] hover:font-normal ${
+                            className={`text-black font-normal  hover:text-blue-500  ${
                                 pathname === link.href
-                                ? 'font-bold  text-[#706ee4]'
+                                ? 'font-bold  text-blue-500'
                                 :''
                         
                             }`}
