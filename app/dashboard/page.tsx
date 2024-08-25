@@ -12,84 +12,22 @@ import Link from 'next/link';
 const Dashboard = () => {
   return (
     
-      <div className="w-full ">
-        <Navbar />  
-        <Sidebar />
-        
-        <div className="mt-12 ml-64 flex flex-row min-h-screen">
-          <div className="w-3/4 px-20 py-20 bg-[#EEF2FF]">
-          <Title text='Hi there!'/>
-          <SubTitle text='Welcome to your dashboard'/>
-          <Breadcrumbs/>
-
-          
-            
-            <div className="flex flex-col ">
-                <Link href="/dashboard/users/view-registered/lecturers">
-                    
-                        <Card 
-                            title="View registered users" 
-                            description='Assign user privileges to any user'
-                            icon={FaUsers}
-                            wide="true"
-                            
-                        />
-
-                    
-                </Link>
-
-                <Link href="/dashboard/users/enroll-new/students">
-                    
-                        <Card 
-                            title="Enroll new users" 
-                            description='View existing user privileges and roles'
-                            icon={IoMdAddCircle}
-                            wide="true"
-                        />
-
-                    
-                </Link>
-
-                <Link href="/dashboard/users/create-new">
-                    
-                        <Card 
-                            title="Create new user role" 
-                            description='View existing user privileges and roles'
-                            icon={HiUserAdd}
-                            wide="true"
-                        />
-
-                    
-                </Link>
-
-                <Link href="/dashboard/users/peer-to-peer">
-                    
-                        <Card 
-                            title="Peer-to-peer review" 
-                            description='Assign peer-to-peer reviewers'
-                            icon={AiFillMessage}
-                            wide="true"
-                        />
-                  
-    <div className="w-full">
+      <div className="w-full">
       <Navbar />
       <Sidebar />
       <div className="mt-12 ml-64 flex flex-row min-h-screen">
         <div className="w-3/4 px-20 py-20 bg-[#EEF2FF]">
-          <div className="text-4xl font-bold mb-4">
-            <h1 className='mb-10 ml-3 text-black'>
-              Hi there!
-            </h1>
-            <h2 className='font-normal mt-2 text-3xl'>
-              Welcome to your dashboard
-            </h2>
-          </div>
+            <Title text='Hi there'/>
+            <SubTitle text='Welcome to your dashboard'/>
+            <Breadcrumbs/>
+          
           <div className="flex flex-col">
             <Link href="/dashboard/users/view-registered/lecturers">
               <Card 
                 title="View registered users" 
                 description='Assign user privileges to any user'
                 icon={FaUsers}
+                wide={true}
               />
             </Link>
 
@@ -98,6 +36,7 @@ const Dashboard = () => {
                 title="Enroll new users" 
                 description='View existing user privileges and roles'
                 icon={IoMdAddCircle}
+                wide={true}
               />
             </Link>
 
@@ -107,6 +46,7 @@ const Dashboard = () => {
                 title="Create new user role" 
                 description='View existing user privileges and roles'
                 icon={HiUserAdd}
+                wide={true}
               />
             </Link>
 
@@ -115,6 +55,7 @@ const Dashboard = () => {
                 title="Peer-to-peer review" 
                 description='Assign peer-to-peer reviewers'
                 icon={AiFillMessage}
+                wide={true}
               />
             </Link>
 
@@ -123,6 +64,7 @@ const Dashboard = () => {
                 title="Student ranking" 
                 description='View students ranking'
                 icon={FaRankingStar}
+                wide={true}
               />
             </Link>
           </div>
