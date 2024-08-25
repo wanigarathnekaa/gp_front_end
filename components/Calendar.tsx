@@ -18,7 +18,7 @@ const Calendar = () => {
         <DatePicker
         selected={selectedDate} 
         onChange={handleDateChange} 
-        className='w-60 appearance-none shadow-border rounded py-20 px-2 text-gray-darker ' 
+        className='w-60 appearance-none shadow-border rounded py-20 px-2 text-gray-darker' 
         inline />
     </div>
   )
