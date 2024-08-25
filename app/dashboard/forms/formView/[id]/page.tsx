@@ -48,7 +48,7 @@ async function FormDetailPage({
   const bounceRate = 100 - submissionRate;
 
   return (
-    <div className="ml-64 px-8 h-fit bg-[#FFFFFF] ">
+    <div className="ml-64 px-8 h-fit bg-[#FFFFFF] py-10">
       <div className="py-8 border-b border-gray-400">
         <div className="flex justify-between container">
           <h1 className="text-4xl font-bold truncate">{form.name}</h1>
