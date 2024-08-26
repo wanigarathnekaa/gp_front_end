@@ -14,7 +14,7 @@ const SearchBar = ({onSearch}:SearchBarProps) => {
         onSearch(searchTerm);
     }
     return (
-        <div className="flex ">
+        <div className="flex ml-3">
             <input
                 type="text"
                 className="border border-gray-300 rounded-l-full py-2 px-3 h-10 w-80 focus:outline-none focus:ring-2 focus:ring-[#706ee4]"
@@ -24,7 +24,7 @@ const SearchBar = ({onSearch}:SearchBarProps) => {
             />
 
             <button
-                className="bg-[#706ee4] text-white p-2 h-10  rounded-r-full focus:outline-none focus:ring-2 focus:ring-[#706ee4] flex items-center justify-center "
+                className="bg-[#312e81] hover:bg-[#4e46e5b5] text-white p-2 h-10  rounded-r-full focus:outline-none focus:ring-2 focus:ring-[#706ee4] flex items-center justify-center "
                 onClick={handleSearch}
                 aria-label="Search"
             > 

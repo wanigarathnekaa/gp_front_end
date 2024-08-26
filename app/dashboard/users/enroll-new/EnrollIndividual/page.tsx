@@ -4,6 +4,7 @@ import UserInfoForm from '@/components/UserInfoForm';
 import DeleteButton from '@/components/DeleteButton';
 import CancelButton from '@/components/CancelButton';
 import SubmitButton from '@/components/SubmitButton';
+import Title from '@/components/Title';
 
 const studentFields = [
   { label: 'Full Name', placeholder: 'Placeholder', disabled: false, colSpan: 2 },
@@ -23,7 +24,7 @@ function page() {
         <Navbar />
         <div className="flex items-center justify-center h-screen">
           <div className='bg-white p-8 rounded-xl shadow-xl'>
-            <h1 className="font-bold text-2xl text-gray-600 mb-8">Enroll Student As An Individual</h1>
+            <Title text="Enroll New User"/>
             <UserInfoForm mode='view' fields={studentFields} />
           
 

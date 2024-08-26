@@ -1,6 +1,8 @@
 "use client";
 import React, { useState } from 'react'
-import { Sidebar, Navbar, Title, RoleTable, Navigation, SearchBar,Card, SubmitButton } from '@/components/index';
+import { Sidebar, Navbar, Title, RoleTable, Navigation, SearchBar,Card } from '@/components/index';
+import ButtonText from '@/components/ButtonText';
+import Breadcrumbs from '@/components/Breadcrumbs';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { HiUserAdd } from "react-icons/hi";
@@ -58,27 +60,21 @@ const ViewStaff = () => {
         <Navbar/>
         <Sidebar/>
 
-        <div className=' mt-12 ml-64 flex flex-col min-h-screen bg-[#EEF2FF] p-4'>
+        <div className=' mt-12 ml-64 flex flex-col min-h-screen bg-[#EEF2FF] px-20 py-20'>
             <Title text='User roles'/>
+            <Breadcrumbs />
 
-            <div className='flex justify-between items-center mt-10'>
+            <div className='flex gap-5 items-center'>
+              <SearchBar onSearch={handleSearch}/>
 
-              <div className=" ml-8">
-                    <SearchBar onSearch={handleSearch}/>
-              </div>
-
-              <div className='flex justify-end mr-10'>
+              <div className='flex'>
                 <Link href='/dashboard/users/create-new/create-user-roles/staff'>
-                  <SubmitButton text='Create new user role' />
+                  <ButtonText text='Create new user role' />
                 </Link>
-
-              
               </div>
-
-              
             </div>
             
-            <div className='mt-10'>
+            <div className='mt-3'>
               <RoleTable users ={users}/>
             </div>
 

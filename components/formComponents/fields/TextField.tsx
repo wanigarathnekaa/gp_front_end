@@ -34,6 +34,9 @@ const extraAttributes = {
   helperText: "Not more then 30 words",
 };
 
+const parent = null;
+const parentOption = null;
+
 const propertiesSchema = z.object({
   label: z.string().min(2).max(50),
   helperText: z.string().max(200),
@@ -47,6 +50,8 @@ export const TextFieldFormElement: FormElement = {
   construct: (id: string) => ({
     id,
     type,
+    parent,
+    parentOption,
     extraAttributes,
   }),
 
