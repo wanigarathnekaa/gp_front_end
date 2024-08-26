@@ -4,7 +4,7 @@ import { Sidebar, Navbar } from "@/components/index";
 import { ReactNode } from "react";
 import { usePathname } from "next/navigation";
 
-export default function layout({ children }: { children: ReactNode }) {
+export default function Layout({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const isBuilderPage = pathname.includes("builder");  
 
