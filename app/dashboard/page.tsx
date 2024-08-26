@@ -11,9 +11,9 @@ import Link from 'next/link';
 
 
 const Dashboard = () => {
-  return (
-    
-      <div className="w-full">
+
+  return (        
+    <div className="w-full">
       <Navbar />
       <Sidebar />
       <div className="mt-12 ml-64 flex flex-row min-h-screen">
@@ -40,7 +40,6 @@ const Dashboard = () => {
                 wide={true}
               />
             </Link>
-
 
             <Link href="/dashboard/users/create-new/view-user">
               <Card 
