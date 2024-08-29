@@ -9,8 +9,8 @@ const users = [
     indexNo: '2100798',
     size: 'Medium',
     phone: '0724646186',
-    IssuedDate:'2024-05-01',
-    ReturnedDate:'2024-08-01',
+    issuedDate:'2024-05-01',
+    returnedDate:'2024-08-01',
     status: 'Returned'
   },
   {
@@ -20,7 +20,7 @@ const users = [
     indexNo: '21345001',
     size: 'Large',
     phone: '0762341566',
-    IssuedDate:'2024-05-02',
+    issuedDate:'2024-05-02',
     status: 'Issued'
   },
 
@@ -31,7 +31,7 @@ const users = [
     indexNo: '21385001',
     phone: '0765456789',
     size: 'Small',
-    IssuedDate:'2024-05-01',
+    issuedDate:'2024-05-01',
     status: 'Issued'
   },
 
@@ -42,8 +42,8 @@ const users = [
     indexNo: '20345001',
     phone: '0743217890',
     size: 'Medium',
-    IssuedDate:'2024-05-01',
-    ReturnedDate:'2024-08-05',
+    issuedDate:'2024-05-01',
+    returnedDate:'2024-08-05',
     status: 'Returned'
   },
 ]
