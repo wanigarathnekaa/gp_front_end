@@ -40,6 +40,13 @@ function Sidebar() {
             </Link>
           </li>
           <li>
+            <Link  href="/dashboard/templates"
+              className="flex items-center justify-center space-x-3 text-gray-600 p-2 rounded-md font-medium bg-white hover:bg-[#EEF2FF] hover:text-[#706ee4] cursor-pointer transform transition-transform duration-300 hover:scale-105">
+                Templates
+              
+            </Link>
+          </li>
+          <li>
             <Link href="/dashboard/privileges"
               className="flex items-center justify-center space-x-3 text-gray-600 p-2 rounded-md font-medium bg-white hover:bg-[#EEF2FF] hover:text-[#706ee4] cursor-pointer transform transition-transform duration-300 hover:scale-105">
                 Privileges
