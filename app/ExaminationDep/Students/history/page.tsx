@@ -26,8 +26,8 @@ const usersData = [
       indexNo: '2100798',
       size: 'Medium',
       phone: '0724646186',
-      IssuedDate:'2023-05-01',
-      ReturnedDate:'2023-08-01',
+      issuedDate:'2023-05-01',
+      returnedDate:'2023-08-01',
       status: 'Returned'
     },
     {
@@ -37,8 +37,8 @@ const usersData = [
       indexNo: '21345001',
       size: 'Large',
       phone: '0762341566',
-      IssuedDate:'2023-05-02',
-      ReturnedDate:'2023-10-02',
+      issuedDate:'2023-05-02',
+      returnedDate:'2023-10-02',
       status: 'Returned'
     },
   
@@ -49,8 +49,8 @@ const usersData = [
       indexNo: '21385001',
       phone: '0765456789',
       size: 'Small',
-      IssuedDate:'2024-05-08',
-      ReturnedDate:'2023-10-02',
+      issuedDate:'2024-05-08',
+      returnedDate:'2023-10-02',
       status: 'Returned'
     },
   
@@ -61,8 +61,8 @@ const usersData = [
       indexNo: '20345001',
       phone: '0743217890',
       size: 'Medium',
-      IssuedDate:'2022-05-01',
-      ReturnedDate:'2022-08-05',
+      issuedDate:'2022-05-01',
+      returnedDate:'2022-08-05',
       status: 'Returned'
     },
   ];
@@ -81,8 +81,8 @@ const History = () => {
             user.indexNo.toLowerCase().includes(searchText.toLowerCase()) ||
             user.size.toLowerCase().includes(searchText.toLowerCase()) ||
             user.status.toLowerCase().includes(searchText.toLowerCase())||
-            user.IssuedDate.toLowerCase().includes(searchText.toLowerCase()) ||
-            user.ReturnedDate.toLowerCase().includes(searchText.toLowerCase())
+            user.issuedDate.toLowerCase().includes(searchText.toLowerCase()) ||
+            user.returnedDate.toLowerCase().includes(searchText.toLowerCase())
             
         );
     
