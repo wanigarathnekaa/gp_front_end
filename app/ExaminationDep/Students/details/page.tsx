@@ -1,7 +1,20 @@
 "use client";
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Navbar, ExamSidebar, Title, Navigation, StudentCounterCard, SearchBar, ExaminationTable, Dropdown } from '@/components/index'
 import { usePathname } from 'next/navigation';
+import { getAllStudents } from '@/actions/studentDetails';
+
+interface User {
+    userId: string;
+    userName: string;
+    regNo: string;
+    indexNo: string;
+    phone: string;
+    size: string;
+    issuedDate: string;
+    returnedDate?: string;
+    status: string;
+}
 
 
 const links=[
@@ -18,62 +31,81 @@ const links=[
       },
 ];
 
-const usersData = [
-    {
-      userId: "1",
-      userName : "John Doe",
-      regNo: '2021CS100',
-      indexNo: '2100798',
-      size: 'Medium',
-      phone: '0724646186',
-      IssuedDate:'2024-05-01',
-      ReturnedDate:'2024-08-01',
-      status: 'Returned'
-    },
-    {
-      userId: '2',
-      userName : "Ann Fernando",
-      regNo: '2021CS001',
-      indexNo: '21345001',
-      size: 'Large',
-      phone: '0762341566',
-      IssuedDate:'2024-05-02',
-      status: 'Issued'
-    },
+// const usersData = [
+//     {
+//       userId: "1",
+//       userName : "John Doe",
+//       regNo: '2021CS100',
+//       indexNo: '2100798',
+//       size: 'Medium',
+//       phone: '0724646186',
+//       IssuedDate:'2024-05-01',
+//       ReturnedDate:'2024-08-01',
+//       status: 'Returned'
+//     },
+//     {
+//       userId: '2',
+//       userName : "Ann Fernando",
+//       regNo: '2021CS001',
+//       indexNo: '21345001',
+//       size: 'Large',
+//       phone: '0762341566',
+//       IssuedDate:'2024-05-02',
+//       status: 'Issued'
+//     },
   
-    {
-      userId: '3',
-      userName : "Alex Silva",
-      regNo: '2021CS002',
-      indexNo: '21385001',
-      phone: '0765456789',
-      size: 'Small',
-      IssuedDate:'2024-05-01',
-      status: 'Issued'
-    },
+//     {
+//       userId: '3',
+//       userName : "Alex Silva",
+//       regNo: '2021CS002',
+//       indexNo: '21385001',
+//       phone: '0765456789',
+//       size: 'Small',
+//       IssuedDate:'2024-05-01',
+//       status: 'Issued'
+//     },
   
-    {
-      userId: '4',
-      userName : 'James Perera',
-      regNo: '2020CS006',
-      indexNo: '20345001',
-      phone: '0743217890',
-      size: 'Medium',
-      IssuedDate:'2024-05-01',
-      ReturnedDate:'2024-08-05',
-      status: 'Returned'
-    },
-  ]
+//     {
+//       userId: '4',
+//       userName : 'James Perera',
+//       regNo: '2020CS006',
+//       indexNo: '20345001',
+//       phone: '0743217890',
+//       size: 'Medium',
+//       IssuedDate:'2024-05-01',
+//       ReturnedDate:'2024-08-05',
+//       status: 'Returned'
+//     },
+//   ]
 
 const Details = () => {
 
     const pathname = usePathname();
     // console.log("pathname",pathname);
 
-    const [users, setUsers] = useState(usersData);
+    const [users, setUsers] = useState<User[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        const fetchStudents = async() =>{
+            try{
+                const data = await getAllStudents();
+                console.log("Fetched data:", data); 
+                setUsers(data);
+                setLoading(false);
+            } catch (error){
+                console.error("Error fetching data:", error);
+                setLoading(false);
+            }
+        };
+
+        fetchStudents();
+
+    }, []);
 
     const handleSearch =(searchText : string) => {
-        const filteredUsers = usersData.filter(user =>
+        const filteredUsers = users.filter(user =>
 
             user.userId.toLowerCase().includes(searchText.toLowerCase()) ||
             user.userName.toLowerCase().includes(searchText.toLowerCase()) ||
@@ -81,22 +113,22 @@ const Details = () => {
             user.indexNo.toLowerCase().includes(searchText.toLowerCase()) ||
             user.size.toLowerCase().includes(searchText.toLowerCase()) ||
             user.status.toLowerCase().includes(searchText.toLowerCase())||
-            user.IssuedDate.toLowerCase().includes(searchText.toLowerCase())
+            user.issuedDate.toLowerCase().includes(searchText.toLowerCase())
         );
     
         setUsers(filteredUsers);
     };
 
     const handleSelect = (selectedOption : string) => {
-        const filteredUsers = usersData.filter(user => user.status.toLowerCase().includes(selectedOption.toLowerCase()));
+        const filteredUsers = users.filter(user => user.status.toLowerCase().includes(selectedOption.toLowerCase()));
         setUsers(filteredUsers);
     }
 
     
 
-    const totStudents = 100;
-    const returnedStudents = 60;
-    const notretrunedStudents = 40;
+    const totStudents = users.length;
+    const returnedStudents = users.filter(user => user.status === 'Returned').length;
+    const notretrunedStudents =totStudents - returnedStudents;
 
     return (
         <div className='w-full'>
