@@ -7,7 +7,7 @@ interface ButtonTextProps {
 
 const ButtonText: React.FC<ButtonTextProps> = ({ text }) => {
   return (
-    <button className="text-white bg-[#312e81] hover:bg-[#706ee4] hover:text-white font-regular rounded-full py-2 px-4 h-10 ">
+    <button className="text-white bg-[#312e81] hover:bg-[#706ee4] hover:text-white font-regular rounded py-2 px-4 h-10 ">
       {text}
     </button>
   );

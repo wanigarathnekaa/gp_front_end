@@ -1,7 +1,11 @@
 "use client";
 import React, { useState } from 'react'
-import { Sidebar, Navbar, Title, RoleTable, Navigation, SearchBar } from '@/components/index';
+import { Sidebar, Navbar, Title, RoleTable, Navigation, SearchBar,Card } from '@/components/index';
+import ButtonText from '@/components/ButtonText';
+import Breadcrumbs from '@/components/Breadcrumbs';
 import { usePathname } from 'next/navigation';
+import Link from 'next/link';
+import { HiUserAdd } from "react-icons/hi";
 
 const usersData = [
     {
@@ -32,28 +36,7 @@ const usersData = [
       },
 ];
 
-const links=[
-
-  {
-    href: '/dashboard/users/create-new/view-user/staff',
-    label: 'Staff'
-
-  },
-
-  
-  {
-    href: '/dashboard/users/create-new/view-user/lecturers',
-    label: 'Lecturers'
-  },
-
-  {
-    href: '/dashboard/users/create-new/view-user/students',
-    label: 'Students'
-  },
-
-]
-
-const ViewStudent = () => {
+const ViewStaff = () => {
 
     const pathname = usePathname();
 
@@ -77,16 +60,21 @@ const ViewStudent = () => {
         <Navbar/>
         <Sidebar/>
 
-        <div className=' mt-14 ml-64 flex flex-col min-h-screen bg-[#EEF2FF] p-4'>
+        <div className=' mt-12 ml-64 flex flex-col min-h-screen bg-[#EEF2FF] px-20 py-20'>
             <Title text='User roles'/>
+            <Breadcrumbs />
 
-            <Navigation links={links} pathname={pathname}/>
+            <div className='flex gap-5 items-center'>
+              <SearchBar onSearch={handleSearch}/>
 
-            <div className="flex items-center mb-4 mt-8 ml-12">
-                <SearchBar onSearch={handleSearch}/>
+              <div className='flex'>
+                <Link href='/dashboard/users/create-new/create-user-roles'>
+                  <ButtonText text='Create new user role' />
+                </Link>
+              </div>
             </div>
-
-            <div className='mt-8 ml-8'>
+            
+            <div className='mt-3'>
               <RoleTable users ={users}/>
             </div>
 
@@ -95,4 +83,4 @@ const ViewStudent = () => {
     )
 }
 
-export default ViewStudent
+export default ViewStaff
