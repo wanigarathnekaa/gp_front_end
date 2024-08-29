@@ -86,7 +86,7 @@ const LecturerData = () => {
         <Sidebar/>
 
         <div className=' mt-12 ml-64 flex flex-col min-h-screen bg-[#EEF2FF] px-20 py-20'>  
-            <Title text='Registered Lecturers'/>
+            <Title text='Registered lecturers'/>
             <Breadcrumbs/>
 
             
