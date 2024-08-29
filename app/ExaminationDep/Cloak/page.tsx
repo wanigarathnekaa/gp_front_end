@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { CloakBarChart, ExamSidebar, Navbar,Title, Card, AddCloakForm} from '@/components/index'
 import { IoMdAddCircle, IoIosRemoveCircle } from "react-icons/io";
 import { MdOutlineSecurityUpdate } from "react-icons/md";
+import { addCloak } from '@/actions/Cloak';
 
 const Cloak = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
