@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 function Sidebar() {
   return (
-    <div className="flex flex-col h-[95vh] bg-[#312e81] w-72 p-3 fixed top-12">
+    <div className="flex flex-col h-[96vh] bg-[#312e81] w-72 p-3 fixed top-12">
       <div className="flex items-center space-x-6 pt-10 mb-5 top-20 justify-center">
         <Image
           className="h-12 w-12 rounded-full" 

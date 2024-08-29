@@ -1,5 +1,7 @@
 import React from 'react';
-import { Sidebar, Navbar, Card, Calendar, TaskList } from '@/components/index';
+import { Sidebar, Navbar, Card, Title } from '@/components/index';
+import Breadcrumbs from '@/components/Breadcrumbs';
+import DetailsCard from '@/components/DetailsCard';
 import { FaUsers, FaRegClock  } from 'react-icons/fa';
 import { IoMdAddCircle } from "react-icons/io";
 import { HiUserAdd } from "react-icons/hi";
@@ -14,52 +16,72 @@ const Privileges = () => {
         
         <Sidebar />
         
-        <div className="mt-12 ml-64 flex flex-row min-h-screen">
-        <div className="w-3/4 px-20 py-20  bg-[#EEF2FF]">
-            <div className="text-4xl font-bold  mb-4">
-            <h1 className='mb-10 ml-3 text-black '>
-                User Privileges
-                
-            </h1>
-            </div>
-            <div className="flex flex-col ">
-                <Link href="">
+        <div className=' mt-12 ml-64 flex flex-col min-h-screen bg-[#EEF2FF] px-20 py-20'>
+            <Title text='Privileges'/>
+            <Breadcrumbs />
+            
+            
+            <div className="flex ">
+                <div className="w-1/2 pr-4">
+                <Link href="/dashboard/privileges/assign-privileges">
                     
                         <Card 
                             title="Assign privileges" 
                             description='Assign user privileges to any user'
                             icon={FaUsers}
-                            
+                            wide={true}
                         />
 
                     
                 </Link>
 
-                <Link href="">
+                <Link href="/dashboard/privileges/assigned-privileges">
                     
                         <Card 
                             title="View privileges" 
                             description='View existing user privileges and roles'
                             icon={IoMdAddCircle}
-                            
+                            wide={true}
                         />
 
                     
                 </Link>
+                </div>
+
+                <div className="w-1/2 pl-2 pr-2 ml-3">
+                    <div className="w-full bg-white border rounded-2xl p-5">
+                        <h2 className='text-gray-600 font-semibold text-2xl py-3 ml-2 mb-5'>Existing privileges</h2>
+
+                        <DetailsCard
+                            privilege_id='PQAC001'
+                            title='Form creation'
+                            description='The user will be able to create new forms and share using the system.'
+                            wide={true}
+                        />
+
+                        <DetailsCard
+                            privilege_id='PQAC002'
+                            title='View analytics'
+                            description='The user will be able to create new forms and share using the system.'
+                            wide={true}
+                        />
+
+                        <DetailsCard
+                            privilege_id='PQAC003'
+                            title='Form creation'
+                            description='The user will be able to create new forms and share using the system.'
+                            wide={true}
+                        />
+
+                    </div>
+                
+                </div>
 
             </div>
         </div>
-
-        <div className="w-1/4 p-4 bg-[#EEF2FF]">
-            <Calendar />
-            <TaskList 
-            tasks={['Task 1', 'Task 2', 'Task 3', 'Task 4']}
-            icon = {FaRegClock} 
-            />
         </div>
         
-        </div>
-    </div>
+        
   )
 }
 
