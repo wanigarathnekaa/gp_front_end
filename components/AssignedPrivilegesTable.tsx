@@ -59,10 +59,10 @@ const AssignedPrivilegesTable = ({ users }: Props) => {
                 <td className="border-b border-gray-200 py-3 px-4">{user.assignedBy}</td>
                 <td className={`py-2 px-4 ${isLastRow ? "rounded-br-2xl rounded-bl-2xl" : "border-b border-gray-200"}`}>
                   <div className="flex justify-center items-center gap-3">
-                    <Link href="/dashboard/users/UserRoleDetails">
+                    <Link href="/dashboard/privileges/assignedPrivilegesDetails">
                       <CiViewList className="cursor-pointer text-[#706ee4]" />
                     </Link>
-                    <Link href="/dashboard/users/UserRoleDetails/UpdateUserRoleDetails">
+                    <Link href="/dashboard/privileges/updateAssignedPrivilegesDetails">
                       <FaEdit className="cursor-pointer text-green-400 opacity-60" />
                     </Link>
                   </div>

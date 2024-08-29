@@ -13,7 +13,7 @@ interface DetailsCardProps {
 
 const DetailsCard = ({privilege_id, title, description, wide, onclick }:DetailsCardProps) => {
   return (
-    <div className={`p-6 mb-8 mt-15 rounded-2xl border bg-white hover:border-blue-100 flex items-center group h-13 ${wide ? 'w-full' : 'w-6/12'}`}
+    <div className={`p-6 mb-8 mt-15 rounded-2xl border bg-white hover:border-[#706ee4] flex items-center group h-13 ${wide ? 'w-full' : 'w-6/12'}`}
       onClick={onclick}
     >
 

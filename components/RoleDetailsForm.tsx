@@ -24,7 +24,7 @@ const RoleDetailsForm: React.FC<RoleDetailsFormProps> = ({
   return (
     <div className='w-full flex items-center justify-center'>
       <form action="" className="bg-white space-x-4 p-6 rounded-xl shadow-lg w-full max-w-xl space-y-2">
-        <h1 className="font-bold text-2xl text-gray-500 mb-8">{title}</h1>
+        <h1 className="font-bold text-2xl text-gray-600 mb-8">{title}</h1>
 
         <h3 className="font-bold text-gray-500">User Role ID</h3>
         <Input placeholder="Type in here…" className="mb-4 mt-1" />
