@@ -8,8 +8,8 @@ interface User {
   size: string;
   phone: string;
   status: string;
-  IssuedDate: string;
-  ReturnedDate?: string;
+  issuedDate: string;
+  returnedDate?: string;
 }
 
 interface ExaminationTableProps {
@@ -42,8 +42,8 @@ const ExaminationTable = ({users}:ExaminationTableProps) => {
             <td className='border-b border-gray-200 py-2 px-4'>{user.indexNo}</td>
             <td className='border-b border-gray-200 py-2 px-4'>{user.phone}</td>
             <td className='border-b border-gray-200 py-2 px-4'>{user.size}</td>
-            <td className='border-b border-gray-200 py-2 px-4'>{user.IssuedDate}</td>
-            <td className='border-b border-gray-200 py-2 px-4'>{user.ReturnedDate || '-'}</td>
+            <td className='border-b border-gray-200 py-2 px-4'>{user.issuedDate}</td>
+            <td className='border-b border-gray-200 py-2 px-4'>{user.returnedDate || '-'}</td>
             <td className='border-b border-gray-200 py-2 px-4'>{user.status}</td>
           </tr>
         ))}
