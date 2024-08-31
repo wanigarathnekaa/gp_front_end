@@ -31,6 +31,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import TemplateListPopUp from "@/components/formComponents/TemplateListPopUp";
 
 export interface Form {
   id: number;
@@ -52,12 +53,21 @@ export default function Home() {
 
       {/* <Separator className="my-6" /> */}
       <div className="my-20"></div>
-      <h2 className="text-4xl font-bold col-span-2 font-">Your Forms</h2>
+
+      <div className="flex items-center justify-between">
+        <h2 className="text-4xl font-bold">Your Forms</h2>
+
+        {/* Right-aligned buttons */}
+        <div className="flex space-x-4">
+          <TemplateListPopUp />
+        </div>
+      </div>
+
       <div className="my-6"></div>
       {/* <Separator className="my-6" /> */}
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <CreateFormBtn template={{ template : false }}/>
+        <CreateFormBtn template={{ template: false }} />
         <Suspense
           fallback={[1, 2, 3, 4].map((ele) => (
             <FormCardSkeleton key={ele} />

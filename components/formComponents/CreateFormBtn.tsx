@@ -41,6 +41,7 @@ function CreateFormBtn({template}: {template?: CreateFormBtnProps}) {
     resolver: zodResolver(formSchema),
   });
 
+  form.setValue("template", template?.template);
   async function onSubmit(data: formSchematype) {
     try {
       const formId = await createForm(data);
