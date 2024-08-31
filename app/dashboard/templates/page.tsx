@@ -39,6 +39,7 @@ export interface Form {
   id: number;
   name: string;
   description: string;
+  template: boolean;
   createdAt: Date;
   published: boolean;
   visits: number;
@@ -142,7 +143,7 @@ function FormCard({ form }: { form: Form }) {
             className="w-full mt-2 text-md gap-4"
           >
             <Link href={`forms/builder/${form.id}`}>
-              Edit form <FaEdit />
+              Edit template <FaEdit />
             </Link>
           </Button>
         )}
