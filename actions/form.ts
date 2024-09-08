@@ -96,3 +96,12 @@ export const getFormWithSubmissions = async (id: string) => {
     throw new Error("Failed to fetch form with submissions");
   }
 };
+
+export const getFormContent = async (id: string) => {
+  try {
+    const response = await axios.get(`${API_URL}/forms/${id}/template_content`);
+    return response.data;
+  } catch (error) {
+    throw new Error("Failed to fetch form content");
+  }
+}
