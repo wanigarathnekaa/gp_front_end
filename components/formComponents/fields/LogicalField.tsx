@@ -30,7 +30,13 @@ import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { AiOutlineClose, AiOutlinePlus } from "react-icons/ai";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { add } from "date-fns";
 import { idGenerator } from "@/lib/idGenerator";
 
@@ -38,6 +44,7 @@ const type: ElementsType = "LogicalQuestioningField";
 const extraAttributes = {
   question: "Choose an option",
   options: [],
+  colors: {} as Record<string, string>,
   required: false,
   nextQuestions: {} as Record<string, ElementsType>,
 };
@@ -181,9 +188,21 @@ function FormComponent({
             <RadioGroupItem
               id={`${id}-${index}`}
               value={option}
+              style={{
+                backgroundColor: element.extraAttributes.colors[option],
+              }} // Apply color
               className={cn(error && "border-red-500")}
             />
-            <Label htmlFor={`${id}-${index}`}>{option}</Label>
+            <Label
+              htmlFor={`${id}-${index}`}
+              style={{ color: element.extraAttributes.colors[option] }} // Color label
+            ></Label>
+            {/* <RadioGroupItem
+              id={`${id}-${index}`}
+              value={option}
+              className={cn(error && "border-red-500")}
+            />
+            <Label htmlFor={`${id}-${index}`}>{option}</Label> */}
           </div>
         ))}
       </RadioGroup>
@@ -230,6 +249,17 @@ function PropertiesComponent({
       },
     });
   }
+
+  const getRandomColor = () => {
+    const letters = "0123456789ABCDEF";
+    let color = "#";
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  };
+
+  console.log("Colors assigned:", element.extraAttributes.colors);
 
   return (
     <Form {...form}>
@@ -305,12 +335,20 @@ function PropertiesComponent({
                           const removedOption = newOptions[index];
                           newOptions.splice(index, 1);
                           field.onChange(newOptions);
-                          element.extraAttributes.options = newOptions as never[];
+                          element.extraAttributes.options =
+                            newOptions as never[];
 
-                          const childElements = elements.filter((el) => el.parentOption === removedOption);
-                          const childElementIds = childElements.map((el) => el.id);
 
-                          {console.log(element.extraAttributes.nextQuestions);}
+                          const childElements = elements.filter(
+                            (el) => el.parentOption === removedOption
+                          );
+                          const childElementIds = childElements.map(
+                            (el) => el.id
+                          );
+
+                          {
+                            console.log(element.extraAttributes.nextQuestions);
+                          }
                           removeElement(childElementIds[0]);
                           updateElement(element.id, element);
                         }}
@@ -320,16 +358,22 @@ function PropertiesComponent({
                     </div>
 
                     <Select
-                      value={""}
+                      value={
+                        element.extraAttributes.nextQuestions[option] || ""
+                      }
                       onValueChange={(value) => {
-                        const newNextQuestions = {...element.extraAttributes.nextQuestions,};
+                        const newNextQuestions = {
+                          ...element.extraAttributes.nextQuestions,
+                        };
                         newNextQuestions[option] = value as ElementsType;
                         element.extraAttributes.nextQuestions = newNextQuestions;
-                        
+                        element.extraAttributes.colors[option] = getRandomColor();
+                      
                         const newElement = FormElements[value as ElementsType].construct(idGenerator());
                         newElement.parent = element.id;
                         newElement.parentOption = option;
-                        {console.log("NextQuestion"+element.extraAttributes.nextQuestions);}
+                        newElement.color = element.extraAttributes.colors[option];
+                      
                         addElement(elements.length, newElement);
                       }}
                     >

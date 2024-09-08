@@ -65,6 +65,7 @@ export type FormElementInstance = {
   id: string;
   type: ElementsType;
   parent?: string | null;
+  color?: string | null;
   parentOption?: string | null;
   extraAttributes?: Record<string, any>;
 };
