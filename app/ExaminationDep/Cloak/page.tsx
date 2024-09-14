@@ -17,9 +17,23 @@ const Cloak = () => {
     setIsFormOpen(false);
   }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>, counts: { medium: number; small: number; large: number }) => {
+  const handleSubmit = async(e: React.FormEvent<HTMLFormElement>, counts: { medium: number; small: number; large: number }) => {
     // console.log(counts);
-    setIsFormOpen(false);
+    e.preventDefault();
+    try{
+      const result = await addCloak({
+        smallCount: counts.small,
+        mediumCount: counts.medium,
+        largeCount: counts.large,
+
+      });
+      console.log("Cloak added:", result);
+      setIsFormOpen(false);
+    }
+    catch(error){
+      console.log("Failed to add cloak counts", error);
+    }
+    
   };
 
   return (
@@ -79,6 +93,7 @@ const Cloak = () => {
         </div>
     </div>
   )
-}
+  }
+
 
 export default Cloak
