@@ -1,6 +1,8 @@
 "use client";
 import React from 'react'
 import { Sidebar, Navbar, Title, Table, Card, Navigation, Calendar, TaskList } from   '@/components/index';
+import Breadcrumbs from '@/components/Breadcrumbs';
+import SubTitle from '@/components/SubTitle';
 import { FaUser, FaUsers, FaRegClock} from 'react-icons/fa'; 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -86,56 +88,55 @@ const Students = () => {
 
       {/* <div className=' mt-14 ml-64  min-h-screen bg-[#EEF2FF] p-4 '> */}
         {/* <Title text='Enroll new users' /> */}
-        <div className="mt-12 ml-64 flex flex-row min-h-screen">
-          <div className="w-3/4 px-20 py-20  bg-[#EEF2FF]">
-            <div className="text-4xl font-bold mb-2">
-              <h1 className='mb-10 ml-3 text-black '>Enroll new users</h1>
+        <div className=' mt-12 ml-64 flex flex-col min-h-screen bg-[#EEF2FF] px-20 py-20'> 
+            <Title text='Enroll new students' />
+            <div className="flex flex-row justify-between">
+              <Breadcrumbs />
+
+              <>
+                <Navigation links={links} pathname={pathname}/>
+              </>
             </div>
+            
+            <div className="flex flex-row items-center">
+              <div className="w-1/2 pr-4">
+                <Link href="/dashboard/users/enroll-new/EnrollIndividual/student">
+                  <Card
+                    title="Individual Enrollment"
+                    description="Enroll students individually"
+                    icon={FaUser}
+                    wide={true}
+                  />
+                </Link>
+              </div>
 
-        <>
-          <Navigation links={links} pathname={pathname}/>
-        </>
+              <div className="w-1/2 pr-2 pl-2">
+                <Link href="/dashboard/users/enroll-new/BulkEnrollment">
+                  <Card
+                    title="Bulk Enrollment"
+                    description="Enroll students as groups"
+                    icon={FaUsers}
+                    wide={true}
+                  />
+                </Link>
+              </div>
+          </div>
 
-        <div className="flex flex-row justify-between">
-        <div className='flex flex-row mt-8'>
-          <Link href='/dashboard/users/enroll-new/EnrollIndividual/student'>
-          <Card 
-            title="Individual Enrollment"
-            description="Enroll students individually"
-            icon={FaUser}
-            wide = {true}
-          />
-          </Link>
+        <SubTitle text="Students enrollment history"/>
 
-
-          <Link href='/dashboard/users/enroll-new/BulkEnrollment'>
-          <Card 
-            title="Bulk Enrollment"
-            description="Enroll students as groups"
-            icon={FaUsers}
-            wide = {true}
-          />
-          </Link>
-        </div>
-        </div>
-
-        <div className='mt-10 mb-5  ml-3'>
-          <h4 className='text-xl font-semibold text-gray-800'>Enrollment history</h4>
-        </div>
-
-        <div className='mt-8'>
+        <div>
           <Table users={usersData} type='student'/>
         </div>  
       </div>
-      <div className="w-1/4 p-4 bg-white shadow-md">
+      {/* <div className="w-1/4 p-4 bg-white shadow-md">
             <Calendar />
             <TaskList 
               tasks={['Task 1', 'Task 2', 'Task 3', 'Task 4']}
               icon = {FaRegClock} 
             />
-          </div>
+          </div> */}
     </div>
-    </div>
+
   )
 }
 

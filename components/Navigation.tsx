@@ -17,9 +17,9 @@ interface NavigationProps{
 const Navigation = ({links=[], pathname } : NavigationProps) => {
     
     return (
-        <div className='flex justify-between items-center'>
+        <div className='flex justify-between'>
 
-            <div className='flex gap-4 ml-auto mr-20 mt-5'>
+            <div className='flex gap-4 ml-auto mt-3 mb-10 mr-5'>
 
                 {
                     links?.map(link => (
@@ -27,7 +27,8 @@ const Navigation = ({links=[], pathname } : NavigationProps) => {
                         <Link 
                             key={link.href}
                             href={link.href}
-                            className={`text-black font-normal  hover:text-blue-500  ${
+                          
+                            className={`text-gray-600 font-bold hover:text--blue-500  hover:font-bold hover:underline ${
                                 pathname === link.href
                                 ? 'font-bold  text-blue-500'
                                 :''

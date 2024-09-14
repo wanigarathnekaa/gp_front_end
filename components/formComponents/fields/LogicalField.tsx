@@ -1,7 +1,13 @@
 "use client";
 
-import { LuList } from 'react-icons/lu';
-import { ElementsType, FormElement, FormElementInstance, submitFunction } from "../FormElements";
+import { LuList } from "react-icons/lu";
+import {
+  ElementsType,
+  FormElement,
+  FormElementInstance,
+  FormElements,
+  submitFunction,
+} from "../FormElements";
 import { Label } from "../../ui/label";
 import { RadioGroup, RadioGroupItem } from "../../ui/radio-group";
 import { useState, useEffect } from "react";
@@ -9,27 +15,57 @@ import useDesigner from "../hooks/useDesigner";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "../../ui/form";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "../../ui/form";
 import { Switch } from "../../ui/switch";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
+import { Separator } from "@/components/ui/separator";
+import { Button } from "@/components/ui/button";
+import { AiOutlineClose, AiOutlinePlus } from "react-icons/ai";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { add } from "date-fns";
+import { idGenerator } from "@/lib/idGenerator";
 
 const type: ElementsType = "LogicalQuestioningField";
 const extraAttributes = {
   question: "Choose an option",
-  options: [
-    { value: "Option 1", nextQuestionId: "next-question-1" },
-    { value: "Option 2", nextQuestionId: "next-question-2" },
-  ],
+  options: [],
+  colors: {} as Record<string, string>,
   required: false,
+  nextQuestions: {} as Record<string, ElementsType>,
 };
+
+const parent = null;
+const parentOption = null;
+
+const questionTypes: ElementsType[] = [
+  "NumberField",
+  "TextAreaField",
+  "DateField",
+  "SelectField",
+  "CheckboxField",
+  "MultipleOptionField",
+  "RateField",
+  "LogicalQuestioningField",
+];
 
 const propertiesSchema = z.object({
   question: z.string().min(2).max(100),
-  options: z.array(z.object({
-    value: z.string(),
-    nextQuestionId: z.string().optional(),
-  })).min(1),
+  options: z.array(z.string()).default([]),
   required: z.boolean().default(false),
 });
 
@@ -39,6 +75,8 @@ export const LogicalQuestioningFieldFormElement: FormElement = {
   construct: (id: string) => ({
     id,
     type,
+    parent,
+    parentOption,
     extraAttributes,
   }),
 
@@ -49,7 +87,10 @@ export const LogicalQuestioningFieldFormElement: FormElement = {
   designerComponent: DesignerComponent,
   formComponent: FormComponent,
   propertiesComponent: PropertiesComponent,
-  validate: (formElement: FormElementInstance, currentValue: string): boolean => {
+  validate: (
+    formElement: FormElementInstance,
+    currentValue: string
+  ): boolean => {
     const element = formElement as customInstance;
     if (element.extraAttributes.required) {
       return currentValue.length > 0;
@@ -64,7 +105,11 @@ type customInstance = FormElementInstance & {
 
 type propertiesFormSchemaType = z.infer<typeof propertiesSchema>;
 
-function DesignerComponent({ elementInstance }: { elementInstance: FormElementInstance }) {
+function DesignerComponent({
+  elementInstance,
+}: {
+  elementInstance: FormElementInstance;
+}) {
   const element = elementInstance as customInstance;
   const { question, options, required } = element.extraAttributes;
   const id = `logical-questioning-field-${element.id}`;
@@ -75,14 +120,11 @@ function DesignerComponent({ elementInstance }: { elementInstance: FormElementIn
         {question}
         {required && <span className="text-red-600">*</span>}
       </Label>
-      <RadioGroup
-        className="flex flex-col space-y-2"
-        aria-labelledby={id}
-      >
+      <RadioGroup className="flex flex-col space-y-2" aria-labelledby={id}>
         {options.map((option, index) => (
           <div key={index} className="flex items-center space-x-2">
-            <RadioGroupItem id={`${id}-${index}`} value={option.value} />
-            <Label htmlFor={`${id}-${index}`}>{option.value}</Label>
+            <RadioGroupItem id={`${id}-${index}`} value={option} />
+            <Label htmlFor={`${id}-${index}`}>{option}</Label>
           </div>
         ))}
       </RadioGroup>
@@ -102,9 +144,9 @@ function FormComponent({
   defaultValue?: string;
 }) {
   const element = elementInstance as customInstance;
-  const [value, setValue] = useState<string>(defaultValue || "");
+  const [value, setValue] = useState(defaultValue || "");
   const [error, setError] = useState(false);
-  const [nextQuestionId, setNextQuestionId] = useState<string | null>(null);
+  // const [nextQuestionId, setNextQuestionId] = useState<string | null>(null);
 
   useEffect(() => {
     setError(isInvalid === true);
@@ -115,12 +157,17 @@ function FormComponent({
 
   const handleValueChange = (selectedValue: string) => {
     setValue(selectedValue);
-    const selectedOption = options.find(option => option.value === selectedValue);
-    setNextQuestionId(selectedOption?.nextQuestionId || null);
+    const selectedOption = options.find((option) => option === selectedValue);
 
     if (!submitValue) return;
-    const valid = LogicalQuestioningFieldFormElement.validate(element, selectedValue);
+    const valid = LogicalQuestioningFieldFormElement.validate(
+      element,
+      selectedValue
+    );
     setError(!valid);
+    {
+      console.log(element.id, selectedValue);
+    }
     submitValue(element.id, selectedValue);
   };
 
@@ -140,28 +187,43 @@ function FormComponent({
           <div key={index} className="flex items-center space-x-2">
             <RadioGroupItem
               id={`${id}-${index}`}
-              value={option.value}
+              value={option}
+              style={{
+                backgroundColor: element.extraAttributes.colors[option],
+              }} // Apply color
               className={cn(error && "border-red-500")}
             />
-            <Label htmlFor={`${id}-${index}`}>{option.value}</Label>
+            <Label
+              htmlFor={`${id}-${index}`}
+              style={{ color: element.extraAttributes.colors[option] }} // Color label
+            ></Label>
+            {/* <RadioGroupItem
+              id={`${id}-${index}`}
+              value={option}
+              className={cn(error && "border-red-500")}
+            />
+            <Label htmlFor={`${id}-${index}`}>{option}</Label> */}
           </div>
         ))}
       </RadioGroup>
 
-      {/* Render the next question if available */}
+      {/* Render the next question if available
       {nextQuestionId && (
         <div id={`next-question-${nextQuestionId}`}>
-          {/* Replace with logic to render the next question based on `nextQuestionId` */}
+          Replace with logic to render the next question based on `nextQuestionId`
         </div>
-      )}
+      )} */}
     </div>
   );
 }
 
-
-function PropertiesComponent({ elementInstance }: { elementInstance: FormElementInstance }) {
+function PropertiesComponent({
+  elementInstance,
+}: {
+  elementInstance: FormElementInstance;
+}) {
   const element = elementInstance as customInstance;
-  const { updateElement } = useDesigner();
+  const { elements, removeElement, updateElement, addElement } = useDesigner();
 
   const form = useForm<propertiesFormSchemaType>({
     resolver: zodResolver(propertiesSchema),
@@ -187,6 +249,17 @@ function PropertiesComponent({ elementInstance }: { elementInstance: FormElement
       },
     });
   }
+
+  const getRandomColor = () => {
+    const letters = "0123456789ABCDEF";
+    let color = "#";
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  };
+
+  console.log("Colors assigned:", element.extraAttributes.colors);
 
   return (
     <Form {...form}>
@@ -219,28 +292,118 @@ function PropertiesComponent({ elementInstance }: { elementInstance: FormElement
             </FormItem>
           )}
         />
+
+        <Separator />
         <FormField
           control={form.control}
           name="options"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Options</FormLabel>
-              <FormControl>
-                <Input
-                  {...field}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") e.currentTarget.blur();
+              <div className="flex justify-between items-center">
+                <FormLabel>Options</FormLabel>
+                <Button
+                  variant={"outline"}
+                  className="gap-2"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    form.setValue("options", field.value.concat("New Option"));
                   }}
-                  value={field.value.toString()}
-                />
-              </FormControl>
+                >
+                  <AiOutlinePlus />
+                  Add
+                </Button>
+              </div>
+
+              <div className="flex flex-col gap-2">
+                {form.watch("options").map((option, index) => (
+                  <div key={index} className="flex flex-col gap-1">
+                    <div className="flex items-center justify-between gap-1">
+                      <Input
+                        placeholder="Option Text"
+                        value={option}
+                        onChange={(e) => {
+                          field.value[index] = e.target.value;
+                          field.onChange(field.value);
+                        }}
+                      />
+                      <Button
+                        variant={"ghost"}
+                        size={"icon"}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          const newOptions = [...field.value];
+                          const removedOption = newOptions[index];
+                          newOptions.splice(index, 1);
+                          field.onChange(newOptions);
+                          element.extraAttributes.options =
+                            newOptions as never[];
+
+
+                          const childElements = elements.filter(
+                            (el) => el.parentOption === removedOption
+                          );
+                          const childElementIds = childElements.map(
+                            (el) => el.id
+                          );
+
+                          {
+                            console.log(element.extraAttributes.nextQuestions);
+                          }
+                          removeElement(childElementIds[0]);
+                          updateElement(element.id, element);
+                        }}
+                      >
+                        <AiOutlineClose />
+                      </Button>
+                    </div>
+
+                    <Select
+                      value={
+                        element.extraAttributes.nextQuestions[option] || ""
+                      }
+                      onValueChange={(value) => {
+                        const newNextQuestions = {
+                          ...element.extraAttributes.nextQuestions,
+                        };
+                        newNextQuestions[option] = value as ElementsType;
+                        element.extraAttributes.nextQuestions = newNextQuestions;
+                        element.extraAttributes.colors[option] = getRandomColor();
+                      
+                        const newElement = FormElements[value as ElementsType].construct(idGenerator());
+                        newElement.parent = element.id;
+                        newElement.parentOption = option;
+                        newElement.color = element.extraAttributes.colors[option];
+                      
+                        addElement(elements.length, newElement);
+                      }}
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select Next Question Type" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {questionTypes.map((type) => (
+                          <SelectItem key={type} value={type}>
+                            {type}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                ))}
+              </div>
               <FormDescription>
-                Comma-separated list of options with optional nextQuestionId for conditional logic.
+                Add Options Here.
+                <br />
+                It will be displayed below the field. You can also assign the
+                type of the next question to display based on the selected
+                option.
               </FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
+
+        <Separator />
         <FormField
           control={form.control}
           name="required"
@@ -264,4 +427,3 @@ function PropertiesComponent({ elementInstance }: { elementInstance: FormElement
     </Form>
   );
 }
-

@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import { Sidebar, Navbar, Title, Table, Navigation, SearchBar } from '@/components/index';
 import { usePathname } from 'next/navigation';
+import Breadcrumbs from '@/components/Breadcrumbs';
 
 
 const usersData = [
@@ -38,7 +39,6 @@ const links=[
     label: 'Staff'
 
   },
-
   
   {
     href: '/dashboard/users/view-registered/lecturers',
@@ -77,14 +77,16 @@ const OtherData = () => {
     <Navbar/>
     <Sidebar/>
 
-    <div className=' mt-12 ml-64 flex flex-col min-h-screen bg-[#EEF2FF] p-4'>
-        <Title text='Registered Users'/>
+    <div className=' mt-12 ml-64 flex flex-col min-h-screen bg-[#EEF2FF] px-20 py-20'>  
+        <Title text='Registered staff members'/>
+        <Breadcrumbs/>
 
-        <Navigation links={links} pathname={pathname}/>
-
-        <div className="flex items-center mb-4 mt-8 ml-8">
-              <SearchBar onSearch={handleSearch}/>
+        <div className="flex justify-between">
+          <SearchBar onSearch={handleSearch}/>
+          <Navigation links={links} pathname={pathname}/>
         </div>
+        
+              
 
         <Table users ={users} type='other'/>
 

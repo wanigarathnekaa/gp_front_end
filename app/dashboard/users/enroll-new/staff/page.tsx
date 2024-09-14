@@ -1,6 +1,8 @@
 "use client";
 import React from 'react'
-import { Sidebar, Navbar, Title, Table, Card, Navigation } from   '@/components/index';
+import { Sidebar, Navbar, Title, Table, Card, Navigation } from '@/components/index';
+import Breadcrumbs from '@/components/Breadcrumbs';
+import SubTitle from '@/components/SubTitle';
 import { FaUser, FaUsers} from 'react-icons/fa'; 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -59,33 +61,33 @@ const Students = () => {
         <Navbar/>
         <Sidebar/>
   
-        <div className=' mt-14 ml-64  min-h-screen bg-[#EEF2FF] p-4'>
-          <Title text='Enroll new users' />
+        <div className=' mt-12 ml-64 flex flex-col min-h-screen bg-[#EEF2FF] px-20 py-20'> 
+          <Title text='Enroll new staff members' />
+          <div className="flex flex-row justify-between">
+            <Breadcrumbs />
   
-          <>
-            <Navigation links={links} pathname={pathname}/>
-          </>
-  
-          <div className='flex flex-row gap-10 mt-8 ml-5 '>
-            <Link href='/dashboard/users/enroll-new/EnrollIndividual/other'>
-            <Card 
-              title="Individual Enrollment"
-              description="Enroll staff member"
-              icon={FaUser}
-              wide = {true}
-            />
-            </Link>
-  
-           
+            <>
+              <Navigation links={links} pathname={pathname}/>
+            </>
           </div>
   
-          <div className='ml-8 mt-10'>
-            <h4 className='text-xl font-semibold'>Enrollment history</h4>
-          </div>
+          <div className="flex flex-row items-center">
+            <div className="w-1/2 pr-4">
+              <Link href='/dashboard/users/enroll-new/EnrollIndividual/other'>
+                <Card 
+                  title="Individual Enrollment"
+                  description="Enroll staff member"
+                  icon={FaUser}
+                  wide = {true}
+                />
+              </Link>
+            </div>
+            </div>
+  
+          <SubTitle text="Staff members enrollment history"/>
 
-          <div className='mt-8'>
+          <div>
             <Table users={usersData} type='other'/>
-
           </div>
           
         </div>
