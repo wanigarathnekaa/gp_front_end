@@ -11,7 +11,7 @@ interface CloakCounts{
 
 export const addCloak = async(cloakCounts: CloakCounts) => {
     try{
-        const response = await axios.post(`${API_URL}/api/cloaks/addCloak`, cloakCounts);
+        const response = await axios.post(`${API_URL}/api/cloaks/add`, cloakCounts);
         return response.data;
     }catch(error){
         throw new Error("Failed to add cloak counts");
