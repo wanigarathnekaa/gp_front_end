@@ -5,7 +5,7 @@ import ButtonText from './ButtonTextBlue';
 interface NewRoleCreationFormProps {
     userRoleId: string;
     userRoleName: string;
-    status: string; // New variable to select the status
+    status: string; 
     createdDate: string;
     createdBy: string;
     onInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
