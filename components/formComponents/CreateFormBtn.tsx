@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Dialog,
   DialogContent,
@@ -29,14 +29,20 @@ import { toast } from "../ui/use-toast";
 import { formSchema, formSchematype } from "@/schemas/form";
 import { createForm } from "@/actions/form";
 import { useRouter } from "next/navigation";
+import { set } from "date-fns";
 
-function CreateFormBtn() {
+interface CreateFormBtnProps {
+  template?: boolean;
+}
+
+function CreateFormBtn({template}: {template?: CreateFormBtnProps}) {
   const router = useRouter();
-  
   const form = useForm<formSchematype>({
     resolver: zodResolver(formSchema),
   });
 
+  console.log("Inside the CreateFormBtn component");
+  form.setValue("template", template?.template);
   async function onSubmit(data: formSchematype) {
     try {
       const formId = await createForm(data);
@@ -63,7 +69,7 @@ function CreateFormBtn() {
         >
           <BsFileEarmarkPlus className="h-8 w-8 text-muted-foreground group-hover:text-primary" />
           <p className="font-bold text-xl text-muted-foreground group-hover:text-primary">
-            Create new form
+          {!template?.template ? "Create new form" : "Create new template"}
           </p>
         </Button>
       </DialogTrigger>

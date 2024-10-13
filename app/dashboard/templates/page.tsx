@@ -9,7 +9,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { LuView } from "react-icons/lu";
 import { FaWpforms } from "react-icons/fa";
 import { HiCursorClick } from "react-icons/hi";
@@ -31,11 +31,15 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import { useForm } from "react-hook-form";
+import { formSchema, formSchematype } from "@/schemas/form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export interface Form {
   id: number;
   name: string;
   description: string;
+  template: boolean;
   createdAt: Date;
   published: boolean;
   visits: number;
@@ -49,7 +53,7 @@ export default function TemplatesPage() {
       <h2 className="text-4xl font-bold col-span-2 font-">Your Templates</h2>
       <div className="my-6"></div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <CreateFormBtn />
+        <CreateFormBtn template={{ template: true }} />
         <Suspense
           fallback={[1, 2, 3, 4].map((ele) => (
             <FormCardSkeleton key={ele} />
@@ -139,7 +143,7 @@ function FormCard({ form }: { form: Form }) {
             className="w-full mt-2 text-md gap-4"
           >
             <Link href={`forms/builder/${form.id}`}>
-              Edit form <FaEdit />
+              Edit template <FaEdit />
             </Link>
           </Button>
         )}

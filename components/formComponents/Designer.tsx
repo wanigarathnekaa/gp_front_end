@@ -175,8 +175,7 @@ function DesignerElementWrapper({ element }: { element: FormElementInstance }) {
 
   // Determine if the element has a parent and apply specific styles
   const hasParent = !!element.parent;
-  const treeElementStyles = hasParent ? "bg-blue-100 w-[95%] ml-auto" : "w-full";
-  console.log(element.parent);
+  const treeElementStyles = hasParent ? `bg-[${element.color}]` : "w-full";
 
   return (
     <div
