@@ -4,6 +4,7 @@ import React, { useState, ChangeEvent, FormEvent } from 'react';
 import Image from 'next/image';
 import { login } from '@/actions/login';
 import { useRouter } from 'next/navigation';
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 interface LoginRequest {
   regNumber: string;
@@ -14,6 +15,7 @@ const Page: React.FC = () => {
   const router = useRouter();
   const [regNumber, setRegNumber] = useState<string>('');
   const [nic, setNic] = useState<string>('');
+  const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
   const [message, setMessage] = useState<string>('');
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -44,63 +46,82 @@ const Page: React.FC = () => {
     setNic(event.target.value);
   };
 
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
+
   return (
-    <div className="flex min-h-screen flex-col bg-[#EEF2FF] ">
-      <header className="flex justify-center items-center h-16 bg-[#ffffff] shadow-lg">
-        <Image src="/Logo.png" alt="Logo" className="h-14" width={190} height={45}  />
-      </header>
+    <div className="flex min-h-screen flex-col bg-white">
+      <main className="flex-grow flex items-center justify-center px-28">
+        {/* Grid Layout for Logo and Login */}
+        <div className="grid grid-cols-3 w-full">
+          {/* Left Column (2/3 of the width) */}
+          <div className="col-span-2 flex justify-start items-start">
+            <Image className='h-fit' src="/Login.jpg" alt="logo" width={1300} height={1300} />
+          </div>
 
-      <main className="flex-grow flex items-center justify-center">
-        <div className="mt-6 sm:mx-auto sm:w-full sm:max-w-sm p-8 bg-[#ffffff] rounded-xl shadow-xl">
-          <h2 className="text-center text-3xl font-bold leading-9 tracking-tight text-gray-700 mb-6">
-            Login
-          </h2>
-          <form className="space-y-6" onSubmit={handleSubmit}>
-            <div>
-              <label htmlFor="regNumber" className="block text-sm font-medium leading-6 text-gray-700">
-                Registration Number
-              </label>
-              <div className="mt-2">
-                <input
-                  id="regNumber"
-                  name="regNumber"
-                  type="text"
-                  value={regNumber}
-                  onChange={handleRegNumberChange}
-                  placeholder="2021/CS/001"
-                  required
-                  className="block w-full rounded-md border-0 py-1.5 pl-4 pr-4 text-gray-800 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
+          {/* Right Column (1/3 of the width) */}
+          <div className="col-span-1 flex justify-center items-center w-full">
+            <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+              <Image className='h-fit py-3' src="/Logo_feebify.png" alt="logo" width={1000} height={500} />
+              <form className="py-3 space-y-6" onSubmit={handleSubmit}>
+                <div>
+                  <label htmlFor="regNumber" className="block text-md font-medium leading-6 text-gray-700">
+                    Registration Number
+                  </label>
+                  <div className="mt-2">
+                    <input
+                      id="regNumber"
+                      name="regNumber"
+                      type="text"
+                      value={regNumber}
+                      onChange={handleRegNumberChange}
+                      placeholder="2021/CS/001"
+                      required
+                      className="block w-full border-b-2 border-gray-300 focus:border-blue-500 focus:outline-none focus:ring-0 placeholder:text-gray-400 text-gray-800 py-2 px-0 sm:text-sm"
+                    />
+                  </div>
+                </div>
 
-            <div>
-              <label htmlFor="nic" className="block text-sm font-medium leading-6 text-gray-700">
-                Password
-              </label>
-              <div className="mt-2">
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  value={nic}
-                  onChange={handleNicChange}
-                  placeholder="password"
-                  required
-                  className="block w-full rounded-md border-0 py-1.5 pl-4 pr-4 text-gray-700 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
+                <div>
+                  <label htmlFor="nic" className="block text-md font-medium leading-6 text-gray-700">
+                    Password
+                  </label>
+                  <div className="relative mt-2">
+                    <input
+                      id="password"
+                      name="password"
+                      type={passwordVisible ? "text" : "password"}
+                      value={nic}
+                      onChange={handleNicChange}
+                      placeholder="Password"
+                      required
+                      className="block w-full border-b-2 border-gray-300 focus:border-blue-500 focus:outline-none focus:ring-0 placeholder:text-gray-400 text-gray-700 py-2 px-0 sm:text-sm"
+                    />
+                    <div
+                      className="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer"
+                      onClick={togglePasswordVisibility}
+                    >
+                      {passwordVisible ? <FaEyeSlash className="text-gray-500" /> : <FaEye className="text-gray-500" />}
+                    </div>
+                  </div>
+                </div>
 
-            <div className="py-2">
-              <button
-                type="submit"
-                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                Login
-              </button>
+                <div className="flex items-end justify-end">
+                  <h4 className='text-gray-700 font-medium text-sm hover:underline cursor-pointer'>Forgot password?</h4>
+                </div>
+
+                <div className="py-2">
+                  <button
+                    type="submit"
+                    className="flex w-full mt-3 h-12 justify-center items-center rounded-full text-white font-semibold bg-[#FDC500] text-xl hover:bg-[#FFD500] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                    Login
+                  </button>
+                </div>
+              </form>
+              {message && <p className="text-center text-gray-900 mt-4">{message}</p>}
             </div>
-          </form>
-          {message && <p className="text-center text-gray-900 mt-4">{message}</p>}
+          </div>
         </div>
       </main>
     </div>
