@@ -8,6 +8,7 @@ import { HiUserAdd } from "react-icons/hi";
 import { AiFillMessage } from "react-icons/ai";
 import { FaRankingStar } from "react-icons/fa6";
 import Link from 'next/link';
+import TaskManager from '@/components/TaskManager';
 
 
 const Dashboard = () => {
@@ -16,8 +17,8 @@ const Dashboard = () => {
       <div className="w-full">
       <Navbar />
       <Sidebar />
-      <div className="mt-12 ml-64 flex flex-row min-h-screen">
-        <div className="w-3/4 px-20 py-20 bg-[#EEF2FF]">
+      <div className="ml-64 flex flex-row min-h-screen">
+        <div className="w-3/4 px-20 py-10 bg-blue-50">
             <Title text='Hi there'/>
             <SubTitle text='Welcome to your dashboard'/>
             <Breadcrumbs/>
@@ -69,13 +70,14 @@ const Dashboard = () => {
             </Link>
           </div>
         </div>
-        <div className="w-1/4 p-4 bg-white shadow-md">
+        <TaskManager/>
+        {/* <div className="w-1/4 p-4 bg-white shadow-md">
           <Calendar />
           <TaskList 
             tasks={['Task 1', 'Task 2', 'Task 3', 'Task 4']}
             icon={FaRegClock} 
           />
-        </div>
+        </div> */}
       </div>
     </div>
   );

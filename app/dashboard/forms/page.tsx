@@ -100,7 +100,7 @@ function StatCards(props: StatCardsProps) {
         helperText="All time form Visits"
         value={data?.visits.toLocaleString() || ""}
         loading={loading}
-        className="shadow-xl border"
+        className="shadow-md border-none"
       />
 
       <StatCard
@@ -109,7 +109,7 @@ function StatCards(props: StatCardsProps) {
         helperText="All time form Submissions"
         value={data?.submissions.toLocaleString() || ""}
         loading={loading}
-        className="shadow-xl border-none"
+        className="shadow-md border-none"
       />
 
       <StatCard
@@ -118,7 +118,7 @@ function StatCards(props: StatCardsProps) {
         helperText="Visits that results in form submission"
         value={data?.submissionRate.toLocaleString() + "%" || ""}
         loading={loading}
-        className="shadow-xl border-none"
+        className="shadow-md border-none"
       />
 
       <StatCard
@@ -127,7 +127,7 @@ function StatCards(props: StatCardsProps) {
         helperText="Visits that leaves without submitting form"
         value={data?.bounceRate.toLocaleString() + "%" || ""}
         loading={loading}
-        className="shadow-xl border-none"
+        className="shadow-md border-none"
       />
     </div>
   );
@@ -158,7 +158,7 @@ export function StatCard(props: {
             </Skeleton>
           )}
           {!loading && value}
-          <p className="text-xs text-muted-foreground pt-1">{helperText}</p>
+          <p className="text-xs text-muted-foreground pt-3">{helperText}</p>
         </div>
       </CardContent>
     </Card>
