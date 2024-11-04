@@ -22,7 +22,7 @@ const Dropdown: React.FC<DropdownProps> = ({ options, onSelect, title }) => {
     };
 
     return (
-        <div className="relative inline-block w-44">
+        <div className="relative inline-block w-64">
             <button
                 onClick={handleToggle}
                 className="block appearance-none w-full text-gray-600 bg-white border border-gray-300 rounded-full px-5 py-2 h-10 leading-tight focus:outline-none focus:ring-2 focus:ring-[#706ee4] sm:text-sm transition ease-in-out duration-200"
