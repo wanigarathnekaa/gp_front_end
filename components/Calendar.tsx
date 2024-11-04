@@ -14,7 +14,7 @@ const Calendar = () => {
 
   
   return (
-    <div className=' bg-[#EEF2FF] border border-blue-100 rounded-xl p-4 my-3 flex justify-center'>
+    <div className='w-full border-t border-gray-300 p-8 mt-3 flex justify-center'>
         <DatePicker
         selected={selectedDate} 
         onChange={handleDateChange} 
