@@ -64,7 +64,7 @@ function Sidebar() {
 
 
      <div className="flex pb-5 text-xl">
-       <button className="flex w-full items-center space-x-4 gap-4 px-5 rounded-md font-medium text-gray-600 hover:bg-blue-50 hover:text-blue-600">
+       <button className="flex w-full items-center space-x-4 gap-4 px-5 py-3 rounded-md font-medium text-gray-600 hover:bg-blue-50 hover:text-blue-600">
        <FiLogOut />
          Log Out
        </button>
