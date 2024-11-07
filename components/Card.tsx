@@ -18,13 +18,13 @@ const Card = ({title, description,icon :Icon, wide, onclick }:CardProps) => {
     <div className={`p-6 mb-8 mt-15 ml-3 rounded-2xl bg-white shadow-md flex items-center  group cursor-pointer transform transition-transform duration-300 hover:scale-105  h-13 ${wide ? 'w-full' : 'w-6/12'}`}
       onClick={onclick}
     >
-        <Icon className = "text-3xl mr-8 ml-10 text-[#FDC500] cursor-pointer group-hover:text-blue-600"/>
+        <Icon className = "text-3xl mr-8 ml-10 text-[#FDC500] cursor-pointer"/>
 
         <div>
-            <div className="text-lg text-blue-600 font-semibold mb-1 cursor-pointer group-hover:text-blue-600">{title}</div>
+            <div className="text-lg text-gray-800 font-semibold mb-1 cursor-pointer group-hover:text-blue-600">{title}</div>
        
         
-            <p className="text-sm text-gray-500 cursor-pointer group-hover:text-blue-600">{description}</p>
+            <p className="text-sm text-gray-500 cursor-pointer">{description}</p>
 
         </div>
         
