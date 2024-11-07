@@ -21,7 +21,7 @@ const Card = ({title, description,icon :Icon, wide, onclick }:CardProps) => {
         <Icon className = "text-3xl mr-8 ml-10 text-[#FDC500] cursor-pointer"/>
 
         <div>
-            <div className="text-lg text-gray-900 font-semibold mb-1 cursor-pointer group-hover:text-blue-600">{title}</div>
+            <div className="text-lg text-gray-800 font-semibold mb-1 cursor-pointer group-hover:text-blue-600">{title}</div>
        
         
             <p className="text-sm text-gray-500 cursor-pointer">{description}</p>
