@@ -19,8 +19,8 @@ const Users = () => {
       <Sidebar />
       <div className="ml-64 flex flex-row min-h-screen">
         <div className="w-3/4 px-20 py-10 bg-blue-50">
-            <Title text='Hi there'/>
-            <SubTitle text='Welcome to your dashboard'/>
+            <Title text='Users'/>
+            {/* <SubTitle text='Welcome to your dashboard'/> */}
             <Breadcrumbs/>
           
           <div className="flex flex-col">
