@@ -64,19 +64,19 @@ const StudentsData = () => {
   const links =[
 
     {
-      href: '/dashboard/users/view-registered/other',
+      href: '/Qac/users/view-registered/staff',
       label: 'Staff'
   
     },
   
     
     {
-      href: '/dashboard/users/view-registered/lecturers',
+      href: '/Qac/users/view-registered/lecturers',
       label: 'Lecturers'
     },
 
     {
-      href: '/dashboard/users/view-registered/students',
+      href: '/Qac/users/view-registered/students',
       label: 'Students'
     },
   
