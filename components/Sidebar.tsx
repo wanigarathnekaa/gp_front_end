@@ -24,37 +24,37 @@ function Sidebar() {
      <nav className="flex-1">
        <ul className="space-y-3 bg-white mt-5 justify-center text-xl">
        <li>
-           <Link href="/dashboard" className="flex items-center w-full space-x-4 px-5 py-3 rounded-md font-medium text-gray-600 hover:bg-blue-50 hover:text-blue-600">
+           <Link href="/Qac" className="flex items-center w-full space-x-4 px-5 py-3 rounded-md font-medium text-gray-600 hover:bg-blue-50 hover:text-blue-600">
              <MdSpaceDashboard />
              <span>Dashboard</span>
            </Link>
          </li>
          <li>
-           <Link href="/Users" className="flex items-center w-full space-x-4 px-5 py-3 rounded-md font-medium text-gray-600 hover:bg-blue-50 hover:text-blue-600">
+           <Link href="/Qac/users" className="flex items-center w-full space-x-4 px-5 py-3 rounded-md font-medium text-gray-600 hover:bg-blue-50 hover:text-blue-600">
              <FaUser />
              <span>Users</span>
            </Link>
          </li>
          <li>
-           <Link href="/dashboard/forms" className="flex items-center space-x-4 px-5 py-3 rounded-md font-medium text-gray-600 hover:bg-blue-50 hover:text-blue-600">
+           <Link href="/Qac/forms" className="flex items-center space-x-4 px-5 py-3 rounded-md font-medium text-gray-600 hover:bg-blue-50 hover:text-blue-600">
              <FaWpforms />
              <span>Forms</span>
            </Link>
          </li>
          <li>
-           <Link href="/dashboard/templates" className="flex items-center space-x-4 px-5 py-3 rounded-md font-medium text-gray-600 hover:bg-blue-50 hover:text-blue-600">
+           <Link href="/Qac/templates" className="flex items-center space-x-4 px-5 py-3 rounded-md font-medium text-gray-600 hover:bg-blue-50 hover:text-blue-600">
              <FaRegFileAlt />
              <span>Templates</span>
            </Link>
          </li>
          <li>
-           <Link href="/dashboard/privileges" className="flex items-center space-x-4 px-5 py-3 rounded-md font-medium text-gray-600 hover:bg-blue-50 hover:text-blue-600">
+           <Link href="/Qac/privileges" className="flex items-center space-x-4 px-5 py-3 rounded-md font-medium text-gray-600 hover:bg-blue-50 hover:text-blue-600">
              <FaKey />
              <span>Privileges</span>
            </Link>
          </li>
          <li>
-           <Link href="/dashboard/analysis" className="flex items-center space-x-4 px-5 py-3 rounded-md font-medium text-gray-600 hover:bg-blue-50 hover:text-blue-600">
+           <Link href="/Qac/analysis" className="flex items-center space-x-4 px-5 py-3 rounded-md font-medium text-gray-600 hover:bg-blue-50 hover:text-blue-600">
              <FaChartLine />
              <span>Analysis</span>
            </Link>
