@@ -62,7 +62,6 @@ function Sidebar() {
        </ul>
      </nav>
 
-
      <div className="flex pb-5 text-lg">
        <button className="flex w-full items-center space-x-4 gap-4 px-5 py-3 rounded-md font-medium text-gray-800 bg-gray-200 hover:bg-blue-50 hover:text-blue-600">
        <FiLogOut />
