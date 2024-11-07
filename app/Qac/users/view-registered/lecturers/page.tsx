@@ -85,7 +85,7 @@ const LecturerData = () => {
         <Navbar/>
         <Sidebar/>
 
-        <div className=' mt-12 ml-64 flex flex-col min-h-screen bg-[#EEF2FF] px-20 py-20'>  
+        <div className=' ml-64 flex flex-col min-h-screen bg-blue-50 px-20 py-10'>  
             <Title text='Registered lecturers'/>
             <Breadcrumbs/>
 
