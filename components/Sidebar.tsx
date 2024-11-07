@@ -15,8 +15,8 @@ function Sidebar() {
 
 
  return (
-   <div className="flex flex-col h-full bg-white w-72 p-5 shadow-xl fixed">
-     <div className="flex justify-center items-center p-5">
+   <div className="flex flex-col h-full bg-white w-72 px-5 shadow-xl fixed">
+     <div className="flex justify-center items-center p-5 mt-5">
        <Image src="/Logo_feebify.png" alt="Logo" width={500} height={500} />
      </div>
 
