@@ -29,6 +29,9 @@ import ExamSidebar from './ExamSidebar'
 import ExaminationTable from './ExaminationTable'
 import FeedbackForm from './FeedbackForms'
 import SubmitButtonBulk from './SubmitButtonBulk'
+import CloakBarChart from './CloakBarChart'
+import StudentCounterCard from './StudentCounterCard'
+import AddCloakForm from './AddCloakForm'
 
 export {
   Navbar,
@@ -60,5 +63,8 @@ export {
   ExamSidebar,
   ExaminationTable,
   FeedbackForm,
-  SubmitButtonBulk
+  SubmitButtonBulk,
+  CloakBarChart,
+  StudentCounterCard,
+  AddCloakForm,
 }

@@ -49,7 +49,7 @@ const Privileges = () => {
                 </div>
 
                 <div className="w-1/2 pl-2 pr-2 ml-3">
-                    <div className="w-full bg-white border rounded-2xl p-5">
+                    <div className="w-full bg-white shadow-md rounded-2xl p-5">
                         <h2 className='text-gray-600 font-semibold text-2xl py-3 ml-2 mb-5'>Existing privileges</h2>
 
                         <DetailsCard

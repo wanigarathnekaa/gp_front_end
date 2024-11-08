@@ -11,7 +11,7 @@ import Link from 'next/link';
 import TaskManager from '@/components/TaskManager';
 
 
-const Dashboard = () => {
+const Users = () => {
   return (
     
       <div className="w-full">
@@ -19,12 +19,12 @@ const Dashboard = () => {
       <Sidebar />
       <div className="ml-64 flex flex-row min-h-screen">
         <div className="w-3/4 px-20 py-10 bg-blue-50">
-            <Title text='Hi there'/>
-            <SubTitle text='Welcome to your dashboard'/>
+            <Title text='Users'/>
+            {/* <SubTitle text='Welcome to your dashboard'/> */}
             <Breadcrumbs/>
           
           <div className="flex flex-col">
-            <Link href="/dashboard/users/view-registered/lecturers">
+            <Link href="/Qac/users/view-registered/lecturers">
               <Card 
                 title="View registered users" 
                 description='Assign user privileges to any user'
@@ -33,7 +33,7 @@ const Dashboard = () => {
               />
             </Link>
 
-            <Link href="/dashboard/users/enroll-new/students">
+            <Link href="/Qac/users/enroll-new/students">
               <Card 
                 title="Enroll new users" 
                 description='View existing user privileges and roles'
@@ -42,7 +42,7 @@ const Dashboard = () => {
               />
             </Link>
 
-            <Link href="/dashboard/users/create-new/view-user">
+            <Link href="/Qac/users/create-new/view-user">
               <Card 
                 title="Create new user role" 
                 description='View existing user privileges and roles'
@@ -51,7 +51,7 @@ const Dashboard = () => {
               />
             </Link>
 
-            <Link href="/dashboard/users/peer-to-peer">
+            <Link href="/Qac/users/peer-to-peer">
               <Card 
                 title="Peer-to-peer review" 
                 description='Assign peer-to-peer reviewers'
@@ -60,7 +60,7 @@ const Dashboard = () => {
               />
             </Link>
 
-            <Link href="/dashboard/users/view-registered/students/ranking">
+            <Link href="/Qac/users/view-registered/students/ranking">
               <Card 
                 title="Student ranking" 
                 description='View students ranking'
@@ -83,4 +83,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Users;
