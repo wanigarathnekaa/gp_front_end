@@ -31,52 +31,6 @@ const links=[
       },
 ];
 
-// const usersData = [
-//     {
-//       userId: "1",
-//       userName : "John Doe",
-//       regNo: '2021CS100',
-//       indexNo: '2100798',
-//       size: 'Medium',
-//       phone: '0724646186',
-//       IssuedDate:'2024-05-01',
-//       ReturnedDate:'2024-08-01',
-//       status: 'Returned'
-//     },
-//     {
-//       userId: '2',
-//       userName : "Ann Fernando",
-//       regNo: '2021CS001',
-//       indexNo: '21345001',
-//       size: 'Large',
-//       phone: '0762341566',
-//       IssuedDate:'2024-05-02',
-//       status: 'Issued'
-//     },
-  
-//     {
-//       userId: '3',
-//       userName : "Alex Silva",
-//       regNo: '2021CS002',
-//       indexNo: '21385001',
-//       phone: '0765456789',
-//       size: 'Small',
-//       IssuedDate:'2024-05-01',
-//       status: 'Issued'
-//     },
-  
-//     {
-//       userId: '4',
-//       userName : 'James Perera',
-//       regNo: '2020CS006',
-//       indexNo: '20345001',
-//       phone: '0743217890',
-//       size: 'Medium',
-//       IssuedDate:'2024-05-01',
-//       ReturnedDate:'2024-08-05',
-//       status: 'Returned'
-//     },
-//   ]
 
 const Details = () => {
 
