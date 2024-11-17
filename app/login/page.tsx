@@ -67,7 +67,7 @@ const Page: React.FC = () => {
               <form className="py-3 space-y-6" onSubmit={handleSubmit}>
                 <div>
                   <label htmlFor="regNumber" className="block text-md font-medium leading-6 text-gray-700">
-                    Registration Number
+                    Username
                   </label>
                   <div className="mt-2">
                     <input
@@ -76,7 +76,7 @@ const Page: React.FC = () => {
                       type="text"
                       value={regNumber}
                       onChange={handleRegNumberChange}
-                      placeholder="2021/CS/001"
+                      placeholder="Username"
                       required
                       className="block w-full border-b-2 border-gray-300 focus:border-blue-500 focus:outline-none focus:ring-0 placeholder:text-gray-400 text-gray-800 py-2 px-0 sm:text-sm"
                     />
