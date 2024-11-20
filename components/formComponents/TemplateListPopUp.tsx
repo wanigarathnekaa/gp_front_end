@@ -22,6 +22,7 @@ function TemplateListPopUp() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedFormId, setSelectedFormId] = useState<number | null>(null);
   const [showButton, setShowButton] = useState(false); // New state for button
+  const [formContent, setFormContent] = useState<any | null>(null);
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -38,9 +39,9 @@ function TemplateListPopUp() {
 
   const handleChooseClick = async () => {
     if (selectedFormId !== null) {
-      await selectedForm(selectedFormId); // Fetch content
-      setShowButton(true); // Show button
-    //   handleCloseModal(); // Optionally close the modal
+      const content = await getFormContent(selectedFormId.toString());
+      setFormContent(content); // Save content to state
+      setShowButton(true); // Show button when form is selected
     }
   };
 
@@ -129,7 +130,7 @@ function TemplateListPopUp() {
       )}
 
       {/* Conditionally render the button */}
-      {showButton && <CreateFormBtn template={{ template: false }} />}
+      {showButton &&   <CreateFormBtnTemplate template={false} content={formContent} />}
     </>
   );
 }
@@ -181,13 +182,5 @@ const FormCard = React.memo(({ form, onClick, isSelected }: FormCardProps) => {
     </Card>
   );
 });
-
-async function selectedForm(formId: number) {
-  console.log("Selected Form ID:", formId);
-  const content = await getFormContent(formId.toString());
-  console.log(content);
-  console.log("Inside the selectedForm function");
-  <CreateFormBtnTemplate template={false} content={content} />
-}
 
 export default TemplateListPopUp;
