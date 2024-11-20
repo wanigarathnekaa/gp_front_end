@@ -1,8 +1,11 @@
+"use client";
+
 import { getFormContent, getForms } from "@/actions/form";
 import React, { Suspense, useState, useCallback } from "react";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "../ui/skeleton";
 import CreateFormBtn from "./CreateFormBtn";
+import CreateFormBtnTemplate from "./CreateFormBtnTemplate";
 
 export interface Form {
   id: number;
@@ -183,6 +186,8 @@ async function selectedForm(formId: number) {
   console.log("Selected Form ID:", formId);
   const content = await getFormContent(formId.toString());
   console.log(content);
+  console.log("Inside the selectedForm function");
+  <CreateFormBtnTemplate template={false} content={content} />
 }
 
 export default TemplateListPopUp;
