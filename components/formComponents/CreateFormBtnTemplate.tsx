@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useEffect } from "react";
 import {
   Dialog,
@@ -26,31 +24,28 @@ import { useForm } from "react-hook-form";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 import { toast } from "../ui/use-toast";
-import { formSchema, formSchematype } from "@/schemas/form";
-import { createForm } from "@/actions/form";
+import { templateFormSchema, templateFormSchemaType } from "@/schemas/form";
+import { createFormTemplate } from "@/actions/form";
 import { useRouter } from "next/navigation";
-import { set } from "date-fns";
 
-interface CreateFormBtnProps {
-  template?: boolean;
-}
 
-function CreateFormBtn({template}: {template?: CreateFormBtnProps}) {
+function CreateFormBtnTemplate({template, content}: {template: boolean, content:string}) {
   const router = useRouter();
-  const form = useForm<formSchematype>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<templateFormSchemaType>({
+    resolver: zodResolver(templateFormSchema),
   });
 
-  console.log("Inside the CreateFormBtn component");
-  form.setValue("template", template?.template);
-  async function onSubmit(data: formSchematype) {
+  console.log("Inside the CreateFormBtn Template component");
+  form.setValue("template", template);
+  form.setValue("content", content);
+  async function onSubmit(data: templateFormSchemaType) {
     try {
-      const formId = await createForm(data);
+      const formId = await createFormTemplate(data);
       toast({
         title: "Success",
         description: "Form created successfully",
       });
-      router.push(`/dashboard/forms/builder/${formId}`);
+        router.push(`/dashboard/forms/builder/${formId}`);
     } catch {
       toast({
         title: "Error",
@@ -61,17 +56,17 @@ function CreateFormBtn({template}: {template?: CreateFormBtnProps}) {
   }
   return (
     <Dialog>
-      <DialogTrigger asChild>
+      {/* <DialogTrigger asChild>
         <Button
           variant={"outline"}
           className="group border border-primary/20 h-[190px] items-center justify-center flex flex-col hover:border-primary hover:cursor-pointer border-dashed gap-4"
         >
           <BsFileEarmarkPlus className="h-8 w-8 text-muted-foreground group-hover:text-primary" />
           <p className="font-bold text-xl text-muted-foreground group-hover:text-primary">
-          {!template?.template ? "Create new form" : "Create new template"}
+          {!template ? "Create new form" : "Create new template"}
           </p>
         </Button>
-      </DialogTrigger>
+      </DialogTrigger> */}
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Create Form</DialogTitle>
@@ -127,4 +122,4 @@ function CreateFormBtn({template}: {template?: CreateFormBtnProps}) {
   );
 }
 
-export default CreateFormBtn;
+export default CreateFormBtnTemplate;

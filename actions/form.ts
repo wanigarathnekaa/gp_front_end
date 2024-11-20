@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { formSchema, formSchematype } from "@/schemas/form";
+import { formSchema, formSchematype, templateFormSchemaType } from "@/schemas/form";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -27,6 +27,20 @@ export const createForm = async (data: formSchematype) => {
 
   try {
     const response = await axios.post(`${API_URL}/forms/create`, data);
+    return response.data.id;
+  } catch (error) {
+    throw new Error("Form creation failed");
+  }
+};
+
+export const createFormTemplate = async (data: templateFormSchemaType) => {
+  const validation = formSchema.safeParse(data);
+  if (!validation.success) {
+    throw new Error("Validation Error");
+  }
+
+  try {
+    const response = await axios.post(`${API_URL}/forms/createFormTemplate`, data);
     return response.data.id;
   } catch (error) {
     throw new Error("Form creation failed");
