@@ -1,14 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogTitle,
-  DialogTrigger,
   DialogHeader,
   DialogFooter,
 } from "../ui/dialog";
-import { BsFileEarmarkPlus } from "react-icons/bs";
 import { ImSpinner2 } from "react-icons/im";
 import { Button } from "../ui/button";
 import {
@@ -28,24 +26,35 @@ import { templateFormSchema, templateFormSchemaType } from "@/schemas/form";
 import { createFormTemplate } from "@/actions/form";
 import { useRouter } from "next/navigation";
 
-
-function CreateFormBtnTemplate({template, content}: {template: boolean, content:string}) {
+function CreateFormBtnTemplate({
+  template,
+  content,
+}: {
+  template: boolean;
+  content: string;
+}) {
   const router = useRouter();
+  const [isDialogOpen, setDialogOpen] = useState(true); // Directly control dialog open state
   const form = useForm<templateFormSchemaType>({
     resolver: zodResolver(templateFormSchema),
   });
 
-  console.log("Inside the CreateFormBtn Template component");
-  form.setValue("template", template);
-  form.setValue("content", content);
+  // Initialize form values
+  React.useEffect(() => {
+    form.setValue("template", template);
+    form.setValue("content", content);
+  }, [template, content, form]);
+
   async function onSubmit(data: templateFormSchemaType) {
+    console.log("Inside the onSubmit function");
     try {
       const formId = await createFormTemplate(data);
       toast({
         title: "Success",
         description: "Form created successfully",
       });
-        router.push(`/dashboard/forms/builder/${formId}`);
+      setDialogOpen(false); // Close dialog after success
+      router.push(`/dashboard/forms/builder/${formId}`);
     } catch {
       toast({
         title: "Error",
@@ -54,28 +63,20 @@ function CreateFormBtnTemplate({template, content}: {template: boolean, content:
       });
     }
   }
+
   return (
-    <Dialog>
-      {/* <DialogTrigger asChild>
-        <Button
-          variant={"outline"}
-          className="group border border-primary/20 h-[190px] items-center justify-center flex flex-col hover:border-primary hover:cursor-pointer border-dashed gap-4"
-        >
-          <BsFileEarmarkPlus className="h-8 w-8 text-muted-foreground group-hover:text-primary" />
-          <p className="font-bold text-xl text-muted-foreground group-hover:text-primary">
-          {!template ? "Create new form" : "Create new template"}
-          </p>
-        </Button>
-      </DialogTrigger> */}
+    <Dialog open={isDialogOpen} onOpenChange={setDialogOpen}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Create Form</DialogTitle>
+          <DialogTitle>{!template ? "Create Form" : "Create Template"}</DialogTitle>
           <DialogDescription>
-            Create a new form to start collecting responses.
+            {!template
+              ? "Create a new form to start collecting responses."
+              : "Create a new template for your forms."}
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <FormField
               control={form.control}
               name="name"
@@ -89,7 +90,6 @@ function CreateFormBtnTemplate({template, content}: {template: boolean, content:
                 </FormItem>
               )}
             />
-
             <FormField
               control={form.control}
               name="description"
@@ -111,10 +111,7 @@ function CreateFormBtnTemplate({template, content}: {template: boolean, content:
             disabled={form.formState.isSubmitting}
             className="w-full mt-4"
           >
-            {!form.formState.isSubmitting && <span>Save</span>}
-            {form.formState.isSubmitting && (
-              <ImSpinner2 className="animate-spin" />
-            )}
+            {!form.formState.isSubmitting ? "Save" : <ImSpinner2 className="animate-spin" />}
           </Button>
         </DialogFooter>
       </DialogContent>
