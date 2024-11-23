@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { formSchema, formSchematype, templateFormSchemaType } from "@/schemas/form";
+import { formSchema, formSchematype, templateFormSchema, templateFormSchemaType } from "@/schemas/form";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -34,9 +34,9 @@ export const createForm = async (data: formSchematype) => {
 };
 
 export const createFormTemplate = async (data: templateFormSchemaType) => {
-  const validation = formSchema.safeParse(data);
+  const validation = templateFormSchema.safeParse(data);
   if (!validation.success) {
-    throw new Error("Validation Error");
+    throw new Error(validation.error.message);
   }
 
   try {

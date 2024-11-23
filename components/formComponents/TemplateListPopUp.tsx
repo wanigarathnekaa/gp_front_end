@@ -42,6 +42,7 @@ function TemplateListPopUp() {
       const content = await getFormContent(selectedFormId.toString());
       setFormContent(content); // Save content to state
       setShowButton(true); // Show button when form is selected
+      setIsModalOpen(false);
     }
   };
 
