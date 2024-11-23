@@ -13,17 +13,30 @@ const CloakCountCard = ({ title, countSmall, countMedium, countLarge, descriptio
     const total = countSmall + countMedium + countLarge;
 
     return (
-        <div className={`bg-white p-6 mb-8 mt-15 ml-3 rounded-2xl shadow-xl flex flex-row items-center justify-between group cursor-pointer h-13 ${wide ? 'w-96' : 'w-'}`}>
-            <div>
-                <div className="text-xl text-gray-600 font-semibold mb-1 cursor-pointer">{title}</div>
+        <div className={`p-6 rounded-2xl border bg-white hover:border-blue-200 flex items-center shadow-lg  justify-between group cursor-pointer transform transition-transform duration-300 hover:scale-105 hover:text-blue-500 h-13 ${wide ? 'w-full' : 'w-full'} mx-3`}>
+            <div className='flex-grow'>
+                <div className="text-3xl sm:text-2xl text-gray-600 font-semibold mb-4">{title}</div>
                 
-                <p className='text-sm text-gray-500 cursor-pointer '>Small - {countSmall}</p>
-                <p className='text-sm text-gray-500 cursor-pointer '>Medium - {countMedium}</p>
-                <p className='text-sm text-gray-500 cursor-pointer '>Large - {countLarge}</p>
-                
+                <div className='flex flex-col space-y-1'>
+
+                    <div className='flex justify-start text-base sm:text-sm text-gray-500'>
+                        <span className='w-16'>Small</span> 
+                        <span>- {countSmall}</span>
+                    </div>
+
+                    <div className='flex justify-start text-base sm:text-sm text-gray-500'>
+                        <span className='w-16'>Medium</span> 
+                        <span>- {countMedium}</span>
+                    </div>
+
+                    <div className='flex justify-start text-base sm:text-sm text-gray-500'>
+                        <span className='w-16'>Large</span> 
+                        <span>- {countLarge}</span>
+                    </div>
+                </div>
             </div>
 
-            <div className='text-4xl text-gray-700 font-bold mr-10 group-hover:text-blue-500 group-hover:text-5xl duration-300'>
+            <div className='text-4xl sm:text-3xl text-gray-600 font-bold mr-8 mt-6 '>
                 {total}
             </div>
         </div>

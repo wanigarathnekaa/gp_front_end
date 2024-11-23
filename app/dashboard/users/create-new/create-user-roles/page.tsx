@@ -1,8 +1,10 @@
 "use client";
 import React, { useState } from 'react'
-import { Sidebar, Navbar, Title, RoleTable, Navigation, SearchBar,Card } from '@/components/index';
+import { Sidebar, Navbar, Title, RoleTable, SearchBar} from '@/components/index';
 import ButtonText from '@/components/ButtonText';
 import Breadcrumbs from '@/components/Breadcrumbs';
+import NewRoleCreationForm from '@/components/NewRoleCreation';
+import SubTitle from '@/components/SubTitle';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { HiUserAdd } from "react-icons/hi";
@@ -64,18 +66,20 @@ const ViewStaff = () => {
             <Title text='User roles'/>
             <Breadcrumbs />
 
-            <div className='flex gap-5 items-center'>
-              <SearchBar onSearch={handleSearch}/>
-
-              <div className='flex'>
-                <Link href='/dashboard/users/create-new/create-user-roles/staff'>
-                  <ButtonText text='Create new user role' />
-                </Link>
-              </div>
+            <div className="items-start justify-start">
+                <NewRoleCreationForm/>
             </div>
             
-            <div className='mt-3'>
-              <RoleTable users ={users}/>
+            
+
+            
+            
+            <div className='mt-5'>
+                <SubTitle text='Recently created' />
+                <div className="mt-6">
+                    <SearchBar onSearch={handleSearch}/>
+                </div>
+                <RoleTable users ={users}/>
             </div>
 
         </div>

@@ -2,6 +2,7 @@
 import React, { useState , useEffect} from 'react'
 import { Sidebar, Navbar, Title, Table, Navigation, Dropdown, SearchBar } from '@/components/index';
 import { usePathname } from 'next/navigation';
+import Breadcrumbs from '@/components/Breadcrumbs';
 
 
 const usersData = [
@@ -63,19 +64,19 @@ const StudentsData = () => {
   const links =[
 
     {
-      href: '/dashboard/users/view-registered/other',
+      href: '/Qac/users/view-registered/staff',
       label: 'Staff'
   
     },
   
     
     {
-      href: '/dashboard/users/view-registered/lecturers',
+      href: '/Qac/users/view-registered/lecturers',
       label: 'Lecturers'
     },
 
     {
-      href: '/dashboard/users/view-registered/students',
+      href: '/Qac/users/view-registered/students',
       label: 'Students'
     },
   
@@ -128,35 +129,39 @@ const StudentsData = () => {
       <Navbar/>
       <Sidebar/>
 
-      <div className=' mt-12 ml-64 flex flex-col min-h-screen bg-[#EEF2FF] p-4'>
-      <Title text='Registered Users' />
+      <div className='ml-64 flex flex-col min-h-screen bg-blue-50 px-20 py-10'>  
+      <Title text='Registered students' />
+      <Breadcrumbs/>
 
-      <Navigation links={links} pathname={pathname}/>
+      
+      <div className="flex justify-between">
+        <div className='flex items-center justify-start gap-8 mb-5'>
 
-      <div className='flex items-center justify-start mt-8 mb-4 ml-8 gap-14'>
+          <SearchBar onSearch={handleSearch}/>
 
-        <SearchBar onSearch={handleSearch}/>
+          <Dropdown 
+            options={["All",'Undergraduates', 'Postgraduates', 'Graduates']}
+            onSelect={handleCategorySelect}
+            title='Student Type'
+          />
 
-        <Dropdown 
-          options={["All",'Undergraduates', 'Postgraduates', 'Graduates']}
-          onSelect={handleCategorySelect}
-        />
+          <Dropdown
+            options={["All","1st Year", "2nd Year", "3rd Year", "4th Year"]}
+            onSelect={handleYearSelect}
+            title='Year'
+          />
 
-        <Dropdown
-          options={["All","1st Year", "2nd Year", "3rd Year", "4th Year"]}
-          onSelect={handleYearSelect}
-        />
 
-        
+        </div>
+        <div className="mt-4">
+          <Navigation links={links} pathname={pathname}/>
+        </div>
       </div>
 
       <div >
         <Table users={users} type="student"/>
       </div>
-      
-      
-
-    </div>
+      </div>
     </div>
     
   )

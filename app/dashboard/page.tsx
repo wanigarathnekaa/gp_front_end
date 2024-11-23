@@ -8,28 +8,28 @@ import { HiUserAdd } from "react-icons/hi";
 import { AiFillMessage } from "react-icons/ai";
 import { FaRankingStar } from "react-icons/fa6";
 import Link from 'next/link';
+import TaskManager from '@/components/TaskManager';
+
 
 const Dashboard = () => {
-  return (        
-    <div className="w-full">
+  return (
+    
+      <div className="w-full">
       <Navbar />
       <Sidebar />
-      <div className="mt-12 ml-64 flex flex-row min-h-screen">
-        <div className="w-3/4 px-20 py-20 bg-[#EEF2FF]">
-          <div className="text-4xl font-bold mb-4">
-            <h1 className='mb-10 ml-3 text-black'>
-              Hi there!
-            </h1>
-            <h2 className='font-normal mt-2 text-3xl'>
-              Welcome to your dashboard
-            </h2>
-          </div>
+      <div className="ml-64 flex flex-row min-h-screen">
+        <div className="w-3/4 px-20 py-10 bg-blue-50">
+            <Title text='Hi there'/>
+            <SubTitle text='Welcome to your dashboard'/>
+            <Breadcrumbs/>
+          
           <div className="flex flex-col">
             <Link href="/dashboard/users/view-registered/lecturers">
               <Card 
                 title="View registered users" 
                 description='Assign user privileges to any user'
                 icon={FaUsers}
+                wide={true}
               />
             </Link>
 
@@ -38,15 +38,16 @@ const Dashboard = () => {
                 title="Enroll new users" 
                 description='View existing user privileges and roles'
                 icon={IoMdAddCircle}
+                wide={true}
               />
             </Link>
 
-
-            <Link href="/dashboard/users/create-new">
+            <Link href="/dashboard/users/create-new/view-user">
               <Card 
                 title="Create new user role" 
                 description='View existing user privileges and roles'
                 icon={HiUserAdd}
+                wide={true}
               />
             </Link>
 
@@ -55,6 +56,7 @@ const Dashboard = () => {
                 title="Peer-to-peer review" 
                 description='Assign peer-to-peer reviewers'
                 icon={AiFillMessage}
+                wide={true}
               />
             </Link>
 
@@ -63,17 +65,19 @@ const Dashboard = () => {
                 title="Student ranking" 
                 description='View students ranking'
                 icon={FaRankingStar}
+                wide={true}
               />
             </Link>
           </div>
         </div>
-        <div className="w-1/4 p-4 bg-white shadow-md">
+        <TaskManager/>
+        {/* <div className="w-1/4 p-4 bg-white shadow-md">
           <Calendar />
           <TaskList 
             tasks={['Task 1', 'Task 2', 'Task 3', 'Task 4']}
             icon={FaRegClock} 
           />
-        </div>
+        </div> */}
       </div>
     </div>
   );

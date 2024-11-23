@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import { Sidebar, Navbar, Title, Table, Navigation, SearchBar } from '@/components/index';
 import { usePathname } from 'next/navigation';
+import Breadcrumbs from '@/components/Breadcrumbs';
 
 
 const usersData = [
@@ -34,19 +35,18 @@ const usersData = [
 const links=[
 
   {
-    href: '/dashboard/users/view-registered/other',
+    href: '/Qac/users/view-registered/other',
     label: 'Staff'
 
   },
-
   
   {
-    href: '/dashboard/users/view-registered/lecturers',
+    href: '/Qac/users/view-registered/lecturers',
     label: 'Lecturers'
   },
 
   {
-    href: '/dashboard/users/view-registered/students',
+    href: '/Qac/users/view-registered/students',
     label: 'Students'
   },
 
@@ -77,14 +77,16 @@ const OtherData = () => {
     <Navbar/>
     <Sidebar/>
 
-    <div className=' mt-12 ml-64 flex flex-col min-h-screen bg-[#EEF2FF] p-4'>
-        <Title text='Registered Users'/>
+    <div className='ml-64 flex flex-col min-h-screen bg-blue-50 px-20 py-10'>  
+        <Title text='Registered staff members'/>
+        <Breadcrumbs/>
 
-        <Navigation links={links} pathname={pathname}/>
-
-        <div className="flex items-center mb-4 mt-8 ml-8">
-              <SearchBar onSearch={handleSearch}/>
+        <div className="flex justify-between">
+          <SearchBar onSearch={handleSearch}/>
+          <Navigation links={links} pathname={pathname}/>
         </div>
+        
+              
 
         <Table users ={users} type='other'/>
 
