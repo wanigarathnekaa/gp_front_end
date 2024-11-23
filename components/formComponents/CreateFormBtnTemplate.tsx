@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+"use client";
+
+import React, { useState, useEffect, use } from "react";
 import {
   Dialog,
   DialogContent,
@@ -34,28 +36,41 @@ function CreateFormBtnTemplate({
   content: string;
 }) {
   const router = useRouter();
-  const [isDialogOpen, setDialogOpen] = useState(true); // Directly control dialog open state
+  const [isDialogOpen, setDialogOpen] = useState(true);
+
   const form = useForm<templateFormSchemaType>({
     resolver: zodResolver(templateFormSchema),
+    defaultValues: {
+      name: "",
+      description: "",
+      template,
+      content,
+    },
   });
 
-  // Initialize form values
-  React.useEffect(() => {
+  useEffect(() => {
+    // Update form values when props change
     form.setValue("template", template);
-    form.setValue("content", content);
-  }, [template, content, form]);
+    form.setValue("content", JSON.stringify(content));
+  }, []);
 
-  async function onSubmit(data: templateFormSchemaType) {
-    console.log("Inside the onSubmit function");
+  console.log(form.getValues());
+
+  async function onSubmit() {
+    let data=form.getValues();
+    console.log("Inside onSubmit function");
+    console.log("Submitting form data:", data);
     try {
       const formId = await createFormTemplate(data);
+      console.log("Form created with ID:", formId); // Log the form ID
       toast({
         title: "Success",
         description: "Form created successfully",
       });
-      setDialogOpen(false); // Close dialog after success
+      setDialogOpen(false);
       router.push(`/dashboard/forms/builder/${formId}`);
-    } catch {
+    } catch (error) {
+      console.error("Error creating form:", error); // Log any errors
       toast({
         title: "Error",
         description: "Something went wrong!",
@@ -76,7 +91,7 @@ function CreateFormBtnTemplate({
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+          <form  className="space-y-4">
             <FormField
               control={form.control}
               name="name"
@@ -107,7 +122,7 @@ function CreateFormBtnTemplate({
         </Form>
         <DialogFooter>
           <Button
-            onClick={form.handleSubmit(onSubmit)}
+            onClick={onSubmit}
             disabled={form.formState.isSubmitting}
             className="w-full mt-4"
           >
