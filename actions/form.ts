@@ -56,6 +56,15 @@ export const getForms = async () => {
   }
 };
 
+export const getTemplates = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/forms/templates`);
+    return response.data;
+  } catch (error) {
+    throw new Error("Failed to fetch forms");
+  }
+};
+
 export const getFormById = async (id: string) => {
   try {
     const response = await axios.get(`${API_URL}/forms/${id}`);
