@@ -6,6 +6,7 @@ import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "../ui/skeleton";
 import CreateFormBtn from "./CreateFormBtn";
 import CreateFormBtnTemplate from "./CreateFormBtnTemplate";
+import BulkFormBtn from "./BulkFormBtn";
 
 export interface Form {
   id: number;
@@ -131,7 +132,8 @@ function TemplateListPopUp() {
       )}
 
       {/* Conditionally render the button */}
-      {showButton &&   <CreateFormBtnTemplate template={false} content={formContent} />}
+      {/* {showButton &&   <CreateFormBtnTemplate template={false} content={formContent} />} */}
+      {showButton &&   <BulkFormBtn content={formContent} />}
     </>
   );
 }
