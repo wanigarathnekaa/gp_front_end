@@ -23,7 +23,7 @@ const NewRoleCreationForm = ({
     onSubmit
 }: NewRoleCreationFormProps) => {
     return (
-        <div className='p-8 bg-white rounded-2xl shadow-md w-full max-w-full mx-auto '>
+        <div className='ml-2 p-8 bg-white rounded-2xl shadow-md w-full max-w-full mx-auto '>
           <form onSubmit={onSubmit}>
             <div className='mt-3 mb-4 justify-center items-center'>
                 <h2 className='text-gray-700 text-xl font-bold'>Create new user role</h2>
@@ -102,7 +102,6 @@ const NewRoleCreationForm = ({
             </div>
 
             <div className=' mt-10 flex justify-end space-x-4'>
-                <Button />
                 <ButtonText text="Add" />
             </div>
             
