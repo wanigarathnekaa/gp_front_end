@@ -1,8 +1,12 @@
-import { getFormContent, getForms } from "@/actions/form";
+"use client";
+
+import { getFormContent, getForms, getTemplates } from "@/actions/form";
 import React, { Suspense, useState, useCallback } from "react";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "../ui/skeleton";
 import CreateFormBtn from "./CreateFormBtn";
+import CreateFormBtnTemplate from "./CreateFormBtnTemplate";
+import BulkFormBtn from "./BulkFormBtn";
 
 export interface Form {
   id: number;
@@ -19,6 +23,7 @@ function TemplateListPopUp() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedFormId, setSelectedFormId] = useState<number | null>(null);
   const [showButton, setShowButton] = useState(false); // New state for button
+  const [formContent, setFormContent] = useState<any | null>(null);
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -35,9 +40,10 @@ function TemplateListPopUp() {
 
   const handleChooseClick = async () => {
     if (selectedFormId !== null) {
-      await selectedForm(selectedFormId); // Fetch content
-      setShowButton(true); // Show button
-    //   handleCloseModal(); // Optionally close the modal
+      const content = await getFormContent(selectedFormId.toString());
+      setFormContent(content); // Save content to state
+      setShowButton(true); // Show button when form is selected
+      setIsModalOpen(false);
     }
   };
 
@@ -126,7 +132,8 @@ function TemplateListPopUp() {
       )}
 
       {/* Conditionally render the button */}
-      {showButton && <CreateFormBtn template={{ template: false }} />}
+      {/* {showButton &&   <CreateFormBtnTemplate template={false} content={formContent} />} */}
+      {showButton &&   <BulkFormBtn content={formContent} />}
     </>
   );
 }
@@ -141,7 +148,7 @@ interface FormCardsProps {
 }
 
 async function FormCards({ onCardClick, selectedFormId }: FormCardsProps) {
-  const forms = await getForms();
+  const forms = await getTemplates();
   return (
     <>
       {forms.map((form: any) => (
@@ -178,11 +185,5 @@ const FormCard = React.memo(({ form, onClick, isSelected }: FormCardProps) => {
     </Card>
   );
 });
-
-async function selectedForm(formId: number) {
-  console.log("Selected Form ID:", formId);
-  const content = await getFormContent(formId.toString());
-  console.log(content);
-}
 
 export default TemplateListPopUp;
