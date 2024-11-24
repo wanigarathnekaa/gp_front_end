@@ -1,6 +1,6 @@
 "use client";
 
-import { getFormContent, getForms } from "@/actions/form";
+import { getFormContent, getForms, getTemplates } from "@/actions/form";
 import React, { Suspense, useState, useCallback } from "react";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "../ui/skeleton";
@@ -42,6 +42,7 @@ function TemplateListPopUp() {
       const content = await getFormContent(selectedFormId.toString());
       setFormContent(content); // Save content to state
       setShowButton(true); // Show button when form is selected
+      setIsModalOpen(false);
     }
   };
 
@@ -145,7 +146,7 @@ interface FormCardsProps {
 }
 
 async function FormCards({ onCardClick, selectedFormId }: FormCardsProps) {
-  const forms = await getForms();
+  const forms = await getTemplates();
   return (
     <>
       {forms.map((form: any) => (

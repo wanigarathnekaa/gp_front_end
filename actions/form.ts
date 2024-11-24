@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { formSchema, formSchematype, templateFormSchemaType } from "@/schemas/form";
+import { formSchema, formSchematype, templateFormSchema, templateFormSchemaType } from "@/schemas/form";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -34,9 +34,9 @@ export const createForm = async (data: formSchematype) => {
 };
 
 export const createFormTemplate = async (data: templateFormSchemaType) => {
-  const validation = formSchema.safeParse(data);
+  const validation = templateFormSchema.safeParse(data);
   if (!validation.success) {
-    throw new Error("Validation Error");
+    throw new Error(validation.error.message);
   }
 
   try {
@@ -50,6 +50,15 @@ export const createFormTemplate = async (data: templateFormSchemaType) => {
 export const getForms = async () => {
   try {
     const response = await axios.get(`${API_URL}/forms/all`);
+    return response.data;
+  } catch (error) {
+    throw new Error("Failed to fetch forms");
+  }
+};
+
+export const getTemplates = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/forms/templates`);
     return response.data;
   } catch (error) {
     throw new Error("Failed to fetch forms");
