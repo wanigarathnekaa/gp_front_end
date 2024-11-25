@@ -12,7 +12,7 @@ const BulkFormEnrollCard: React.FC<BulkFormEnrollCardProps> = ({ content }) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const formContent = JSON.stringify(content);
   console.log(formContent);
-
+ 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     const file = acceptedFiles[0];
     if (file) {
