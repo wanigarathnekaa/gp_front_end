@@ -12,20 +12,29 @@ import {
   DialogFooter,
 } from "../ui/dialog";
 import CreateFormBtnTemplate from "./CreateFormBtnTemplate";
+import BulkFormCard from "../BulkFormCard";
 
-function BulkFormBtn({content}: {content: string;}) {
-
+function BulkFormBtn({ content }: { content: string }) {
   const [isDialogOpen, setDialogOpen] = useState(true);
+  const [view, setView] = useState<"dialog" | "singleForm" | "bulkForm">("dialog");
 
   const singleFormCreation = () => {
-    setDialogOpen(false);
-    <CreateFormBtnTemplate template={false} content={content} />
+    setDialogOpen(false); // Close the dialog
+    setView("singleForm"); // Switch to single form view
   };
 
   const bulkFormCreation = () => {
-    setDialogOpen(false);
-    // <CreateFormBtnTemplate template={false} content={content} />
+    setDialogOpen(false); // Close the dialog
+    setView("bulkForm"); // Switch to bulk form view
   };
+
+  if (view === "singleForm") {
+    return <CreateFormBtnTemplate template={false} content={content} />;
+  }
+
+  if (view === "bulkForm") {
+    return <BulkFormCard content={content} />;
+  }
 
   return (
     <Dialog open={isDialogOpen} onOpenChange={setDialogOpen}>
@@ -37,10 +46,14 @@ function BulkFormBtn({content}: {content: string;}) {
             {"Select Cancel Button to create a single form."}
           </DialogDescription>
         </DialogHeader>
-        
+
         <DialogFooter>
-          <Button className="w-full mt-4">{"Create"}</Button>
-          <Button onClick={singleFormCreation} className="w-full mt-4">{"Cancel"}</Button>
+          <Button onClick={bulkFormCreation} className="w-full mt-4">
+            {"Create"}
+          </Button>
+          <Button onClick={singleFormCreation} className="w-full mt-4">
+            {"Cancel"}
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

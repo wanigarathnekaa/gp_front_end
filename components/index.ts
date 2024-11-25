@@ -32,6 +32,7 @@ import SubmitButtonBulk from './SubmitButtonBulk'
 import CloakBarChart from './CloakBarChart'
 import StudentCounterCard from './StudentCounterCard'
 import AddCloakForm from './AddCloakForm'
+import SubmitFormBulk from './SubmitFormBulk'
 
 export {
   Navbar,
@@ -67,4 +68,5 @@ export {
   CloakBarChart,
   StudentCounterCard,
   AddCloakForm,
+  SubmitFormBulk
 }
