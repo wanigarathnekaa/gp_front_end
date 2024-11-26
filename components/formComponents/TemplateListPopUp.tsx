@@ -59,11 +59,11 @@ function TemplateListPopUp() {
 
       {isModalOpen && (
         <div
-          id="static-modal"
-          aria-hidden="true"
-          className="fixed top-0 right-0 left-0 pl-0 inset-0 z-[999] flex justify-center items-center w-full h-[calc(100%-1rem)] max-h-full overflow-y-auto overflow-x-hidden bg-gray-500 bg-opacity-70"
-        >
-          <div className="relative p-4 w-full max-w-2xl max-h-full">
+        id="static-modal"
+        aria-hidden="true"
+        className="fixed inset-0 flex justify-center items-center w-fit h-screen bg-gray-500 bg-opacity-70"
+      >
+          <div className="relative p-4 w-full max-w-2xl max-h-screen">
             <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
               {/* Modal header */}
               <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">

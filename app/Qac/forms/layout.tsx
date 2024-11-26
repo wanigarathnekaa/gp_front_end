@@ -13,12 +13,12 @@ export default function Layout({ children }: { children: ReactNode }) {
       {!isBuilderPage && (
         <>
           <Sidebar />
-          <nav className="flex justify-between items-center h-[52px] px-4 py-2">
+          <nav className="flex justify-between items-center h-[52px] px-4">
             <Navbar />
           </nav>
         </>
       )}
-      <main className="flex w-full flex-grow pl-8 mt-5 flex-col min-h-screen bg-[#EEF2FF] ">{children}</main>
+      <main className="flex w-full flex-grow pl-8 flex-col min-h-screen bg-blue-50 ">{children}</main>
     </div>
   );
 }
