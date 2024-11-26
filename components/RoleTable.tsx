@@ -1,4 +1,4 @@
-"use client"; 
+"use client";
 
 import { FaEdit } from "react-icons/fa";
 import { CiViewList } from "react-icons/ci";
@@ -19,13 +19,29 @@ interface Props {
 
 const RoleTable = ({ users }: Props) => {
   const [selectedRow, setSelectedRow] = useState<number | null>(null);
+  const [rowsPerPage, setRowsPerPage] = useState(5); // Default rows per page
+  const [currentPage, setCurrentPage] = useState(1); // Current page state
 
   const handleRowClick = (index: number) => {
     setSelectedRow(index);
   };
 
+  const handleRowsPerPageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setRowsPerPage(Number(e.target.value));
+    setCurrentPage(1); // Reset to the first page whenever rows per page changes
+  };
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
+
+  // Calculate the current page's data
+  const startIndex = (currentPage - 1) * rowsPerPage;
+  const endIndex = startIndex + rowsPerPage;
+  const currentPageData = users.slice(startIndex, endIndex);
+
   return (
-    <div className="flex ml-3 mt-10 justify-center">
+    <div className="flex ml-3 mt-10 justify-center flex-col">
       <table className="w-full max-w-full bg-white rounded-2xl shadow-md border-none">
         <thead className="text-base text-gray-700">
           <tr>
@@ -39,8 +55,8 @@ const RoleTable = ({ users }: Props) => {
         </thead>
 
         <tbody className="text-sm text-gray-500">
-          {users.map((user, index) => {
-            const isLastRow = index === users.length - 1;
+          {currentPageData.map((user, index) => {
+            const isLastRow = index === currentPageData.length - 1;
             return (
               <tr
                 key={index}
@@ -69,6 +85,42 @@ const RoleTable = ({ users }: Props) => {
           })}
         </tbody>
       </table>
+
+      <div className="ml-2 mt-5 flex justify-between items-center">
+        <div className="flex items-center gap-2">
+          <label htmlFor="rows-per-page" className="text-sm">Rows per page:</label>
+          <select
+            id="rows-per-page"
+            className="p-2 border rounded bg-white"
+            value={rowsPerPage}
+            onChange={handleRowsPerPageChange}
+          >
+            <option value={5}>5</option>
+            <option value={10}>10</option>
+            <option value={15}>15</option>
+          </select>
+        </div>
+
+        <div className="flex items-center gap-4">
+          <button
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+            className="px-3 py-1 bg-white rounded disabled:opacity-50"
+          >
+            Prev
+          </button>
+          <span className="text-sm">
+            Page {currentPage} of {Math.ceil(users.length / rowsPerPage)}
+          </span>
+          <button
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === Math.ceil(users.length / rowsPerPage)}
+            className="px-3 py-1 bg-white rounded disabled:opacity-50"
+          >
+            Next
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
