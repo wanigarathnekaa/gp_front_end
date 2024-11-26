@@ -19,8 +19,8 @@ interface Props {
 
 const RoleTable = ({ users }: Props) => {
   const [selectedRow, setSelectedRow] = useState<number | null>(null);
-  const [rowsPerPage, setRowsPerPage] = useState(5); // Default rows per page
-  const [currentPage, setCurrentPage] = useState(1); // Current page state
+  const [rowsPerPage, setRowsPerPage] = useState(5); 
+  const [currentPage, setCurrentPage] = useState(1); 
 
   const handleRowClick = (index: number) => {
     setSelectedRow(index);
@@ -28,14 +28,13 @@ const RoleTable = ({ users }: Props) => {
 
   const handleRowsPerPageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setRowsPerPage(Number(e.target.value));
-    setCurrentPage(1); // Reset to the first page whenever rows per page changes
+    setCurrentPage(1); 
   };
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
 
-  // Calculate the current page's data
   const startIndex = (currentPage - 1) * rowsPerPage;
   const endIndex = startIndex + rowsPerPage;
   const currentPageData = users.slice(startIndex, endIndex);

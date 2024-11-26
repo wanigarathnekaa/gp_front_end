@@ -25,27 +25,24 @@ interface Props {
 
 const Table = ({ users, type }: Props) => {
   const [selectedRow, setSelectedRow] = useState<number | null>(null);
-  const [rowsPerPage, setRowsPerPage] = useState<number>(5); // Default number of rows per page
-  const [currentPage, setCurrentPage] = useState<number>(1); // Current page number
+  const [rowsPerPage, setRowsPerPage] = useState<number>(5); 
+  const [currentPage, setCurrentPage] = useState<number>(1); 
 
   const handleRowClick = (index: number) => {
     setSelectedRow(index);
   };
 
-  // Calculate the range of users to show based on the current page and rows per page
   const startIndex = (currentPage - 1) * rowsPerPage;
   const endIndex = startIndex + rowsPerPage;
   const paginatedUsers = users.slice(startIndex, endIndex);
 
-  // Function to handle page change
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
 
-  // Function to handle rows per page change
   const handleRowsPerPageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setRowsPerPage(Number(e.target.value));
-    setCurrentPage(1); // Reset to first page when rows per page changes
+    setCurrentPage(1); 
   };
 
   return (
