@@ -7,16 +7,23 @@ const Breadcrumbs = () => {
     const pathname = usePathname();
     const pathnames = pathname.split('/').filter(x => x);
 
+    const formatName = (str) => {
+        return str
+            .split('-') 
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1)) 
+            .join(' '); 
+    };
+
     return (
-        <nav className="text-[#706ee4] mt-3 ml-4 mb-10">
+        <nav className="text-blue-600 mt-3 ml-4 mb-10">
             <ul className="flex">
                 <li>
-                    <Link href="/">Home</Link>
+                    <Link href="/">Dashboard</Link>
                 </li>
                 {pathnames.map((value, index) => {
                     const last = index === pathnames.length - 1;
                     const to = `/${pathnames.slice(0, index + 1).join('/')}`;
-                    const title = value;
+                    const title = formatName(value); 
 
                     return (
                         <li key={to}>
@@ -32,6 +39,6 @@ const Breadcrumbs = () => {
             </ul>
         </nav>
     );
-}
+};
 
 export default Breadcrumbs;

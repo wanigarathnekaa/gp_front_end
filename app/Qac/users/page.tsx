@@ -42,7 +42,7 @@ const Users = () => {
               />
             </Link>
 
-            <Link href="/Qac/users/create-new/view-user">
+            <Link href="/Qac/users/create-new/create-user-roles">
               <Card 
                 title="Create new user role" 
                 description='View existing user privileges and roles'

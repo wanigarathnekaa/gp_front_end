@@ -64,18 +64,18 @@ const Students = () => {
   const links =[
 
     {
-      href: '/dashboard/users/enroll-new/staff',
+      href: '/Qac/users/enroll-new/staff',
       label: 'Staff'
 
     },
 
     {
-      href: '/dashboard/users/enroll-new/lecturers',
+      href: '/Qac/users/enroll-new/lecturers',
       label: 'Lecturers'
     },
 
     {
-      href: '/dashboard/users/enroll-new/students',
+      href: '/Qac/users/enroll-new/students',
       label: 'Students'
     }
     
@@ -85,9 +85,6 @@ const Students = () => {
     <div className='w-full'>
       <Navbar/>
       <Sidebar/>
-
-      {/* <div className=' mt-14 ml-64  min-h-screen bg-[#EEF2FF] p-4 '> */}
-        {/* <Title text='Enroll new users' /> */}
         <div className='ml-64 flex flex-col min-h-screen bg-blue-50 px-20 py-10'> 
             <Title text='Enroll new students' />
             <div className="flex flex-row justify-between">
