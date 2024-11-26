@@ -1,5 +1,6 @@
 import React from 'react'
-import { Button, SubmitButton } from '@/components/index';
+import { Button, SubmitButton, Title } from '@/components/index';
+import ButtonText from './ButtonTextBlue';
 
 interface AssignReviewFormProps {
     
@@ -26,11 +27,13 @@ const AssignReviewForm = ({
 
     return (
         <div className='p-8 bg-white rounded-lg shadow-lg w-full max-w-lg mx-auto relative'>
-            <button className="absolute top-2 right-2 text-red-500 font-bold  hover:text-gray-800" onClick={closeModal}>
+            <button className="absolute top-2 right-2 text-gray-600 font-bold  hover:text-gray-500" onClick={closeModal}>
                 X
             </button>
 
-            <h1 className='text-2xl text-gray-500 font-bold mb-6 text-center'>Assign new peer reviewer</h1>
+            <div className="justify-center flex mb-10">
+                <Title text="Assign new peer reviewer"/>
+            </div>
 
             <form onSubmit={onSubmit} action={formType}>
                 
@@ -86,8 +89,8 @@ const AssignReviewForm = ({
 
                
                 <div className=' mt-14 flex justify-end space-x-4'>
-                    <Button/>
-                    <SubmitButton text="Assign" />
+                    <Button />
+                    <ButtonText text="Assign"/>
                 </div>
             </form>
         </div>
