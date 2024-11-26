@@ -94,8 +94,8 @@ const History = () => {
             <Navbar/>
             <ExamSidebar/>
 
-            <div className='mt-12 ml-72 md:ml-64 lg:ml-72 bg-[#EEF2FF] flex flex-col min-h-screen'>
-                <div className='ml-3 mt-8'>
+            <div className='ml-72 md:ml-64 lg:ml-72 bg-blue-50 flex flex-col min-h-screen'>
+                <div className='ml-5 mt-20'>
                     <Title text='Student History'/>
                 </div>
                 
