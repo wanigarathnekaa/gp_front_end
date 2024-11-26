@@ -37,7 +37,7 @@ const NewRoleCreationForm = ({
                     name="userRoleId"
                     value={userRoleId}
                     onChange={onInputChange}
-                    className=" appearance-none border border-gray-300 rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-[#4e46e5b5] focus:shadow-outline"
+                    className=" appearance-none border border-gray-300 rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-blue-500 focus:shadow-outline"
                 />
             </div>
 
@@ -51,7 +51,7 @@ const NewRoleCreationForm = ({
                     name='userRoleName'
                     value={userRoleName}
                     onChange={onInputChange}
-                    className='appearance-none border border-gray-300 rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-[#4e46e5b5] focus:shadow-outline'
+                    className='appearance-none border border-gray-300 rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-blue-500 focus:shadow-outline'
                 />
             </div>
 
@@ -65,7 +65,7 @@ const NewRoleCreationForm = ({
                     name='status'
                     value={status}
                     onChange={onInputChange}
-                    className='appearance-none border border-gray-300 rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-[#4e46e5b5] focus:shadow-outline'
+                    className='appearance-none border border-gray-300 rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-blue-500 focus:shadow-outline'
                 >
                     <option value="Active">Active</option>
                     <option value="Disabled">Disabled</option>
@@ -82,7 +82,7 @@ const NewRoleCreationForm = ({
                     name='createdDate'
                     value={createdDate}
                     onChange={onInputChange}
-                    className='appearance-none border border-gray-300 rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-[#4e46e5b5] focus:shadow-outline'
+                    className='appearance-none border border-gray-300 rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-blue-500 focus:shadow-outline'
                 />
             </div>
 
@@ -96,7 +96,7 @@ const NewRoleCreationForm = ({
                     name='createdBy'
                     value={createdBy}
                     onChange={onInputChange}
-                    className='appearance-none border border-gray-300 rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-[#4e46e5b5] focus:shadow-outline'
+                    className='appearance-none border border-gray-300 rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-blue-500 focus:shadow-outline'
                 />
             </div>
             </div>

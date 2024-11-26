@@ -150,8 +150,7 @@ const Table = ({ users, type }: Props) => {
           })}
         </tbody>
       </table>
-
-      {/* Row Counter and Pagination Controls */}
+      
       <div className=" ml-2 mt-5 flex justify-between items-center">
         <div className="flex items-center gap-2">
           <label htmlFor="rows-per-page" className=" text-sm">Rows per page:</label>
