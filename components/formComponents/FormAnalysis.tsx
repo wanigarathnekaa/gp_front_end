@@ -1,10 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import LineChart from "@/components/LineChart";
-import PieChart from "@/components/PieChart";
 import BarChart from "@/components/BarChart";
 import { getFormWithSubmissions } from "@/actions/form";
+import PieChartCommon from "../PieChartCommon";
 
 interface FormAnalysisProps {
   formId: string;
@@ -94,15 +93,15 @@ const FormAnalysis: React.FC<FormAnalysisProps> = ({ formId }) => {
           </div>
 
           {/* Pie Chart */}
-          {/* <div className="bg-white shadow p-4 rounded-lg">
+          <div className="bg-white shadow p-4 rounded-lg">
             <h2 className="text-lg font-semibold">Question Frequency</h2>
-            <PieChart
+            <PieChartCommon
               data={Object.entries(questionFrequency).map(([label, value]) => ({
                 label,
-                value,
+                value: Number(value), // Ensure value is a number as required by Chart.js
               }))}
             />
-          </div> */}
+          </div>
 
           {/* Bar Chart */}
           <div className="bg-white shadow p-4 rounded-lg">
