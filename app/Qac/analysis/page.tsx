@@ -1,10 +1,17 @@
 "use client";
-import { getFormStats, getFormStatsForLineChart } from "@/actions/form";
+import {
+  getForms,
+  getFormStats,
+  getFormStatsForLineChart,
+} from "@/actions/form";
 import { useEffect, useState } from "react";
 import LineChart from "@/components/LineChart";
 import PieChart from "@/components/PieChart";
+import Dropdown from "@/components/Dropdown";
+import FormAnalysis from "@/components/formComponents/FormAnalysis";
 
 export default function Home() {
+  const [forms, setForms] = useState<{ id: string; name: string }[]>([]);
   const [lineChartData, setLineChartData] = useState([]);
   const [pieChartData, setPieChartData] = useState({
     submissionRate: 0,
@@ -12,6 +19,12 @@ export default function Home() {
   });
   const [lineChartLoading, setLineChartLoading] = useState(true);
   const [pieChartLoading, setPieChartLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
+
+  const [selectedForm, setSelectedForm] = useState<{
+    id: string;
+    name: string;
+  } | null>(null);
 
   useEffect(() => {
     // Fetch data for the Line chart
@@ -41,9 +54,36 @@ export default function Home() {
       }
     }
 
+    async function fetchForms() {
+      try {
+        const fetchedForms = await getForms();
+        const formNames = fetchedForms.map(
+          (form: { id: string; name: string }) => ({
+            id: form.id,
+            name: form.name,
+          })
+        );
+        setForms(formNames);
+      } catch (error) {
+        console.error("Error fetching forms:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchForms();
     fetchLineChartData();
     fetchPieChartData();
   }, []);
+
+  const handleSelect = (selectedName: string) => {
+    const selected = forms.find((form) => form.name === selectedName);
+    if (selected) {
+      console.log("Selected Form ID:", selected.id);
+      console.log("Selected Form Name:", selected.name);
+      setSelectedForm(selected);
+    }
+  };
 
   return (
     <div className="ml-64 px-8 max-h-screen overflow-auto py-10">
@@ -71,6 +111,28 @@ export default function Home() {
             />
           )}
         </div>
+      </div>
+
+      {/* Dropdown and Analysis */}
+      <div className="p-4">
+        {loading ? (
+          <p>Loading forms...</p>
+        ) : (
+          <Dropdown
+            options={forms.map((form) => form.name)} // Pass only names to the Dropdown
+            onSelect={handleSelect}
+            title="Select a Form"
+          />
+        )}
+        {selectedForm && (
+          <>
+            <p className="mt-4">
+              You selected: {selectedForm.name} (ID: {selectedForm.id})
+            </p>
+            {/* Render Form Analysis */}
+            <FormAnalysis formId={selectedForm.id} />
+          </>
+        )}
       </div>
     </div>
   );
