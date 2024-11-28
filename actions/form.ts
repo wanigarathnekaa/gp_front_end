@@ -19,6 +19,15 @@ export const getFormStats = async () => {
   }
 };
 
+export const getFormStatsForLineChart = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/forms/stats/LineChart`);
+    return response.data;
+  } catch (error) {
+    throw new Error("Failed to fetch form stats");
+  }
+};
+
 export const createForm = async (data: formSchematype) => {
   const validation = formSchema.safeParse(data);
   if (!validation.success) {
