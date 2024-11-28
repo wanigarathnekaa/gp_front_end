@@ -6,7 +6,10 @@ import PieChart from "@/components/PieChart";
 
 export default function Home() {
   const [lineChartData, setLineChartData] = useState([]);
-  const [pieChartData, setPieChartData] = useState({ submissionRate: 0, bounceRate: 0 });
+  const [pieChartData, setPieChartData] = useState({
+    submissionRate: 0,
+    bounceRate: 0,
+  });
   const [lineChartLoading, setLineChartLoading] = useState(true);
   const [pieChartLoading, setPieChartLoading] = useState(true);
 
@@ -46,25 +49,28 @@ export default function Home() {
     <div className="ml-64 px-8 max-h-screen overflow-auto py-10">
       <div className="my-20"></div>
 
-      {/* Line Chart Section */}
-      <div className="flex items-center justify-between mb-10">
-        {lineChartLoading ? (
-          <p>Loading line chart...</p>
-        ) : (
-          <LineChart data={lineChartData} />
-        )}
-      </div>
+      {/* Charts Section */}
+      <div className="flex items-center justify-between space-x-4">
+        {/* Line Chart */}
+        <div className="flex-1">
+          {lineChartLoading ? (
+            <p>Loading line chart...</p>
+          ) : (
+            <LineChart data={lineChartData} />
+          )}
+        </div>
 
-      {/* Pie Chart Section */}
-      <div className="flex items-center justify-between">
-        {pieChartLoading ? (
-          <p>Loading pie chart...</p>
-        ) : (
-          <PieChart
-            submissionRate={pieChartData.submissionRate}
-            bounceRate={pieChartData.bounceRate}
-          />
-        )}
+        {/* Pie Chart */}
+        <div className="flex-1">
+          {pieChartLoading ? (
+            <p>Loading pie chart...</p>
+          ) : (
+            <PieChart
+              submissionRate={pieChartData.submissionRate}
+              bounceRate={pieChartData.bounceRate}
+            />
+          )}
+        </div>
       </div>
     </div>
   );
