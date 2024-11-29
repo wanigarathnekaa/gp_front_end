@@ -1,25 +1,31 @@
 "use client";
 import React from 'react'
-import { Button, SubmitButton } from '@/components/index';
+import { CancelButtonNew, SubmitButton } from '@/components/index';
 import { useState } from 'react';
 
 interface AddCloakFormProps {
 
     onSubmit: (e: React.FormEvent<HTMLFormElement>, counts: { medium: number; small: number; large: number }) => void;
     closeModal: () => void;
+    mode: 'add' | 'update';
+    initialCounts?: { small: number; medium: number; large: number };
 }
 
-const AddCloakForm = ({onSubmit, closeModal}:AddCloakFormProps) => {
+const AddCloakForm = ({
+    onSubmit, 
+    closeModal, 
+    mode,
+    initialCounts = {medium:0, small:0, large:0}}:AddCloakFormProps) => {
 
-    const [smallCount, setSmallCount] = useState<number>(0);
-    const [mediumCount, setMediumCount] = useState<number>(0);
-    const [largeCount, setLargeCount] = useState<number>(0);
+    const [smallCount, setSmallCount] = useState<number>(initialCounts.small);
+    const [mediumCount, setMediumCount] = useState<number>(initialCounts.medium);
+    const [largeCount, setLargeCount] = useState<number>(initialCounts.large);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const{name, value} = e.target;
-        if(name === 'small') setSmallCount(parseInt(value));
-        if(name === 'medium') setMediumCount(parseInt(value));
-        if(name === 'large') setLargeCount(parseInt(value));
+        if(name === 'small') setSmallCount(parseInt(value) || 0);
+        if(name === 'medium') setMediumCount(parseInt(value) || 0);
+        if(name === 'large') setLargeCount(parseInt(value) || 0);
     };
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -33,7 +39,9 @@ const AddCloakForm = ({onSubmit, closeModal}:AddCloakFormProps) => {
                 X
             </button>
 
-            <h1 className='text-2xl text-gray-500 font-bold mb-6 text-center'>Add New Cloaks</h1>
+            <h1 className='text-2xl text-gray-500 font-bold mb-6 text-center'>
+                {mode === 'add' ? 'Add New Cloak' : 'Update Cloak Count'}
+            </h1>
 
             <form onSubmit={handleSubmit}>
                 <div className='mb-5'>
@@ -82,7 +90,7 @@ const AddCloakForm = ({onSubmit, closeModal}:AddCloakFormProps) => {
                 </div>
 
                 <div className=' mt-14 flex justify-end space-x-4'>
-                    <Button/>
+                    <CancelButtonNew onClick={closeModal}/>
                     <SubmitButton text="Add" />
                 </div>
             </form>

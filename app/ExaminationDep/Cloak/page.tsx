@@ -8,8 +8,10 @@ import { addCloak } from '@/actions/Cloak';
 
 const Cloak = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const [formMode, setFormMode] = useState<'add' | 'update'>('add');
 
-  const handleAddCloakClick =() =>{
+  const handleOpenForm =(mode: "add" | "update") =>{
+    setFormMode(mode);
     setIsFormOpen(true);
   }
 
@@ -21,13 +23,18 @@ const Cloak = () => {
     // console.log(counts);
     e.preventDefault();
     try{
-      const result = await addCloak({
-        smallCount: counts.small,
-        mediumCount: counts.medium,
-        largeCount: counts.large,
+      if (formMode === 'add'){
+        const result = await addCloak({
+          smallCount: counts.small,
+          mediumCount: counts.medium,
+          largeCount: counts.large,
 
       });
       console.log("Cloak added:", result);
+      
+      } else{
+      console.log("Update cloak");
+      }
       setIsFormOpen(false);
     }
     catch(error){
@@ -53,13 +60,14 @@ const Cloak = () => {
               title= "Add New Cloak"  
               description='Add new cloak to the system'
               icon={IoMdAddCircle }
-              onclick={handleAddCloakClick}
+              onclick={() => handleOpenForm('add')}
             />
 
             <Card
               title= "Update Cloak"  
               description='Update existing cloak in the system'
               icon={MdOutlineSecurityUpdate }
+              onclick={() => handleOpenForm('update')}
             />
 
             <Card
@@ -77,6 +85,7 @@ const Cloak = () => {
                     <AddCloakForm
                       onSubmit={handleSubmit}
                       closeModal={handleCloseForm}
+                      mode={formMode}
                     />
                   </div>
               </div>
