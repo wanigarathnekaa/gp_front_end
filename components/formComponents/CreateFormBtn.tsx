@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -29,20 +29,28 @@ import { toast } from "../ui/use-toast";
 import { formSchema, formSchematype } from "@/schemas/form";
 import { createForm } from "@/actions/form";
 import { useRouter } from "next/navigation";
-import { set } from "date-fns";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "../ui/select";
 
 interface CreateFormBtnProps {
-  template?: boolean;
+  template: boolean;
 }
+const courses = ["Mathematics", "Physics", "Computer Science"];
 
-function CreateFormBtn({template}: {template?: CreateFormBtnProps}) {
+function CreateFormBtn({ template }: CreateFormBtnProps) {
+  console.log(template);
   const router = useRouter();
   const form = useForm<formSchematype>({
     resolver: zodResolver(formSchema),
   });
 
   console.log("Inside the CreateFormBtn component");
-  form.setValue("template", template?.template);
+  form.setValue("template", template);
   async function onSubmit(data: formSchematype) {
     try {
       const formId = await createForm(data);
@@ -50,8 +58,7 @@ function CreateFormBtn({template}: {template?: CreateFormBtnProps}) {
         title: "Success",
         description: "Form created successfully",
       });
-    //   console.log("FormId: ", formId);
-        router.push(`/dashboard/forms/builder/${formId}`);
+      router.push(`/dashboard/forms/builder/${formId}`);
     } catch {
       toast({
         title: "Error",
@@ -69,19 +76,30 @@ function CreateFormBtn({template}: {template?: CreateFormBtnProps}) {
         >
           <BsFileEarmarkPlus className="h-8 w-8 text-muted-foreground group-hover:text-primary" />
           <p className="font-bold text-xl text-muted-foreground group-hover:text-primary">
-          {!template?.template ? "Create new form" : "Create new template"}
+            {!template ? "Create new form" : "Create new template"}
           </p>
         </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Create Form</DialogTitle>
-          <DialogDescription>
-            Create a new form to start collecting responses.
-          </DialogDescription>
+          {!template ? (
+            <DialogTitle>Create Form</DialogTitle>
+          ) : (
+            <DialogTitle>Create template</DialogTitle>
+          )}
+          {!template ? (
+            <DialogDescription>
+              Create a new form to start collecting responses.
+            </DialogDescription>
+          ) : (
+            <DialogDescription>
+              Create a new template to start creating forms.
+            </DialogDescription>
+          )}
         </DialogHeader>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
+            {/* Name Field */}
             <FormField
               control={form.control}
               name="name"
@@ -96,6 +114,7 @@ function CreateFormBtn({template}: {template?: CreateFormBtnProps}) {
               )}
             />
 
+            {/* Description Field */}
             <FormField
               control={form.control}
               name="description"
@@ -109,6 +128,67 @@ function CreateFormBtn({template}: {template?: CreateFormBtnProps}) {
                 </FormItem>
               )}
             />
+
+            {/* Is Related to a Course Field */}
+            {!template && (
+              <FormField
+                control={form.control}
+                name="isRelatedToCourse"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Is Related to a Course?</FormLabel>
+                    <FormControl>
+                      <Select
+                        onValueChange={(value) =>
+                          field.onChange(value === "yes")
+                        }
+                      >
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select an option" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="yes">Yes</SelectItem>
+                          <SelectItem value="no">No</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            )}
+
+            {/* Conditional Course Dropdown */}
+            {form.watch("isRelatedToCourse") && (
+              <FormField
+                control={form.control}
+                name="course"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Select Course</FormLabel>
+                    <FormControl>
+                      <Select
+                        onValueChange={(value) =>
+                          form.setValue("course", value)
+                        } // Update selected course
+                      >
+                        <SelectTrigger>
+                          <SelectValue placeholder="Choose a course" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {courses.map((course, index) => (
+                            <SelectItem key={index} value={course}>
+                              {course}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            )}
           </form>
         </Form>
         <DialogFooter>

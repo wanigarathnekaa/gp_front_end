@@ -23,7 +23,7 @@ const NewRoleCreationForm = ({
     onSubmit
 }: NewRoleCreationFormProps) => {
     return (
-        <div className='p-8 bg-white rounded-2xl shadow-md w-full max-w-full mx-auto '>
+        <div className='ml-2 p-8 bg-white rounded-2xl shadow-md w-full max-w-full mx-auto '>
           <form onSubmit={onSubmit}>
             <div className='mt-3 mb-4 justify-center items-center'>
                 <h2 className='text-gray-700 text-xl font-bold'>Create new user role</h2>
@@ -37,7 +37,7 @@ const NewRoleCreationForm = ({
                     name="userRoleId"
                     value={userRoleId}
                     onChange={onInputChange}
-                    className=" appearance-none border border-gray-300 rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-[#4e46e5b5] focus:shadow-outline"
+                    className=" appearance-none border border-gray-300 rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-blue-500 focus:shadow-outline"
                 />
             </div>
 
@@ -51,7 +51,7 @@ const NewRoleCreationForm = ({
                     name='userRoleName'
                     value={userRoleName}
                     onChange={onInputChange}
-                    className='appearance-none border border-gray-300 rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-[#4e46e5b5] focus:shadow-outline'
+                    className='appearance-none border border-gray-300 rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-blue-500 focus:shadow-outline'
                 />
             </div>
 
@@ -65,7 +65,7 @@ const NewRoleCreationForm = ({
                     name='status'
                     value={status}
                     onChange={onInputChange}
-                    className='appearance-none border border-gray-300 rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-[#4e46e5b5] focus:shadow-outline'
+                    className='appearance-none border border-gray-300 rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-blue-500 focus:shadow-outline'
                 >
                     <option value="Active">Active</option>
                     <option value="Disabled">Disabled</option>
@@ -82,7 +82,7 @@ const NewRoleCreationForm = ({
                     name='createdDate'
                     value={createdDate}
                     onChange={onInputChange}
-                    className='appearance-none border border-gray-300 rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-[#4e46e5b5] focus:shadow-outline'
+                    className='appearance-none border border-gray-300 rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-blue-500 focus:shadow-outline'
                 />
             </div>
 
@@ -96,13 +96,12 @@ const NewRoleCreationForm = ({
                     name='createdBy'
                     value={createdBy}
                     onChange={onInputChange}
-                    className='appearance-none border border-gray-300 rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-[#4e46e5b5] focus:shadow-outline'
+                    className='appearance-none border border-gray-300 rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-blue-500 focus:shadow-outline'
                 />
             </div>
             </div>
 
             <div className=' mt-10 flex justify-end space-x-4'>
-                <Button />
                 <ButtonText text="Add" />
             </div>
             

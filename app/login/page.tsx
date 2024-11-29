@@ -53,14 +53,11 @@ const Page: React.FC = () => {
   return (
     <div className="flex min-h-screen flex-col bg-white">
       <main className="flex-grow flex items-center justify-center px-28">
-        {/* Grid Layout for Logo and Login */}
         <div className="grid grid-cols-3 w-full">
-          {/* Left Column (2/3 of the width) */}
           <div className="col-span-2 flex justify-start items-start">
             <Image className='h-fit' src="/Login.jpg" alt="logo" width={1300} height={1300} />
           </div>
 
-          {/* Right Column (1/3 of the width) */}
           <div className="col-span-1 flex justify-center items-center w-full">
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
               <Image className='h-fit py-3' src="/Logo_feebify.png" alt="logo" width={1000} height={500} />
