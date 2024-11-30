@@ -5,7 +5,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { FaUser, FaWpforms, FaRegFileAlt, FaKey, FaChartLine } from "react-icons/fa";
+import { FaUser, FaWpforms, FaRegFileAlt, FaKey, FaChartLine, FaBook } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
 import { MdSpaceDashboard } from "react-icons/md";
 
@@ -33,6 +33,12 @@ function Sidebar() {
            <Link href="/Qac/users" className="flex items-center w-full space-x-4 px-5 py-3 rounded-md font-medium text-gray-800 hover:bg-blue-50 hover:text-blue-600">
              <FaUser />
              <span>Users</span>
+           </Link>
+         </li>
+         <li>
+           <Link href="/Qac/courses" className="flex items-center w-full space-x-4 px-5 py-3 rounded-md font-medium text-gray-800 hover:bg-blue-50 hover:text-blue-600">
+             <FaBook />
+             <span>Courses</span>
            </Link>
          </li>
          <li>
