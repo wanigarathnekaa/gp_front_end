@@ -55,7 +55,7 @@ const ExamDashboard = () => {
       <Navbar/>
       <ExamSidebar/>
 
-      <div className='ml-72 md:ml-64 lg:ml-72  bg-blue-50 flex flex-col min-h-screen'>
+      <div className='ml-72 md:ml-64 lg:ml-72 bg-blue-50 flex flex-col min-h-screen'>
         <div className='mt-10 p-6'>
           <h1 className='ml-3 text-black text-5xl md:text-4xl font-bold '>Hi there!</h1>
           <h2 className='font-normal ml-3 mt-5 text-4xl md:text-3xl '>Welcome to your dashboard</h2>

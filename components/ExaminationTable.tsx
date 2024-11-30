@@ -22,7 +22,7 @@ const ExaminationTable = ({users}:ExaminationTableProps) => {
     <table className='w-full max-w-full bg-white rounded-2xl border-none'>
       <thead className="text-base text-gray-500">
         <tr>
-          <th className='border-b border-gray-200 py-2 px-4'>User ID</th>
+          {/* <th className='border-b border-gray-200 py-2 px-4'>User ID</th> */}
           <th className='border-b border-gray-200 py-2 px-4'>User Name</th>
           <th className='border-b border-gray-200 py-2 px-4'>Reg. No</th>
           <th className='border-b border-gray-200 py-2 px-4'>Index No</th>
@@ -36,7 +36,7 @@ const ExaminationTable = ({users}:ExaminationTableProps) => {
       <tbody className="text-sm text-gray-500">
         {users.map((user, index) => (
           <tr key={index} className='text-center'>
-            <td className='border-b border-gray-200 py-2 px-4'>{user.userId}</td>
+            {/* <td className='border-b border-gray-200 py-2 px-4'>{user.userId}</td> */}
             <td className='border-b border-gray-200 py-2 px-4'>{user.userName}</td>
             <td className='border-b border-gray-200 py-2 px-4'>{user.regNo}</td>
             <td className='border-b border-gray-200 py-2 px-4'>{user.indexNo}</td>
