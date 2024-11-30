@@ -6,6 +6,8 @@ export const formSchema = z.object({
     name: z.string().min(4),
     description: z.string().optional(),
     template: z.boolean().optional(),
+    isRelatedToCourse: z.boolean().optional(),
+    course: z.string().optional(),
   });
   
 export const templateFormSchema = z.object({
