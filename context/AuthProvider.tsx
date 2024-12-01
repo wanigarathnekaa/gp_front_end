@@ -1,5 +1,5 @@
 "use client";
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useState, ReactNode, useEffect } from "react";
 
 interface AuthContextType {
   decodedToken: any;
@@ -16,6 +16,20 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [decodedToken, setDecodedToken] = useState(null);
+
+  // Load token from sessionStorage on app initialization
+  useEffect(() => {
+    const token = sessionStorage.getItem("user");
+    if (token) {
+      try {
+        const decoded = JSON.parse(token);
+        setDecodedToken(decoded);
+      } catch (error) {
+        console.error("Error decoding stored token:", error);
+      }
+    }
+  }, []);
+
 
   const setToken = (token: string) => {
     let obj=parseJwt(token);

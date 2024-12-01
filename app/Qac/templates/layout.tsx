@@ -9,7 +9,7 @@ export default function Layout({ children }: { children: ReactNode }) {
   const isBuilderPage = pathname.includes("builder");  
 
   return (
-    <div className="flex flex-col min-h-screen min-w-full bg-background max-h-screen ">
+    <div className="flex flex-col min-h-screen min-w-full bg-background max-h-screen">
       {!isBuilderPage && (
         <>
           <Sidebar />
@@ -18,7 +18,7 @@ export default function Layout({ children }: { children: ReactNode }) {
           </nav>
         </>
       )}
-      <main className="flex w-full flex-grow pl-8 mt-5 flex-col min-h-screen bg-[#EEF2FF] ">{children}</main>
+      <main className="flex w-full flex-grow pl-8">{children}</main>
     </div>
   );
 }
