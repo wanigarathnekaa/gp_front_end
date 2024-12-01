@@ -46,7 +46,7 @@ export interface Form {
 
 export default function Home() {
   return (
-    <div className="ml-64 px-8 max-h-screen overflow-auto py-10">
+    <div className="ml-64 mt-10 px-8 max-h-screen overflow-auto py-10">
       <Suspense fallback={<StatCards loading={true} />}>
         <CardStatsWrapper />
       </Suspense>
