@@ -1,113 +1,138 @@
 import React from 'react';
-import { Button } from '@/components/index'
 import ButtonText from './ButtonTextBlue';
 
 interface NewRoleCreationFormProps {
-    userRoleId: string;
-    userRoleName: string;
-    status: string; 
-    createdDate: string;
-    createdBy: string;
-    onInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
+    roleName: string;
+    roleDescription: string;
+    selectedPrivileges: string[];
+    onInputChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+    onCheckboxChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 
-
 const NewRoleCreationForm = ({
-    userRoleId,
-    userRoleName,
-    status,
-    createdDate,
-    createdBy,
+    roleName,
+    roleDescription,
+    selectedPrivileges,
     onInputChange,
+    onCheckboxChange,
     onSubmit
 }: NewRoleCreationFormProps) => {
     return (
-        <div className='ml-2 p-8 bg-white rounded-2xl shadow-md w-full max-w-full mx-auto '>
-          <form onSubmit={onSubmit}>
-            <div className='mt-3 mb-4 justify-center items-center'>
-                <h2 className='text-gray-700 text-xl font-bold'>Create new user role</h2>
-            </div>
-            <div className="grid grid-cols-3 gap-4">
-            <div className="mb-3">
-                <label className='block text-gray-700 text-sm font-bold mb-2' htmlFor="userRoleId">User role ID</label>
-                <input 
-                    type="text"
-                    id="userRoleId"
-                    name="userRoleId"
-                    value={userRoleId}
-                    onChange={onInputChange}
-                    className=" appearance-none border border-gray-300 rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-blue-500 focus:shadow-outline"
-                />
-            </div>
+        <div className='ml-2 p-8 bg-white rounded-2xl shadow-md w-full max-w-full mx-auto'>
+            <form onSubmit={onSubmit}>
+                <div className='mt-3 mb-4 text-center'>
+                    <h2 className='text-gray-700 text-xl font-bold'>Create New User Role</h2>
+                </div>
+                <div className="grid grid-cols-1 gap-4">
+                    {/* Role Name Field */}
+                    <div className="mb-3">
+                        <label
+                            className='block text-gray-700 text-sm font-bold mb-2'
+                            htmlFor="roleName">
+                            Role Name
+                        </label>
+                        <input
+                            type="text"
+                            id="roleName"
+                            name="roleName"
+                            value={roleName}
+                            onChange={onInputChange}
+                            className="appearance-none border border-gray-300 rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-blue-500 focus:shadow-outline"
+                        />
+                    </div>
 
-            <div className='mb-3'>
-                <label className='block text-gray-700 text-sm font-bold mb-2' htmlFor="userRoleName">
-                    User role name
-                </label>
-                <input
-                    type="text"
-                    id='userRoleName'
-                    name='userRoleName'
-                    value={userRoleName}
-                    onChange={onInputChange}
-                    className='appearance-none border border-gray-300 rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-blue-500 focus:shadow-outline'
-                />
-            </div>
+                    {/* Role Description Field */}
+                    <div className="mb-5">
+                        <label
+                            className='block text-gray-700 text-sm font-bold mb-2'
+                            htmlFor="roleDescription">
+                            Role Description
+                        </label>
+                        <textarea
+                            id="roleDescription"
+                            name="roleDescription"
+                            value={roleDescription}
+                            onChange={onInputChange}
+                            rows={4}
+                            className="appearance-none border border-gray-300 rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-blue-500 focus:shadow-outline"
+                        />
+                    </div>
 
-            <div className='mb-3'>
-                <label className='block text-gray-700 text-sm font-bold mb-2' htmlFor="status">
-                    Status
-                </label>
+                    {/* Privileges Section */}
+                    <div className="mb-5">
+                        <h3 className='text-gray-700 text-lg font-semibold mb-3'>Privileges</h3>
+                        <div className="flex flex-col space-y-3">
+                            <label className='flex items-center'>
+                                <input
+                                    type="checkbox"
+                                    name="formCreation"
+                                    checked={selectedPrivileges.includes('formCreation')}
+                                    onChange={onCheckboxChange}
+                                    className="mr-2"
+                                />
+                                Form Creation
+                            </label>
+                            <label className='flex items-center'>
+                                <input
+                                    type="checkbox"
+                                    name="viewFormAnalysis"
+                                    checked={selectedPrivileges.includes('viewFormAnalysis')}
+                                    onChange={onCheckboxChange}
+                                    className="mr-2"
+                                />
+                                View Form Analysis
+                            </label>
+                            <label className='flex items-center'>
+                                <input
+                                    type="checkbox"
+                                    name="courseCreation"
+                                    checked={selectedPrivileges.includes('courseCreation')}
+                                    onChange={onCheckboxChange}
+                                    className="mr-2"
+                                />
+                                Course Creation
+                            </label>
+                            <label className='flex items-center'>
+                                <input
+                                    type="checkbox"
+                                    name="studentRegistration"
+                                    checked={selectedPrivileges.includes('studentRegistration')}
+                                    onChange={onCheckboxChange}
+                                    className="mr-2"
+                                />
+                                Student Registration
+                            </label>
+                            <label className='flex items-center'>
+                                <input
+                                    type="checkbox"
+                                    name="lecturerRegistration"
+                                    checked={selectedPrivileges.includes('lecturerRegistration')}
+                                    onChange={onCheckboxChange}
+                                    className="mr-2"
+                                />
+                                Lecturer Registration
+                            </label>
+                            <label className='flex items-center'>
+                                <input
+                                    type="checkbox"
+                                    name="userRoleCreation"
+                                    checked={selectedPrivileges.includes('userRoleCreation')}
+                                    onChange={onCheckboxChange}
+                                    className="mr-2"
+                                />
+                                User Role Creation
+                            </label>
+                        </div>
+                    </div>
+                </div>
 
-                <select
-                    id='status'
-                    name='status'
-                    value={status}
-                    onChange={onInputChange}
-                    className='appearance-none border border-gray-300 rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-blue-500 focus:shadow-outline'
-                >
-                    <option value="Active">Active</option>
-                    <option value="Disabled">Disabled</option>
-                </select>
-            </div>
-            
-            <div className='mb-5'>
-                <label className='block text-gray-700 text-sm font-bold mb-2' htmlFor="createdDate">
-                    Created date
-                </label>
-                <input
-                    type="text"
-                    id='createdDate'
-                    name='createdDate'
-                    value={createdDate}
-                    onChange={onInputChange}
-                    className='appearance-none border border-gray-300 rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-blue-500 focus:shadow-outline'
-                />
-            </div>
-
-            <div className='mb-5'>
-                <label className='block text-gray-700 text-sm font-bold mb-2' htmlFor="createdBy">
-                    Created by
-                </label>
-                <input
-                    type="text"
-                    id='createdBy'
-                    name='createdBy'
-                    value={createdBy}
-                    onChange={onInputChange}
-                    className='appearance-none border border-gray-300 rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-blue-500 focus:shadow-outline'
-                />
-            </div>
-            </div>
-
-            <div className=' mt-10 flex justify-end space-x-4'>
-                <ButtonText text="Add" />
-            </div>
-            
-            </form>  
+                <div className='mt-10 flex justify-end'>
+                    <ButtonText text="Add Role" />
+                </div>
+            </form>
         </div>
-    )
-}
+    );
+};
 
 export default NewRoleCreationForm;
