@@ -7,55 +7,55 @@ import SubTitle from '@/components/SubTitle';
 import { usePathname } from 'next/navigation';
 import NewPrivilegesAssignForm from '@/components/NewPrivilegesAssignForm';
 import PrivilegeTable from '@/components/PrivilegeTable';
+import { addPrivilegedUser } from '@/actions/roleCreation';
 
-const usersData = [
-    {
-        privilegeId: "101",
-        privilegeName: "Manage Courses",
-        assignedTo: "Post graduate head"
-    },
-    {
-        privilegeId: "101",
-        privilegeName: "Manage Courses",
-        assignedTo: "Post graduate head"
-    },
-    {
-        privilegeId: "101",
-        privilegeName: "Manage Courses",
-        assignedTo: ["Post graduate head", "Undergraduate head"]
-    },
-];
+interface User {
+    roleName: string;
+    name: string;
+    email: string;
+    nic: string;
+}
 
 const ViewStaff = () => {
     const pathname = usePathname();
-    const [users, setUsers] = useState(usersData);
+    const [users, setUsers] = useState<User[]>([]);
     const [isFormVisible, setFormVisible] = useState(false);
 
     const handleSearch = (searchText: string) => {
-        const filteredUsers = usersData.filter(user =>
-            user.privilegeId.toLowerCase().includes(searchText.toLowerCase()) ||
-            user.privilegeName.toLowerCase().includes(searchText.toLowerCase()) ||
-            (typeof user.assignedTo === 'string'
-                ? user.assignedTo.toLowerCase().includes(searchText.toLowerCase())
-                : user.assignedTo.some(name => name.toLowerCase().includes(searchText.toLowerCase())))
-        );
-
-        setUsers(filteredUsers);
+        
     };
 
     const toggleFormVisibility = () => {
         setFormVisible((prev) => !prev);
     };
 
-    const handleFormSubmit = (formData: {
+    const handleFormSubmit = async (formData: {
         selectedRole: string;
         name: string;
         email: string;
         nic: string;
     }) => {
-        console.log("Form data submitted:", formData);
-        // Add logic for processing formData, e.g., making an API call to save the user
+        try {
+            const user = {
+                roleName: formData.selectedRole,
+                name: formData.name,
+                email: formData.email,
+                nic: formData.nic,
+            };
+
+            const response = await addPrivilegedUser(user); // API call to add the user
+            console.log("Privileged user added successfully:", response);
+
+            // Update state with the new user
+            setUsers((prevUsers) => [...prevUsers, response]);
+
+            alert("User account created successfully!");
+        } catch (error) {
+            console.error("Error creating user account:", error);
+            alert("Failed to create user account. Please try again.");
+        }
     };
+    
 
     return (
         <div className='w-full'>
