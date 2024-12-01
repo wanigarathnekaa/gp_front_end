@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { CircularProgress, Typography } from "@mui/material";
 import { getStudentDetails } from "@/actions/studentDetails";
+import { StudentNavbar } from "@/components/index";
 
 interface StudentProfile {
   id: string;
@@ -66,26 +67,46 @@ const UserProfile: React.FC<UserProfileProps> = ({ params }) => {
     return <Typography color="error">{error}</Typography>;
   }
 
+  
   return (
-    <div className="bg-white shadow-md rounded-lg p-6 max-w-md mx-auto">
-      <div className="flex items-center space-x-4 mb-4">
-        <div className="bg-blue-500 text-white rounded-full h-16 w-16 flex items-center justify-center text-2xl font-bold">
-          {user?.name?.charAt(0).toUpperCase()}
-        </div>
-        <div>
-          <h2 className="text-xl font-semibold text-gray-800">{user?.name}</h2>
-          <p className="text-gray-500 text-sm">{user?.email}</p>
-        </div>
-      </div>
-      <div className="border-t pt-4">
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <p className="text-xs text-gray-500">Registration Number</p>
-            <p className="font-medium text-gray-700">{user?.regNumber || 'N/A'}</p>
+    <div className="bg-blue-50 h-screen w-full flex flex-col pt-24">
+      <StudentNavbar />
+      <div className="bg-white shadow-md rounded-lg p-6 max-w-md mx-auto">
+        <div className="flex items-center space-x-4 mb-4 mt-8">
+          <div className="bg-blue-500 text-white rounded-full h-16 w-16 flex items-center justify-center text-2xl font-bold">
+            {user?.name?.charAt(0).toUpperCase()}
           </div>
           <div>
-            <p className="text-xs text-gray-500">Index Number</p>
-            <p className="font-medium text-gray-700">{user?.indexNumber || 'N/A'}</p>
+            <h2 className="text-xl font-semibold text-gray-800">{user?.name}</h2>
+            <p className="text-gray-500 text-sm">{user?.email}</p>
+          </div>
+        </div>
+        <div className="border-t pt-4">
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <p className="text-xs text-gray-500">Registration Number</p>
+              <p className="font-medium text-gray-700">{user?.regNumber || 'N/A'}</p>
+            </div>
+            <div>
+              <p className="text-xs text-gray-500">Index Number</p>
+              <p className="font-medium text-gray-700">{user?.indexNumber || 'N/A'}</p>
+            </div>
+            <div>
+              <p className="text-xs text-gray-500">NIC</p>
+              <p className="font-medium text-gray-700">{user?.nic || 'N/A'}</p>
+            </div>
+            <div>
+              <p className="text-xs text-gray-500">User Type</p>
+              <p className="font-medium text-gray-700">{user?.role || 'N/A'}</p>
+            </div>
+            <div>
+              <p className="text-xs text-gray-500">Year</p>
+              <p className="font-medium text-gray-700">{user?.year || 'N/A'}</p>
+            </div>
+            <div>
+              <p className="text-xs text-gray-500">Semester</p>
+              <p className="font-medium text-gray-700">{user?.semester || 'N/A'}</p>
+            </div>
           </div>
         </div>
       </div>
