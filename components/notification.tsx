@@ -23,7 +23,7 @@ const Notification: React.FC<NotificationProps> = ({ isOpen }) => {
 
   return (
     isOpen ? (
-      <div className="absolute right-0 mt-2 w-80 overflow-hidden bg-white rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
+      <div className="absolute right-0 mt-4 w-80 overflow-hidden bg-white rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
         {/* Header */}
         <div className="flex items-center justify-between px-4 py-3 bg-gray-50">
           <h3 className="text-sm font-medium text-gray-900">Notifications</h3>
