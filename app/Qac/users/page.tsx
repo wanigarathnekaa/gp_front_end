@@ -60,7 +60,7 @@ const Users = () => {
               />
             </Link>
 
-            <Link href="/Qac/users/view-registered/students/ranking">
+            <Link href="/Qac/users/student-ranking">
               <Card 
                 title="Student ranking" 
                 description='View students ranking'

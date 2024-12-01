@@ -46,7 +46,7 @@ export interface Form {
 
 export default function Home() {
   return (
-    <div className="ml-64 px-8 max-h-screen overflow-auto py-10">
+    <div className="ml-64 mt-10 px-8 max-h-screen overflow-auto py-10">
       <Suspense fallback={<StatCards loading={true} />}>
         <CardStatsWrapper />
       </Suspense>
@@ -228,7 +228,7 @@ function FormCard({ form }: { form: Form }) {
         {form.published && (
           <Button
             asChild
-            className="w-full mt-2 text-md gap-4 bg-[#312e81] text-white"
+            className="w-full mt-2 text-md gap-4 bg-blue-600 hover:bg-blue-500 text-white"
           >
             <Link href={`/dashboard/forms/formView/${form.id}`}>
               View submissions <BiRightArrowAlt />

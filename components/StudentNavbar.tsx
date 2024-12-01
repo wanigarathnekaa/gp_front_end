@@ -2,11 +2,12 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { FaCog, FaBell } from "react-icons/fa";
 
 const StudentNavbar = () => {
     const pathname = usePathname();
+    const router = useRouter();
     const [dropdownOpen, setDropdownOpen] = useState(false);
 
     const linkClasses = (path: string) => {
@@ -17,6 +18,11 @@ const StudentNavbar = () => {
 
     const toggleDropdown = () => {
         setDropdownOpen(!dropdownOpen);
+    };
+
+    const handleLogout = () => {
+        localStorage.removeItem('user'); 
+        router.push('/login');
     };
 
     return (
@@ -66,9 +72,12 @@ const StudentNavbar = () => {
                                 <Link href="/Student/ChangePassword" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
                                     Change Password
                                 </Link>
-                                <Link href="/Student/Logout" className="font-semibold block px-4 py-2 text-red-700 hover:bg-gray-100">
+                                <button
+                                    onClick={handleLogout}
+                                    className="font-semibold w-full text-left px-4 py-2 text-red-700 hover:bg-gray-100"
+                                >
                                     Log Out
-                                </Link>
+                                </button>
                             </div>
                         )}
                     </li>
@@ -76,6 +85,6 @@ const StudentNavbar = () => {
             </div>
         </nav>
     );
-}
+};
 
 export default StudentNavbar;

@@ -5,11 +5,16 @@ import Image from 'next/image';
 import { login } from '@/actions/login';
 import { useRouter } from 'next/navigation';
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useAuth } from '@/context/AuthProvider';
 
 interface LoginRequest {
   regNumber: string;
   nic: string;
 }
+// Storing token in Session Storage
+const saveToken = (obj: object) => {
+  sessionStorage.setItem("user", JSON.stringify(obj));
+};
 
 const Page: React.FC = () => {
   const router = useRouter();
@@ -18,9 +23,11 @@ const Page: React.FC = () => {
   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
   const [message, setMessage] = useState<string>('');
 
+  const {setToken,decodedToken} = useAuth();
+
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
+    
     const loginRequest: LoginRequest = {
       regNumber,
       nic,
@@ -28,7 +35,10 @@ const Page: React.FC = () => {
 
     try {
       const response = await login(loginRequest);
-      setMessage(response);
+      if (response.accessToken !== null) {
+        setMessage(response.message);
+        setToken(response.accessToken);
+      }
 
       // Redirect to dashboard after successful login
       router.push('/Student/dashboard');
