@@ -51,7 +51,7 @@ function TemplateListPopUp() {
     <>
       <button
         onClick={handleOpenModal}
-        className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        className="block text-white bg-blue-600 hover:bg-blue-500 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         type="button"
       >
         Use Template
@@ -61,9 +61,9 @@ function TemplateListPopUp() {
         <div
         id="static-modal"
         aria-hidden="true"
-        className="fixed inset-0 flex justify-center items-center w-fit h-screen bg-gray-500 bg-opacity-70"
+        className="fixed inset-0 flex justify-center items-center w-screen h-screen bg-gray-500 bg-opacity-70"
       >
-          <div className="relative p-4 w-full max-w-2xl max-h-screen">
+          <div className="relative p-4 max-w-2xl max-h-screen w-screen">
             <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
               {/* Modal header */}
               <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">

@@ -37,4 +37,21 @@ interface StudentProfile {
       throw new Error("Failed to fetch student details.");
     }
   };
+
+  export const getStudentDetailsByRegNumber = async (regNumber: string) => {
+    try {
+      const response = await axios.post(`${API_URL}/api/v1/student/findUser`, {regNumber});
+      return response.data;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.error("API Error:", error.response?.data || error.message);
+      } else {
+        console.error("Unexpected Error:", error);
+      }
+      throw new Error("Failed to fetch student details.");
+    }
+  };
+  
+  
+  
   
