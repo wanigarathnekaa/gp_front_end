@@ -28,3 +28,13 @@ export const getRoles = async () => {
         throw new Error("Failed to get roles");
     }
 };
+
+export const addPrivilegedUser = async (user: any) => {
+    try {
+        const response = await axios.post(`${API_URL}/api/v1/privilegedUsers/add`, user);
+        return response.data;
+    } catch (error: any) {
+        console.error("Error adding privileged user:", error.response?.data || error.message);
+        throw new Error("Failed to add privileged user");
+    }
+}
