@@ -5,10 +5,12 @@ import { useAuth } from "@/context/AuthProvider";
 import Link from "next/link";
 import { FaRegClock } from 'react-icons/fa';
 import { useEffect, useState } from "react";
+import { getStudentDetailsByRegNumber } from "@/actions/studentDetails";
 
 const StudentDashboard = () => {
     const { decodedToken } = useAuth();
     const [courses, setCourses] = useState([]);
+    const [name , setName] = useState("");
 
     console.log("Decoded Token:", decodedToken);
 
@@ -30,8 +32,19 @@ const StudentDashboard = () => {
             }
         };
 
+        const fetchUser = async () => {
+            try {
+                const response = await getStudentDetailsByRegNumber(decodedToken?.sub);
+                setName(response.name);
+                console.log("Student Details:", response);
+            } catch (error) {
+                console.error("Error fetching student details:", error);
+            }
+        };
+
+        fetchUser();
         fetchCourses();
-    }, []);
+    }, [decodedToken]);
 
     return (
         <div className="w-full">
@@ -41,7 +54,7 @@ const StudentDashboard = () => {
                 <div className="w-3/4 px-20 bg-[#EEF2FF]">
                     <div className="text-3xl font-bold mb-4">
                         <h1 className="text-3xl mt-10 mb-10 ml-3 ">
-                            Hi, {decodedToken?.sub || "Student"}!
+                            Hi {name || "Student"}!
                         </h1>
                     </div>
 
