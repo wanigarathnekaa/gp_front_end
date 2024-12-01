@@ -6,6 +6,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import DesignerContextProvider from "@/components/formComponents/context/DesignerContext";
 import NextTopLoader from "nextjs-toploader";
+import { AuthProvider } from "@/context/AuthProvider";
 
 const poppins = Poppins({
   weight: ['400', '700'], // Specify the weights you need
@@ -24,6 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
+    <AuthProvider>
     <ClerkProvider>
       <html lang="en">
         <body className={poppins.className}>
@@ -35,5 +37,6 @@ export default function RootLayout({
         </body>
       </html>
     </ClerkProvider>
+    </AuthProvider>
   );
 }

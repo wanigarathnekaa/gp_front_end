@@ -1,4 +1,6 @@
+"use client";
 import { StudentNavbar, Calendar, TaskList, Courses } from "@/components/index";
+import { useAuth } from "@/context/AuthProvider";
 import Link from "next/link";
 import { FaRegClock } from 'react-icons/fa';
 
@@ -14,6 +16,8 @@ const courses = [
   ];
 
 const StudentDashboard = () => {
+    const {decodedToken} = useAuth();
+    console.log("ghjkl",decodedToken);
     return (
         <div className="w-full">
             <StudentNavbar />
