@@ -17,3 +17,14 @@ export const addRole = async(role: Role) => {
         throw new Error("Failed to add role");
     }
 };
+
+export const getRoles = async () => {
+    try {
+        const response = await axios.get(`${API_URL}/api/v1/userRole/getAllRoles`);
+        console.log("Fetched Roles:", response.data);
+        return response.data;
+    } catch (error: any) {
+        console.error("Error fetching roles:", error.response?.data || error.message);
+        throw new Error("Failed to get roles");
+    }
+};
