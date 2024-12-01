@@ -9,7 +9,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { LuView } from "react-icons/lu";
 import { FaWpforms } from "react-icons/fa";
 import { HiCursorClick } from "react-icons/hi";
@@ -31,43 +31,29 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import TemplateListPopUp from "@/components/formComponents/TemplateListPopUp";
+import { useForm } from "react-hook-form";
+import { formSchema, formSchematype } from "@/schemas/form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export interface Form {
   id: number;
   name: string;
   description: string;
+  template: boolean;
   createdAt: Date;
   published: boolean;
-  template: boolean;
   visits: number;
   submissions: number;
 }
 
-export default function Home() {
+export default function TemplatesPage() {
   return (
     <div className="ml-64 px-8 max-h-screen overflow-auto py-10">
-      <Suspense fallback={<StatCards loading={true} />}>
-        <CardStatsWrapper />
-      </Suspense>
 
-      {/* <Separator className="my-6" /> */}
-      <div className="my-20"></div>
-
-      <div className="flex items-center justify-between">
-        <h2 className="text-4xl font-bold">Your Forms</h2>
-
-        {/* Right-aligned buttons */}
-        <div className="flex space-x-4">
-          <TemplateListPopUp />
-        </div>
-      </div>
-
+      <h2 className="text-4xl font-bold col-span-2 font-">Your Templates</h2>
       <div className="my-6"></div>
-      {/* <Separator className="my-6" /> */}
-
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <CreateFormBtn template={{ template: false }} />
+        <CreateFormBtn template={{ template: true }} />
         <Suspense
           fallback={[1, 2, 3, 4].map((ele) => (
             <FormCardSkeleton key={ele} />
@@ -77,91 +63,6 @@ export default function Home() {
         </Suspense>
       </div>
     </div>
-  );
-}
-
-async function CardStatsWrapper() {
-  const stats = await getFormStats();
-  return <StatCards loading={false} data={stats} />;
-}
-
-interface StatCardsProps {
-  data?: Awaited<ReturnType<typeof getFormStats>>;
-  loading: boolean;
-}
-
-function StatCards(props: StatCardsProps) {
-  const { data, loading } = props;
-  return (
-    <div className="w-full pt-8 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
-      <StatCard
-        title="Total Visits"
-        icon={<LuView className="text-blue-600" />}
-        helperText="All time form Visits"
-        value={data?.visits.toLocaleString() || ""}
-        loading={loading}
-        className="shadow-md border-none"
-      />
-
-      <StatCard
-        title="Total Submissions"
-        icon={<FaWpforms className="text-yellow-600" />}
-        helperText="All time form Submissions"
-        value={data?.submissions.toLocaleString() || ""}
-        loading={loading}
-        className="shadow-md border-none"
-      />
-
-      <StatCard
-        title="Submission Rate"
-        icon={<HiCursorClick className="text-green-600" />}
-        helperText="Visits that results in form submission"
-        value={data?.submissionRate.toLocaleString() + "%" || ""}
-        loading={loading}
-        className="shadow-md border-none"
-      />
-
-      <StatCard
-        title="Bounce Rate"
-        icon={<TbArrowBounce className="text-red-600" />}
-        helperText="Visits that leaves without submitting form"
-        value={data?.bounceRate.toLocaleString() + "%" || ""}
-        loading={loading}
-        className="shadow-md border-none"
-      />
-    </div>
-  );
-}
-
-export function StatCard(props: {
-  title: string;
-  icon: React.ReactNode;
-  helperText: string;
-  value: string;
-  loading: boolean;
-  className?: string;
-}) {
-  const { title, icon, helperText, value, loading, className } = props;
-  return (
-    <Card className={className}>
-      <CardHeader className="flex flex-row items-center justify-between pb-2 rounded-xl">
-        <CardTitle className="text-sm font-medium text-muted-foreground">
-          {title}
-        </CardTitle>
-        {icon}
-      </CardHeader>
-      <CardContent>
-        <div className="text-2xl font-bold">
-          {loading && (
-            <Skeleton>
-              <span className="opacity-0">0</span>
-            </Skeleton>
-          )}
-          {!loading && value}
-          <p className="text-xs text-muted-foreground pt-3">{helperText}</p>
-        </div>
-      </CardContent>
-    </Card>
   );
 }
 
@@ -228,7 +129,7 @@ function FormCard({ form }: { form: Form }) {
         {form.published && (
           <Button
             asChild
-            className="w-full mt-2 text-md gap-4 bg-[#312e81] text-white"
+            className="w-full mt-2 text-md gap-4 bg-blue-600 hover:bg-blue-500 text-white"
           >
             <Link href={`/dashboard/forms/formView/${form.id}`}>
               View submissions <BiRightArrowAlt />
@@ -242,7 +143,7 @@ function FormCard({ form }: { form: Form }) {
             className="w-full mt-2 text-md gap-4"
           >
             <Link href={`forms/builder/${form.id}`}>
-              Edit form <FaEdit />
+              Edit template <FaEdit />
             </Link>
           </Button>
         )}

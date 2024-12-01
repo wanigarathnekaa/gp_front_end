@@ -32,12 +32,11 @@ const Page: React.FC = () => {
       regNumber,
       nic,
     };
-    console.log("kzbnijk",loginRequest);
 
     try {
       const response = await login(loginRequest);
       if (response.accessToken !== null) {
-        setMessage('Login successful');
+        setMessage(response.message);
         setToken(response.accessToken);
       }
 

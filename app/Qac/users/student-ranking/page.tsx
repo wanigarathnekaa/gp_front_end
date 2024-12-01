@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { StudentRanking, Navbar, Sidebar, Title, SearchBar } from "@/components/index";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 const students = [
   { name: 'Alice Johnson', indexNo: 2100802, points: 105 },
@@ -35,9 +36,10 @@ const Ranking = () => {
     <div className="w-full">
       <Navbar />
       <Sidebar />
-      <div className='mt-14 ml-64 flex flex-col min-h-screen bg-[#EEF2FF] p-4'>
+      <div className='ml-64 flex flex-col min-h-screen bg-blue-50 px-20 py-10'>
         <Title text='Student Ranking' />
-        <div className="flex items-center mb-4 mt-8 justify-center">
+        <Breadcrumbs/>
+        <div className="flex items-center mb-4 mt-10 justify-center">
           <SearchBar onSearch={handleSearch} />
         </div>
         <div className="mt-9  flex flex-col justify-center items-center">

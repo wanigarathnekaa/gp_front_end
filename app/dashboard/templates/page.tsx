@@ -53,7 +53,7 @@ export default function TemplatesPage() {
       <h2 className="text-4xl font-bold col-span-2 font-">Your Templates</h2>
       <div className="my-6"></div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <CreateFormBtn template={{ template: true }} />
+        <CreateFormBtn template={true} />
         <Suspense
           fallback={[1, 2, 3, 4].map((ele) => (
             <FormCardSkeleton key={ele} />
@@ -129,7 +129,7 @@ function FormCard({ form }: { form: Form }) {
         {form.published && (
           <Button
             asChild
-            className="w-full mt-2 text-md gap-4 bg-[#312e81] text-white"
+            className="w-full mt-2 text-md gap-4 bg-blue-600 hover:bg-blue-500 text-white"
           >
             <Link href={`/dashboard/forms/formView/${form.id}`}>
               View submissions <BiRightArrowAlt />
