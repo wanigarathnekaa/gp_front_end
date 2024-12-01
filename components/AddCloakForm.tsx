@@ -8,18 +8,18 @@ interface AddCloakFormProps {
     onSubmit: (e: React.FormEvent<HTMLFormElement>, counts: { medium: number; small: number; large: number }) => void;
     closeModal: () => void;
     mode: 'add' | 'update';
-    initialCounts?: { small: number; medium: number; large: number };
+    // initialCounts?: { small: number; medium: number; large: number };
 }
 
 const AddCloakForm = ({
     onSubmit, 
     closeModal, 
-    mode,
-    initialCounts = {medium:0, small:0, large:0}}:AddCloakFormProps) => {
+    mode
+}:AddCloakFormProps) => {
 
-    const [smallCount, setSmallCount] = useState<number>(initialCounts.small);
-    const [mediumCount, setMediumCount] = useState<number>(initialCounts.medium);
-    const [largeCount, setLargeCount] = useState<number>(initialCounts.large);
+    const [smallCount, setSmallCount] = useState<number>(0);
+    const [mediumCount, setMediumCount] = useState<number>(0);
+    const [largeCount, setLargeCount] = useState<number>(0);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const{name, value} = e.target;

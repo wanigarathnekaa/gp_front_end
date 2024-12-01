@@ -38,7 +38,9 @@ const Details = () => {
     // console.log("pathname",pathname);
 
     const [users, setUsers] = useState<User[]>([]);
-    const [loading, setLoading] = useState(true);
+    const [currentUsers, setCurrentUsers] = useState<User[]>([]);
+    // const [historyUsers, setHistoryUsers] = useState<User[]>([]);
+    const [loading, setLoading] = useState(true); //Tracks whether data is being fetched.
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
@@ -46,8 +48,29 @@ const Details = () => {
             try{
                 const data = await getAllStudents();
                 console.log("Fetched data:", data); 
+
+                const now = new Date();
+                const oneYearAgo = new Date();
+                oneYearAgo.setFullYear(now.getFullYear() -1);
+
+                const currentYearUsers = data.filter((user:User) =>{
+                    const issuedDate = new Date(user.issuedDate);
+                    return issuedDate >= oneYearAgo && issuedDate <= now;
+
+                });
+
+                // const historyYearUsers = data.filter((user:User) => {
+                //     const issuedDate = new Date(user.issuedDate);
+                //     return issuedDate < oneYearAgo;
+
+                // });
+
+
                 setUsers(data);
+                setCurrentUsers(currentYearUsers);
+                // setHistoryUsers(historyYearUsers);
                 setLoading(false);
+
             } catch (error){
                 console.error("Error fetching data:", error);
                 setLoading(false);
@@ -59,7 +82,7 @@ const Details = () => {
     }, []);
 
     const handleSearch =(searchText : string) => {
-        const filteredUsers = users.filter(user =>
+        const filteredUsers = currentUsers.filter(user =>
 
             user.userId.toLowerCase().includes(searchText.toLowerCase()) ||
             user.userName.toLowerCase().includes(searchText.toLowerCase()) ||
@@ -70,18 +93,18 @@ const Details = () => {
             user.issuedDate.toLowerCase().includes(searchText.toLowerCase())
         );
     
-        setUsers(filteredUsers);
+        setCurrentUsers(filteredUsers);
     };
 
     const handleSelect = (selectedOption : string) => {
-        const filteredUsers = users.filter(user => user.status.toLowerCase().includes(selectedOption.toLowerCase()));
-        setUsers(filteredUsers);
+        const filteredUsers = currentUsers.filter(user => user.status.toLowerCase().includes(selectedOption.toLowerCase()));
+        setCurrentUsers(filteredUsers);
     }
 
     
 
-    const totStudents = users.length;
-    const returnedStudents = users.filter(user => user.status === 'Returned').length;
+    const totStudents = currentUsers.length;
+    const returnedStudents = currentUsers.filter(user => user.status === 'Returned').length;
     const notretrunedStudents =totStudents - returnedStudents;
 
     return (
@@ -113,7 +136,7 @@ const Details = () => {
                 </div>
 
                 <div className='ml-3 px-6 mt-2'>
-                    <ExaminationTable users={users}/>
+                    <ExaminationTable users={currentUsers}/>
                 </div>
 
             </div>
