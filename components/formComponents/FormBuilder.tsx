@@ -78,32 +78,31 @@ function FormBuilder({ form }: { form: Form }) {
   if (!isReady) {
     return (
       <div className="flex flex-col items-center justify-center w-full h-full">
-        <ImSpinner2 className="animate-spin h-12 w-12" />
+        <ImSpinner2 className="animate-spin h-12 w-12 mt-10" />
       </div>
     );
   }
 
-  const shareURL = `${window.location.origin}/dashboard/submit/${form.shareURL}`;
+  const shareURL = `${window.location.origin}/Qac/submit/${form.shareURL}`;
 
   if (form.published) {
     return (
       <>
-        {/* <Confetti
+        <Confetti
           width={window.innerWidth}
           height={window.innerHeight}
           recycle={false}
           numberOfPieces={600}
-        /> */}
-        <div className="flex flex-col items-center justify-center w-full h-full">
+        />
+        <div className="flex flex-col items-center justify-center w-full h-full py-36 mt-10">
           <div className="max-w-md">
             <h1 className="text-center text-4xl font-bold text-primary border-b pb-2 mb-10">
               Form Published
             </h1>
             <h2>Share this form</h2>
-            <h3 className="text-xl text-muted-foreground border-b p-10">
+            <p className="text-sm text-muted-foreground border-b py-5">
               Anyone with link can view and submit the form
-            </h3>
-
+            </p>
             <div className="my-4 flex flex-col gap-2 items-center w-full border-b pb-4">
               <Input className="w-full" readOnly value={shareURL} />
               <Button
@@ -127,7 +126,7 @@ function FormBuilder({ form }: { form: Form }) {
                 </Link>
               </Button>
               <Button variant={"link"} asChild>
-                <Link href={`/dashboard/forms/formView/${form.id}`} className="gap-2">
+                <Link href={`/Qac/forms/formView/${form.id}`} className="gap-2">
                   Form Details
                   <BsArrowRight />
                 </Link>
