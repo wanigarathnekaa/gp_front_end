@@ -13,7 +13,7 @@ import UserInfoForm from './UserInfoForm'
 import BulkEnrollCard from './BulkEnrollmentCard'
 import SubmitButton from './SubmitButton'
 import CancelButton from './CancelButton'
-import Button from './button'
+import Button from './CancelButtonNew'
 import RoleTable from './RoleTable'
 import Courses from './Courses'
 import CourseDetails from './CourseDetails'
@@ -33,6 +33,8 @@ import CloakBarChart from './CloakBarChart'
 import StudentCounterCard from './StudentCounterCard'
 import AddCloakForm from './AddCloakForm'
 import SubmitFormBulk from './SubmitFormBulk'
+import ButtonText from './ButtonText'
+import CancelButtonNew from './CancelButtonNew'
 
 
 export {
@@ -69,5 +71,7 @@ export {
   CloakBarChart,
   StudentCounterCard,
   AddCloakForm,
-  SubmitFormBulk
+  SubmitFormBulk,
+  ButtonText,
+  CancelButtonNew,
 }

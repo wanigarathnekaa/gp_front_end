@@ -15,7 +15,7 @@ const StudentRanking = ({ students }: StudentRankingProps) => {
   const sortedStudents = [...students].sort((a, b) => b.points - a.points);
 
   return (
-    <div className="p-4 bg-white rounded-lg shadow-md w-full max-w-3xl">
+    <div className="p-4 bg-white rounded-lg shadow-md w-full max-w-6xl">
       <ul className='space-y-2'>
         {sortedStudents.map((student, index) => (
           <li

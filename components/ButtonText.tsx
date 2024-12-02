@@ -2,7 +2,7 @@ import React from 'react';
 
 interface ButtonTextProps {
   text: string;
-  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const ButtonText: React.FC<ButtonTextProps> = ({ text, onClick }) => {
