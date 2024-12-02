@@ -34,7 +34,7 @@ const FeedbackHistory = () => {
     <div className='w-full '>
         <StudentNavbar/>
 
-        <div className='mt-12 flex flex-col items-center min-h-screen bg-[#D6D6FF]'>
+        <div className='mt-12 flex flex-col items-center min-h-screen bg-blue-50'>
 
             <div className='flex items-center mb-4 mt-14 ml-8'>
                 <SearchBar onSearch={handleSearch}/>
