@@ -4,40 +4,71 @@ import { useState } from 'react';
 import { CloakBarChart, ExamSidebar, Navbar,Title, Card, AddCloakForm} from '@/components/index'
 import { IoMdAddCircle, IoIosRemoveCircle } from "react-icons/io";
 import { MdOutlineSecurityUpdate } from "react-icons/md";
-import { addCloak } from '@/actions/Cloak';
+import { addOrUpdateCloak, getCloakCount } from '@/actions/Cloak';
 
 const Cloak = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [formMode, setFormMode] = useState<'add' | 'update'>('add');
+  const [initialCounts, setInitialCounts] = useState<{ small: number; medium: number; large: number } | null>(null);
 
-  const handleOpenForm =(mode: "add" | "update") =>{
+  const handleOpenForm =async(mode: "add" | "update") =>{
     setFormMode(mode);
+
+    if (mode === "update") {
+      try {
+        const data = await getCloakCount();
+        setInitialCounts({
+          small: data.smallCount,
+          medium: data.mediumCount,
+          large: data.largeCount,
+        });
+      } catch (error) {
+        console.error("Failed to fetch cloak counts:", error);
+      }
+    }
     setIsFormOpen(true);
   }
 
   const handleCloseForm = () =>{
     setIsFormOpen(false);
+    setInitialCounts(null);
   }
 
-  const handleSubmit = async(e: React.FormEvent<HTMLFormElement>, counts: { medium: number; small: number; large: number }) => {
+  const handleSubmit = async(e: React.FormEvent<HTMLFormElement>, data: {name: string; medium: number; small: number; large: number }) => {
     // console.log(counts);
     e.preventDefault();
     try{
-      if (formMode === 'add'){
-        const result = await addCloak({
-          smallCount: counts.small,
-          mediumCount: counts.medium,
-          largeCount: counts.large,
+      const existingCloak = await getCloakCount();
 
-      });
-      console.log("Cloak added:", result);
-      
-      } else{
-      console.log("Update cloak");
+      if(formMode === "update" && !existingCloak){
+        console.log("No existing cloak counts to update");
+        return;
+      } else if(formMode === "update" && existingCloak){
+        const result = await addOrUpdateCloak({
+          name: "cloakCounts",
+          smallCount: formMode === "update"  && initialCounts ? data.small  : data.small,
+          mediumCount: formMode === "update"  && initialCounts ? data.medium  : data.medium,
+          largeCount: formMode === "update" && initialCounts ? data.large  : data.large, 
+        });
+
+        console.log("Cloak added:", result);
+      } else if(formMode === "add"){
+        const result = await addOrUpdateCloak({
+          name: "cloakCounts",
+          smallCount: existingCloak  ?   existingCloak.smallCount + data.small : data.small,
+          mediumCount: existingCloak  ?  existingCloak.mediumCount + data.medium : data.medium,
+          largeCount: existingCloak  ? existingCloak.largeCount + data.large : data.large,
+        });
+        console.log("Cloak added:", result);
       }
+
+      
+
+      // const result = await addOrUpdateCloak(data);
+      
       setIsFormOpen(false);
-    }
-    catch(error){
+      
+      }catch(error){
       console.log("Failed to add cloak counts", error);
     }
     
@@ -86,6 +117,7 @@ const Cloak = () => {
                       onSubmit={handleSubmit}
                       closeModal={handleCloseForm}
                       mode={formMode}
+                      initialCounts={initialCounts || { small: 0, medium: 0, large: 0 }}
                     />
                   </div>
               </div>
