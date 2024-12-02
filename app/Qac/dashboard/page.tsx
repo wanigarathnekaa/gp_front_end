@@ -1,10 +1,11 @@
 "use client";
 import React from 'react'
-import { Sidebar, Navbar,CloakCountCard, StudentCounterCard, ExaminationTable, Card } from '@/components/index';
+import { Sidebar, Navbar,CloakCountCard, StudentCounterCard, ExaminationTable, Card, Title } from '@/components/index';
 import { MdOutlinePreview } from "react-icons/md";
 import { SiGoogleforms } from "react-icons/si";
 import { GrView } from "react-icons/gr";
 import QacBarChart from '@/components/QacBarChart';
+import SubTitle from '@/components/SubTitle';
 
 
 
@@ -14,13 +15,13 @@ const Dashboard = () => {
       <Navbar/>
       <Sidebar />
 
-      <div className='ml-72 md:ml-64 lg:ml-72  bg-blue-50 flex flex-col min-h-screen'>
+      <div className='ml-72 md:ml-64 lg:ml-72 bg-blue-50 flex flex-col min-h-screen'>
         <div className='mt-10 p-6'>
-          <h1 className='ml-3 text-black text-5xl md:text-4xl font-bold '>Hi there!</h1>
-          <h2 className='font-normal ml-3 mt-5 text-4xl md:text-3xl '>Welcome to your dashboard</h2>
+          <Title text="Hi there"/>
+          <SubTitle text="Welcome to your dashboard"/>
         </div>
 
-        <div className=' mt-8 '>
+        <div className=' mt-2 '>
 
               {/* Cloak Card 
           <h2 className='text-2xl font-semibold text-gray-600 ml-3  px-6'>Cloak Distribution</h2>
@@ -55,7 +56,7 @@ const Dashboard = () => {
        Cloak Card */}
 
         {/* Student Card*/}
-          <h2 className='text-2xl font-semibold text-gray-600 ml-3  px-6'>Qac Card</h2>
+          {/* <h2 className='text-2xl font-semibold text-gray-600 ml-3  px-6'>Qac Card</h2>
           <div className='p-4 mt-3 ml-3  grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6'>
 
 
@@ -63,13 +64,13 @@ const Dashboard = () => {
             <StudentCounterCard title='Open Forms' count={10} wide/>
             <StudentCounterCard title='Schedule Forms' count={5} wide/>
 
-        </div>
+        </div> */}
           {/*Student over*/}
 
 
             {/*card */}
-            <h2 className='text-2xl font-semibold text-gray-600 ml-3  px-6'>QAC </h2>
-            <div className="flex items-center  mt-4 ml-3 p-6 gap-6 ">
+            {/* <h2 className='text-2xl font-semibold text-gray-600 ml-3  px-6'>QAC </h2> */}
+            <div className="flex items-center ml-3 p-6 gap-6 ">
           
 
             <Card

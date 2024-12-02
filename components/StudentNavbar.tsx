@@ -1,19 +1,20 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { FaCog, FaBell } from "react-icons/fa";
+import { FaRegBell } from "react-icons/fa";
 
 const StudentNavbar = () => {
     const pathname = usePathname();
     const router = useRouter();
     const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [userName, setUserName] = useState<string | null>(null);
 
     const linkClasses = (path: string) => {
         return pathname === path
-            ? 'text-lg font-bold text-blue-500'
-            : 'text-lg font-medium text-gray-700 hover:text-blue-500 transition-colors';
+            ? 'text-lg font-medium text-blue-600'
+            : 'text-lg font-medium text-gray-700 hover:text-blue-600 transition-colors';
     };
 
     const toggleDropdown = () => {
@@ -21,24 +22,31 @@ const StudentNavbar = () => {
     };
 
     const handleLogout = () => {
-        localStorage.removeItem('user'); 
+        localStorage.removeItem('user');
         router.push('/login');
     };
+
+    useEffect(() => {
+        // Retrieve the user's name from localStorage (or from context)
+        const user = JSON.parse(localStorage.getItem('user') || '{}');
+        if (user && user.name) {
+            setUserName(user.name);
+        }
+    }, []);
 
     return (
         <nav className="fixed top-0 left-0 right-0 z-50 flex justify-between px-20 py-2.5 items-center bg-white shadow-lg">
             <div className='flex items-center'>
-                <Image src="/Logo.png" alt="Logo" className="h-8" width={105} height={40} />
+                <Image src="/Logo_feebify.png" alt="Logo" className="h-8" width={120} height={55} />
             </div>
 
             <div className='flex items-center space-x-7 ml-auto'>
                 <div className='flex space-x-7'>
-                    <Link href="/Student/dashboard" className={linkClasses('/Student/dashboard')}>
-                        Courses
+                    <Link href="/Student/Forms" className={linkClasses('/Student/Forms')}>
+                        Forms
                     </Link>
-
-                    <Link href="/Student/History" className={linkClasses('/Student/History')}>
-                        History
+                    <Link href="/Student/Ranking" className={linkClasses('/Student/Ranking')}>
+                        Ranking
                     </Link>
                 </div>
             </div>
@@ -46,16 +54,17 @@ const StudentNavbar = () => {
             <div className="flex items-center ml-40">
                 <ul className="flex items-center space-x-7">
                     <li>
-                        <Link href="/Student/Setting" className={linkClasses('/Student/Setting')}>
-                            <FaCog className="h-6 w-6 hover:text-blue-800" />
-                        </Link>
+                        <FaRegBell
+                            className="text-grey-500 hover:text-blue-600"
+                            style={{ fontSize: '1.5rem' }}
+                        />
                     </li>
 
-                    <li>
-                        <FaBell className="h-6 w-6" />
-                    </li>
-
-                    <li className="relative">
+                    {/* User Greeting */}
+                    <li className="flex items-center space-x-6">
+                        <span className="text-gray-700 font-medium">
+                            Hi {userName || "User"}!
+                        </span>
                         <Image
                             src="/profilePic.png"
                             alt="profilePicture"
