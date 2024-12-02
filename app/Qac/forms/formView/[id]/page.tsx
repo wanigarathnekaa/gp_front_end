@@ -48,9 +48,9 @@ async function FormDetailPage({
   const bounceRate = 100 - submissionRate;
 
   return (
-    <div className="ml-64 px-8 h-fit bg-[#FFFFFF] py-10">
+    <div className="ml-64 h-fit bg-blue-50 py-10">
       <div className="py-8 border-b border-gray-400">
-        <div className="flex justify-between container">
+        <div className="flex justify-between container mt-10">
           <h1 className="text-4xl font-bold truncate">{form.name}</h1>
           <VisitBtn shareUrl={form.shareURL} />
         </div>

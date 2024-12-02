@@ -14,6 +14,7 @@ const StudentDashboard = () => {
 
     console.log("Decoded Token:", decodedToken);
 
+
     useEffect(() => {
         const fetchCourses = async () => {
             try {
@@ -22,7 +23,7 @@ const StudentDashboard = () => {
                 const formattedCourses = response.map((course: any) => ({
                     title: `${course.courseCode} - ${course.courseName}`, 
                     description: course.description || "No description available", 
-                    link: `/Student/dashboard/${course.id}`, 
+                    link: `${window.location.origin}/dashboard/submit/${course.id}`, 
                     image: course.image || "/courses/feedback.png", 
                 }));
                 setCourses(formattedCourses);

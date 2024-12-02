@@ -111,9 +111,9 @@ export const getFormContentByUrl = async (formUrl: string) => {
   }
 };
 
-export const submitForm = async (formUrl: string, content: string) => {
+export const submitForm = async (formUrl: string, content: string, regNumber: string) => {
   try {
-    const response = await axios.post(`${API_URL}/forms/submit`, { formURL: formUrl, content });
+    const response = await axios.post(`${API_URL}/forms/submit`, { formURL: formUrl, content, regNumber });
     return response.data;
   } catch (error) {
     throw new Error("Failed to submit form");
