@@ -9,7 +9,7 @@ import { useAuth } from '@/context/AuthProvider';
 
 interface LoginRequest {
   regNumber: string;
-  nic: string;
+  password: string;
 }
 // Storing token in Session Storage
 const saveToken = (obj: object) => {
@@ -19,7 +19,7 @@ const saveToken = (obj: object) => {
 const Page: React.FC = () => {
   const router = useRouter();
   const [regNumber, setRegNumber] = useState<string>('');
-  const [nic, setNic] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
   const [message, setMessage] = useState<string>('');
 
@@ -30,7 +30,7 @@ const Page: React.FC = () => {
     
     const loginRequest: LoginRequest = {
       regNumber,
-      nic,
+      password,
     };
 
     try {
@@ -52,8 +52,8 @@ const Page: React.FC = () => {
     setRegNumber(event.target.value);
   };
 
-  const handleNicChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setNic(event.target.value);
+  const handlepasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setPassword(event.target.value);
   };
 
   const togglePasswordVisibility = () => {
@@ -63,11 +63,14 @@ const Page: React.FC = () => {
   return (
     <div className="flex min-h-screen flex-col bg-white">
       <main className="flex-grow flex items-center justify-center px-28">
+        {/* Grid Layout for Logo and Login */}
         <div className="grid grid-cols-3 w-full">
+          {/* Left Column (2/3 of the width) */}
           <div className="col-span-2 flex justify-start items-start">
             <Image className='h-fit' src="/Login.jpg" alt="logo" width={1300} height={1300} />
           </div>
 
+          {/* Right Column (1/3 of the width) */}
           <div className="col-span-1 flex justify-center items-center w-full">
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
               <Image className='h-fit py-3' src="/Logo_feebify.png" alt="logo" width={1000} height={500} />
@@ -91,7 +94,7 @@ const Page: React.FC = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="nic" className="block text-md font-medium leading-6 text-gray-700">
+                  <label htmlFor="password" className="block text-md font-medium leading-6 text-gray-700">
                     Password
                   </label>
                   <div className="relative mt-2">
@@ -99,8 +102,8 @@ const Page: React.FC = () => {
                       id="password"
                       name="password"
                       type={passwordVisible ? "text" : "password"}
-                      value={nic}
-                      onChange={handleNicChange}
+                      value={password}
+                      onChange={handlepasswordChange}
                       placeholder="Password"
                       required
                       className="block w-full border-b-2 border-gray-300 focus:border-blue-500 focus:outline-none focus:ring-0 placeholder:text-gray-400 text-gray-700 py-2 px-0 sm:text-sm"

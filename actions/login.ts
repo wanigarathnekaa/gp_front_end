@@ -5,7 +5,7 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 interface LoginRequest {
   regNumber: string;
-  nic: string;
+  password: string;
 }
 
 export const login = async (loginRequest: LoginRequest) => {
