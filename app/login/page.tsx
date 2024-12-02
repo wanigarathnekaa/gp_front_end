@@ -22,6 +22,7 @@ const Page: React.FC = () => {
   const [nic, setNic] = useState<string>('');
   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
   const [message, setMessage] = useState<string>('');
+  const [roleName, setRoleName] = useState<string>('');
 
   const {setToken,decodedToken} = useAuth();
 
@@ -38,10 +39,19 @@ const Page: React.FC = () => {
       if (response.accessToken !== null) {
         setMessage(response.message);
         setToken(response.accessToken);
+        setRoleName(response.roleName);
+      }
+
+      if (roleName === 'Student') {
+        router.push('/Student/dashboard');
+      } else if (roleName === 'Admin') {
+        router.push('/Admin/dashboard');
+      }else {
+        router.push('Qac/dashboard');
       }
 
       // Redirect to dashboard after successful login
-      router.push('/Student/dashboard');
+      
     } catch (error) {
       console.error('Error:', error);
       setMessage('An error occurred');
@@ -127,6 +137,7 @@ const Page: React.FC = () => {
                 </div>
               </form>
               {message && <p className="text-center text-gray-900 mt-4">{message}</p>}
+              {roleName && <p className="text-center text-gray-900 mt-4">Role: {roleName}</p>}
             </div>
           </div>
         </div>
