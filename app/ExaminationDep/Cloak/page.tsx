@@ -4,17 +4,17 @@ import { useState } from 'react';
 import { CloakBarChart, ExamSidebar, Navbar,Title, Card, AddCloakForm} from '@/components/index'
 import { IoMdAddCircle, IoIosRemoveCircle } from "react-icons/io";
 import { MdOutlineSecurityUpdate } from "react-icons/md";
-import { addOrUpdateCloak, getCloakCount } from '@/actions/Cloak';
+import { addOrUpdateCloak, getCloakCount, removeCloak } from '@/actions/Cloak';
 
 const Cloak = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
-  const [formMode, setFormMode] = useState<'add' | 'update'>('add');
+  const [formMode, setFormMode] = useState<'add' | 'update' | 'remove'>('add');
   const [initialCounts, setInitialCounts] = useState<{ small: number; medium: number; large: number } | null>(null);
 
-  const handleOpenForm =async(mode: "add" | "update") =>{
+  const handleOpenForm =async(mode: "add" | "update" | "remove") =>{
     setFormMode(mode);
 
-    if (mode === "update") {
+    if (mode === "update" || mode === "remove") {
       try {
         const data = await getCloakCount();
         setInitialCounts({
@@ -60,11 +60,13 @@ const Cloak = () => {
           largeCount: existingCloak  ? existingCloak.largeCount + data.large : data.large,
         });
         console.log("Cloak added:", result);
+      } else if (formMode === "remove" && existingCloak ){
+        await removeCloak();
+        console.log("Cloak counts removed successfully");
+      }else if(formMode === "remove" && !existingCloak){
+        console.log("No existing cloak counts to update");
+        return;
       }
-
-      
-
-      // const result = await addOrUpdateCloak(data);
       
       setIsFormOpen(false);
       
@@ -105,6 +107,7 @@ const Cloak = () => {
               title= "Remove Cloak"  
               description='Delete existing cloak in the system'
               icon={IoIosRemoveCircle }
+              onclick={() => handleOpenForm('remove')}
             />
 
           </div>
