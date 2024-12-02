@@ -40,7 +40,7 @@ function PublishFormBtn({ id }: { id: number }) {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button className="gap-2 text-white bg-black">
+        <Button className="gap-2 text-white bg-blue-600">
           <MdOutlinePublish className="h-4 w-4" />
           Publish
         </Button>

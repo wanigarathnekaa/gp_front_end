@@ -7,8 +7,10 @@ import { HiCursorClick } from "react-icons/hi";
 import { toast } from "../ui/use-toast";
 import { ImSpinner2 } from "react-icons/im";
 import { submitForm } from "@/actions/form";
+import { useAuth } from "@/context/AuthProvider";
 
 function FormSubmitComponent({ formUrl, content }: { content: FormElementInstance[]; formUrl: string }) {
+  const { decodedToken } = useAuth();
   const formValues = useRef<{ [key: string]: string }>({});
   const formErrors = useRef<{ [key: string]: boolean }>({});
   const [renderKey, setRenderKey] = useState(new Date().getTime());
@@ -53,7 +55,7 @@ function FormSubmitComponent({ formUrl, content }: { content: FormElementInstanc
     try {
       const jsonContent = JSON.stringify(formValues.current);
       console.log(jsonContent);
-      await submitForm(formUrl, jsonContent);
+      await submitForm(formUrl, jsonContent, decodedToken.sub);
       setSubmitted(true);
     } catch (error) {
       toast({

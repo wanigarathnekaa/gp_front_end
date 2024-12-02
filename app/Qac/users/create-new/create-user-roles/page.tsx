@@ -6,7 +6,7 @@ import Breadcrumbs from '@/components/Breadcrumbs';
 import NewRoleCreationForm from '@/components/NewRoleCreation';
 import SubTitle from '@/components/SubTitle';
 import { usePathname } from 'next/navigation';
-import { HiUserAdd } from "react-icons/hi";
+import { addRole } from '@/actions/roleCreation';
 
 const usersData = [
     {
@@ -36,6 +36,9 @@ const ViewStaff = () => {
     const pathname = usePathname();
     const [users, setUsers] = useState(usersData);
     const [isFormVisible, setFormVisible] = useState(false);
+    const [roleName, setRoleName] = useState('');
+    const [roleDescription, setRoleDescription] = useState('');
+    const [selectedPrivileges, setSelectedPrivileges] = useState<string[]>([]);
 
     const handleSearch = (searchText: string) => {
         const filteredUsers = usersData.filter(user =>
@@ -53,15 +56,38 @@ const ViewStaff = () => {
         setFormVisible((prev) => !prev);
     };
 
-    const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleFormSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log("Form submitted");
-        // Add logic for handling form submission
+        try {
+            const result = await addRole({
+                roleName,
+                roleDescription,
+                selectedPrivileges
+            });
+            alert('Role created successfully');
+            setUsers((prev) => [...prev, result.id, roleName, status]);
+            setFormVisible(false);
+        } catch (error) {
+            alert("Failed");
+        }
     };
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        console.log(`${e.target.name}: ${e.target.value}`);
-        // Add logic for handling input changes
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+        if (name === 'roleName') {
+            setRoleName(value);
+        } else if (name === 'roleDescription') {
+            setRoleDescription(value);
+        }
+    };
+
+    const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, checked } = e.target;
+        if (checked) {
+            setSelectedPrivileges((prev) => [...prev, name]);
+        } else {
+            setSelectedPrivileges((prev) => prev.filter(privilege => privilege !== name));
+        }
     };
 
     return (
@@ -83,12 +109,11 @@ const ViewStaff = () => {
                 {isFormVisible && (
                     <div className="mt-8">
                         <NewRoleCreationForm
-                            userRoleId=""
-                            userRoleName=""
-                            status="Active"
-                            createdDate=""
-                            createdBy=""
+                            roleName={roleName}
+                            roleDescription={roleDescription}
+                            selectedPrivileges={selectedPrivileges}
                             onInputChange={handleInputChange}
+                            onCheckboxChange={handleCheckboxChange}
                             onSubmit={handleFormSubmit}
                         />
                     </div>

@@ -218,7 +218,7 @@ function DesignerElementWrapper({ element }: { element: FormElementInstance }) {
           </div>
         </>
       )}
-      {topHalf.isOver && <div className="absolute top-0 w-full rounded-md h-[7px] bg-primary rounded-b-none" />}
+      {topHalf.isOver && <div className="absolute top-0 w-full rounded-md h-[7px] bg-blue-600 rounded-b-none" />}
       <div
         className={cn(
           "flex w-full h-[120px] items-center rounded-md bg-accent/40 px-4 py-2 pointer-events-none opacity-100",
@@ -227,7 +227,7 @@ function DesignerElementWrapper({ element }: { element: FormElementInstance }) {
       >
         <DesignerElement elementInstance={element} />
       </div>
-      {bottomHalf.isOver && <div className="absolute bottom-0 w-full rounded-md h-[7px] bg-primary rounded-t-none" />}
+      {bottomHalf.isOver && <div className="absolute bottom-0 w-full rounded-md h-[7px] bg-blue-600 rounded-t-none" />}
     </div>
   );
 }

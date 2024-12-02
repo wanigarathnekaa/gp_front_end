@@ -1,49 +1,70 @@
+"use client";
+import { AllCourses } from "@/actions/course";
 import { StudentNavbar, Calendar, TaskList, Courses } from "@/components/index";
+import { useAuth } from "@/context/AuthProvider";
 import Link from "next/link";
 import { FaRegClock } from 'react-icons/fa';
-
-const courses = [
-    { title: "SCS 3203 - Middleware Architecture", description: "Description for Course 1", link: "/Student/dashboard/Course1", image:"/courses/feedback.png" },
-    { title: "SCS 3204 - Management", description: "Description for Course 2", link: "", image:"/courses/feedback.png" },
-    { title: "SCS 3207 - Software Quality Assurance", description: "Description for Course 3", link: "", image:"/courses/feedback.png" },
-    { title: "SCS 3208 - Software Project Management", description: "Description for Course 3", link: "", image:"/courses/feedback.png" },
-    { title: "SCS 3209 - Human Computer Interaction ", description: "Description for Course 1", link: "", image:"/courses/feedback.png" },
-    { title: "SCS 3210 - System and Network Administration", description: "Description for Course 2", link: "", image:"/courses/feedback.png" },
-    { title: "SCS 3214 - Group Project II", description: "Description for Course 3", link: "", image:"/courses/feedback.png" },
-    
-  ];
+import { useEffect, useState } from "react";
+import { getStudentDetailsByRegNumber } from "@/actions/studentDetails";
 
 const StudentDashboard = () => {
+    const { decodedToken } = useAuth();
+    const [courses, setCourses] = useState([]);
+    const [name , setName] = useState("");
+
+    console.log("Decoded Token:", decodedToken);
+
+
+    useEffect(() => {
+        const fetchCourses = async () => {
+            try {
+                const response = await AllCourses(); 
+                console.log("Courses:", response);
+                const formattedCourses = response.map((course: any) => ({
+                    title: `${course.courseCode} - ${course.courseName}`, 
+                    description: course.description || "No description available", 
+                    link: `${window.location.origin}/dashboard/submit/${course.id}`, 
+                    image: course.image || "/courses/feedback.png", 
+                }));
+                setCourses(formattedCourses);
+                console.log("Formatted Courses:", formattedCourses);
+            } catch (error) {
+                console.error("Error fetching courses:", error);
+            }
+        };
+
+        const fetchUser = async () => {
+            try {
+                const response = await getStudentDetailsByRegNumber(decodedToken?.sub);
+                setName(response.name);
+                console.log("Student Details:", response);
+            } catch (error) {
+                console.error("Error fetching student details:", error);
+            }
+        };
+
+        fetchUser();
+        fetchCourses();
+    }, [decodedToken]);
+
     return (
         <div className="w-full">
             <StudentNavbar />
 
-            <div className="mt-12  flex flex-row min-h-screen">
-                <div className="w-3/4 px-20  bg-[#EEF2FF]">
+            <div className="mt-12 flex flex-row min-h-screen px-20 bg-blue-50 py-10 justify-center">
+                <div className="w-full max-w-6xl">
                     <div className="text-3xl font-bold mb-4">
                         <h1 className="text-3xl mt-10 mb-10 ml-3 ">
-                            Hi, M.L Lakshani
+                            Hi {name || "Student"}!
                         </h1>
-
                     </div>
 
-                    <Link href="">
-                        <Courses courses={courses}/>
-                    </Link>
-
+                    {/* Render Courses Component */}
+                    <Courses courses={courses} />
                 </div>
-
-                <div className="w-1/4 p-4 bg-[#EEF2FF]">
-                    <Calendar />
-                    <TaskList 
-                        tasks={['Task 1', 'Task 2', 'Task 3', 'Task 4']}
-                        icon = {FaRegClock} 
-                    />
-            </div>
-
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default StudentDashboard
+export default StudentDashboard;
