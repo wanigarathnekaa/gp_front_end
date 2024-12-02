@@ -1,5 +1,5 @@
 "use client";
-import { AllCourses } from "@/actions/course"; // Function to fetch data from backend
+import { AllCourses } from "@/actions/course";
 import { StudentNavbar, Calendar, TaskList, Courses } from "@/components/index";
 import { useAuth } from "@/context/AuthProvider";
 import Link from "next/link";
@@ -51,8 +51,8 @@ const StudentDashboard = () => {
         <div className="w-full">
             <StudentNavbar />
 
-            <div className="mt-12 flex flex-row min-h-screen">
-                <div className="w-3/4 px-20 bg-[#EEF2FF]">
+            <div className="mt-12 flex flex-row min-h-screen px-20 bg-blue-50 py-10 justify-center">
+                <div className="w-full max-w-6xl">
                     <div className="text-3xl font-bold mb-4">
                         <h1 className="text-3xl mt-10 mb-10 ml-3 ">
                             Hi {name || "Student"}!
@@ -61,14 +61,6 @@ const StudentDashboard = () => {
 
                     {/* Render Courses Component */}
                     <Courses courses={courses} />
-                </div>
-
-                <div className="w-1/4 p-4 bg-[#EEF2FF]">
-                    <Calendar />
-                    <TaskList 
-                        tasks={['Task 1', 'Task 2', 'Task 3', 'Task 4']}
-                        icon={FaRegClock} 
-                    />
                 </div>
             </div>
         </div>
