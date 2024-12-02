@@ -1,87 +1,85 @@
 "use client";
-
 import { FaEdit } from "react-icons/fa";
 import { CiViewList } from "react-icons/ci";
 import Link from "next/link";
 import { useState } from "react";
 
-interface RoleTableProps {
-  roleId: string;
+interface Role {
+  id: string;
   roleName: string;
-  status: string;
-  createdDate: string;
-  createdBy: string;
+  roleDescription: string;
+  selectedPrivileges: string[];
 }
 
-interface Props {
-  users: RoleTableProps[];
+interface RoleTableProps {
+  users: Role[];
 }
 
-const RoleTable = ({ users }: Props) => {
-  const [selectedRow, setSelectedRow] = useState<number | null>(null);
-  const [rowsPerPage, setRowsPerPage] = useState(5); 
-  const [currentPage, setCurrentPage] = useState(1); 
+const RoleTable = ({ users }: RoleTableProps) => {
+  const [selectedRow, setSelectedRow] = useState<string | null>(null);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const handleRowClick = (index: number) => {
-    setSelectedRow(index);
+  const handleRowClick = (id: string) => {
+    setSelectedRow((prev) => (prev === id ? null : id));
   };
 
   const handleRowsPerPageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setRowsPerPage(Number(e.target.value));
-    setCurrentPage(1); 
+    setCurrentPage(1); // Reset to first page on rows per page change
   };
 
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
+  const handlePageChange = (direction: "next" | "prev") => {
+    setCurrentPage((prev) =>
+      direction === "next" ? prev + 1 : prev - 1
+    );
   };
 
+  const totalRows = users.length;
+  const totalPages = Math.ceil(totalRows / rowsPerPage);
   const startIndex = (currentPage - 1) * rowsPerPage;
-  const endIndex = startIndex + rowsPerPage;
-  const currentPageData = users.slice(startIndex, endIndex);
+  const currentPageData = users.slice(startIndex, startIndex + rowsPerPage);
 
   return (
-    <div className="flex ml-3 mt-10 justify-center flex-col">
-      <table className="w-full max-w-full bg-white rounded-2xl shadow-md border-none">
-        <thead className="text-base text-gray-700">
+    <div className="flex ml-3 mt-10 flex-col">
+      <table className="w-full bg-white rounded-2xl shadow-md border-none">
+        <thead className="text-base text-gray-700 bg-gray-50">
           <tr>
-            <th className="border-b border-gray-200 py-3 px-4">User Role ID</th>
-            <th className="border-b border-gray-200 py-3 px-4">User Role Name</th>
-            <th className="border-b border-gray-200 py-3 px-4">Status</th>
-            <th className="border-b border-gray-200 py-3 px-4">Created Date</th>
-            <th className="border-b border-gray-200 py-3 px-4">Created By</th>
-            <th className="border-b border-gray-200 py-3 px-4"></th>
+            <th className="py-3 px-4 text-left hidden">User Role ID</th>
+            <th className="py-3 px-4 text-left">User Role Name</th>
+            <th className="py-3 px-4 text-left">Role Description</th>
+            <th className="py-3 px-4 text-left">Selected Privileges</th>
+            <th className="py-3 px-4 text-center">Actions</th>
           </tr>
         </thead>
 
-        <tbody className="text-sm text-gray-500">
-          {currentPageData.map((user, index) => {
-            const isLastRow = index === currentPageData.length - 1;
-            return (
-              <tr
-                key={index}
-                className={`text-center cursor-pointer ${
-                  selectedRow === index ? "bg-blue-100" : ""
-                } ${isLastRow ? "rounded-b-2xl" : ""}`}
-                onClick={() => handleRowClick(index)}
-              >
-                <td className="border-b border-gray-200 py-3 px-4">{user.roleId}</td>
-                <td className="border-b border-gray-200 py-3 px-4">{user.roleName}</td>
-                <td className="border-b border-gray-200 py-3 px-4">{user.status}</td>
-                <td className="border-b border-gray-200 py-3 px-4">{user.createdDate}</td>
-                <td className="border-b border-gray-200 py-3 px-4">{user.createdBy}</td>
-                <td className={`py-2 px-4 ${isLastRow ? "rounded-br-2xl rounded-bl-2xl" : "border-b border-gray-200"}`}>
-                  <div className="flex justify-center items-center gap-3">
-                    <Link href="/dashboard/users/UserRoleDetails">
-                      <CiViewList className="cursor-pointer text-[#706ee4]" />
-                    </Link>
-                    <Link href="/dashboard/users/UserRoleDetails/UpdateUserRoleDetails">
-                      <FaEdit className="cursor-pointer text-green-400 opacity-60" />
-                    </Link>
-                  </div>
-                </td>
-              </tr>
-            );
-          })}
+        <tbody>
+          {currentPageData.map((user) => (
+            <tr
+              key={user.id}
+              className={`text-sm cursor-pointer ${
+                selectedRow === user.id ? "bg-blue-100" : "hover:bg-gray-100"
+              }`}
+              onClick={() => handleRowClick(user.id)}
+            >
+              <td className="py-3 px-4 hidden">{user.id}</td>
+              <td className="py-3 px-4">{user.roleName}</td>
+              <td className="py-3 px-4">{user.roleDescription}</td>
+              <td className="py-3 px-4">{user.selectedPrivileges.join(", ")}</td>
+              <td className="py-3 px-4">
+                <div className="flex justify-center items-center gap-3">
+                  <Link href={`/dashboard/users/UserRoleDetails/${user.id}`}>
+                    <CiViewList className="cursor-pointer text-blue-500" />
+                  </Link>
+                  <Link
+                    href={`/dashboard/users/UserRoleDetails/UpdateUserRoleDetails/${user.id}`}
+                  >
+                    <FaEdit className="cursor-pointer text-green-400 opacity-60" />
+                  </Link>
+                </div>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
 
@@ -102,18 +100,18 @@ const RoleTable = ({ users }: Props) => {
 
         <div className="flex items-center gap-4">
           <button
-            onClick={() => handlePageChange(currentPage - 1)}
+            onClick={() => handlePageChange("prev")}
             disabled={currentPage === 1}
             className="px-3 py-1 bg-white rounded disabled:opacity-50"
           >
             Prev
           </button>
           <span className="text-sm">
-            Page {currentPage} of {Math.ceil(users.length / rowsPerPage)}
+            Page {currentPage} of {totalPages}
           </span>
           <button
-            onClick={() => handlePageChange(currentPage + 1)}
-            disabled={currentPage === Math.ceil(users.length / rowsPerPage)}
+            onClick={() => handlePageChange("next")}
+            disabled={currentPage === totalPages}
             className="px-3 py-1 bg-white rounded disabled:opacity-50"
           >
             Next

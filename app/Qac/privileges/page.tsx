@@ -1,103 +1,124 @@
 "use client";
-import React, { useState } from 'react';
-import { Sidebar, Navbar, Title, RoleTable, SearchBar } from '@/components/index';
-import ButtonText from '@/components/ButtonText';
-import Breadcrumbs from '@/components/Breadcrumbs';
-import SubTitle from '@/components/SubTitle';
-import { usePathname } from 'next/navigation';
-import NewPrivilegesAssignForm from '@/components/NewPrivilegesAssignForm';
-import PrivilegeTable from '@/components/PrivilegeTable';
-
-const usersData = [
-    {
-        privilegeId: "101",
-        privilegeName: "Manage Courses",
-        assignedTo: "Post graduate head"
-    },
-    {
-        privilegeId: "101",
-        privilegeName: "Manage Courses",
-        assignedTo: "Post graduate head"
-    },
-    {
-        privilegeId: "101",
-        privilegeName: "Manage Courses",
-        assignedTo: ["Post graduate head", "Undergraduate head"]
-    },
-];
+import React, { useState, useEffect } from "react";
+import { Sidebar, Navbar, Title, RoleTable, SearchBar } from "@/components/index";
+import ButtonText from "@/components/ButtonText";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import NewRoleCreationForm from "@/components/NewRoleCreation";
+import SubTitle from "@/components/SubTitle";
+import { usePathname } from "next/navigation";
+import { addRole, getRoles } from "@/actions/roleCreation";
 
 const ViewStaff = () => {
-    const pathname = usePathname();
-    const [users, setUsers] = useState(usersData);
-    const [isFormVisible, setFormVisible] = useState(false);
 
-    const handleSearch = (searchText: string) => {
-        const filteredUsers = usersData.filter(user =>
-            user.privilegeId.toLowerCase().includes(searchText.toLowerCase()) ||
-            user.privilegeName.toLowerCase().includes(searchText.toLowerCase()) ||
-            (typeof user.assignedTo === 'string'
-                ? user.assignedTo.toLowerCase().includes(searchText.toLowerCase())
-                : user.assignedTo.some(name => name.toLowerCase().includes(searchText.toLowerCase())))
-        );
+    interface Role {
+        id: string;
+        roleName: string;
+        roleDescription: string;
+        selectedPrivileges: string[];
+      }
+      
+  const pathname = usePathname();
+  const [users, setUsers] = useState<Role[]>([]);
+  const [isFormVisible, setFormVisible] = useState(false);
+  const [roleName, setRoleName] = useState("");
+  const [roleDescription, setRoleDescription] = useState("");
+  const [selectedPrivileges, setSelectedPrivileges] = useState<string[]>([]);
 
-        setUsers(filteredUsers);
+  useEffect(() => {
+    // Fetch roles when the component mounts
+    const fetchRoles = async () => {
+      try {
+        const roles = await getRoles();
+        setUsers(roles); // Set the fetched roles to the users state
+      } catch (error) {
+        alert("Failed to fetch roles");
+      }
     };
 
-    const toggleFormVisibility = () => {
-        setFormVisible((prev) => !prev);
-    };
+    fetchRoles();
+  }, []);
 
-    const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        console.log("Form submitted");
-        // Add logic for handling form submission
-    };
-
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        console.log(`${e.target.name}: ${e.target.value}`);
-        // Add logic for handling input changes
-    };
-
-    return (
-        <div className='w-full'>
-            <Navbar />
-            <Sidebar />
-
-            <div className='ml-64 flex flex-col min-h-screen bg-blue-50 px-20 py-10'>
-                <Title text='Privileges' />
-                <Breadcrumbs />
-
-                <div className="flex justify-between items-center mt-6 ml-2">
-                    <ButtonText 
-                        text="Assign Privileges" 
-                        onClick={toggleFormVisibility} 
-                    />
-                </div>
-
-                {isFormVisible && (
-                    <div className="mt-8">
-                        <NewPrivilegesAssignForm
-                            userRoleId=""
-                            userRoleName=""
-                            status="Active"
-                            createdDate=""
-                            createdBy=""
-                            onInputChange={handleInputChange}
-                            onSubmit={handleFormSubmit}
-                        />
-                    </div>
-                )}
-
-                <div className='mt-8'>
-                    <SubTitle text='Recently created' />
-                    <div className="mt-6">
-                        <SearchBar onSearch={handleSearch} />
-                    </div>
-                    <PrivilegeTable users={users} />
-                </div>
-            </div>
-        </div>
+  const handleSearch = (searchText: string) => {
+    const filteredUsers = users.filter((user: any) =>
+      user.roleName.toLowerCase().includes(searchText.toLowerCase())
     );
+    setUsers(filteredUsers);
+  };
+
+  const toggleFormVisibility = () => {
+    setFormVisible((prev) => !prev);
+  };
+
+  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      const result = await addRole({
+        roleName,
+        roleDescription,
+        selectedPrivileges,
+      });
+      alert("Role created successfully");
+      setUsers((prev) => [...prev, result]);
+      setFormVisible(false);
+    } catch (error) {
+      alert("Failed to create role");
+    }
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    if (name === "roleName") {
+      setRoleName(value);
+    } else if (name === "roleDescription") {
+      setRoleDescription(value);
+    }
+  };
+
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, checked } = e.target;
+    if (checked) {
+      setSelectedPrivileges((prev) => [...prev, name]);
+    } else {
+      setSelectedPrivileges((prev) => prev.filter((privilege) => privilege !== name));
+    }
+  };
+
+  return (
+    <div className="w-full">
+      <Navbar />
+      <Sidebar />
+
+      <div className="ml-64 flex flex-col min-h-screen bg-blue-50 px-20 py-10">
+        <Title text="Privileged User Roles" />
+        <Breadcrumbs />
+
+        <div className="flex justify-between items-center mt-6 ml-2">
+          <ButtonText text="Create new user role" onClick={toggleFormVisibility} />
+        </div>
+
+        {isFormVisible && (
+          <div className="mt-8">
+            <NewRoleCreationForm
+              roleName={roleName}
+              roleDescription={roleDescription}
+              selectedPrivileges={selectedPrivileges}
+              onInputChange={handleInputChange}
+              onCheckboxChange={handleCheckboxChange}
+              onSubmit={handleFormSubmit}
+            />
+          </div>
+        )}
+
+        <div className="mt-8">
+          <SubTitle text="Recently created" />
+          <div className="mt-6">
+            <SearchBar onSearch={handleSearch} />
+          </div>
+          <RoleTable users={users} />
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default ViewStaff;
