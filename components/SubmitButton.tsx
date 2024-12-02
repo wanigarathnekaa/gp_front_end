@@ -8,7 +8,7 @@ interface SubmitButtonProps {
 const SubmitButton: React.FC<SubmitButtonProps> = ({ text }) => {
   return (
     <button
-      className="text-white bg-[#312e81ef] hover:bg-[#4e46e5b5] hover:text-white font-bold py-1.5 px-4 rounded-full cursor-pointer"
+      className="text-white bg-blue-600 hover:bg-blue-500 hover:text-white font-regular  py-1.5 px-4 rounded-full cursor-pointer"
     >
       {text}
     </button>
