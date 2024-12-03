@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Navbar, ExamSidebar, CloakCountCard, ExaminationTable } from '@/components/index'
 import React from 'react'
 import { getAllStudents } from '@/actions/graduateStudents'
+import { getCloakCount } from '@/actions/Cloak';
 
 interface User {
   userId: string;
@@ -21,6 +22,24 @@ interface User {
 const ExamDashboard = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
+  const [cloakCount, setCloakCount] = useState({
+    totalSmall:0,
+    totalMedium:0,
+    totalLarge:0,
+
+  });
+
+  const [cloakIssued, setCloakIssued] = useState({
+    totalSmall:0,
+    totalMedium:0,
+    totalLarge:0,
+  });
+
+  const [cloakReturned, setCloakReturned] = useState({
+    totalSmall:0,
+    totalMedium:0,
+    totalLarge:0,
+  });
 
   useEffect(() =>{
     const fetchStudents = async() =>{
@@ -29,14 +48,52 @@ const ExamDashboard = () => {
         console.log("Fetched data:", data);
 
         setUsers(data);
+
+        const issued ={
+          totalSmall: data.filter((user : User) => user.size==="Small" && user.status === "Issued").length,
+          totalMedium: data.filter((user : User) => user.size==="Medium" && user.status === "Issued").length,
+          totalLarge: data.filter((user : User) => user.size==="Large" && user.status === "Issued").length,
+        }
+
+        const returned ={
+          totalSmall: data.filter((user : User) => user.size==="Small" && user.status === "Returned").length,
+          totalMedium: data.filter((user : User) => user.size==="Medium" && user.status === "Returned").length,
+          totalLarge: data.filter((user : User) => user.size==="Large" && user.status === "Returned").length,
+        }
+
+        console.log("Issued:", issued);
+        console.log("Returned:", returned);
+
+        setCloakIssued(issued);
+        setCloakReturned(returned);
         setLoading(false);
+
       } catch (error){
         console.error("Error fetching data:", error);
         setLoading(false);
       }
     };
 
+    const fetchCloakCount = async() =>{
+      try{
+        const counts = await getCloakCount();
+        console.log("Fetched cloak count:", counts);
+
+        setCloakCount({
+          totalSmall: counts.smallCount,
+          totalMedium: counts.mediumCount,
+          totalLarge: counts.largeCount,
+        });
+        setLoading(false);
+      } catch (error){
+        console.error("Error fetching cloak count:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchCloakCount();
     fetchStudents();
+    
 
   }, []);
   return (
@@ -58,25 +115,25 @@ const ExamDashboard = () => {
 
             <CloakCountCard 
               title='Total Cloaks' 
-              countSmall={100} 
-              countMedium={200} 
-              countLarge={300} 
+              countSmall={cloakCount.totalSmall} 
+              countMedium={cloakCount.totalMedium} 
+              countLarge={cloakCount.totalLarge} 
               description='Total number of cloaks available'
               /> 
 
             <CloakCountCard
               title='Cloaks Issued' 
-              countSmall={60} 
-              countMedium={120} 
-              countLarge={250} 
+              countSmall={cloakIssued.totalSmall} 
+              countMedium={cloakIssued.totalMedium} 
+              countLarge={cloakIssued.totalLarge} 
               description='Total cloaks issued'
             /> 
 
            <CloakCountCard
               title='Cloaks Returned'
-              countSmall={40}
-              countMedium={50}
-              countLarge={150}
+              countSmall={cloakReturned.totalSmall}
+              countMedium={cloakReturned.totalMedium}
+              countLarge={cloakReturned.totalLarge}
               description='Total number of cloaks returned'
            />
 
