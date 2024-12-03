@@ -1,5 +1,5 @@
 "use client";
-import { getFormStats, getForms } from "@/actions/form";
+import { getFormStats, getForms, getTemplates } from "@/actions/form";
 import {
   Card,
   CardContent,
@@ -53,7 +53,7 @@ export default function TemplatesPage() {
       <h2 className="text-4xl font-bold col-span-2 font-">Your Templates</h2>
       <div className="my-6"></div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <CreateFormBtn template={{ template: true }} />
+        <CreateFormBtn template={true}/>
         <Suspense
           fallback={[1, 2, 3, 4].map((ele) => (
             <FormCardSkeleton key={ele} />
@@ -77,7 +77,7 @@ async function FormCards() {
   const lastFormIndex = currentPage * formsPerPage;
   const firstFormIndex = lastFormIndex - formsPerPage;
 
-  const forms = await getForms();
+  const forms = await getTemplates();
 
   const currentForms = forms.slice(firstFormIndex, lastFormIndex);
   console.log(forms.length);

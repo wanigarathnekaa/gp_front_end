@@ -42,7 +42,6 @@ interface CreateFormBtnProps {
   template: boolean;
 }
 
-
 function CreateFormBtn({ template }: CreateFormBtnProps) {
   const [courses, setCourses] = useState<string[]>([]);
   useEffect(() => {
@@ -62,7 +61,7 @@ function CreateFormBtn({ template }: CreateFormBtnProps) {
 
     fetchCourses();
   }, []);
-  
+
   console.log(template);
   const router = useRouter();
   const form = useForm<formSchematype>({
@@ -78,7 +77,7 @@ function CreateFormBtn({ template }: CreateFormBtnProps) {
         title: "Success",
         description: "Form created successfully",
       });
-      router.push(`/dashboard/forms/builder/${formId}`);
+      router.push(`/Qac/forms/builder/${formId}`);
     } catch {
       toast({
         title: "Error",
@@ -188,9 +187,10 @@ function CreateFormBtn({ template }: CreateFormBtnProps) {
                     <FormLabel>Select Course</FormLabel>
                     <FormControl>
                       <Select
-                        onValueChange={(value) =>
-                          form.setValue("course", value)
-                        } // Update selected course
+                        onValueChange={(value) => {
+                          const courseCode = value.split(" - ")[0]; 
+                          form.setValue("course", courseCode); 
+                        }}
                       >
                         <SelectTrigger>
                           <SelectValue placeholder="Choose a course" />
