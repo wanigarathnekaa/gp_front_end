@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Navbar, Calendar, TaskList } from "@/components/index";
+import { Navbar, Calendar, TaskList, Title } from "@/components/index";
 import LecturerSidebar from "@/components/LecturerSidebar";
 import Link from "next/link";
 import { FaRegClock } from "react-icons/fa";
@@ -24,7 +24,7 @@ function LecturerDashboard() {
             </h2>
           </div> */}
 
-          <Title />
+          <Title text="Lecturer Dashboard"/>
 
           {/* My Courses Section */}
           <div className="text-2xl font-bold text-gray-800">

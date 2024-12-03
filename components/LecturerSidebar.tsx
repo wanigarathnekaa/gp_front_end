@@ -8,7 +8,7 @@ import { FaUser, FaWpforms, FaRegFileAlt, FaKey, FaChartLine, FaBook, FaComments
 import { FiLogOut } from "react-icons/fi";
 import { MdSpaceDashboard } from "react-icons/md";
 
-function Sidebar() {
+function LecturerSidebar() {
  const router = useRouter();
 
  return (
@@ -20,31 +20,31 @@ function Sidebar() {
      <nav className="flex-1">
        <ul className="space-y-3 bg-white mt-5 justify-center text-lg">
          <li>
-           <Link href="/Qac" className="flex items-center w-full space-x-4 px-5 py-3 rounded-md font-medium text-gray-800 hover:bg-blue-50 hover:text-blue-600">
+           <Link href="/Lecturer/dashboard" className="flex items-center w-full space-x-4 px-5 py-3 rounded-md font-medium text-gray-800 hover:bg-blue-50 hover:text-blue-600">
              <MdSpaceDashboard />
              <span>Dashboard</span>
            </Link>
          </li>
          <li>
-           <Link href="/Qac/courses" className="flex items-center w-full space-x-4 px-5 py-3 rounded-md font-medium text-gray-800 hover:bg-blue-50 hover:text-blue-600">
+           <Link href="/Lecturer/courses" className="flex items-center w-full space-x-4 px-5 py-3 rounded-md font-medium text-gray-800 hover:bg-blue-50 hover:text-blue-600">
              <FaBook />
              <span>Courses</span>
            </Link>
          </li>
          <li>
-           <Link href="/Qac/forms" className="flex items-center space-x-4 px-5 py-3 rounded-md font-medium text-gray-800 hover:bg-blue-50 hover:text-blue-600">
+           <Link href="/Lecturer/forms" className="flex items-center space-x-4 px-5 py-3 rounded-md font-medium text-gray-800 hover:bg-blue-50 hover:text-blue-600">
              <FaWpforms />
              <span>Forms</span>
            </Link>
          </li>
          <li>
-           <Link href="/Qac/peer-reviews" className="flex items-center space-x-4 px-5 py-3 rounded-md font-medium text-gray-800 hover:bg-blue-50 hover:text-blue-600">
+           <Link href="/Lecturer/peerReviews" className="flex items-center space-x-4 px-5 py-3 rounded-md font-medium text-gray-800 hover:bg-blue-50 hover:text-blue-600">
              <FaComments />
              <span>Peer Reviews</span>
            </Link>
          </li>
          <li>
-           <Link href="/Qac/analysis" className="flex items-center space-x-4 px-5 py-3 rounded-md font-medium text-gray-800 hover:bg-blue-50 hover:text-blue-600">
+           <Link href="/Lecturer/analysis" className="flex items-center space-x-4 px-5 py-3 rounded-md font-medium text-gray-800 hover:bg-blue-50 hover:text-blue-600">
              <FaChartLine />
              <span>Analysis</span>
            </Link>
@@ -62,4 +62,4 @@ function Sidebar() {
  );
 }
 
-export default Sidebar;
+export default LecturerSidebar;
