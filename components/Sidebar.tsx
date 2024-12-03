@@ -21,6 +21,11 @@ function Sidebar() {
 
   const { privileges } = usePrivileges();
 
+  const handleLogout = () => {
+    sessionStorage.removeItem('user');
+    router.push('/login');
+};
+
   return (
     <div className="flex flex-col h-full bg-white w-72 px-5 shadow-xl fixed">
       <div className="flex justify-center items-center p-5 mt-5">
@@ -100,7 +105,7 @@ function Sidebar() {
       </nav>
 
       <div className="flex pb-5 text-lg">
-        <button className="flex w-full items-center space-x-4 gap-4 px-5 py-3 rounded-md font-medium text-gray-800 bg-gray-200 hover:bg-blue-50 hover:text-blue-600">
+        <button onClick={handleLogout} className="flex w-full items-center space-x-4 gap-4 px-5 py-3 rounded-md font-medium text-gray-800 bg-gray-200 hover:bg-blue-50 hover:text-blue-600">
           <FiLogOut />
           Log Out
         </button>

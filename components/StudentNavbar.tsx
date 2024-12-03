@@ -22,7 +22,7 @@ const StudentNavbar = () => {
     };
 
     const handleLogout = () => {
-        localStorage.removeItem('user');
+        sessionStorage.removeItem('user');
         router.push('/login');
     };
 
