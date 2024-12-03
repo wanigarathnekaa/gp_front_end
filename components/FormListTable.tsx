@@ -86,7 +86,7 @@ const FormListTable: React.FC = () => {
           status: course.status,
           dueDate: course.dueDate,
           isNew: course.isNew || false,
-          link: course.link || "#",
+          link: `${window.location.origin}/dashboard/submit/${course.link}`|| "#",
         }));
 
         setFormsData(formattedCourses);
