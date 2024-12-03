@@ -13,16 +13,18 @@ function LecturerDashboard() {
 
       <LecturerSidebar />
 
-      <div className="mt-12 ml-64 flex flex-row min-h-screen">
+      <div className="ml-64 flex flex-row min-h-screen">
         {/* Main Content */}
-        <div className="w-3/4 px-20 py-20 bg-[#EEF2FF]">
+        <div className="w-3/4 px-20 py-10 bg-blue-50">
           {/* Welcome Section */}
-          <div className="text-4xl font-bold mb-4">
+          {/* <div className="text-4xl font-bold mb-4">
             <h1 className="mb-10 ml-3 text-gray-800">Hi there!</h1>
             <h2 className="font-normal mt-2 text-3xl ml-3">
               Welcome to your dashboard
             </h2>
-          </div>
+          </div> */}
+
+          <Title />
 
           {/* My Courses Section */}
           <div className="text-2xl font-bold text-gray-800">
