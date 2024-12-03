@@ -36,7 +36,7 @@ export const createForm = async (data: formSchematype) => {
 
   try {
     const response = await axios.post(`${API_URL}/forms/create`, data);
-    return response.data.id;
+    return response.data;
   } catch (error) {
     throw new Error("Form creation failed");
   }
