@@ -36,13 +36,33 @@ import {
   SelectContent,
   SelectItem,
 } from "../ui/select";
+import { AllCourses } from "@/actions/course";
 
 interface CreateFormBtnProps {
   template: boolean;
 }
-const courses = ["Mathematics", "Physics", "Computer Science"];
+
 
 function CreateFormBtn({ template }: CreateFormBtnProps) {
+  const [courses, setCourses] = useState<string[]>([]);
+  useEffect(() => {
+    const fetchCourses = async () => {
+      try {
+        const response = await AllCourses();
+        // Transform response to array of strings
+        const formattedCourses = response.map(
+          (course: { courseCode: string; courseName: string }) =>
+            `${course.courseCode} - ${course.courseName}`
+        );
+        setCourses(formattedCourses);
+      } catch (error) {
+        console.error("Error fetching courses:", error);
+      }
+    };
+
+    fetchCourses();
+  }, []);
+  
   console.log(template);
   const router = useRouter();
   const form = useForm<formSchematype>({
