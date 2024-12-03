@@ -25,8 +25,8 @@ const PieChart = ({ submissionRate, bounceRate }: PieChartProps) => {
     datasets: [
       {
         data: [submissionRate, bounceRate],
-        backgroundColor: ["#4CAF50", "#FF5722"], // Colors for each slice
-        hoverBackgroundColor: ["#45A049", "#FF3D00"], // Colors when hovered
+        backgroundColor: ["#E3BD1C", "#1C42E3"], // Colors for each slice
+        hoverBackgroundColor: ["#E9CC4D", "#4D6BE9"], // Colors when hovered
         borderWidth: 1,
       },
     ],
