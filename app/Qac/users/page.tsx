@@ -44,7 +44,7 @@ const Users = () => {
 
             <Link href="/Qac/users/create-new/create-user-roles">
               <Card 
-                title="Create new user role" 
+                title="Privieged user role" 
                 description='View existing user privileges and roles'
                 icon={HiUserAdd}
                 wide={true}

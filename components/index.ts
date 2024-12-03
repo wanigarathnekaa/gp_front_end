@@ -35,6 +35,7 @@ import AddCloakForm from './AddCloakForm'
 import SubmitFormBulk from './SubmitFormBulk'
 import ButtonText from './ButtonText'
 import CancelButtonNew from './CancelButtonNew'
+import SubmitButtonCourse from './SubmitButtonCourse'
 
 
 export {
@@ -74,4 +75,5 @@ export {
   SubmitFormBulk,
   ButtonText,
   CancelButtonNew,
+  SubmitButtonCourse,
 }

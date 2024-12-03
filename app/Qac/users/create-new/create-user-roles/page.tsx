@@ -1,134 +1,99 @@
 "use client";
-import React, { useState } from 'react';
-import { Sidebar, Navbar, Title, RoleTable, SearchBar } from '@/components/index';
-import ButtonText from '@/components/ButtonText';
-import Breadcrumbs from '@/components/Breadcrumbs';
-import NewRoleCreationForm from '@/components/NewRoleCreation';
-import SubTitle from '@/components/SubTitle';
-import { usePathname } from 'next/navigation';
-import { addRole } from '@/actions/roleCreation';
+import React, { useState } from "react";
+import {
+  Sidebar,
+  Navbar,
+  Title,
+  RoleTable,
+  SearchBar,
+} from "@/components/index";
+import ButtonText from "@/components/ButtonText";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import SubTitle from "@/components/SubTitle";
+import { usePathname } from "next/navigation";
+import NewPrivilegesAssignForm from "@/components/NewPrivilegesAssignForm";
+import PrivilegeTable from "@/components/PrivilegeTable";
+import { addPrivilegedUser } from "@/actions/roleCreation";
+import { usePrivileges } from "@/context/PrivilegeContext";
 
-const usersData = [
-    {
-        roleId: "1",
-        roleName: "Post graduate head",
-        status: 'Active',
-        createdDate: '2024-07-01',
-        createdBy: 'QAC'
-    },
-    {
-        roleId: "2",
-        roleName: "Undergraduate head",
-        status: 'Active',
-        createdDate: '2024-07-01',
-        createdBy: 'QAC'
-    },
-    {
-        roleId: "3",
-        roleName: "Director",
-        status: 'Active',
-        createdDate: '2024-07-01',
-        createdBy: 'QAC'
-    },
-];
+interface User {
+  roleName: string;
+  name: string;
+  email: string;
+  nic: string;
+}
 
 const ViewStaff = () => {
-    const pathname = usePathname();
-    const [users, setUsers] = useState(usersData);
-    const [isFormVisible, setFormVisible] = useState(false);
-    const [roleName, setRoleName] = useState('');
-    const [roleDescription, setRoleDescription] = useState('');
-    const [selectedPrivileges, setSelectedPrivileges] = useState<string[]>([]);
+  const pathname = usePathname();
+  const [users, setUsers] = useState<User[]>([]);
+  const [isFormVisible, setFormVisible] = useState(false);
+  const { privileges } = usePrivileges();
 
-    const handleSearch = (searchText: string) => {
-        const filteredUsers = usersData.filter(user =>
-            user.roleId.toLowerCase().includes(searchText.toLowerCase()) ||
-            user.roleName.toLowerCase().includes(searchText.toLowerCase()) ||
-            user.status.toLowerCase().includes(searchText.toLowerCase()) ||
-            user.createdDate.toLowerCase().includes(searchText.toLowerCase()) ||
-            user.createdBy.toLowerCase().includes(searchText.toLowerCase())
-        );
+  const handleSearch = (searchText: string) => {};
 
-        setUsers(filteredUsers);
-    };
+  const toggleFormVisibility = () => {
+    setFormVisible((prev) => !prev);
+  };
 
-    const toggleFormVisibility = () => {
-        setFormVisible((prev) => !prev);
-    };
+  const handleFormSubmit = async (formData: {
+    selectedRole: string;
+    name: string;
+    email: string;
+    nic: string;
+  }) => {
+    try {
+      const user = {
+        roleName: formData.selectedRole,
+        name: formData.name,
+        email: formData.email,
+        nic: formData.nic,
+      };
 
-    const handleFormSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        try {
-            const result = await addRole({
-                roleName,
-                roleDescription,
-                selectedPrivileges
-            });
-            alert('Role created successfully');
-            setUsers((prev) => [...prev, result.id, roleName, status]);
-            setFormVisible(false);
-        } catch (error) {
-            alert("Failed");
-        }
-    };
+      const response = await addPrivilegedUser(user); // API call to add the user
+      console.log("Privileged user added successfully:", response);
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { name, value } = e.target;
-        if (name === 'roleName') {
-            setRoleName(value);
-        } else if (name === 'roleDescription') {
-            setRoleDescription(value);
-        }
-    };
+      // Update state with the new user
+      setUsers((prevUsers) => [...prevUsers, response]);
 
-    const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, checked } = e.target;
-        if (checked) {
-            setSelectedPrivileges((prev) => [...prev, name]);
-        } else {
-            setSelectedPrivileges((prev) => prev.filter(privilege => privilege !== name));
-        }
-    };
+      alert("User account created successfully!");
+    } catch (error) {
+      console.error("Error creating user account:", error);
+      alert("Failed to create user account. Please try again.");
+    }
+  };
 
-    return (
-        <div className='w-full'>
-            <Navbar />
-            <Sidebar />
+  return (
+    <div className="w-full">
+      <Navbar />
+      <Sidebar />
 
-            <div className='ml-64 flex flex-col min-h-screen bg-blue-50 px-20 py-10'>
-                <Title text='User roles' />
-                <Breadcrumbs />
+      <div className="ml-64 flex flex-col min-h-screen bg-blue-50 px-20 py-10">
+        <Title text="Create new user account" />
+        <Breadcrumbs />
+        {privileges.includes("userRoleCreation") && (
+          <div className="flex justify-between items-center mt-6 ml-2">
+            <ButtonText
+              text="Create user account"
+              onClick={toggleFormVisibility}
+            />
+          </div>
+        )}
+        {isFormVisible && (
+          <div className="mt-8">
+            <NewPrivilegesAssignForm onSubmit={handleFormSubmit} />
+          </div>
+        )}
 
-                <div className="flex justify-between items-center mt-6 ml-2">
-                    <ButtonText 
-                        text="Create new user role" 
-                        onClick={toggleFormVisibility} 
-                    />
-                </div>
-
-                {isFormVisible && (
-                    <div className="mt-8">
-                        <NewRoleCreationForm
-                            roleName={roleName}
-                            roleDescription={roleDescription}
-                            selectedPrivileges={selectedPrivileges}
-                            onInputChange={handleInputChange}
-                            onCheckboxChange={handleCheckboxChange}
-                            onSubmit={handleFormSubmit}
-                        />
-                    </div>
-                )}
-
-                <div className='mt-8'>
-                    <SubTitle text='Recently created' />
-                    <div className="mt-6">
-                        <SearchBar onSearch={handleSearch} />
-                    </div>
-                    <RoleTable users={users} />
-                </div>
-            </div>
+        <div className="mt-8">
+          <SubTitle text="Recently created" />
+          <div className="mt-6">
+            <SearchBar onSearch={handleSearch} />
+          </div>
+          {/* <PrivilegeTable users={users} /> */}
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default ViewStaff;
