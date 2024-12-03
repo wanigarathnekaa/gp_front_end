@@ -2,7 +2,7 @@
 import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { FaFileUpload } from 'react-icons/fa';
-import { SubmitButtonBulk, CancelButton, Button } from '@/components/index';
+import { SubmitButtonCourse, CancelButton, Button } from '@/components/index';
 
 const BulkUploadCard: React.FC = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -50,7 +50,7 @@ const BulkUploadCard: React.FC = () => {
         </div>
         <div className='flex justify-end space-x-3 mt-8 mb-0 '>
           <CancelButton />
-          <SubmitButtonBulk text="Upload" file={selectedFile} />
+          <SubmitButtonCourse text="Upload" file={selectedFile} />
         </div>
       </div>
     </div>

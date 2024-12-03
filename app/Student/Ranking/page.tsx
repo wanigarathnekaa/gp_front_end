@@ -84,7 +84,7 @@ const Ranking = () => {
         <div className="mt-9 flex flex-col justify-center items-center">
           <div className="mb-6 p-5 bg-white shadow-md rounded-lg w-full max-w-6xl">
             <h2 className="text-xl font-semibold text-center">
-              {getRankMessage(currentUser)}
+              {getRankMessage(currentUsers)}
             </h2>
           </div>
 
