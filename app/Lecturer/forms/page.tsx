@@ -13,7 +13,7 @@ const lectureForms = () => {
       <Navbar />
       <div className="ml-64 flex flex-row min-h-screen">
         <div className="w-3/4 px-20 py-10 bg-blue-50">
-        <Title text="My Courses" />
+        <Title text="My Forms" />
         <Breadcrumbs/>
         <div className="flex">
            <LecturerFormsList /> 
