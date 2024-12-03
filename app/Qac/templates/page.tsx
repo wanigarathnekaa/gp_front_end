@@ -48,7 +48,7 @@ export interface Form {
 
 export default function TemplatesPage() {
   return (
-    <div className="ml-64 px-8 max-h-screen overflow-auto py-10">
+    <div className="ml-64 mt-5 px-20 max-h-screen overflow-auto py-10 w-screen">
 
       <h2 className="text-4xl font-bold col-span-2 font-">Your Templates</h2>
       <div className="my-6"></div>
