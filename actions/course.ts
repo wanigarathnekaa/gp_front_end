@@ -43,3 +43,25 @@ export const getFilledCourses = async (courseRequest: CourseRequest) => {
       throw new Error('Failed to fetch courses: ' + (error as Error).message);
     }
   };
+
+  export const getStudentCourses = async (courseRequest: CourseRequest) => {
+    try {
+      const response = await axios.post(`${API_URL}/course/studentCourse`, courseRequest);
+      return response.data;
+    } catch (error) {
+      // Throw a descriptive error if the request fails
+      throw new Error('Failed to fetch courses: ' + (error as Error).message);
+    }
+  };
+
+  export const getUserCourses = async (courseRequest: CourseRequest) => {
+    try {
+      const response = await axios.post(`${API_URL}/course/userCourses`, courseRequest);
+      return response.data;
+    } catch (error) {
+      // Throw a descriptive error if the request fails
+      throw new Error('Failed to fetch courses: ' + (error as Error).message);
+    }
+  };
+
+  

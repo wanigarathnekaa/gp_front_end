@@ -1,104 +1,133 @@
 "use client";
-import React, { useState } from 'react';
-import { AiFillCheckCircle, AiFillExclamationCircle, AiOutlineClockCircle } from 'react-icons/ai';
 
-const FormListTable = () => {
-  const formsData = [
-    {
-      moduleName: 'Group Project',
-      moduleCode: 'CS',
-      lecturers: [
-        { name: 'Dr. Smith', email: 'smith@example.com' },
-        { name: 'Prof. Brown', email: 'brown@example.com' }
-      ],
-      formName: 'form 1',
-      distributedAt: '2024-11-25',
-      status: 'Filled',
-      dueDate: '2024-11-30',
-      isNew: false,
-    },
-    {
-      moduleName: 'Computer Graphics',
-      moduleCode: 'CS',
-      lecturers: [
-        { name: 'Dr. Johnson', email: 'johnson@example.com' }
-      ],
-      formName: 'form 2',
-      distributedAt: '2024-11-20',
-      status: 'Not Filled',
-      dueDate: '2024-12-02',
-      isNew: true,
-    },
-    {
-      moduleName: 'Management',
-      moduleCode: 'MG',
-      lecturers: [
-        { name: 'Dr. Lee', email: 'lee@example.com' }
-      ],
-      formName: 'form 3',
-      distributedAt: '2024-11-15',
-      status: 'Not Filled',
-      dueDate: '2024-12-02',
-      isNew: false,
-    },
-    {
-      moduleName: 'Mathematical methods',
-      moduleCode: 'MM',
-      lecturers: [
-        { name: 'Prof. Harris', email: 'harris@example.com' }
-      ],
-      formName: 'form 4',
-      distributedAt: '2024-11-22',
-      status: 'Filled',
-      dueDate: '2024-12-01',
-      isNew: true,
-    },
-    {
-      moduleName: 'Networking',
-      moduleCode: 'CS',
-      lecturers: [
-        { name: 'Dr. Taylor', email: 'taylor@example.com' }
-      ],
-      formName: 'form 5',
-      distributedAt: '2024-11-22',
-      status: 'Not Filled',
-      dueDate: '2024-12-01',
-      isNew: false,
-    },
-  ];
+import { getStudentCourses } from "@/actions/course";
+import { getStudentDetailsByRegNumber } from "@/actions/studentDetails";
+import { useAuth } from "@/context/AuthProvider";
+import React, { useEffect, useState } from "react";
+import {
+  AiFillCheckCircle,
+  AiFillExclamationCircle,
+  AiOutlineClockCircle,
+} from "react-icons/ai";
 
-  const [rowsPerPage, setRowsPerPage] = useState(5);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedModule, setSelectedModule] = useState(null);
+interface Lecturer {
+  name: string;
+  email: string;
+}
 
-  const getStatusDetails = (status) => {
+interface FormData {
+  moduleName: string;
+  moduleCode: string;
+  lecturers: Lecturer[];
+  formName: string;
+  distributedAt: string;
+  status: string;
+  dueDate: string;
+  isNew: boolean;
+  link?: string; // Optional in case it's not provided
+}
+
+interface CourseRequest {
+  regNumber: string;
+  year: string;
+  semester: string;
+}
+
+const FormListTable: React.FC = () => {
+  const { decodedToken } = useAuth();
+  const [name, setName] = useState("");
+  const [year, setYear] = useState("");
+  const [semester, setSemester] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [formsData, setFormsData] = useState<FormData[]>([]);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(5);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [selectedModule, setSelectedModule] = useState<FormData | null>(null);
+
+  useEffect(() => {
+    if (!decodedToken?.sub) return;
+
+    const fetchUser = async () => {
+      try {
+        const response = await getStudentDetailsByRegNumber(decodedToken.sub);
+        setName(response.name);
+        setYear(response.year);
+        setSemester(response.semester);
+      } catch (error) {
+        console.error("Error fetching student details:", error);
+        setError("Failed to fetch student details.");
+      }
+    };
+
+    fetchUser();
+  }, [decodedToken]);
+
+  useEffect(() => {
+    if (!decodedToken?.sub || !year || !semester) return;
+
+    const fetchCourses = async () => {
+      setLoading(true);
+      try {
+        const courseRequest: CourseRequest = {
+          regNumber: decodedToken.sub,
+          year,
+          semester,
+        };
+        const response = await getStudentCourses(courseRequest);
+
+        const formattedCourses = response.map((course: any) => ({
+          moduleName: course.moduleName,
+          moduleCode: course.moduleCode,
+          lecturers: course.lecturers || [],
+          formName: course.formName,
+          distributedAt: course.distributedAt,
+          status: course.status,
+          dueDate: course.dueDate,
+          isNew: course.isNew || false,
+          link: `${window.location.origin}/dashboard/submit/${course.link}`|| "#",
+        }));
+
+        setFormsData(formattedCourses);
+      } catch (error) {
+        console.error("Error fetching courses:", error);
+        setError("Failed to fetch courses.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCourses();
+  }, [decodedToken?.sub, year, semester]);
+
+  const getStatusDetails = (status: string) => {
     switch (status) {
-      case 'Filled':
-        return { icon: <AiFillCheckCircle className="text-green-500" />, color: 'text-green-600' };
-      case 'Not Filled':
-        return { icon: <AiFillExclamationCircle className="text-red-500" />, color: 'text-red-600' };
-      case 'Due Today':
-        return { icon: <AiOutlineClockCircle className="text-blue-500" />, color: 'text-blue-600' };
+      case "Filled":
+        return { icon: <AiFillCheckCircle className="text-green-500" />, color: "text-green-600" };
+      case "Not Filled":
+        return { icon: <AiFillExclamationCircle className="text-red-500" />, color: "text-red-600" };
+      case "Due Today":
+        return { icon: <AiOutlineClockCircle className="text-blue-500" />, color: "text-blue-600" };
       default:
-        return { icon: null, color: 'text-gray-600' };
+        return { icon: null, color: "text-gray-600" };
     }
   };
 
-  const isDueToday = (dueDate) => {
+  const isDueToday = (dueDate: string) => {
     const today = new Date();
     const dueDateObj = new Date(dueDate);
     return dueDateObj.toDateString() === today.toDateString();
   };
 
-  const handlePageChange = (page) => setCurrentPage(page);
+  const handlePageChange = (page: number) => setCurrentPage(page);
 
-  const handleRowsPerPageChange = (e) => {
+  const handleRowsPerPageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setRowsPerPage(Number(e.target.value));
-    setCurrentPage(1); // Reset to first page
+    setCurrentPage(1); // Reset to the first page
   };
 
-  const handleModuleClick = (module) => {
+  const handleModuleClick = (module: FormData) => {
     setSelectedModule(module);
     setIsModalOpen(true);
   };
@@ -123,7 +152,7 @@ const FormListTable = () => {
         <tbody>
           {currentPageData.map((form, index) => {
             const statusDetails = isDueToday(form.dueDate)
-              ? getStatusDetails('Due Today')
+              ? getStatusDetails("Due Today")
               : getStatusDetails(form.status);
 
             return (
@@ -139,11 +168,11 @@ const FormListTable = () => {
                 </td>
                 <td className="py-3 px-4">
                   <a
-                    href={form.link}
+                    href={form.link || "#"}
                     className={`${
                       form.isNew
-                        ? 'font-bold text-blue-600 cursor-pointer underline'
-                        : 'text-gray-500 cursor-pointer underline'
+                        ? "font-bold text-blue-600 cursor-pointer underline"
+                        : "text-gray-500 cursor-pointer underline"
                     }`}
                   >
                     {form.formName}
@@ -199,7 +228,7 @@ const FormListTable = () => {
         </div>
       </div>
 
-      {/* popup-Modal */}
+      {/* Popup Modal */}
       {isModalOpen && selectedModule && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg w-3/12 gap-4">

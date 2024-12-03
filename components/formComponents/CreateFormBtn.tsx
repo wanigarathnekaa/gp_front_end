@@ -36,13 +36,32 @@ import {
   SelectContent,
   SelectItem,
 } from "../ui/select";
+import { AllCourses } from "@/actions/course";
 
 interface CreateFormBtnProps {
   template: boolean;
 }
-const courses = ["Mathematics", "Physics", "Computer Science"];
 
 function CreateFormBtn({ template }: CreateFormBtnProps) {
+  const [courses, setCourses] = useState<string[]>([]);
+  useEffect(() => {
+    const fetchCourses = async () => {
+      try {
+        const response = await AllCourses();
+        // Transform response to array of strings
+        const formattedCourses = response.map(
+          (course: { courseCode: string; courseName: string }) =>
+            `${course.courseCode} - ${course.courseName}`
+        );
+        setCourses(formattedCourses);
+      } catch (error) {
+        console.error("Error fetching courses:", error);
+      }
+    };
+
+    fetchCourses();
+  }, []);
+
   console.log(template);
   const router = useRouter();
   const form = useForm<formSchematype>({
@@ -58,7 +77,7 @@ function CreateFormBtn({ template }: CreateFormBtnProps) {
         title: "Success",
         description: "Form created successfully",
       });
-      router.push(`/dashboard/forms/builder/${formId}`);
+      router.push(`/Qac/forms/builder/${formId}`);
     } catch {
       toast({
         title: "Error",
@@ -168,9 +187,10 @@ function CreateFormBtn({ template }: CreateFormBtnProps) {
                     <FormLabel>Select Course</FormLabel>
                     <FormControl>
                       <Select
-                        onValueChange={(value) =>
-                          form.setValue("course", value)
-                        } // Update selected course
+                        onValueChange={(value) => {
+                          const courseCode = value.split(" - ")[0]; 
+                          form.setValue("course", courseCode); 
+                        }}
                       >
                         <SelectTrigger>
                           <SelectValue placeholder="Choose a course" />

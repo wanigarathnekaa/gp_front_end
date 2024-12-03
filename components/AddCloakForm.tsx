@@ -7,7 +7,7 @@ interface AddCloakFormProps {
 
     onSubmit: (e: React.FormEvent<HTMLFormElement>, data: { name: string; medium: number; small: number; large: number }) => void;
     closeModal: () => void;
-    mode: 'add' | 'update';
+    mode: 'add' | 'update' | 'remove';
     initialCounts?: { small: number; medium: number; large: number };
 }
 
@@ -49,14 +49,14 @@ const AddCloakForm = ({
             </button>
 
             <h1 className='text-2xl text-gray-500 font-bold mb-6 text-center'>
-                {mode === 'add' ? 'Add New Cloak' : 'Update Cloak Count'}
+                {mode === 'add' ? 'Add New Cloak' :  mode === 'update' ? 'Update Cloak Count' : 'Remove Cloak'}
             </h1>
 
             <form onSubmit={handleSubmit}>
                 <div className='mb-5'>
                     <label className='block text-gray-700 text-sm font-bold mb-2' htmlFor="small">
                         Small Cloaks
-                    </label>
+                    </label> 
                     <input
                         type="number"
                         id='small'
@@ -100,7 +100,7 @@ const AddCloakForm = ({
 
                 <div className=' mt-14 flex justify-end space-x-4'>
                     <CancelButtonNew onClick={closeModal}/>
-                    <SubmitButton text= {mode === "add" ? "Add" : "Update"} />
+                    <SubmitButton text= {mode === "add" ? "Add" : mode === "update" ? "Update" : "Delete"} />
                 </div>
             </form>
 
