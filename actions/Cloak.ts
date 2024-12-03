@@ -27,3 +27,12 @@ export const addOrUpdateCloak = async(cloakCounts: CloakCounts) => {
         throw new Error("Failed to add cloak counts");
     }
 };
+
+export const removeCloak = async() => {
+    try{
+        const response = await axios.delete(`${API_URL}/api/cloaks/remove`);
+        return response.data;
+    }catch(error){
+        throw new Error("Failed to remove cloak counts");
+    }
+};

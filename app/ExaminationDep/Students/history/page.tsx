@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import { Navbar, ExamSidebar, Title, Navigation,  SearchBar, ExaminationTable } from '@/components/index'
 import { usePathname } from 'next/navigation';
-import { getAllStudents } from '@/actions/studentDetails';
+import { getAllStudents } from '@/actions/graduateStudents';
 
 interface User {
   userId: string;
