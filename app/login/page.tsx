@@ -17,7 +17,7 @@ const Page: React.FC = () => {
   const [regNumber, setRegNumber] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
-  const [message, setMessage] = useState<string>('');
+  const [message, setMessage] = useState<string>("");
 
   const { setToken, roleName } = useAuth();
 
