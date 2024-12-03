@@ -1,6 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import { getStudentCourses } from "@/actions/course";
+import { getStudentDetailsByRegNumber } from "@/actions/studentDetails";
+import { useAuth } from "@/context/AuthProvider";
+import React, { useEffect, useState } from "react";
 import {
   AiFillCheckCircle,
   AiFillExclamationCircle,
@@ -24,67 +27,79 @@ interface FormData {
   link?: string; // Optional in case it's not provided
 }
 
-const FormListTable: React.FC = () => {
-  const formsData: FormData[] = [
-    {
-      moduleName: "Group Project",
-      moduleCode: "CS",
-      lecturers: [
-        { name: "Dr. Smith", email: "smith@example.com" },
-        { name: "Prof. Brown", email: "brown@example.com" },
-      ],
-      formName: "form 1",
-      distributedAt: "2024-11-25",
-      status: "Filled",
-      dueDate: "2024-11-30",
-      isNew: false,
-    },
-    {
-      moduleName: "Computer Graphics",
-      moduleCode: "CS",
-      lecturers: [{ name: "Dr. Johnson", email: "johnson@example.com" }],
-      formName: "form 2",
-      distributedAt: "2024-11-20",
-      status: "Not Filled",
-      dueDate: "2024-12-02",
-      isNew: true,
-    },
-    {
-      moduleName: "Management",
-      moduleCode: "MG",
-      lecturers: [{ name: "Dr. Lee", email: "lee@example.com" }],
-      formName: "form 3",
-      distributedAt: "2024-11-15",
-      status: "Not Filled",
-      dueDate: "2024-12-02",
-      isNew: false,
-    },
-    {
-      moduleName: "Mathematical methods",
-      moduleCode: "MM",
-      lecturers: [{ name: "Prof. Harris", email: "harris@example.com" }],
-      formName: "form 4",
-      distributedAt: "2024-11-22",
-      status: "Filled",
-      dueDate: "2024-12-01",
-      isNew: true,
-    },
-    {
-      moduleName: "Networking",
-      moduleCode: "CS",
-      lecturers: [{ name: "Dr. Taylor", email: "taylor@example.com" }],
-      formName: "form 5",
-      distributedAt: "2024-11-22",
-      status: "Not Filled",
-      dueDate: "2024-12-01",
-      isNew: false,
-    },
-  ];
+interface CourseRequest {
+  regNumber: string;
+  year: string;
+  semester: string;
+}
 
+const FormListTable: React.FC = () => {
+  const { decodedToken } = useAuth();
+  const [name, setName] = useState("");
+  const [year, setYear] = useState("");
+  const [semester, setSemester] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [formsData, setFormsData] = useState<FormData[]>([]);
   const [rowsPerPage, setRowsPerPage] = useState<number>(5);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [selectedModule, setSelectedModule] = useState<FormData | null>(null);
+
+  useEffect(() => {
+    if (!decodedToken?.sub) return;
+
+    const fetchUser = async () => {
+      try {
+        const response = await getStudentDetailsByRegNumber(decodedToken.sub);
+        setName(response.name);
+        setYear(response.year);
+        setSemester(response.semester);
+      } catch (error) {
+        console.error("Error fetching student details:", error);
+        setError("Failed to fetch student details.");
+      }
+    };
+
+    fetchUser();
+  }, [decodedToken]);
+
+  useEffect(() => {
+    if (!decodedToken?.sub || !year || !semester) return;
+
+    const fetchCourses = async () => {
+      setLoading(true);
+      try {
+        const courseRequest: CourseRequest = {
+          regNumber: decodedToken.sub,
+          year,
+          semester,
+        };
+        const response = await getStudentCourses(courseRequest);
+
+        const formattedCourses = response.map((course: any) => ({
+          moduleName: course.moduleName,
+          moduleCode: course.moduleCode,
+          lecturers: course.lecturers || [],
+          formName: course.formName,
+          distributedAt: course.distributedAt,
+          status: course.status,
+          dueDate: course.dueDate,
+          isNew: course.isNew || false,
+          link: course.link || "#",
+        }));
+
+        setFormsData(formattedCourses);
+      } catch (error) {
+        console.error("Error fetching courses:", error);
+        setError("Failed to fetch courses.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCourses();
+  }, [decodedToken?.sub, year, semester]);
 
   const getStatusDetails = (status: string) => {
     switch (status) {
