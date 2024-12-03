@@ -8,11 +8,13 @@ import { useRouter } from 'next/navigation';
 import { FaUser, FaWpforms, FaRegFileAlt, FaKey, FaChartLine, FaBook } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
 import { MdSpaceDashboard } from "react-icons/md";
+import { usePrivileges } from '@/context/PrivilegeContext';
 
 
 function Sidebar() {
  const router = useRouter();
 
+ const { privileges } = usePrivileges(); 
 
  return (
    <div className="flex flex-col h-full bg-white w-72 px-5 shadow-xl fixed">
@@ -41,12 +43,14 @@ function Sidebar() {
              <span>Courses</span>
            </Link>
          </li>
-         <li>
-           <Link href="/Qac/forms" className="flex items-center space-x-4 px-5 py-3 rounded-md font-medium text-gray-800 hover:bg-blue-50 hover:text-blue-600">
-             <FaWpforms />
-             <span>Forms</span>
-           </Link>
-         </li>
+         {privileges.includes('formCreation') && (
+           <li>
+             <Link href="/Qac/forms" className="flex items-center space-x-4 px-5 py-3 rounded-md font-medium text-gray-800 hover:bg-blue-50 hover:text-blue-600">
+               <FaWpforms />
+               <span>Forms</span>
+             </Link>
+           </li>
+         )}
          <li>
            <Link href="/Qac/templates" className="flex items-center space-x-4 px-5 py-3 rounded-md font-medium text-gray-800 hover:bg-blue-50 hover:text-blue-600">
              <FaRegFileAlt />
@@ -59,12 +63,14 @@ function Sidebar() {
              <span>Privileges</span>
            </Link>
          </li>
+         {privileges.includes('viewFormAnalysis') && (
          <li>
            <Link href="/Qac/analysis" className="flex items-center space-x-4 px-5 py-3 rounded-md font-medium text-gray-800 hover:bg-blue-50 hover:text-blue-600">
              <FaChartLine />
              <span>Analysis</span>
            </Link>
          </li>
+          )}
        </ul>
      </nav>
 
