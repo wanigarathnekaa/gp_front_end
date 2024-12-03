@@ -18,7 +18,7 @@ const Breadcrumbs = () => {
         <nav className="text-blue-600 mt-3 ml-4 mb-10">
             <ul className="flex">
                 <li>
-                    <Link href="/">Dashboard</Link>
+                    <Link href="/">Home</Link>
                 </li>
                 {pathnames.map((value, index) => {
                     const last = index === pathnames.length - 1;
