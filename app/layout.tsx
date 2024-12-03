@@ -7,11 +7,12 @@ import "./globals.css";
 import DesignerContextProvider from "@/components/formComponents/context/DesignerContext";
 import NextTopLoader from "nextjs-toploader";
 import { AuthProvider } from "@/context/AuthProvider";
+import { PrivilegesProvider } from "@/context/PrivilegeContext";
 
 const poppins = Poppins({
-  weight: ['400', '700'], // Specify the weights you need
-  style: ['normal', 'italic'], // Specify the styles you need
-  subsets: ['latin'] // Correct usage of the subsets property
+  weight: ["400", "700"], // Specify the weights you need
+  style: ["normal", "italic"], // Specify the styles you need
+  subsets: ["latin"], // Correct usage of the subsets property
 });
 
 export const metadata: Metadata = {
@@ -26,17 +27,17 @@ export default function RootLayout({
 }) {
   return (
     <AuthProvider>
-    <ClerkProvider>
-      <html lang="en">
-        <body className={poppins.className}>
-          <NextTopLoader />
-          <DesignerContextProvider>
-            {children}
-            <Toaster />
-          </DesignerContextProvider>
-        </body>
-      </html>
-    </ClerkProvider>
+      <ClerkProvider>
+        <html lang="en">
+          <body className={poppins.className}>
+            <NextTopLoader />
+            <DesignerContextProvider>
+              <PrivilegesProvider>{children}</PrivilegesProvider>
+              <Toaster />
+            </DesignerContextProvider>
+          </body>
+        </html>
+      </ClerkProvider>
     </AuthProvider>
   );
 }
