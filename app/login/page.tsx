@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useState, ChangeEvent, FormEvent } from "react";
+import React, { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import Image from "next/image";
 import { login } from "@/actions/login";
 import { useRouter } from "next/navigation";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useAuth } from "@/context/AuthProvider";
+import { getPrivileges } from "@/actions/privilege";
 
 interface LoginRequest {
   regNumber: string;
@@ -21,6 +22,27 @@ const Page: React.FC = () => {
 
   const { setToken, roleName } = useAuth();
 
+  const [privileges, setPrivileges] = useState<string[]>([]);
+  useEffect(() => {
+    if (!roleName) {
+      console.error("Role not found");
+      return;
+    }
+
+    const fetchPrivileges = async () => {
+      try {
+        const response: string[] = await getPrivileges(roleName);
+        setPrivileges(response);
+      } catch (error) {
+        console.error("Error fetching privileges:", error);
+      }
+    };
+
+    fetchPrivileges();
+    console.log("Privileges:", privileges);
+
+  }, [roleName]);
+
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -33,7 +55,7 @@ const Page: React.FC = () => {
       const response = await login(loginRequest);
       if (response.accessToken !== null) {
         setMessage(response.message);
-        setToken(response.accessToken, response.roleName); // Pass roleName here
+        setToken(response.accessToken, response.roleName); 
 
         if (response.roleName === "Student") {
           router.push("/Student/dashboard");
