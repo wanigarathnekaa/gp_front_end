@@ -55,7 +55,7 @@ const Page: React.FC = () => {
       const response = await login(loginRequest);
       if (response.accessToken !== null) {
         setMessage(response.message);
-        setToken(response.accessToken, response.roleName); // Pass roleName here
+        setToken(response.accessToken, response.roleName); 
 
         if (response.roleName === "Student") {
           router.push("/Student/dashboard");

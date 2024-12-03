@@ -33,3 +33,13 @@ export const getFilledCourses = async (courseRequest: CourseRequest) => {
       throw new Error('Failed to fetch courses: ' + (error as Error).message);
     }
   };
+
+  export const getNotFilledCourses = async (courseRequest: CourseRequest) => {
+    try {
+      const response = await axios.post(`${API_URL}/course/notFilledCourse`, courseRequest);
+      return response.data;
+    } catch (error) {
+      // Throw a descriptive error if the request fails
+      throw new Error('Failed to fetch courses: ' + (error as Error).message);
+    }
+  };
