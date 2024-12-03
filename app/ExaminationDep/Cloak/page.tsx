@@ -14,7 +14,7 @@ const Cloak = () => {
   const handleOpenForm =async(mode: "add" | "update" | "remove") =>{
     setFormMode(mode);
 
-    if (mode === "update" || mode === "remove") {
+    if (mode === "update" ) {
       try {
         const data = await getCloakCount();
         setInitialCounts({
@@ -46,12 +46,12 @@ const Cloak = () => {
       } else if(formMode === "update" && existingCloak){
         const result = await addOrUpdateCloak({
           name: "cloakCounts",
-          smallCount: formMode === "update"  && initialCounts ? data.small  : data.small,
-          mediumCount: formMode === "update"  && initialCounts ? data.medium  : data.medium,
-          largeCount: formMode === "update" && initialCounts ? data.large  : data.large, 
+          smallCount: data.small,
+          mediumCount: data.medium,
+          largeCount:  data.large, 
         });
 
-        console.log("Cloak added:", result);
+        console.log("Cloak updated:", result);
       } else if(formMode === "add"){
         const result = await addOrUpdateCloak({
           name: "cloakCounts",
