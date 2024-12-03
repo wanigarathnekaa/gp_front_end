@@ -102,7 +102,7 @@ const LecturerFormsList: React.FC = () => {
   const currentPageData = formsData.slice(startIndex, endIndex);
 
   return (
-    <div className="px-4 w-full">
+    <div className="px-4 w-full -mt-2">
       <table className="w-full bg-white rounded-2xl shadow-md border-none text-gray-600">
         <thead>
           <tr>
