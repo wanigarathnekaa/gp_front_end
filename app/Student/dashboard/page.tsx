@@ -1,5 +1,5 @@
 "use client";
-import { AllCourses, getFilledCourses, getNotFilledCourses } from "@/actions/course";
+import { AllCourses, getFilledCourses, getNotFilledCourses, getUserCourses } from "@/actions/course";
 import { StudentNavbar, Calendar, TaskList, Courses } from "@/components/index";
 import { useAuth } from "@/context/AuthProvider";
 import Link from "next/link";
@@ -56,7 +56,7 @@ const StudentDashboard = () => {
         };
         console.log("Course Request:", courseRequest);
 
-        const response = await getNotFilledCourses(courseRequest);
+        const response = await getUserCourses(courseRequest);
         console.log("Courses:", response);
 
         const formattedCourses = response.map((course: any) => ({
