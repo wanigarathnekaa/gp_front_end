@@ -81,6 +81,7 @@ function Sidebar() {
               <span>Templates</span>
             </Link>
           </li>
+          {privileges.includes("userRoleCreation") && (
           <li>
             <Link
               href="/Qac/privileges"
@@ -90,6 +91,7 @@ function Sidebar() {
               <span>Privileges</span>
             </Link>
           </li>
+          )}
           {privileges.includes("viewFormAnalysis") && (
             <li>
               <Link
