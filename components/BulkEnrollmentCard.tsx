@@ -43,7 +43,7 @@ const BulkEnrollCard: React.FC = () => {
           <input {...getInputProps()} />
           <FaFileUpload className="mx-auto text-6xl text-gray-400" />
           {isDragActive ? (
-            <p className="mt-4 text-[#706ee4] px-10">Drop the files here</p>
+            <p className="mt-4 text-blue-600 px-10">Drop the files here</p>
           ) : (
             <p className="mt-4 text-gray-600 px-10">Drag & drop your files here or<div className="text-[#706ee4] hover:underline cursor-pointer"> Brows here</div></p>
           )}

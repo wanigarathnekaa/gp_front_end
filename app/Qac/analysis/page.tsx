@@ -106,7 +106,7 @@ export default function Home() {
         {selectedForm && (
           <>
             <p className="mt-4">
-              You selected: {selectedForm.name} (ID: {selectedForm.id})
+              You selected: {selectedForm.name}
             </p>
             {/* Render Form Analysis */}
             <FormAnalysis formId={selectedForm.id} />
@@ -139,7 +139,7 @@ export default function Home() {
       </div>
 
       {/* Dropdown and Analysis */}
-      <div className="p-4">
+      {/* <div className="p-4">
         {loading ? (
           <p>Loading forms...</p>
         ) : (
@@ -153,12 +153,12 @@ export default function Home() {
           <>
             <p className="mt-4">
               You selected: {selectedForm.name}
-            </p>
+            </p> */}
             {/* Render Form Analysis */}
-            <FormAnalysis formId={selectedForm.id} />
+            {/* <FormAnalysis formId={selectedForm.id} />
           </>
         )}
-      </div>
+      </div> */}
     </div>
   );
 }

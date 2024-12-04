@@ -85,7 +85,9 @@ const StudentDashboard = () => {
 
       <div className="mt-12 flex flex-row min-h-screen px-20 bg-blue-50 py-10 justify-center">
         <div className="w-full max-w-6xl">
+          <div className="mb-8">
           <Title text="My Courses"/>
+          </div>
           {/* <div className="text-3xl font-bold mb-4">
             <h1 className="text-3xl mt-10 mb-10 ml-3">
               Hi {name || "Student"}!
