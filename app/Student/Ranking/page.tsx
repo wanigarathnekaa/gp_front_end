@@ -53,7 +53,7 @@ const Ranking = () => {
       return (
         <div className="flex flex-col justify-center items-center">
             <h1 className="text-green-400 text-3xl">You're in the top 10 list!</h1>
-            <p className="font-medium mt-5 text-gray-600 text-lg">Your rank is {rank}. Few more to win the prize.</p>
+            <p className="font-medium mt-5 text-gray-600 text-lg">Few more to win the prize.</p>
         </div>
       );
     } else {

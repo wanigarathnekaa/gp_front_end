@@ -19,12 +19,12 @@ function LecturerSidebar() {
 
      <nav className="flex-1">
        <ul className="space-y-3 bg-white mt-5 justify-center text-lg">
-         <li>
+         {/* <li>
            <Link href="/Lecturer/dashboard" className="flex items-center w-full space-x-4 px-5 py-3 rounded-md font-medium text-gray-800 hover:bg-blue-50 hover:text-blue-600">
              <MdSpaceDashboard />
              <span>Dashboard</span>
            </Link>
-         </li>
+         </li> */}
          <li>
            <Link href="/Lecturer/courses" className="flex items-center w-full space-x-4 px-5 py-3 rounded-md font-medium text-gray-800 hover:bg-blue-50 hover:text-blue-600">
              <FaBook />
