@@ -16,7 +16,7 @@ export default function Layout({ children }: { children: ReactNode }) {
           <Navbar />
         </>
       )}
-      <main className="flex w-full flex-grow pl-8 flex-col min-h-screen bg-blue-50">
+      <main className="flex w-full flex-grow pl-8 flex-col min-h-screen bg-blue-50 ">
         {children}
       </main>
     </div>

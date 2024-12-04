@@ -9,6 +9,8 @@ import LineChart from "@/components/LineChart";
 import PieChart from "@/components/PieChart";
 import Dropdown from "@/components/Dropdown";
 import FormAnalysis from "@/components/formComponents/FormAnalysis";
+import { Title } from "@/components/index";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 export default function Home() {
   const [forms, setForms] = useState<{ id: string; name: string }[]>([]);
@@ -87,7 +89,30 @@ export default function Home() {
 
   return (
     <div className="ml-64 px-8 max-h-screen overflow-auto py-10">
-      <div className="my-20"></div>
+      <Title text="Analysis"/>
+      <Breadcrumbs/>
+      
+      {/* Dropdown and Analysis */}
+      <div className="p-4">
+        {loading ? (
+          <p>Loading forms...</p>
+        ) : (
+          <Dropdown
+            options={forms.map((form) => form.name)} // Pass only names to the Dropdown
+            onSelect={handleSelect}
+            title="Select a Form"
+          />
+        )}
+        {selectedForm && (
+          <>
+            <p className="mt-4">
+              You selected: {selectedForm.name} (ID: {selectedForm.id})
+            </p>
+            {/* Render Form Analysis */}
+            <FormAnalysis formId={selectedForm.id} />
+          </>
+        )}
+      </div>
 
       {/* Charts Section */}
       <div className="flex items-center justify-between space-x-4">
@@ -111,28 +136,6 @@ export default function Home() {
             />
           )}
         </div>
-      </div>
-
-      {/* Dropdown and Analysis */}
-      <div className="p-4">
-        {loading ? (
-          <p>Loading forms...</p>
-        ) : (
-          <Dropdown
-            options={forms.map((form) => form.name)} // Pass only names to the Dropdown
-            onSelect={handleSelect}
-            title="Select a Form"
-          />
-        )}
-        {selectedForm && (
-          <>
-            <p className="mt-4">
-              You selected: {selectedForm.name} (ID: {selectedForm.id})
-            </p>
-            {/* Render Form Analysis */}
-            <FormAnalysis formId={selectedForm.id} />
-          </>
-        )}
       </div>
     </div>
   );
