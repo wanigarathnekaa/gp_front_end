@@ -137,6 +137,28 @@ export default function Home() {
           )}
         </div>
       </div>
+
+      {/* Dropdown and Analysis */}
+      <div className="p-4">
+        {loading ? (
+          <p>Loading forms...</p>
+        ) : (
+          <Dropdown
+            options={forms.map((form) => form.name)} // Pass only names to the Dropdown
+            onSelect={handleSelect}
+            title="Select a Form"
+          />
+        )}
+        {selectedForm && (
+          <>
+            <p className="mt-4">
+              You selected: {selectedForm.name}
+            </p>
+            {/* Render Form Analysis */}
+            <FormAnalysis formId={selectedForm.id} />
+          </>
+        )}
+      </div>
     </div>
   );
 }
