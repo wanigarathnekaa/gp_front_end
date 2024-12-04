@@ -45,6 +45,9 @@ const StudentNavbar = () => {
                     <Link href="/Student/Forms" className={linkClasses('/Student/Forms')}>
                         Forms
                     </Link>
+                    <Link href="/Student/Courses" className={linkClasses('/Student/Courses')}>
+                        Courses
+                    </Link>
                     <Link href="/Student/Ranking" className={linkClasses('/Student/Ranking')}>
                         Ranking
                     </Link>

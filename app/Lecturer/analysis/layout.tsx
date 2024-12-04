@@ -3,6 +3,7 @@ import { Sidebar, Navbar } from "@/components/index";
 //import Logo from '@/components/formComponents/Logo';
 import { ReactNode } from "react";
 import { usePathname } from "next/navigation";
+import LecturerSidebar from "@/components/LecturerSidebar";
 
 export default function Layout({ children }: { children: ReactNode }) {
   const pathname = usePathname();
@@ -12,7 +13,7 @@ export default function Layout({ children }: { children: ReactNode }) {
     <div className="flex flex-col min-h-screen min-w-full bg-background max-h-screen ">
       {!isBuilderPage && (
         <>
-          <Sidebar />
+          <LecturerSidebar />
           <Navbar />
         </>
       )}
